@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +44,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Inicio</a>
+        <a href="index.php?module=home" class="nav-link">Inicio</a>
       </li>
     </ul>
 
@@ -71,12 +73,6 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
-      <!--Selector de background 
-        <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li> -->
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -103,40 +99,12 @@
         </div>
       </div>
 
-      <!-- SidebarSearch Form
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div> -->
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="pages/#" class="nav-link bg-info">
-              <i class="nav-icon fas fas fa-edit"></i>
-              <p>
-                Configurar perfil
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-          <li class="nav-item mt-1">
-            <a href="pages/#" class="nav-link bg-danger">
-              <i class="nav-icon fas fa-power-off"></i>
-              <p>
-                Cerrar sesión
-              </p>
-            </a>
-          </li>
+          <?php require_once "sidebar.php"; ?>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -147,93 +115,11 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
-  <!-- Content Header (Page header) -->
-  <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Inicio</h1>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>10</h3>
-
-                <p>Préstamos activos</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-edit"></i>
-              </div>
-              <a href="#" class="small-box-footer">Administrar <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>150</h3>
-
-                <p>Libros registrados</p>
-              </div>
-              <div class="icon">
-                <!-- <i class="ion ion-stats-bars"></i> -->
-                <i class="nav-icon fas fa-book"></i>
-              </div>
-              <a href="#" class="small-box-footer">Administrar <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner text-white">
-                <h3>30</h3>
-
-                <p>Alumnos inscritos</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="#" class="small-box-footer" style="color: white !important;">Administrar <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>1</h3>
-
-                <p>Usuarios administradores</p>
-              </div>
-              <div class="icon">
-                <!-- <i class="ion ion-pie-graph"></i> -->
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="#" class="small-box-footer">Administrar <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-        </div>
-        <!-- /.row -->
-       
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+    <?php require_once "content.php"; ?>
+  
   </div>
   <!-- /.content-wrapper -->
+  
   <footer class="main-footer text-center">
     <strong>Copyright &copy; <?php echo date('Y'); ?> - <a href="#">Telebachillerato 24 de febrero</a>.</strong>
     Todos los derechos reservados.
