@@ -46,7 +46,7 @@
                             <td>$estado_alumno</td>
                         </tr>";
                     }
-                    
+                    mysqli_close($conn);
                     ?>
 
                   </tbody>

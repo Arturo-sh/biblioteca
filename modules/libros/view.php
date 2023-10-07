@@ -1,7 +1,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row">
           <div class="col-sm-6">
             <h1 class="m-0">Libros</h1>
           </div><!-- /.col -->
@@ -16,14 +16,13 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-lg-3 col-6">
-            <button type="button" class="btn btn-md btn-outline-success my-2" data-toggle="modal" data-target="#modal-default">
+            <button type="button" class="btn btn-md btn-outline-primary my-2" data-toggle="modal" data-target="#modal-default">
               Nuevo libro
             </button>
           </div>
           <!-- ./col -->
         </div>
         <!-- /.row -->
-       
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->

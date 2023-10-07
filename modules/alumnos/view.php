@@ -1,7 +1,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row">
           <div class="col-sm-6">
             <h1 class="m-0">Alumnos</h1>
           </div><!-- /.col -->
@@ -16,14 +16,13 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-lg-3 col-6">
-            <button type="button" class="btn btn-md btn-outline-success my-2" data-toggle="modal" data-target="#modal-default">
+            <button type="button" class="btn btn-md btn-outline-primary my-2" data-toggle="modal" data-target="#modal-default">
               Nuevo alumno
             </button>
           </div>
           <!-- ./col -->
         </div>
         <!-- /.row -->
-       
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -39,12 +38,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <p>El contenido del formulario va aquí</p>
-              <p>One fine body&hellip;</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary">Guardar</button>
+              <?php require_once "form_insert.php"; ?>
             </div>
           </div>
           <!-- /.modal-content -->
