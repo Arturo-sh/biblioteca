@@ -1,5 +1,5 @@
-<!-- Content Header (Page header) -->
-<div class="content-header">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -16,30 +16,9 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h2>Nuevo libro</h2>
-              </div>
-              <div class="icon">
-                <i class="ion ion-edit"></i>
-              </div>
-              <a href="#" class="small-box-footer">Registrar <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h2>Lista</h2>
-              </div>
-              <div class="icon">
-                <!-- <i class="ion ion-stats-bars"></i> -->
-                <i class="nav-icon fas fa-book"></i>
-              </div>
-              <a href="#" class="small-box-footer">Continuar <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
+            <button type="button" class="btn btn-md btn-outline-success my-2" data-toggle="modal" data-target="#modal-default">
+              Nuevo libro
+            </button>
           </div>
           <!-- ./col -->
         </div>
@@ -48,3 +27,32 @@
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Datos del alumno</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>El contenido del formulario va aquí</p>
+              <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+    <!-- Tabla que muestra los alumnos traidos de la BD -->
+    <?php include "modules/libros/table.php"; ?>
+    <!-- /.table -->
