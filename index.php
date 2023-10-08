@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+
+if (!isset($_SESSION['id_usuario'])) {
+  header("Location: login.php");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -95,7 +101,7 @@
         </div>
         <div class="info">
             <!-- Aqui va la inclusion del archivo php que trae el nombre de usuario -->
-          <a href="#" class="d-block">Yatzamil Román Ángeles</a>
+          <a href="#" class="d-block"><?php echo $_SESSION['nombre_usuario']; ?></a>
         </div>
       </div>
 
@@ -223,31 +229,38 @@
 <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 
   <?php
-  if (isset($_SESSION['insert_alumno'])) { 
-    if ($_SESSION['insert_alumno']) {
-      echo "
+  function show_alert($session) {
+    $icon = $session['icon'];
+    $title = $session['title'];
+    echo "
       <script>
         Swal.fire({
-          icon: 'success',
-          title: 'Alumno registrado',
+          icon: '$icon',
+          title: '$title',
           showConfirmButton: false,
           timer: 2000
         });
       </script>";
-    } else {
-      echo "
-      <script>
-        Swal.fire({
-          icon: 'error',
-          title: 'Ha ocurrido un error, intentelo de nuevo!',
-          showConfirmButton: false,
-          timer: 2000
-        });
-      </script>";
-    }
-    unset($_SESSION['insert_alumno']);
+  }
+  if (isset($_SESSION['student_insert'])) { 
+    show_alert($_SESSION['student_insert']);
+    unset($_SESSION['student_insert']);
   }
 
+  if (isset($_SESSION['student_update'])) { 
+    show_alert($_SESSION['student_update']);
+    unset($_SESSION['student_update']);
+  }
+
+  if (isset($_SESSION['user_insert'])) { 
+    show_alert($_SESSION['user_insert']);
+    unset($_SESSION['user_insert']);
+  }
+
+  if (isset($_SESSION['user_update'])) { 
+    show_alert($_SESSION['user_update']);
+    unset($_SESSION['user_update']);
+  }
   ?>
 </body>
 </html>

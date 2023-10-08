@@ -59,16 +59,6 @@
                     ?>
 
                   </tbody>
-                  <!-- <tfoot>
-                  <tr>
-                  <th>ID</th>
-                    <th>Matrícula</th>
-                    <th>Nombre</th>
-                    <th>Semestre</th>
-                    <th>Grupo</th>
-                    <th>Estatus</th>
-                  </tr>
-                  </tfoot> -->
                 </table>
               </div>
               <!-- /.card-body -->

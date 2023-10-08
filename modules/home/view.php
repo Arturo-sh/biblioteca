@@ -26,7 +26,7 @@
                 <p>Préstamos activos</p>
               </div>
               <div class="icon">
-                <i class="ion ion-edit"></i>
+                <i class="nav-icon fas fa-edit"></i>
               </div>
               <a href="?module=prestamos" class="small-box-footer">Administrar <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -57,7 +57,7 @@
                 <p>Alumnos inscritos</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="nav-icon fas fa-users"></i>
               </div>
               <a href="?module=alumnos" class="small-box-footer" style="color: white !important;">Administrar <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -73,7 +73,7 @@
               </div>
               <div class="icon">
                 <!-- <i class="ion ion-pie-graph"></i> -->
-                <i class="ion ion-person-add"></i>
+                <i class="nav-icon fas fa-user"></i>
               </div>
               <a href="?module=usuarios" class="small-box-footer">Administrar <i class="fas fa-arrow-circle-right"></i></a>
             </div>

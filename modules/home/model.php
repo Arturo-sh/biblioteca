@@ -1,22 +1,22 @@
 <?php
+require_once "modules/database.php";
 
-include_once "modules/database.php";
+$query_get_loans = "SELECT * FROM prestamos";
+$result_get_loans = mysqli_query($conn, $query_get_loans);
 
-$query_prestamos = "SELECT * FROM prestamos";
-$sql_prestamos = mysqli_query($conn, $query_prestamos);
+$query_get_books = "SELECT * FROM libros";
+$result_get_books = mysqli_query($conn, $query_get_books);
 
-$query_libros = "SELECT * FROM libros";
-$sql_libros = mysqli_query($conn, $query_libros);
+$query_get_students = "SELECT * FROM alumnos";
+$result_get_students = mysqli_query($conn, $query_get_students);
 
-$query_alumnos = "SELECT * FROM alumnos";
-$sql_alumnos = mysqli_query($conn, $query_alumnos);
+$query_get_admins = "SELECT * FROM usuarios";
+$result_get_admins = mysqli_query($conn, $query_get_admins);
 
-$query_administradores = "SELECT * FROM usuarios";
-$sql_administradores = mysqli_query($conn, $query_administradores);
+$_SESSION['cantidad_prestamos'] = mysqli_num_rows($result_get_loans);
+$_SESSION['cantidad_libros'] = mysqli_num_rows($result_get_books);
+$_SESSION['cantidad_alumnos'] = mysqli_num_rows($result_get_students);
+$_SESSION['cantidad_administradores'] = mysqli_num_rows($result_get_admins);
 
-$_SESSION['cantidad_prestamos'] = mysqli_num_rows($sql_prestamos);
-$_SESSION['cantidad_libros'] = mysqli_num_rows($sql_libros);
-$_SESSION['cantidad_alumnos'] = mysqli_num_rows($sql_alumnos);
-$_SESSION['cantidad_administradores'] = mysqli_num_rows($sql_administradores);
-
+mysqli_close($conn);
 ?>

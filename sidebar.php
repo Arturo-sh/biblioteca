@@ -6,16 +6,16 @@ $alumnos_active = "";
 $usuarios_active = "";
 
 if (!empty($_GET)) {
-    if ($_GET['module'] == "prestamos") {
+    if ($_GET['module'] == "prestamos" || $_GET['module'] == "form_prestamo") {
         $prestamos_active = "active";
     }
-    elseif ($_GET['module'] == "libros") {
+    elseif ($_GET['module'] == "libros" || $_GET['module'] == "form_libro") {
         $libros_active = "active";
     }
-    elseif ($_GET['module'] == "alumnos") {
+    elseif ($_GET['module'] == "alumnos"  || $_GET['module'] == "form_alumno") {
         $alumnos_active = "active";
     }
-    elseif ($_GET['module'] == "usuarios") {
+    elseif ($_GET['module'] == "usuarios" || $_GET['module'] == "form_usuario") {
         $usuarios_active = "active";
     }
 }
