@@ -8,7 +8,8 @@ $modules = [
     "usuarios" => "modules/usuarios/view.php",
     "form_usuario" => "modules/usuarios/form.php",
     "form_alumno" => "modules/alumnos/form.php",
-    "form_libro" => "modules/libros/form.php"
+    "form_libro" => "modules/libros/form.php",
+    "form_prestamo" => "modules/prestamos/form.php"
 ];
 
 if (empty($_GET) || !isset($_GET['module'])) {

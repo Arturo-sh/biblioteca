@@ -61,20 +61,19 @@ if ($_GET['action'] == "insert") {
 } 
 
 elseif ($_GET['action'] == "edit") {
-    $id = $_GET['id'];
+    $id_alumno = $_GET['id'];
 
     require_once "modules/database.php";
 
-    $query_student_data = "SELECT * FROM alumnos WHERE id_alumno = $id";
+    $query_student_data = "SELECT * FROM alumnos WHERE id_alumno = $id_alumno";
     $student_data = mysqli_query($conn, $query_student_data);
     $row = mysqli_fetch_array($student_data);
 
-    $id_alumno = $row['id_alumno'];
     $matricula = $row['matricula'];
-    $nombre = $row['nombre_alumno'];
+    $nombre_alumno = $row['nombre_alumno'];
     $semestre = $row['semestre'];
-    $grupo = $row['grupo_alumno'];
-    $estatus = $row['estado_alumno'];
+    $grupo_alumno = $row['grupo_alumno'];
+    $estado_alumno = $row['estado_alumno'];
 
     $activo = ""; 
     $baja = "";
@@ -87,11 +86,11 @@ elseif ($_GET['action'] == "edit") {
     $semestre_5 = "";
     $semestre_6 = "";
 
-    $activo = $estatus == "Activo" ? "selected" : "";
-    $baja = $estatus == "Baja" ? "selected" : "";
+    $activo = $estado_alumno == "Activo" ? "selected" : "";
+    $baja = $estado_alumno == "Baja" ? "selected" : "";
 
-    $grupo_A = $grupo == "A" ? "selected" : "";
-    $grupo_B = $grupo == "B" ? "selected" : "";
+    $grupo_A = $grupo_alumno == "A" ? "selected" : "";
+    $grupo_B = $grupo_alumno == "B" ? "selected" : "";
 
     switch ($semestre) {
         case '1':
@@ -138,7 +137,7 @@ elseif ($_GET['action'] == "edit") {
                     </div>
                     <div class='form-group col-md-6'>
                         <label for='nombre'>Nombre</label>
-                        <input type='text' class='form-control' id='nombre' name='nombre' value='$nombre' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Jorge...' required>
+                        <input type='text' class='form-control' id='nombre' name='nombre' value='$nombre_alumno' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Jorge...' required>
                     </div>
                     <div class='form-group col-md-6'>
                         <label for='semestre'>Semestre</label>
@@ -175,7 +174,7 @@ elseif ($_GET['action'] == "edit") {
             </form>
         </div>
     </section>";
-
+    
     mysqli_close($conn);
 }
 

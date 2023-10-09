@@ -85,7 +85,7 @@
                         <td>$telefono_usuario</td>
                         <td>$correo_usuario</td>
                         <td>$creacion_cuenta</td>
-                        <td><span class='badge $badge_color'>$estado_usuario</span></td>";
+                        <td class='text-center'><span class='badge $badge_color'>$estado_usuario</span></td>";
                         if ($_SESSION['rol_usuario'] == "Admin") {
                           echo "
                             <td>

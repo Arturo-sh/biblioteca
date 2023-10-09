@@ -47,8 +47,8 @@
                     <th>Categoría</th>
                     <th>Stock</th>
                     <th>Imagen</th>
-                    <th>Estatus</th>
                     <th>Descripción</th>
+                    <th>Estatus</th>
                     <?php 
                     if ($_SESSION['rol_usuario'] == "Admin") {
                       echo "<th>Opciones</th>";
@@ -70,22 +70,22 @@
                     $nombre_categoria = $row['nombre_categoria'];
                     $unidades_totales = $row['unidades_totales'];
                     $imagen_portada = $row['imagen_portada'];
-                    $estado_libro = $row['estado_libro'];
                     $descripcion = $row['descripcion'];
+                    $estado_libro = $row['estado_libro'];
 
                     $badge_color = "bg-danger";
                     if ($estado_libro == "Activo") $badge_color = "bg-success";
                         
                     echo "
-                    <tr>
+                      <tr>
                         <td>$id_libro</td>
                         <td>$titulo_libro</td>
                         <td>$nombre_editorial</td>
                         <td>$nombre_categoria</td>
                         <td>$unidades_totales</td>
                         <td><img src='dist/portadas/$imagen_portada' style='width: 100%;'></td>
-                        <td class='text-center'><span class='badge $badge_color'>$estado_libro</span></td>
-                        <td>$descripcion</td>";
+                        <td>$descripcion</td>
+                        <td class='text-center'><span class='badge $badge_color'>$estado_libro</span></td>";
                         if ($_SESSION['rol_usuario'] == "Admin") {
                           echo "
                             <td>

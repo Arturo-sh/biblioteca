@@ -83,29 +83,37 @@ if ($_GET['action'] == "insert") {
             </form>
         </div>
     </section>";
+
+    mysqli_close($conn);
 } 
 
 elseif ($_GET['action'] == "edit") {
-    $id = $_GET['id'];
+    $id_libro = $_GET['id'];
 
     require_once "modules/database.php";
 
-    $query_student_data = "SELECT * FROM alumnos WHERE id_alumno = $id";
-    $student_data = mysqli_query($conn, $query_student_data);
-    $row = mysqli_fetch_array($student_data);
+    $query_book_data = "SELECT * FROM libros WHERE id_libro = $id_libro";
+    $book_data = mysqli_query($conn, $query_book_data);
+    $row = mysqli_fetch_array($book_data);
 
-    $id_alumno = $row['id_alumno'];
-    $matricula = $row['matricula'];
-    $nombre = $row['nombre_alumno'];
-    $semestre = $row['semestre'];
-    $grupo = $row['grupo_alumno'];
-    $estatus = $row['estado_alumno'];
+    $titulo_libro = $row['titulo_libro'];
+    $id_editorial = $row['id_editorial'];
+    $id_categoria = $row['id_categoria'];
+    $unidades_totales = $row['unidades_totales'];
+    $imagen_portada = $row['imagen_portada'];
+    $estado_libro = $row['estado_libro'];
+    $descripcion = $row['descripcion'];
 
-    $activo = ""; 
-    $baja = "";
+    $activo = ""; $suspendido = "";
 
-    $activo = $estatus == "Activo" ? "selected" : "";
-    $baja = $estatus == "Baja" ? "selected" : "";
+    $activo = $estado_libro == "Activo" ? "selected" : "";
+    $suspendido = $estado_libro == "Suspendido" ? "selected" : "";
+
+    $query_get_publishers = "SELECT id_editorial, nombre_editorial FROM editoriales";
+    $result_get_publishers = mysqli_query($conn, $query_get_publishers);
+
+    $query_get_categories = "SELECT id_categoria, nombre_categoria FROM categorias";
+    $result_get_categories = mysqli_query($conn, $query_get_categories);
 
     echo "
     <!-- Content Header (Page header) -->
@@ -113,7 +121,7 @@ elseif ($_GET['action'] == "edit") {
         <div class='container-fluid'>
             <div class='row'>
                 <div class='col-sm-6'>
-                    <h1 class='m-0'>Editar alumno</h1>
+                    <h1 class='m-0'>Editar libro</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -122,15 +130,84 @@ elseif ($_GET['action'] == "edit") {
 
     <section class='content'>
         <div class='container-fluid'>
-            
+            <form method='POST' action='modules/libros/model.php' enctype='multipart/form-data'>
+                <div class='card-body row'>
+                    <div class='form-group col-md-6'>
+                        <label for='titulo'>Título del libro</label>
+                        <input type='hidden' class='form-control' id='id_libro' name='id_libro' value='$id_libro'>
+                        <input type='text' class='form-control' id='titulo' name='titulo' value='$titulo_libro' placeholder='Ejemplo: El principito' required>
+                    </div>
+                    <div class='form-group  col-md-6'>
+                        <label>Editorial</label>
+                        <select class='form-control select2' style='width: 100%;' name='editorial' required>";
+                        while ($row = mysqli_fetch_array($result_get_publishers)) {
+                            $id_editorial_row = $row['id_editorial'];
+                            $nombre_editorial_row = $row['nombre_editorial'];
+
+                            if ($id_editorial_row == $id_editorial) {
+                                echo "<option value='$id_editorial_row' selected>$nombre_editorial_row</option>";
+                            } else {
+                                echo "<option value='$id_editorial_row'>$nombre_editorial_row</option>";
+                            }
+                        }
+                        echo "
+                        </select>
+                    </div>
+                    <div class='form-group col-md-6'>
+                        <label>Categoría</label>
+                        <select class='form-control select2' style='width: 100%;' name='categoria' required>";
+                        while ($row = mysqli_fetch_array($result_get_categories)) {
+                            $id_categoria_row = $row['id_categoria'];
+                            $nombre_categoria_row = $row['nombre_categoria'];
+
+                            if ($id_categoria_row == $id_categoria) {
+                                echo "<option value='$id_categoria_row' selected>$nombre_categoria_row</option>";
+                            } else {
+                                echo "<option value='$id_categoria_row'>$nombre_categoria_row</option>";
+                            }
+                        }
+                        echo "
+                        </select>
+                    </div>
+                    <div class='form-group col-md-6'>
+                        <label for='unidades'>Unidades totales</label>
+                        <input type='text' class='form-control' id='unidades' name='unidades' value='$unidades_totales' placeholder='1' pattern='[0-9]+' title='Digite solo números sin espacios' required>
+                    </div>
+                    <div class='form-group col-md-6'>
+                        <label for='unidades'>Nueva imagen de portada</label>
+                        <div class='custom-file'>
+                            <input type='file' class='custom-file-input' id='imagen' name='imagen'>
+                            <label class='custom-file-label' for='exampleInputFile'></label>
+                            <img src='dist/portadas/$imagen_portada' style='width: 20%; margin: 10px 38%;'>
+                        </div>
+                    </div>
+                    <div class='form-group col-md-6'>
+                        <label for='descripcion'>Breve descripción</label>
+                        <input type='text' class='form-control' id='descripcion' name='descripcion' value='$descripcion' placeholder='Ejemplo: Libro en buenas condiciones...'>
+                    </div>
+                    <div class='form-group col-md-6'>
+                        <label for='estatus'>Estatus</label>
+                        <select class='form-control' id='estatus' name='estatus'> 
+                            <option value='Activo' $activo>Activo</option>
+                            <option value='Suspendido' $suspendido>Suspendido</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+    
+                <div class='text-center'>
+                    <a href='?module=libros' class='btn btn-outline-danger'>Regresar</a>
+                    <button type='submit' class='btn btn-outline-success' name='btn_update'>Actualizar</button>
+                </div>
+            </form>
         </div>
     </section>";
-
+    
     mysqli_close($conn);
 }
 
 else {
-    echo "<script> window.location.href = 'index.php?module=alumnos'; </script>";
+    echo "<script> window.location.href = 'index.php?module=libros'; </script>";
 }
 
 ?>

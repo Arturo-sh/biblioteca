@@ -55,25 +55,24 @@ if ($_GET['action'] == "insert") {
 } 
 
 elseif ($_GET['action'] == "edit") {
-    $id = $_GET['id'];
+    $id_usuario = $_GET['id'];
 
     require_once "modules/database.php";
 
-    $query_user_data = "SELECT * FROM usuarios WHERE id_usuario = $id";
+    $query_user_data = "SELECT * FROM usuarios WHERE id_usuario = $id_usuario";
     $user_data = mysqli_query($conn, $query_user_data);
     $row = mysqli_fetch_array($user_data);
 
-    $id_usuario = $row['id_usuario'];
     $usuario = $row['usuario'];
-    $nombre = $row['nombre_usuario'];
-    $telefono = $row['telefono_usuario'];
-    $correo = $row['correo_usuario'];
-    $estatus = $row['estado_usuario'];
+    $nombre_usuario = $row['nombre_usuario'];
+    $telefono_usuario = $row['telefono_usuario'];
+    $correo_usuario = $row['correo_usuario'];
+    $estado_usuario = $row['estado_usuario'];
 
     $activo = ""; $suspendido = "";
 
-    $activo = $estatus == "Activo" ? "selected" : "";
-    $suspendido = $estatus == "Suspendido" ? "selected" : "";
+    $activo = $estado_usuario == "Activo" ? "selected" : "";
+    $suspendido = $estado_usuario == "Suspendido" ? "selected" : "";
 
     echo "
     <!-- Content Header (Page header) -->
@@ -103,15 +102,15 @@ elseif ($_GET['action'] == "edit") {
                     </div>
                     <div class='form-group col-md-6'>
                         <label for='nombre'>Nombre completo</label>
-                        <input type='text' class='form-control' id='nombre' name='nombre' value='$nombre' name='nombre' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Pedro...' required>
+                        <input type='text' class='form-control' id='nombre' name='nombre' value='$nombre_usuario' name='nombre' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Pedro...' required>
                     </div>
                     <div class='form-group col-md-6'>
                         <label for='telefono'>Teléfono</label>
-                        <input type='telephone' class='form-control' id='telefono' name='telefono' value='$telefono' data-inputmask='\"mask\": \"(999) 999-9999\"' data-mask placeholder='(999) 999-9999'>
+                        <input type='telephone' class='form-control' id='telefono' name='telefono' value='$telefono_usuario' data-inputmask='\"mask\": \"(999) 999-9999\"' data-mask placeholder='(999) 999-9999'>
                     </div>
                     <div class='form-group col-md-6'>
                         <label for='correo'>Correo</label>
-                        <input type='email' class='form-control' id='correo' name='correo' value='$correo' placeholder='usuario@gmail.com'>
+                        <input type='email' class='form-control' id='correo' name='correo' value='$correo_usuario' placeholder='usuario@gmail.com'>
                     </div>
                     <div class='form-group col-md-6'>
                         <label for='estatus'>Estatus</label>
