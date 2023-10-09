@@ -71,6 +71,9 @@
                     $creacion_cuenta = $row['creacion_cuenta'];
                     $estado_usuario = $row['estado_usuario'];
 
+                    if ($telefono_usuario == "") $telefono_usuario = "Indefinido";
+                    if ($correo_usuario == "") $correo_usuario = "Indefinido";
+
                     $badge_color = "bg-danger";
                     if ($estado_usuario == "Activo") $badge_color = "bg-success";
 
@@ -89,7 +92,7 @@
                               <a href='index.php?module=form_usuario&action=edit&id=$id_usuario' class='btn btn-sm btn-primary'>
                                 <i class='fas fa-pen'></i>
                               </a>
-                              <a href='#' class='btn btn-sm btn-danger'>
+                              <a href='index.php?module=form_usuario&action=delete&id=$id_usuario' class='btn btn-sm btn-danger' onclick=''>
                                 <i class='fas fa-trash'></i>
                               </a>
                             </td>";
@@ -98,6 +101,9 @@
                   }
                   mysqli_close($conn);
                   ?>
+                  <!-- <a data-toggle='tooltip' data-placement='top' title='Eliminar' class='btn btn-danger btn-sm' href='model.php' onclick='return confirm(\'Estas seguro de eliminar a $nombre_usuario ?\');'>
+                                <i class='fas fa-trash'></i>
+                              </a> -->
                   </tbody>
                 </table>
               </div>

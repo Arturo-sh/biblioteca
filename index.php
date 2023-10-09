@@ -19,8 +19,7 @@ if (!isset($_SESSION['id_usuario'])) {
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+ 
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   
@@ -32,15 +31,24 @@ if (!isset($_SESSION['id_usuario'])) {
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
   <!-- <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"> -->
+
+  <!-- Select2 -->
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  
+   <!-- Theme style -->
+   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
+  <!-- <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+  </div> -->
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -100,7 +108,7 @@ if (!isset($_SESSION['id_usuario'])) {
           <img src="dist/img/user-default.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            <!-- Aqui va la inclusion del archivo php que trae el nombre de usuario -->
+          <!-- Aqui va la inclusion del archivo php que trae el nombre de usuario -->
           <a href="#" class="d-block"><?php echo $_SESSION['nombre_usuario']; ?></a>
         </div>
       </div>
@@ -228,7 +236,7 @@ if (!isset($_SESSION['id_usuario'])) {
 <!-- Toast (SweetAlert2) -->
 <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 
-  <?php
+<?php
   function show_alert($session) {
     $icon = $session['icon'];
     $title = $session['title'];
@@ -242,6 +250,7 @@ if (!isset($_SESSION['id_usuario'])) {
         });
       </script>";
   }
+
   if (isset($_SESSION['student_insert'])) { 
     show_alert($_SESSION['student_insert']);
     unset($_SESSION['student_insert']);
@@ -261,6 +270,35 @@ if (!isset($_SESSION['id_usuario'])) {
     show_alert($_SESSION['user_update']);
     unset($_SESSION['user_update']);
   }
-  ?>
+
+  if (isset($_SESSION['book_insert'])) { 
+    show_alert($_SESSION['book_insert']);
+    unset($_SESSION['book_insert']);
+  }
+
+  if (isset($_SESSION['book_update'])) { 
+    show_alert($_SESSION['book_update']);
+    unset($_SESSION['book_update']);
+  }
+?>
+
+<!-- Select2 -->
+<script src="plugins/select2/js/select2.full.min.js"></script>
+
+<!-- Page specific script -->
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+  });
+</script>
+
+<!-- InputMask -->
+<script src="plugins/inputmask/jquery.inputmask.min.js"></script>
+
+<script>
+  $('[data-mask]').inputmask()
+</script>
+
 </body>
 </html>

@@ -3,11 +3,11 @@
     require_once "../database.php";
 
     if (isset($_POST['btn_insert'])) {
-        $usuario = mysqli_real_escape_string($conn, trim($_POST['usuario']));
-        $contrasenia = mysqli_real_escape_string($conn, trim($_POST['contrasenia']));
-        $nombre = mysqli_real_escape_string($conn, trim($_POST['nombre']));
-        $telefono = mysqli_real_escape_string($conn, trim($_POST['telefono']));
-        $correo = mysqli_real_escape_string($conn, trim($_POST['correo']));
+        $usuario = htmlspecialchars(trim($_POST['usuario']), ENT_QUOTES, 'UTF-8');
+        $contrasenia = htmlspecialchars(trim($_POST['contrasenia']), ENT_QUOTES, 'UTF-8');
+        $nombre = htmlspecialchars(trim($_POST['nombre']), ENT_QUOTES, 'UTF-8');
+        $telefono = htmlspecialchars(trim($_POST['telefono']), ENT_QUOTES, 'UTF-8');
+        $correo = htmlspecialchars(trim($_POST['correo']), ENT_QUOTES, 'UTF-8');
         
         $contrasenia_segura = sha1($contrasenia);
 
@@ -23,13 +23,13 @@
     }
 
     if (isset($_POST['btn_update'])) {
-        $id_usuario = mysqli_real_escape_string($conn, trim($_POST['id_usuario']));
-        $usuario = mysqli_real_escape_string($conn, trim($_POST['usuario']));
-        $contrasenia = mysqli_real_escape_string($conn, trim($_POST['contrasenia']));
-        $nombre = mysqli_real_escape_string($conn, trim($_POST['nombre']));
-        $telefono = mysqli_real_escape_string($conn, trim($_POST['telefono']));
-        $correo = mysqli_real_escape_string($conn, trim($_POST['correo']));
-        $estatus = mysqli_real_escape_string($conn, trim($_POST['estatus']));
+        $id_usuario = htmlspecialchars(trim($_POST['id_usuario']), ENT_QUOTES, 'UTF-8');
+        $usuario = htmlspecialchars(trim($_POST['usuario']), ENT_QUOTES, 'UTF-8');
+        $contrasenia = htmlspecialchars(trim($_POST['contrasenia']), ENT_QUOTES, 'UTF-8');
+        $nombre = htmlspecialchars(trim($_POST['nombre']), ENT_QUOTES, 'UTF-8');
+        $telefono = htmlspecialchars(trim($_POST['telefono']), ENT_QUOTES, 'UTF-8');
+        $correo = htmlspecialchars(trim($_POST['correo']), ENT_QUOTES, 'UTF-8');
+        $estatus = htmlspecialchars(trim($_POST['estatus']), ENT_QUOTES, 'UTF-8');
         
         if ($contrasenia == "") {
             $query_user_update = "UPDATE usuarios SET usuario = '$usuario', nombre_usuario = '$nombre', telefono_usuario = '$telefono', correo_usuario = '$correo', estado_usuario = '$estatus' WHERE id_usuario = $id_usuario";

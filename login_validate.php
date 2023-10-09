@@ -10,6 +10,7 @@ $query_user_consult = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND con
 $result_user_consult = mysqli_query($conn, $query_user_consult) or die('Error');
 $rows = mysqli_num_rows($result_user_consult);
 
+mysqli_close($conn);
 if ($rows > 0) {
     $row  = mysqli_fetch_assoc($result_user_consult);
 
@@ -20,7 +21,7 @@ if ($rows > 0) {
 	
 	header("Location: index.php?module=home");
 } else {
-    // $_SESSION['invalid_user'] = true;
+    $_SESSION['invalid_credentials'] = true;
     header("Location: login.php");
 }
 ?>

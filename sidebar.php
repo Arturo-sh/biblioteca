@@ -62,17 +62,6 @@ echo "
 
 echo "
 <li class='nav-item mt-3'>
-  <a href='pages/#' class='nav-link bg-info'>
-    <i class='nav-icon fas fas fa-edit'></i>
-    <p>
-      Configurar perfil
-      <!-- <span class='right badge badge-danger'>New</span> -->
-    </p>
-  </a>
-</li>";
-
-echo "
-<li class='nav-item mt-1'>
   <a href='logout.php' class='nav-link bg-danger'>
     <i class='nav-icon fas fa-power-off'></i>
     <p>
@@ -81,4 +70,14 @@ echo "
   </a>
 </li>";
 
+// echo "
+// <li class='nav-item mt-3'>
+//   <a href='pages/#' class='nav-link bg-info'>
+//     <i class='nav-icon fas fas fa-edit'></i>
+//     <p>
+//       Configurar perfil
+//       <!-- <span class='right badge badge-danger'>New</span> -->
+//     </p>
+//   </a>
+// </li>";
 ?>
