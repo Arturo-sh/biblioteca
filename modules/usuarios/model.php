@@ -14,8 +14,7 @@
         $query_user_insert = "INSERT INTO usuarios(id_usuario, usuario, contrasenia, nombre_usuario, telefono_usuario, correo_usuario) VALUES(NULL, '$usuario', '$contrasenia_segura', '$nombre', '$telefono', '$correo')";
         $result_user_insert = mysqli_query($conn, $query_user_insert);
 
-        $error_msg = "Ha ocurrido un error al insertar el registro, intentelo de nuevo!";
-        $_SESSION['user_insert'] = ["icon" => "error", "title" => $error_msg];
+        $_SESSION['user_insert'] = ["icon" => "error", "action" => "insertar"];
 
         if ($result_user_insert) {
             $_SESSION['user_insert'] = ["icon" => "success", "title" => "Usuario registrado!"];
@@ -40,8 +39,7 @@
 
         $result_user_update = mysqli_query($conn, $query_user_update);
 
-        $error_msg = "Ha ocurrido un error al actualizar el registro, intentelo de nuevo!";
-        $_SESSION['user_update'] = ["icon" => "error", "title" => $error_msg];
+        $_SESSION['user_update'] = ["icon" => "error", "action" => "actualizar"];
 
         if ($result_user_update) {
             $_SESSION['user_update'] = ["icon" => "success", "title" => "Datos del usuario actualizados!"];

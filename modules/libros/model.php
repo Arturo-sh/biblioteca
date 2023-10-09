@@ -37,13 +37,14 @@
 
         $result_book_insert = mysqli_query($conn, $query_insert_book);
 
-        $error_msg = "Ha ocurrido un error al insertar el registro, intentelo de nuevo!";
-        $_SESSION['book_insert'] = ["icon" => "error", "title" => $error_msg];
+        $_SESSION['book_insert'] = ["icon" => "error", "action" => "insertar"];
 
         if ($result_book_insert) {
             $_SESSION['book_insert'] = ["icon" => "success", "title" => "Libro registrado!"];
         }
-    } if (isset($_POST['btn_update'])) {
+    } 
+    
+    if (isset($_POST['btn_update'])) {
         $id_libro = htmlspecialchars(trim($_POST['id_libro']), ENT_QUOTES, 'UTF-8');
         $titulo = htmlspecialchars(trim($_POST['titulo']), ENT_QUOTES, 'UTF-8');
         $editorial = htmlspecialchars(trim($_POST['editorial']), ENT_QUOTES, 'UTF-8');
@@ -80,11 +81,10 @@
 
         $result_book_update = mysqli_query($conn, $query_update_book);
 
-        $error_msg = "Ha ocurrido un error al actualizar el registro, intentelo de nuevo!";
-        $_SESSION['student_update'] = ["icon" => "error", "title" => $error_msg];
+        $_SESSION['book_update'] = ["icon" => "error", "action" => "actualizar"];
 
         if ($result_book_update) {
-            $_SESSION['student_update'] = ["icon" => "success", "title" => "Datos del libro actualizados!"];
+            $_SESSION['book_update'] = ["icon" => "success", "title" => "Datos del libro actualizados!"];
         }
     }
     

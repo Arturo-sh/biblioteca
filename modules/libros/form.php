@@ -34,7 +34,7 @@ if ($_GET['action'] == "insert") {
                         <label for='titulo'>Título del libro</label>
                         <input type='text' class='form-control' id='titulo' name='titulo' placeholder='Ejemplo: El principito' required>
                     </div>
-                    <div class='form-group  col-md-6'>
+                    <div class='form-group col-md-6'>
                         <label>Editorial</label>
                         <select class='form-control select2' style='width: 100%;' name='editorial' required>";
                         while ($row = mysqli_fetch_array($result_get_publishers)) {

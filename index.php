@@ -234,9 +234,16 @@ if (!isset($_SESSION['id_usuario'])) {
 <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <?php
-  function show_alert($session) {
-    $icon = $session['icon'];
-    $title = $session['title'];
+  function show_alert($data) {
+    $icon = $data['icon'];
+    $title = $data['title'];
+
+    if ($data['icon'] == "error") {
+      $icon = "error";
+      $action = $data['action'];
+      $title = "Ha ocurrido un error al $action el registro, intentelo de nuevo!";
+    }
+
     echo "
       <script>
         Swal.fire({
@@ -245,7 +252,7 @@ if (!isset($_SESSION['id_usuario'])) {
           showConfirmButton: false,
           timer: 2000
         });
-      </script>";
+      </script>";      
   }
 
   if (isset($_SESSION['student_insert'])) { 
@@ -276,6 +283,16 @@ if (!isset($_SESSION['id_usuario'])) {
   if (isset($_SESSION['book_update'])) { 
     show_alert($_SESSION['book_update']);
     unset($_SESSION['book_update']);
+  }
+
+  if (isset($_SESSION['loan_insert'])) { 
+    show_alert($_SESSION['loan_insert']);
+    unset($_SESSION['loan_insert']);
+  }
+
+  if (isset($_SESSION['loan_update'])) { 
+    show_alert($_SESSION['loan_update']);
+    unset($_SESSION['loan_update']);
   }
 ?>
 
