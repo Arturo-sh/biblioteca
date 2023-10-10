@@ -92,7 +92,7 @@
                               <a href='index.php?module=form_usuario&action=edit&id=$id_usuario' class='btn btn-sm btn-primary'>
                                 <i class='fas fa-pen'></i>
                               </a>
-                              <a href='index.php?module=form_usuario&action=delete&id=$id_usuario' class='btn btn-sm btn-danger' onclick=''>
+                              <a href='modules/usuarios/delete.php?action=confirm_delete&id=$id_usuario' class='btn btn-sm btn-danger'>
                                 <i class='fas fa-trash'></i>
                               </a>
                             </td>";
@@ -101,9 +101,6 @@
                   }
                   mysqli_close($conn);
                   ?>
-                  <!-- <a data-toggle='tooltip' data-placement='top' title='Eliminar' class='btn btn-danger btn-sm' href='model.php' onclick='return confirm(\'Estas seguro de eliminar a $nombre_usuario ?\');'>
-                                <i class='fas fa-trash'></i>
-                              </a> -->
                   </tbody>
                 </table>
               </div>

@@ -1,5 +1,4 @@
 <?php
-
 if ($_SESSION['rol_usuario'] != "Admin") {
     echo "<script> window.location.href = 'index.php?module=alumnos'; </script>";
 }
@@ -162,3 +161,4 @@ elseif ($_GET['action'] == "edit") {
 else {
     echo "<script> window.location.href = 'index.php?module=alumnos'; </script>";
 }
+?>

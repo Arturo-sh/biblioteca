@@ -83,7 +83,7 @@
                               <a href='index.php?module=form_alumno&action=edit&id=$id_alumno' class='btn btn-sm btn-primary'>
                                 <i class='fas fa-pen'></i>
                               </a>
-                              <a href='#' class='btn btn-sm btn-danger'>
+                              <a href='modules/alumnos/delete.php?action=confirm_delete&id=$id_alumno' class='btn btn-sm btn-danger'>
                                 <i class='fas fa-trash'></i>
                               </a>
                             </td>";

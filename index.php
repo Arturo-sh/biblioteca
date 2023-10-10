@@ -270,7 +270,7 @@ $(function () {
 <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <?php
-  function show_alert($data) {
+  function show_action_alert($data) {
     $icon = $data['icon'];
     $title = $data['title'];
 
@@ -291,44 +291,97 @@ $(function () {
       </script>";      
   }
 
+  function show_delete_alert($data) {
+    $id_registro = $data['id_registro'];
+    $url_confirmed = $data['url_confirmed'];
+  
+    echo "
+    <script>
+    Swal.fire({
+        title: 'Seguro de eliminar el registro $id_registro?',
+        text: 'Esto no se puede revertir!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, continuar!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = '$url_confirmed';
+        }
+      })
+    </script>";
+  }
+
+  // Alerta de confirmación de eliminación
+  if (isset($_SESSION['confirm_delete'])) {
+    show_delete_alert($_SESSION['confirm_delete']);
+    unset($_SESSION['confirm_delete']);
+  }
+
+  // Alertas para la Inserción/Actualización/Eliminación de alumnos
   if (isset($_SESSION['student_insert'])) { 
-    show_alert($_SESSION['student_insert']);
+    show_action_alert($_SESSION['student_insert']);
     unset($_SESSION['student_insert']);
   }
 
   if (isset($_SESSION['student_update'])) { 
-    show_alert($_SESSION['student_update']);
+    show_action_alert($_SESSION['student_update']);
     unset($_SESSION['student_update']);
   }
 
+  if (isset($_SESSION['student_deleted'])) { 
+    show_action_alert($_SESSION['student_deleted']);
+    unset($_SESSION['student_deleted']);
+  }
+
+  // Alertas para la Inserción/Actualización/Eliminación de usuarios
   if (isset($_SESSION['user_insert'])) { 
-    show_alert($_SESSION['user_insert']);
+    show_action_alert($_SESSION['user_insert']);
     unset($_SESSION['user_insert']);
   }
 
   if (isset($_SESSION['user_update'])) { 
-    show_alert($_SESSION['user_update']);
+    show_action_alert($_SESSION['user_update']);
     unset($_SESSION['user_update']);
   }
 
+  if (isset($_SESSION['user_deleted'])) { 
+    show_action_alert($_SESSION['user_deleted']);
+    unset($_SESSION['user_deleted']);
+  }
+
+  // Alertas para la Inserción/Actualización/Eliminación de libros
   if (isset($_SESSION['book_insert'])) { 
-    show_alert($_SESSION['book_insert']);
+    show_action_alert($_SESSION['book_insert']);
     unset($_SESSION['book_insert']);
   }
 
   if (isset($_SESSION['book_update'])) { 
-    show_alert($_SESSION['book_update']);
+    show_action_alert($_SESSION['book_update']);
     unset($_SESSION['book_update']);
   }
 
+  if (isset($_SESSION['book_deleted'])) { 
+    show_action_alert($_SESSION['book_deleted']);
+    unset($_SESSION['book_deleted']);
+  }
+
+  // Alertas para la Inserción/Actualización/Eliminación de préstamos
   if (isset($_SESSION['loan_insert'])) { 
-    show_alert($_SESSION['loan_insert']);
+    show_action_alert($_SESSION['loan_insert']);
     unset($_SESSION['loan_insert']);
   }
 
   if (isset($_SESSION['loan_update'])) { 
-    show_alert($_SESSION['loan_update']);
+    show_action_alert($_SESSION['loan_update']);
     unset($_SESSION['loan_update']);
+  }
+
+  if (isset($_SESSION['loan_deleted'])) { 
+    show_action_alert($_SESSION['loan_deleted']);
+    unset($_SESSION['loan_deleted']);
   }
 ?>
 

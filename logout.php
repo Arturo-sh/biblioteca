@@ -1,5 +1,4 @@
 <?php
-
 // Obtenemos la sesión actual
 session_start();
 

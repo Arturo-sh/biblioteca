@@ -1,5 +1,4 @@
 <?php
-
 if ($_SESSION['rol_usuario'] != "Admin") {
     echo "<script> window.location.href = 'index.php?module=usuarios'; </script>";
 }
@@ -131,12 +130,9 @@ elseif ($_GET['action'] == "edit") {
     </section>";
 
     mysqli_close($conn);
-} 
-
-elseif ($_GET['action'] == "delete") {
-    echo "Formulario para eliminar registro";
-} 
+}
 
 else {
     echo "<script> window.location.href = 'index.php?module=usuarios'; </script>";
 }
+?>

@@ -92,7 +92,7 @@
                               <a href='index.php?module=form_libro&action=edit&id=$id_libro' class='btn btn-sm btn-primary'>
                                 <i class='fas fa-pen'></i>
                               </a>
-                              <a href='#' class='btn btn-sm btn-danger'>
+                              <a href='modules/libros/delete.php?action=confirm_delete&id=$id_libro' class='btn btn-sm btn-danger'>
                                 <i class='fas fa-trash'></i>
                               </a>
                             </td>";

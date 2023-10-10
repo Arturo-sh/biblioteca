@@ -1,5 +1,4 @@
 <?php
-
 $modules = [
     "home" => "modules/home/view.php",
     "prestamos" => "modules/prestamos/view.php",
@@ -24,5 +23,4 @@ if (array_key_exists($module, $modules)) {
 } else {
     include_once "error404.php";
 }
-
 ?>
