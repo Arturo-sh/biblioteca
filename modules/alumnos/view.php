@@ -45,7 +45,6 @@
                     <th>Matrícula</th>
                     <th>Nombre</th>
                     <th>Semestre</th>
-                    <th>Grupo</th>
                     <th>Estatus</th>
                     <?php 
                     if ($_SESSION['rol_usuario'] == "Admin") {
@@ -66,7 +65,6 @@
                     $matricula = $row['matricula'];
                     $nombre_alumno = $row['nombre_alumno'];
                     $semestre = $row['semestre'];
-                    $grupo_alumno = $row['grupo_alumno'];
                     $estado_alumno = $row['estado_alumno'];
                     
                     $badge_color = "bg-danger";
@@ -78,7 +76,6 @@
                         <td>$matricula</td>
                         <td>$nombre_alumno</td>
                         <td>$semestre</td>
-                        <td>$grupo_alumno</td>
                         <td class='text-center'><span class='badge $badge_color'>$estado_alumno</span></td>";
                         if ($_SESSION['rol_usuario'] == "Admin") {
                           echo "

@@ -31,16 +31,16 @@ if ($_GET['action'] == "insert") {
                         <input type='password' class='form-control' id='contrasenia' name='contrasenia' pattern='^([\w]){6,}$' title='Ingrese una contraseña mayor a 5 carácteres' required>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label for='nombre'>Nombre completo</label>
-                        <input type='text' class='form-control' id='nombre' name='nombre' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Pedro...' required>
+                        <label for='nombre_usuario'>Nombre completo</label>
+                        <input type='text' class='form-control' id='nombre_usuario' name='nombre_usuario' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Pedro...' required>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label for='telefono'>Teléfono</label>
-                        <input type='text' class='form-control' id='telefono' name='telefono' data-inputmask='\"mask\": \"(999) 999-9999\"' data-mask placeholder='(999) 999-9999'>
+                        <label for='telefono_usuario'>Teléfono</label>
+                        <input type='text' class='form-control' id='telefono_usuario' name='telefono_usuario' data-inputmask='\"mask\": \"(999) 999-9999\"' data-mask placeholder='(999) 999-9999'>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label for='correo'>Correo</label>
-                        <input type='email' class='form-control' id='correo' name='correo' placeholder='usuario@gmail.com'>
+                        <label for='correo_usuario'>Correo</label>
+                        <input type='email' class='form-control' id='correo_usuario' name='correo_usuario' placeholder='usuario@gmail.com'>
                     </div>
                 </div>
                 <!-- /.card-body -->
@@ -101,20 +101,20 @@ elseif ($_GET['action'] == "edit") {
                         <input type='password' class='form-control' id='contrasenia' name='contrasenia' pattern='^([\w]){6,}$' title='Ingrese una contraseña mayor a 5 carácteres'>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label for='nombre'>Nombre completo</label>
-                        <input type='text' class='form-control' id='nombre' name='nombre' value='$nombre_usuario' name='nombre' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Pedro...' required>
+                        <label for='nombre_usuario'>Nombre completo</label>
+                        <input type='text' class='form-control' id='nombre_usuario' name='nombre_usuario' value='$nombre_usuario' name='nombre' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Pedro...' required>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label for='telefono'>Teléfono</label>
-                        <input type='telephone' class='form-control' id='telefono' name='telefono' value='$telefono_usuario' data-inputmask='\"mask\": \"(999) 999-9999\"' data-mask placeholder='(999) 999-9999'>
+                        <label for='telefono_usuario'>Teléfono</label>
+                        <input type='telephone' class='form-control' id='telefono_usuario' name='telefono_usuario' value='$telefono_usuario' data-inputmask='\"mask\": \"(999) 999-9999\"' data-mask placeholder='(999) 999-9999'>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label for='correo'>Correo</label>
-                        <input type='email' class='form-control' id='correo' name='correo' value='$correo_usuario' placeholder='usuario@gmail.com'>
+                        <label for='correo_usuario'>Correo</label>
+                        <input type='email' class='form-control' id='correo_usuario' name='correo_usuario' value='$correo_usuario' placeholder='usuario@gmail.com'>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label for='estatus'>Estatus</label>
-                        <select class='form-control' id='estatus' name='estatus'> 
+                        <label for='estado_usuario'>Estatus</label>
+                        <select class='form-control' id='estado_usuario' name='estado_usuario'> 
                             <option value='Activo' $activo>Activo</option>
                             <option value='Suspendido' $suspendido>Suspendido</option>
                         </select>

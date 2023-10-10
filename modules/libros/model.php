@@ -3,10 +3,10 @@
     require_once "../database.php";
 
     if (isset($_POST['btn_insert'])) {
-        $titulo = htmlspecialchars(trim($_POST['titulo']), ENT_QUOTES, 'UTF-8');
-        $editorial = htmlspecialchars(trim($_POST['editorial']), ENT_QUOTES, 'UTF-8');
-        $categoria = htmlspecialchars(trim($_POST['categoria']), ENT_QUOTES, 'UTF-8');
-        $unidades = htmlspecialchars(trim($_POST['unidades']), ENT_QUOTES, 'UTF-8');
+        $titulo_libro = htmlspecialchars(trim($_POST['titulo_libro']), ENT_QUOTES, 'UTF-8');
+        $id_editorial = htmlspecialchars(trim($_POST['id_editorial']), ENT_QUOTES, 'UTF-8');
+        $id_categoria = htmlspecialchars(trim($_POST['id_categoria']), ENT_QUOTES, 'UTF-8');
+        $unidades_totales = htmlspecialchars(trim($_POST['unidades_totales']), ENT_QUOTES, 'UTF-8');
         $descripcion = htmlspecialchars(trim($_POST['descripcion']), ENT_QUOTES, 'UTF-8');
 
         $nombre_imagen = $_FILES['imagen']['name'];
@@ -16,20 +16,20 @@
 		
 		$imagen = pathinfo($nombre_imagen, PATHINFO_FILENAME);
 		$extension = pathinfo($nombre_imagen, PATHINFO_EXTENSION);
-        $imagen_unica = $imagen . "_" . uniqid() . "." . $extension;
+        $imagen_portada = $imagen . "_" . uniqid() . "." . $extension;
 
         $extensiones_permitidas = array('jpg','jpeg','png');
-		$ruta_destino = "../../dist/portadas/" . $imagen_unica;
+		$ruta_destino = "../../dist/portadas/" . $imagen_portada;
 
         if ($descripcion == "") $descripcion = "Libro en buena condición";
 
-        $query_insert_book = "INSERT INTO libros(id_libro, titulo_libro, id_editorial, id_categoria, unidades_totales, descripcion) VALUES (NULL, '$titulo', $editorial, $categoria, $unidades, '$descripcion')";        
+        $query_insert_book = "INSERT INTO libros(id_libro, titulo_libro, id_editorial, id_categoria, unidades_totales, descripcion) VALUES (NULL, '$titulo_libro', $id_editorial, $id_categoria, $unidades_totales, '$descripcion')";        
         
         if (!empty($_FILES['imagen']['name'])) {	
             if (in_array($extension, $extensiones_permitidas)) {   
                 if($tam_imagen <= 10000000) { 
                     if(move_uploaded_file($nombre_temp, $ruta_destino)) {
-                        $query_insert_book = "INSERT INTO libros(id_libro, titulo_libro, id_editorial, id_categoria, unidades_totales, imagen_portada, descripcion) VALUES (NULL, '$titulo', $editorial, $categoria, $unidades, '$imagen_unica', '$descripcion')";
+                        $query_insert_book = "INSERT INTO libros(id_libro, titulo_libro, id_editorial, id_categoria, unidades_totales, imagen_portada, descripcion) VALUES (NULL, '$titulo_libro', $id_editorial, $id_categoria, $unidades_totales, '$imagen_portada', '$descripcion')";
                     } 
                 }
             }
@@ -46,12 +46,12 @@
     
     if (isset($_POST['btn_update'])) {
         $id_libro = htmlspecialchars(trim($_POST['id_libro']), ENT_QUOTES, 'UTF-8');
-        $titulo = htmlspecialchars(trim($_POST['titulo']), ENT_QUOTES, 'UTF-8');
-        $editorial = htmlspecialchars(trim($_POST['editorial']), ENT_QUOTES, 'UTF-8');
-        $categoria = htmlspecialchars(trim($_POST['categoria']), ENT_QUOTES, 'UTF-8');
-        $unidades = htmlspecialchars(trim($_POST['unidades']), ENT_QUOTES, 'UTF-8');
+        $titulo_libro = htmlspecialchars(trim($_POST['titulo_libro']), ENT_QUOTES, 'UTF-8');
+        $id_editorial = htmlspecialchars(trim($_POST['id_editorial']), ENT_QUOTES, 'UTF-8');
+        $id_categoria = htmlspecialchars(trim($_POST['id_categoria']), ENT_QUOTES, 'UTF-8');
+        $unidades_totales = htmlspecialchars(trim($_POST['unidades_totales']), ENT_QUOTES, 'UTF-8');
         $descripcion = htmlspecialchars(trim($_POST['descripcion']), ENT_QUOTES, 'UTF-8');
-        $estatus = htmlspecialchars(trim($_POST['estatus']), ENT_QUOTES, 'UTF-8');
+        $estado_libro = htmlspecialchars(trim($_POST['estado_libro']), ENT_QUOTES, 'UTF-8');
         
         $nombre_imagen = $_FILES['imagen']['name'];
         $tam_imagen = $_FILES['imagen']['size'];
@@ -60,20 +60,20 @@
 		
 		$imagen = pathinfo($nombre_imagen, PATHINFO_FILENAME);
 		$extension = pathinfo($nombre_imagen, PATHINFO_EXTENSION);
-        $imagen_unica = $imagen . "_" . uniqid() . "." . $extension;
+        $imagen_portada = $imagen . "_" . uniqid() . "." . $extension;
         
         $extensiones_permitidas = array('jpg','jpeg','png');
-		$ruta_destino = "../../dist/portadas/" . $imagen_unica;
+		$ruta_destino = "../../dist/portadas/" . $imagen_portada;
 
         if ($descripcion == "") $descripcion = "Libro en buena condición";
 
-        $query_update_book = "UPDATE libros SET titulo_libro = '$titulo', id_editorial = $editorial, id_categoria = $categoria, unidades_totales = $unidades, descripcion = '$descripcion', estado_libro = '$estatus' WHERE id_libro = $id_libro";        
+        $query_update_book = "UPDATE libros SET titulo_libro = '$titulo_libro', id_editorial = $id_editorial, id_categoria = $id_categoria, unidades_totales = $unidades_totales, descripcion = '$descripcion', estado_libro = '$estado_libro' WHERE id_libro = $id_libro";        
         
         if (!empty($_FILES['imagen']['name'])) {	
             if (in_array($extension, $extensiones_permitidas)) {   
                 if($tam_imagen <= 10000000) { 
                     if(move_uploaded_file($nombre_temp, $ruta_destino)) {
-                        $query_update_book = "UPDATE libros SET titulo_libro = '$titulo', id_editorial = $editorial, id_categoria = $categoria, unidades_totales = $unidades, imagen_portada = '$imagen_unica', descripcion = '$descripcion', estado_libro = '$estatus' WHERE id_libro = $id_libro";
+                        $query_update_book = "UPDATE libros SET titulo_libro = '$titulo_libro', id_editorial = $id_editorial, id_categoria = $id_categoria, unidades_totales = $unidades_totales, imagen_portada = '$imagen_portada', descripcion = '$descripcion', estado_libro = '$estado_libro' WHERE id_libro = $id_libro";
                     } 
                 }
             }

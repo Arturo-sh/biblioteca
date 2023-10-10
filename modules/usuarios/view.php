@@ -59,7 +59,7 @@
                   <?php
                   require_once "modules/database.php";
 
-                  $query_get_users = "SELECT * FROM usuarios";
+                  $query_get_users = "SELECT id_usuario, usuario, nombre_usuario, telefono_usuario, correo_usuario, creacion_cuenta, estado_usuario FROM usuarios";
                   $data_users = mysqli_query($conn, $query_get_users);
 
                   while ($row = mysqli_fetch_array($data_users)) {

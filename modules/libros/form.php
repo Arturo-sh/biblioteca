@@ -31,12 +31,12 @@ if ($_GET['action'] == "insert") {
             <form method='POST' action='modules/libros/model.php' enctype='multipart/form-data'>
                 <div class='card-body row'>
                     <div class='form-group col-md-6'>
-                        <label for='titulo'>Título del libro</label>
-                        <input type='text' class='form-control' id='titulo' name='titulo' placeholder='Ejemplo: El principito' required>
+                        <label for='titulo_libro'>Título del libro</label>
+                        <input type='text' class='form-control' id='titulo_libro' name='titulo_libro' placeholder='Ejemplo: El principito' required>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label>Editorial</label>
-                        <select class='form-control select2' style='width: 100%;' name='editorial' required>";
+                        <label for='id_editorial'>Editorial</label>
+                        <select class='form-control select2' style='width: 100%;' id='id_editorial' name='id_editorial' required>";
                         while ($row = mysqli_fetch_array($result_get_publishers)) {
                             $id_editorial = $row['id_editorial'];
                             $nombre_editorial = $row['nombre_editorial'];
@@ -47,8 +47,8 @@ if ($_GET['action'] == "insert") {
                         </select>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label>Categoría</label>
-                        <select class='form-control select2' style='width: 100%;' name='categoria' required>";
+                        <label for='id_categoria'>Categoría</label>
+                        <select class='form-control select2' style='width: 100%;' id='id_categoria' name='id_categoria' required>";
                         while ($row = mysqli_fetch_array($result_get_categories)) {
                             $id_categoria = $row['id_categoria'];
                             $nombre_categoria = $row['nombre_categoria'];
@@ -59,8 +59,8 @@ if ($_GET['action'] == "insert") {
                         </select>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label for='unidades'>Unidades totales</label>
-                        <input type='text' class='form-control' id='unidades' name='unidades' placeholder='1' pattern='[0-9]+' title='Digite solo números sin espacios' required>
+                        <label for='unidades_totales'>Unidades totales</label>
+                        <input type='text' class='form-control' id='unidades_totales' name='unidades_totales' placeholder='1' pattern='[0-9]+' title='Digite solo números sin espacios' required>
                     </div>
                     <div class='form-group col-md-6'>
                         <label for='unidades'>Imagen portada</label>
@@ -133,13 +133,13 @@ elseif ($_GET['action'] == "edit") {
             <form method='POST' action='modules/libros/model.php' enctype='multipart/form-data'>
                 <div class='card-body row'>
                     <div class='form-group col-md-6'>
-                        <label for='titulo'>Título del libro</label>
+                        <label for='titulo_libro'>Título del libro</label>
                         <input type='hidden' class='form-control' id='id_libro' name='id_libro' value='$id_libro'>
-                        <input type='text' class='form-control' id='titulo' name='titulo' value='$titulo_libro' placeholder='Ejemplo: El principito' required>
+                        <input type='text' class='form-control' id='titulo_libro' name='titulo_libro' value='$titulo_libro' placeholder='Ejemplo: El principito' required>
                     </div>
                     <div class='form-group  col-md-6'>
-                        <label>Editorial</label>
-                        <select class='form-control select2' style='width: 100%;' name='editorial' required>";
+                        <label for='id_editorial'>Editorial</label>
+                        <select class='form-control select2' style='width: 100%;' id='id_editorial' name='id_editorial' required>";
                         while ($row = mysqli_fetch_array($result_get_publishers)) {
                             $id_editorial_row = $row['id_editorial'];
                             $nombre_editorial_row = $row['nombre_editorial'];
@@ -154,8 +154,8 @@ elseif ($_GET['action'] == "edit") {
                         </select>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label>Categoría</label>
-                        <select class='form-control select2' style='width: 100%;' name='categoria' required>";
+                        <label for='id_categoria'>Categoría</label>
+                        <select class='form-control select2' style='width: 100%;' id='id_categoria' name='id_categoria' required>";
                         while ($row = mysqli_fetch_array($result_get_categories)) {
                             $id_categoria_row = $row['id_categoria'];
                             $nombre_categoria_row = $row['nombre_categoria'];
@@ -170,11 +170,11 @@ elseif ($_GET['action'] == "edit") {
                         </select>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label for='unidades'>Unidades totales</label>
-                        <input type='text' class='form-control' id='unidades' name='unidades' value='$unidades_totales' placeholder='1' pattern='[0-9]+' title='Digite solo números sin espacios' required>
+                        <label for='unidades_totales'>Unidades totales</label>
+                        <input type='text' class='form-control' id='unidades_totales' name='unidades_totales' value='$unidades_totales' placeholder='1' pattern='[0-9]+' title='Digite solo números sin espacios' required>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label for='unidades'>Nueva imagen de portada</label>
+                        <label for='imagen'>Nueva imagen de portada</label>
                         <div class='custom-file'>
                             <input type='file' class='custom-file-input' id='imagen' name='imagen'>
                             <label class='custom-file-label' for='exampleInputFile'></label>
@@ -186,8 +186,8 @@ elseif ($_GET['action'] == "edit") {
                         <input type='text' class='form-control' id='descripcion' name='descripcion' value='$descripcion' placeholder='Ejemplo: Libro en buenas condiciones...'>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label for='estatus'>Estatus</label>
-                        <select class='form-control' id='estatus' name='estatus'> 
+                        <label for='estado_libro'>Estatus</label>
+                        <select class='form-control' id='estado_libro' name='estado_libro'> 
                             <option value='Activo' $activo>Activo</option>
                             <option value='Suspendido' $suspendido>Suspendido</option>
                         </select>

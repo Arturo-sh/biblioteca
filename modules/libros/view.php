@@ -60,10 +60,10 @@
                   <?php
                   require_once "modules/database.php";
 
-                  $sql_libros = "SELECT * FROM libros AS l INNER JOIN editoriales AS e ON l.id_editorial = e.id_editorial INNER JOIN categorias AS c ON l.id_categoria = c.id_categoria";
-                  $sql_libros = mysqli_query($conn, $sql_libros);
+                  $query_get_books = "SELECT l.id_libro, l.titulo_libro, e.nombre_editorial, c.nombre_categoria, l.unidades_totales, l.imagen_portada, l.descripcion, l.estado_libro FROM libros AS l INNER JOIN editoriales AS e ON l.id_editorial = e.id_editorial INNER JOIN categorias AS c ON l.id_categoria = c.id_categoria";
+                  $result_get_books = mysqli_query($conn, $query_get_books);
 
-                  while ($row = mysqli_fetch_array($sql_libros)) {
+                  while ($row = mysqli_fetch_array($result_get_books)) {
                     $id_libro = $row['id_libro'];
                     $titulo_libro = $row['titulo_libro'];
                     $nombre_editorial = $row['nombre_editorial'];
@@ -83,7 +83,7 @@
                         <td>$nombre_editorial</td>
                         <td>$nombre_categoria</td>
                         <td>$unidades_totales</td>
-                        <td><img src='dist/portadas/$imagen_portada' style='width: 100%;'></td>
+                        <td class='text-center'><img src='dist/portadas/$imagen_portada' style='width: 50%;'></td>
                         <td>$descripcion</td>
                         <td class='text-center'><span class='badge $badge_color'>$estado_libro</span></td>";
                         if ($_SESSION['rol_usuario'] == "Admin") {

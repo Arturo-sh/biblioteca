@@ -43,7 +43,7 @@
                   <tr>
                     <th>ID</th>
                     <th>Alumno</th>
-                    <th>Título ejemplar</th>
+                    <th>Título libro</th>
                     <th>Unidades préstamo</th>
                     <th>Fecha préstamo</th>
                     <th>Fecha entrega</th>
@@ -61,7 +61,7 @@
                   <?php
                   require_once "modules/database.php";
 
-                  $sql_prestamos = "SELECT * FROM prestamos AS p INNER JOIN alumnos AS a ON p.id_alumno = a.id_alumno INNER JOIN libros AS l ON p.id_libro = l.id_libro INNER JOIN usuarios AS u ON p.id_usuario = u.id_usuario";
+                  $sql_prestamos = "SELECT p.id_prestamo, a.nombre_alumno, l.titulo_libro, p.unidades_prestamo, p.fecha_prestamo, p.fecha_entrega, u.nombre_usuario, p.detalles_entrega, p.estado_prestamo FROM prestamos AS p INNER JOIN alumnos AS a ON p.id_alumno = a.id_alumno INNER JOIN libros AS l ON p.id_libro = l.id_libro INNER JOIN usuarios AS u ON p.id_usuario = u.id_usuario";
                   $sql_prestamos = mysqli_query($conn, $sql_prestamos);
 
                   while ($row = mysqli_fetch_array($sql_prestamos)) {

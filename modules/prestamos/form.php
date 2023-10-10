@@ -123,6 +123,7 @@ elseif ($_GET['action'] == "edit") {
                 <div class='card-body row'>
                 <div class='form-group col-md-6'>
                         <label for='fecha_prestamo'>Fecha préstamo</label>
+                        <input type='hidden' class='form-control' id='id_prestamo' name='id_prestamo' value='$id_prestamo'>
                         <input type='text' class='form-control' id='fecha_prestamo' name='fecha_prestamo' value='$fecha_prestamo' disabled>
                     </div>
                     <div class='form-group col-md-6'>

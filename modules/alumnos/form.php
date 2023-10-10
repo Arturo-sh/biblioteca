@@ -27,8 +27,8 @@ if ($_GET['action'] == "insert") {
                         <input type='text' class='form-control' id='matricula' name='matricula' pattern='[0-9]{8}' title='Ingrese una mátricula válida' placeholder='Ejemplo: 12435678' required>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label for='nombre'>Nombre</label>
-                        <input type='text' class='form-control' id='nombre' name='nombre' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Jorge...' required>
+                        <label for='nombre_alumno'>Nombre</label>
+                        <input type='text' class='form-control' id='nombre_alumno' name='nombre_alumno' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Jorge...' required>
                     </div>
                     <div class='form-group col-md-6'>
                         <label for='semestre'>Semestre</label>
@@ -39,13 +39,6 @@ if ($_GET['action'] == "insert") {
                             <option value='4'>4to semestre</option>
                             <option value='5'>5to semestre</option>
                             <option value='6'>6to semestre</option>
-                        </select>
-                    </div>
-                    <div class='form-group col-md-6'>
-                        <label for='grupo'>Grupo</label>
-                        <select class='form-control' id='grupo' name='grupo'>
-                            <option value='A'>A</option>
-                            <option value='B'>B</option>
                         </select>
                     </div>
                 </div>
@@ -72,13 +65,11 @@ elseif ($_GET['action'] == "edit") {
     $matricula = $row['matricula'];
     $nombre_alumno = $row['nombre_alumno'];
     $semestre = $row['semestre'];
-    $grupo_alumno = $row['grupo_alumno'];
     $estado_alumno = $row['estado_alumno'];
 
     $activo = ""; 
     $baja = "";
-    $grupo_A = "";
-    $grupo_B = "";
+
     $semestre_1 = "";
     $semestre_2 = "";
     $semestre_3 = "";
@@ -88,9 +79,6 @@ elseif ($_GET['action'] == "edit") {
 
     $activo = $estado_alumno == "Activo" ? "selected" : "";
     $baja = $estado_alumno == "Baja" ? "selected" : "";
-
-    $grupo_A = $grupo_alumno == "A" ? "selected" : "";
-    $grupo_B = $grupo_alumno == "B" ? "selected" : "";
 
     switch ($semestre) {
         case '1':
@@ -136,8 +124,8 @@ elseif ($_GET['action'] == "edit") {
                         <input type='text' class='form-control' id='matricula' name='matricula' value='$matricula' pattern='[0-9]{8}' title='Ingrese una mátricula válida' placeholder='Ejemplo: 12435678' required>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label for='nombre'>Nombre</label>
-                        <input type='text' class='form-control' id='nombre' name='nombre' value='$nombre_alumno' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Jorge...' required>
+                        <label for='nombre_alumno'>Nombre</label>
+                        <input type='text' class='form-control' id='nombre_alumno' name='nombre_alumno' value='$nombre_alumno' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Jorge...' required>
                     </div>
                     <div class='form-group col-md-6'>
                         <label for='semestre'>Semestre</label>
@@ -151,15 +139,8 @@ elseif ($_GET['action'] == "edit") {
                         </select>
                     </div>
                     <div class='form-group col-md-6'>
-                        <label for='grupo'>Grupo</label>
-                        <select class='form-control' id='grupo' name='grupo'>
-                            <option value='A' $grupo_A>A</option>
-                            <option value='B' $grupo_B>B</option>
-                        </select>
-                    </div>
-                    <div class='form-group col-md-6'>
-                        <label for='estatus'>Estatus</label>
-                        <select class='form-control' id='estatus' name='estatus'> 
+                        <label for='estado_alumno'>Estatus</label>
+                        <select class='form-control' id='estado_alumno' name='estado_alumno'> 
                             <option value='Activo' $activo>Activo</option>
                             <option value='Baja' $baja>Baja</option>
                         </select>
