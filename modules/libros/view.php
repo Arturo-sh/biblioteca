@@ -92,9 +92,9 @@
                               <a href='index.php?module=form_libro&action=edit&id=$id_libro' class='btn btn-sm btn-primary'>
                                 <i class='fas fa-pen'></i>
                               </a>
-                              <a href='modules/libros/delete.php?action=confirm_delete&id=$id_libro' class='btn btn-sm btn-danger'>
+                              <button id='$id_libro' url='modules/libros/model.php' class='btn btn-sm btn-danger btn-delete'>
                                 <i class='fas fa-trash'></i>
-                              </a>
+                              </button>
                             </td>";
                         }
                     echo "</tr>";

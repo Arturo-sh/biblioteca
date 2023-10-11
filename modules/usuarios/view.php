@@ -95,9 +95,9 @@
                               </a>";
                             if ($rol_usuario != 'Admin') {
                               echo "
-                              <a href='modules/usuarios/delete.php?action=confirm_delete&id=$id_usuario' class='btn btn-sm btn-danger'>
+                              <button id='$id_usuario' url='modules/usuarios/model.php' class='btn btn-sm btn-danger btn-delete'>
                                 <i class='fas fa-trash'></i>
-                              </a>
+                              </button>
                             </td>";
                             } 
                         }  

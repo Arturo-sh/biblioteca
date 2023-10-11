@@ -42,6 +42,9 @@ if (isset($_POST['btn_insert'])) {
     if ($result_book_insert) {
         $_SESSION['book_insert'] = ["icon" => "success", "title" => "Libro registrado!"];
     }
+
+    mysqli_close($conn);
+    header("Location: ../../index.php?module=libros");
 } 
     
 if (isset($_POST['btn_update'])) {
@@ -86,8 +89,24 @@ if (isset($_POST['btn_update'])) {
     if ($result_book_update) {
         $_SESSION['book_update'] = ["icon" => "success", "title" => "Datos del libro actualizados!"];
     }
+
+    mysqli_close($conn);
+    header("Location: ../../index.php?module=libros");
 }
 
-mysqli_close($conn);
-header("Location: ../../index.php?module=libros");
+if ($_POST['delete_id'] && $_SESSION['rol_usuario'] == "Admin") {
+    $id_libro = $_POST['delete_id'];
+    
+    $book_deleted = ["icon" => "error", "title" => "Ha ocurridó un error, inténtelo de nuevo!"];
+    
+    $query_book_delete = "DELETE FROM libros WHERE id_libro = $id_libro";
+    $result_book_delete = mysqli_query($conn, $query_book_delete);    
+    mysqli_close($conn);
+
+    if ($result_book_delete) {
+        $book_deleted = ["icon" => "success", "title" => "Libro eliminado!"];
+        echo json_encode($book_deleted);
+        return;
+    }
+}
 ?>

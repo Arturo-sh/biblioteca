@@ -15,6 +15,9 @@ if (isset($_POST['btn_insert'])) {
     if ($result_student_insert) {
         $_SESSION['student_insert'] = ["icon" => "success", "title" => "Alumn@ registrado!"];
     }
+
+    mysqli_close($conn);
+    header("Location: ../../index.php?module=alumnos");
 } 
     
 if (isset($_POST['btn_update'])) {
@@ -32,8 +35,25 @@ if (isset($_POST['btn_update'])) {
     if ($result_student_update) {
         $_SESSION['student_update'] = ["icon" => "success", "title" => "Datos del alumn@ actualizados!"];
     }
+
+    mysqli_close($conn);
+    header("Location: ../../index.php?module=alumnos");
 }
 
-mysqli_close($conn);
-header("Location: ../../index.php?module=alumnos");
+if ($_POST['delete_id'] && $_SESSION['rol_usuario'] == "Admin") {
+    $id_alumno = $_POST['delete_id'];
+    
+    $student_deleted = ["icon" => "error", "title" => "Ha ocurridó un error, inténtelo de nuevo!"];
+    
+    $query_student_delete = "DELETE FROM alumnos WHERE id_alumno = $id_alumno";
+    $result_student_delete = mysqli_query($conn, $query_student_delete);    
+    mysqli_close($conn);
+
+    if ($result_student_delete) {
+        $student_deleted = ["icon" => "success", "title" => "Alumn@ eliminado!"];
+    }
+
+    echo json_encode($student_deleted);
+    return;
+}
 ?>

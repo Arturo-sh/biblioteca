@@ -17,6 +17,9 @@ if (isset($_POST['btn_insert'])) {
     if ($result_loan_insert) {
         $_SESSION['loan_insert'] = ["icon" => "success", "title" => "Préstamo registrado!"];
     }
+
+    mysqli_close($conn);
+    header("Location: ../../index.php?module=prestamos");
 } 
 
 if (isset($_POST['btn_update'])) {
@@ -34,8 +37,24 @@ if (isset($_POST['btn_update'])) {
     if ($result_loan_update) {
         $_SESSION['loan_update'] = ["icon" => "success", "title" => "Datos del préstamo actualizados!"];
     }
+
+    mysqli_close($conn);
+    header("Location: ../../index.php?module=prestamos");
 }
 
-mysqli_close($conn);
-header("Location: ../../index.php?module=prestamos");
+if ($_POST['delete_id'] && $_SESSION['rol_usuario'] == "Admin") {
+    $id_prestamo = $_POST['delete_id'];
+    
+    $loan_deleted = ["icon" => "error", "title" => "Ha ocurridó un error, inténtelo de nuevo!"];
+    
+    $query_loan_delete = "DELETE FROM prestamos WHERE id_prestamo = $id_prestamo";
+    $result_loan_delete = mysqli_query($conn, $query_loan_delete);    
+    mysqli_close($conn);
+
+    if ($result_loan_delete) {
+        $loan_deleted = ["icon" => "success", "title" => "Préstamo eliminado!"];
+        echo json_encode($loan_deleted);
+        return;
+    }
+}
 ?>

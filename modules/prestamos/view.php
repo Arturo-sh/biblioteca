@@ -95,9 +95,9 @@
                               <a href='index.php?module=form_prestamo&action=edit&id=$id_prestamo' class='btn btn-sm btn-primary'>
                                 <i class='fas fa-pen'></i>
                               </a>
-                              <a href='modules/prestamos/delete.php?action=confirm_delete&id=$id_prestamo' class='btn btn-sm btn-danger'>
+                              <button id='$id_prestamo' url='modules/prestamos/model.php' class='btn btn-sm btn-danger btn-delete'>
                                 <i class='fas fa-trash'></i>
-                              </a>
+                              </button>
                             </td>";
                         }
                     echo "</tr>";

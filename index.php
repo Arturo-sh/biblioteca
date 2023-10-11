@@ -217,7 +217,7 @@ $(function () {
 <!-- Page specific script -->
 <script>
   $(function () {
-    $("#example1").DataTable({
+    var table = $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       buttons: [{
         extend: 'collection',
@@ -269,6 +269,73 @@ $(function () {
 <!-- Toast (SweetAlert2) -->
 <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 
+<!-- Eliminación de registros -->
+<script>
+  function show_alert_deleted(data) {
+    let e = JSON.parse(data);
+    let icon = e.icon;
+    let title = e.title;
+
+    Swal.fire({
+      icon: icon,
+      title: title,
+      showConfirmButton: false,
+      timer: 2000
+    });
+  }
+
+  function delete_register(data) {
+    let delete_id = data.id;
+    let url = data.url;
+
+    $.ajax({
+      url: url,
+      method: "POST",
+      data: {
+        delete_id: delete_id
+      },
+      success: function(response) {
+        show_alert_deleted(response);
+        // window.location.reload();
+        // DataTable.ajax.reload();
+      }
+    });
+  }
+
+  function show_delete_alert(data) {
+    let delete_id = data.id;
+    let url_redirect = data.url;
+    let msg = `Esta seguro de eliminar el registro ${delete_id}?`;
+
+    Swal.fire({
+      title: msg,
+      text: 'Esto no se puede revertir!',
+      icon: 'error',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, continuar!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        delete_register(data);
+      }
+    })
+  }
+
+  $(document).on('click', '.btn-delete', function() {
+    var id = $(this).attr("id");
+    var url = $(this).attr("url");
+
+    let data = {
+      "id": id,
+      "url": url
+    };
+
+    show_delete_alert(data);
+  });
+</script>
+
 <?php
   function show_action_alert($data) {
     $icon = $data['icon'];
@@ -291,35 +358,6 @@ $(function () {
       </script>";      
   }
 
-  function show_delete_alert($data) {
-    $id_registro = $data['id_registro'];
-    $url_confirmed = $data['url_confirmed'];
-  
-    echo "
-    <script>
-    Swal.fire({
-        title: 'Seguro de eliminar el registro $id_registro?',
-        text: 'Esto no se puede revertir!',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, continuar!',
-        cancelButtonText: 'Cancelar'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.href = '$url_confirmed';
-        }
-      })
-    </script>";
-  }
-
-  // Alerta de confirmación de eliminación
-  if (isset($_SESSION['confirm_delete'])) {
-    show_delete_alert($_SESSION['confirm_delete']);
-    unset($_SESSION['confirm_delete']);
-  }
-
   // Alertas para la Inserción/Actualización/Eliminación de alumnos
   if (isset($_SESSION['student_insert'])) { 
     show_action_alert($_SESSION['student_insert']);
@@ -329,11 +367,6 @@ $(function () {
   if (isset($_SESSION['student_update'])) { 
     show_action_alert($_SESSION['student_update']);
     unset($_SESSION['student_update']);
-  }
-
-  if (isset($_SESSION['student_deleted'])) { 
-    show_action_alert($_SESSION['student_deleted']);
-    unset($_SESSION['student_deleted']);
   }
 
   // Alertas para la Inserción/Actualización/Eliminación de usuarios
@@ -347,11 +380,6 @@ $(function () {
     unset($_SESSION['user_update']);
   }
 
-  if (isset($_SESSION['user_deleted'])) { 
-    show_action_alert($_SESSION['user_deleted']);
-    unset($_SESSION['user_deleted']);
-  }
-
   // Alertas para la Inserción/Actualización/Eliminación de libros
   if (isset($_SESSION['book_insert'])) { 
     show_action_alert($_SESSION['book_insert']);
@@ -363,11 +391,6 @@ $(function () {
     unset($_SESSION['book_update']);
   }
 
-  if (isset($_SESSION['book_deleted'])) { 
-    show_action_alert($_SESSION['book_deleted']);
-    unset($_SESSION['book_deleted']);
-  }
-
   // Alertas para la Inserción/Actualización/Eliminación de préstamos
   if (isset($_SESSION['loan_insert'])) { 
     show_action_alert($_SESSION['loan_insert']);
@@ -377,11 +400,6 @@ $(function () {
   if (isset($_SESSION['loan_update'])) { 
     show_action_alert($_SESSION['loan_update']);
     unset($_SESSION['loan_update']);
-  }
-
-  if (isset($_SESSION['loan_deleted'])) { 
-    show_action_alert($_SESSION['loan_deleted']);
-    unset($_SESSION['loan_deleted']);
   }
 ?>
 

@@ -83,9 +83,9 @@
                               <a href='index.php?module=form_alumno&action=edit&id=$id_alumno' class='btn btn-sm btn-primary'>
                                 <i class='fas fa-pen'></i>
                               </a>
-                              <a href='modules/alumnos/delete.php?action=confirm_delete&id=$id_alumno' class='btn btn-sm btn-danger'>
+                              <button id='$id_alumno' url='modules/alumnos/model.php' class='btn btn-sm btn-danger btn-delete'>
                                 <i class='fas fa-trash'></i>
-                              </a>
+                              </button>
                             </td>";
                         }  
                     echo "</tr>";

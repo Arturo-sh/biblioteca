@@ -20,6 +20,9 @@ if (isset($_POST['btn_insert'])) {
     if ($result_user_insert) {
         $_SESSION['user_insert'] = ["icon" => "success", "title" => "Usuario registrado!"];
     }
+    
+    mysqli_close($conn);
+    header("Location: ../../index.php?module=usuarios");
 }
 
 if (isset($_POST['btn_update'])) {
@@ -47,8 +50,32 @@ if (isset($_POST['btn_update'])) {
     if ($result_user_update) {
         $_SESSION['user_update'] = ["icon" => "success", "title" => "Datos del usuario actualizados!"];
     }
+    
+    mysqli_close($conn);
+    header("Location: ../../index.php?module=usuarios");
 }
 
-mysqli_close($conn);
-header("Location: ../../index.php?module=usuarios");
+if ($_POST['delete_id'] && $_SESSION['rol_usuario'] == "Admin") {
+    $id_usuario = $_POST['delete_id'];
+
+    $query_get_user = "SELECT rol_usuario FROM usuarios WHERE id_usuario = $id_usuario";
+    $result_get_user = mysqli_query($conn, $query_get_user);
+    $row = mysqli_fetch_assoc($result_get_user);
+    
+    $rol_usuario = $row['rol_usuario'];
+    
+    $user_deleted = ["icon" => "error", "title" => "Ha ocurridó un error, inténtelo de nuevo!"];
+    
+    if ($rol_usuario != "Admin") {
+        $query_user_delete = "DELETE FROM usuarios WHERE id_usuario = $id_usuario";
+        $result_user_delete = mysqli_query($conn, $query_user_delete);    
+        mysqli_close($conn);
+
+        if ($result_user_delete) {
+            $user_deleted = ["icon" => "success", "title" => "Usuario eliminado!"];
+            echo json_encode($user_deleted);
+            return;
+        }
+    }
+}
 ?>
