@@ -6,7 +6,7 @@ if ($_SESSION['rol_usuario'] != "Admin") {
 if ($_GET['action'] == "insert") {
     require_once "modules/database.php";
     
-    $query_get_students = "SELECT id_alumno, matricula, nombre_alumno FROM alumnos";
+    $query_get_students = "SELECT id_alumno, matricula, nombre_alumno FROM alumnos WHERE estado_alumno != 'Baja'";
     $result_get_students = mysqli_query($conn, $query_get_students);
 
     $query_get_books = "SELECT id_libro, titulo_libro FROM libros";

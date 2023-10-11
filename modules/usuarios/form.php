@@ -41,6 +41,13 @@ if ($_GET['action'] == "insert") {
                         <label for='correo_usuario'>Correo</label>
                         <input type='email' class='form-control' id='correo_usuario' name='correo_usuario' placeholder='usuario@gmail.com'>
                     </div>
+                    <div class='form-group col-md-6'>
+                        <label for='rol_usuario'>Rol de usuario</label>
+                        <select class='form-control' id='rol_usuario' name='rol_usuario'>
+                            <option value='Usuario'>Usuario</option>
+                            <option value='Admin'>Admin</option>
+                        </select>
+                    </div>
                 </div>
                 <!-- /.card-body -->
 
@@ -62,16 +69,12 @@ elseif ($_GET['action'] == "edit") {
     $user_data = mysqli_query($conn, $query_user_data);
     $row = mysqli_fetch_array($user_data);
 
+    $rol_usuario = $row['rol_usuario'];
     $usuario = $row['usuario'];
     $nombre_usuario = $row['nombre_usuario'];
     $telefono_usuario = $row['telefono_usuario'];
     $correo_usuario = $row['correo_usuario'];
     $estado_usuario = $row['estado_usuario'];
-
-    $activo = ""; $suspendido = "";
-
-    $activo = $estado_usuario == "Activo" ? "selected" : "";
-    $suspendido = $estado_usuario == "Suspendido" ? "selected" : "";
 
     echo "
     <!-- Content Header (Page header) -->
@@ -110,14 +113,37 @@ elseif ($_GET['action'] == "edit") {
                     <div class='form-group col-md-6'>
                         <label for='correo_usuario'>Correo</label>
                         <input type='email' class='form-control' id='correo_usuario' name='correo_usuario' value='$correo_usuario' placeholder='usuario@gmail.com'>
-                    </div>
+                    </div>";
+                    if ($_SESSION['id_usuario'] != $id_usuario) {
+                    echo "
                     <div class='form-group col-md-6'>
                         <label for='estado_usuario'>Estatus</label>
-                        <select class='form-control' id='estado_usuario' name='estado_usuario'> 
-                            <option value='Activo' $activo>Activo</option>
-                            <option value='Suspendido' $suspendido>Suspendido</option>
+                        <select class='form-control' id='estado_usuario' name='estado_usuario'>";
+                            if ($estado_usuario == "Activo") {
+                                echo "<option value='Activo' selected>Activo</option>";
+                                echo "<option value='Suspendido'>Suspendido</option>";
+                            } else {
+                                echo "<option value='Activo'>Activo</option>";
+                                echo "<option value='Suspendido' selected>Suspendido</option>";
+                            }                            
+                        echo"
                         </select>
                     </div>
+                    <div class='form-group col-md-6'>
+                        <label for='rol_usuario'>Rol de usuario</label>
+                        <select class='form-control' id='rol_usuario' name='rol_usuario'>";
+                        if ($rol_usuario == "Admin") {
+                            echo "<option value='Admin' selected>Admin</option>";
+                            echo "<option value='Usuario'>Usuario</option>";
+                        } else {
+                            echo "<option value='Admin'>Admin</option>";
+                            echo "<option value='Usuario' selected>Usuario</option>";
+                        }                            
+                        echo "
+                        </select>
+                    </div>";
+                    }
+                    echo "
                 </div>
                 <!-- /.card-body -->
 

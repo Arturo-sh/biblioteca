@@ -18,8 +18,6 @@ if (isset($_SESSION['id_usuario'])) {
   <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
 </head>
 <body class="hold-transition login-page bg-dark fixed">
 <div class="login-box">
@@ -29,6 +27,13 @@ if (isset($_SESSION['id_usuario'])) {
       <a href="#" class="h5 text-dark"><b>Biblioteca </b>24 de febrero</a>
     </div>
     <div class="card-body">
+      <?php
+      if (isset($_SESSION['invalid_credentials'])) {
+        $msg = $_SESSION['invalid_credentials']['msg'];
+        echo "<p class='text-center text-danger'>$msg</p>";
+        unset($_SESSION['invalid_credentials']);
+      }
+      ?>  
       <form action="login_validate.php" method="POST">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Usuario" name="usuario">
@@ -65,22 +70,6 @@ if (isset($_SESSION['id_usuario'])) {
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-<!-- Toast (SweetAlert2) -->
-<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 
-<?php
-if (isset($_SESSION['invalid_credentials']) && $_SESSION['invalid_credentials']) {
-  echo "
-  <script>
-    Swal.fire({
-      icon: 'error',
-      title: 'Usuario y/o contraseña incorrectos!',
-      showConfirmButton: false,
-      timer: 2000
-    });
-  </script>";
-  unset($_SESSION['invalid_credentials']);
-}
-?>
 </body>
 </html>

@@ -59,11 +59,12 @@
                   <?php
                   require_once "modules/database.php";
 
-                  $query_get_users = "SELECT id_usuario, usuario, nombre_usuario, telefono_usuario, correo_usuario, creacion_cuenta, estado_usuario FROM usuarios";
+                  $query_get_users = "SELECT id_usuario, rol_usuario, usuario, nombre_usuario, telefono_usuario, correo_usuario, creacion_cuenta, estado_usuario FROM usuarios";
                   $data_users = mysqli_query($conn, $query_get_users);
 
                   while ($row = mysqli_fetch_array($data_users)) {
                     $id_usuario = $row['id_usuario'];
+                    $rol_usuario = $row['rol_usuario'];
                     $usuario = $row['usuario'];
                     $nombre_usuario = $row['nombre_usuario'];
                     $telefono_usuario = $row['telefono_usuario'];
@@ -91,11 +92,14 @@
                             <td>
                               <a href='index.php?module=form_usuario&action=edit&id=$id_usuario' class='btn btn-sm btn-primary'>
                                 <i class='fas fa-pen'></i>
-                              </a>
+                              </a>";
+                            if ($rol_usuario != 'Admin') {
+                              echo "
                               <a href='modules/usuarios/delete.php?action=confirm_delete&id=$id_usuario' class='btn btn-sm btn-danger'>
                                 <i class='fas fa-trash'></i>
                               </a>
                             </td>";
+                            } 
                         }  
                     echo "</tr>";
                   }

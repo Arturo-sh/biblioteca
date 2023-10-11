@@ -15,7 +15,7 @@ if ($_GET['action'] == "delete" && $_SESSION['rol_usuario'] == "Admin") {
 
     $_SESSION['book_deleted'] = ["icon" => "error", "action" => "eliminar"];
 
-    if ($result_loan_delete) {
+    if ($result_book_delete) {
         $_SESSION['book_deleted'] = ["icon" => "success", "title" => "Libro eliminado!"];
     }
 }
