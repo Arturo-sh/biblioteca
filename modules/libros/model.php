@@ -94,7 +94,7 @@ if (isset($_POST['btn_update'])) {
     header("Location: ../../index.php?module=libros");
 }
 
-if ($_POST['delete_id'] && $_SESSION['rol_usuario'] == "Admin") {
+if (isset($_POST['delete_id']) && $_SESSION['rol_usuario'] == "Admin") {
     $id_libro = $_POST['delete_id'];
     
     $book_deleted = ["icon" => "error", "title" => "Ha ocurridó un error, inténtelo de nuevo!"];

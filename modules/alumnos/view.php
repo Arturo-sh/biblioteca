@@ -18,8 +18,18 @@
         <div class='container-fluid'>
           <!-- Small boxes (Stat box) -->
           <div class='row'>
-            <div class='col-lg-3 col-6'>
+            <div class='pr-2'>
               <a href='index.php?module=form_alumno&action=insert' class='btn btn-md btn-outline-primary my-2'>Nuevo alumno</a>
+            </div>
+            <div class='pr-2'>
+              <button id='1' url='modules/alumnos/model.php' class='btn btn-md btn-outline-danger btn-change-grade my-2'>
+                <i class='fas fa-minus'></i> 1 semestre
+              </button>
+            </div>
+            <div class='pr-2'>
+              <button id='2' url='modules/alumnos/model.php' class='btn btn-md btn-outline-primary btn-change-grade my-2'>
+                <i class='fas fa-plus'></i> 1 semestre
+              </button>
             </div>
             <!-- ./col -->
           </div>
@@ -57,7 +67,7 @@
                   <?php
                   require_once "modules/database.php";
 
-                  $sql_alumnos = "SELECT * FROM alumnos";
+                  $sql_alumnos = "SELECT * FROM alumnos ORDER BY estado_alumno";
                   $sql_alumnos = mysqli_query($conn, $sql_alumnos);
 
                   while ($row = mysqli_fetch_array($sql_alumnos)) {
@@ -69,6 +79,7 @@
                     
                     $badge_color = "bg-danger";
                     if ($estado_alumno == "Activo") $badge_color = "bg-success";
+                    if ($semestre < 1 || $semestre > 6) $semestre = "Indefinido";
                       
                     echo "
                     <tr>

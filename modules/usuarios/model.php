@@ -55,7 +55,7 @@ if (isset($_POST['btn_update'])) {
     header("Location: ../../index.php?module=usuarios");
 }
 
-if ($_POST['delete_id'] && $_SESSION['rol_usuario'] == "Admin") {
+if (isset($_POST['delete_id']) && $_SESSION['rol_usuario'] == "Admin") {
     $id_usuario = $_POST['delete_id'];
 
     $query_get_user = "SELECT rol_usuario FROM usuarios WHERE id_usuario = $id_usuario";

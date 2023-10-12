@@ -42,7 +42,7 @@ if (isset($_POST['btn_update'])) {
     header("Location: ../../index.php?module=prestamos");
 }
 
-if ($_POST['delete_id'] && $_SESSION['rol_usuario'] == "Admin") {
+if (isset($_POST['delete_id']) && $_SESSION['rol_usuario'] == "Admin") {
     $id_prestamo = $_POST['delete_id'];
     
     $loan_deleted = ["icon" => "error", "title" => "Ha ocurridó un error, inténtelo de nuevo!"];
