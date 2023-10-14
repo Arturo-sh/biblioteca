@@ -15,29 +15,22 @@ if (!isset($_SESSION['id_usuario'])) {
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  
   <!-- iCheck -->
   <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
- 
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-
   <!-- Select2 -->
   <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-  
   <!-- Styles for DataTables -->
   <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
-  
-   <!-- Theme style -->
+  <!-- Theme style -->
    <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
 
@@ -63,24 +56,6 @@ if (!isset($_SESSION['id_usuario'])) {
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-
-      <!-- Notifications Dropdown Menu -->
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">1</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">1 Notificación</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> Entrega de libro
-            <span class="float-right text-muted text-sm">2 dias</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a>
-        </div>
-      </li> -->
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -141,40 +116,27 @@ if (!isset($_SESSION['id_usuario'])) {
   </footer>
   <!-- ./main-footer -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
-
 <!-- jQuery UI 1.11.4 -->
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
-
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 <!-- overlayScrollbars -->
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
-
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
-
 <!-- Select2 -->
 <script src="plugins/select2/js/select2.full.min.js"></script>
-
 <!-- Page specific script -->
 <script>
   $(function () {
@@ -182,24 +144,20 @@ if (!isset($_SESSION['id_usuario'])) {
     $('.select2').select2()
   });
 </script>
-
 <!-- InputMask -->
 <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
-
+<!-- Page specific script -->
 <script>
   $('[data-mask]').inputmask()
 </script>
-
 <!-- bs-custom-file-input -->
 <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-
 <!-- Page specific script -->
 <script>
 $(function () {
   bsCustomFileInput.init();
 });
 </script>
-
 <!-- DataTables  & Plugins -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -213,12 +171,12 @@ $(function () {
 <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
 <!-- Page specific script -->
 <script>
   $(function () {
     var table = $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": false,
+      "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": false, 
+      pageLength: 5,
       buttons: [{
         extend: 'collection',
         text: 'Exportar',
@@ -242,7 +200,6 @@ $(function () {
         extend: 'colvis',
         text: 'Visor de columnas',
       }],
-      pageLength: 5,
       language: {
         "emptyTable": "No hay registros",
         "info": "Mostrando _START_ a _END_ de _TOTAL_ resultados",
@@ -265,148 +222,11 @@ $(function () {
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
 </script>
-
+<!-- Extras datatables -->
+<script src="dist/js/change_grade.js"></script>
+<script src="dist/js/delete_register.js"></script>
 <!-- Toast (SweetAlert2) -->
 <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
-
-<!-- Eliminación de registros -->
-<script>
-  function show_alert_deleted(data) {
-    let e = JSON.parse(data);
-    let icon = e.icon;
-    let title = e.title;
-
-    Swal.fire({
-      icon: icon,
-      title: title,
-      showConfirmButton: false,
-      timer: 2000
-    });
-  }
-
-  function delete_register(data) {
-    let delete_id = data.id;
-    let url = data.url;
-
-    $.ajax({
-      url: url,
-      method: "POST",
-      data: {
-        delete_id: delete_id
-      },
-      success: function(response) {
-        show_alert_deleted(response);
-        // window.location.reload();
-        // DataTable.ajax.reload();
-      }
-    });
-  }
-
-  function show_delete_alert(data) {
-    let delete_id = data.id;
-    let url_redirect = data.url;
-    let msg = `Esta seguro de eliminar el registro ${delete_id}?`;
-
-    Swal.fire({
-      title: msg,
-      text: 'Esto no se puede revertir!',
-      icon: 'error',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, continuar!',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        delete_register(data);
-      }
-    })
-  }
-
-  $(document).on('click', '.btn-delete', function() {
-    var id = $(this).attr("id");
-    var url = $(this).attr("url");
-
-    let data = {
-      "id": id,
-      "url": url
-    };
-
-    show_delete_alert(data);
-  });
-
-  // Alerta aumentar/decrementar semestre
-  function alert_changed_grade(data) {
-    let e = JSON.parse(data);
-    let icon = e.icon;
-    let title = e.title;
-
-    Swal.fire({
-      icon: icon,
-      title: title,
-      showConfirmButton: false,
-      timer: 2000
-    });
-  }
-
-  function change_grade(action) {
-    $.ajax({
-      url: "modules/alumnos/model.php",
-      method: "POST",
-      data: {
-        action: action
-      },
-      success: function(response) {
-        alert_changed_grade(response);
-      }
-    });
-  }
-
-  function confirm_change_grade(data) {
-    let e = JSON.parse(data);
-    let total_students = e.total_students;
-    let grade_students = e.grade_students;
-    let action = e.action;
-    let msg = "";
-
-    console.log(total_students);
-    if (total_students != 0) {
-      msg = `Este cambio dará de baja a ${total_students} alumnos de ${grade_students} semestre.\n¿Desea continuar?`;
-    } else {
-      msg = `¿Seguro que desea continuar?`
-    }
-
-    Swal.fire({
-      title: msg,
-      text: 'Este cambio se puede revertir únicamente de forma manual!',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, continuar!',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        change_grade(action);
-      }
-    })
-  }
-
-  $(document).on('click', '.btn-change-grade', function() {
-    var action_id = $(this).attr("id");
-
-    $.ajax({
-      url: "modules/alumnos/model.php",
-      method: "POST",
-      data: {
-        action_id: action_id
-      },
-      success: function(response) {
-        confirm_change_grade(response);
-      }
-    });
-  });
-</script>
 
 <?php
   function show_action_alert($data) {
