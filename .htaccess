@@ -1,0 +1,17 @@
+Options +FollowSymLinks
+Options -Indexes
+
+RewriteEngine on
+
+# Redireccion para cuando un usuario intenta entrar a una pagina 403 (Forbidden)
+# ErrorDocument 403 /biblioteca/error/403
+
+# Redireccion para cuando un usuario intenta entrar a una pagina 404 (Not Found)
+# ErrorDocument 404 /biblioteca/error/404
+
+# Patrones de url's amigables
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([A-Za-z]+)$ index.php?module=$1
+# RewriteRule ^(error)/([0-9]+)$ error.php?error=$2
+RewriteRule ^(iniciar_sesion|login)$ login.php

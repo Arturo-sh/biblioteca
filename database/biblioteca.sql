@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-10-2023 a las 09:58:10
+-- Tiempo de generación: 15-10-2023 a las 09:45:47
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.3.13
 
@@ -41,22 +41,11 @@ CREATE TABLE `alumnos` (
 --
 
 INSERT INTO `alumnos` (`id_alumno`, `matricula`, `nombre_alumno`, `semestre`, `estado_alumno`) VALUES
-(1, 19180054, 'Arturo Salas Hernandez', 1, 'Activo'),
-(2, 19180010, 'Jorge Villarreal Vélez', 5, 'Activo'),
-(3, 19180056, 'Daniela Mendez Gutierrez', 4, 'Activo'),
-(4, 19180059, 'Mario Mendoza Arias', 1, 'Activo'),
-(5, 19180045, 'Carlos Gutierrez Lopez', 4, 'Activo'),
-(6, 87654321, 'Claudia Chavez Fernandez', 2, 'Activo'),
-(7, 19180051, 'Prueba edit', 6, 'Activo'),
-(8, 19180023, 'Lucia Canseco Gomez', 2, 'Activo'),
-(9, 19103412, 'Monica Escamilla Morales', 6, 'Activo'),
-(10, 1100110, 'Facundo Montes Alemán', 1, 'Activo'),
-(11, 24356786, '', 1, 'Activo'),
-(12, 23456754, 'Alejandro', 1, 'Activo'),
-(13, 32435674, 'Melany Moscada Zamora', 1, 'Activo'),
-(14, 12345678, 'Julian Gomez Perez', 1, 'Baja'),
-(16, 20242627, 'Alejandra Villarreal Vélez', 6, 'Activo'),
-(17, 19183344, 'Ramon Dante Fernandez', 2, 'Activo');
+(1, 19180054, 'Arturo Salas Hernandez', 6, 'Activo'),
+(2, 19180010, 'Jorge Villarreal Vélez', 1, 'Activo'),
+(14, 12345679, 'Julián Gomez Pérez', 1, 'Activo'),
+(17, 19183344, 'Ramón Dante Fernández', 1, 'Activo'),
+(19, 15120143, 'Jesús Macedo López', 1, 'Baja');
 
 -- --------------------------------------------------------
 
@@ -111,31 +100,23 @@ CREATE TABLE `libros` (
   `id_editorial` int(11) NOT NULL,
   `id_categoria` int(11) NOT NULL,
   `unidades_totales` int(4) NOT NULL DEFAULT 1,
+  `unidades_restantes` int(11) NOT NULL,
   `imagen_portada` text NOT NULL DEFAULT 'portada_default.png',
   `descripcion` text NOT NULL,
-  `estado_libro` enum('Activo','Suspendido') NOT NULL DEFAULT 'Activo'
+  `estado_libro` enum('Activo','Inactivo') NOT NULL DEFAULT 'Activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `libros`
 --
 
-INSERT INTO `libros` (`id_libro`, `titulo_libro`, `id_editorial`, `id_categoria`, `unidades_totales`, `imagen_portada`, `descripcion`, `estado_libro`) VALUES
-(1, 'Programacion En Java 8', 2, 3, 2, 'portada_default.png', 'Libro en buenas condiciones', 'Activo'),
-(2, 'Mitos y leyendas', 1, 1, 3, 'portada_default.png', 'Libro en buenas condiciones', 'Activo'),
-(3, 'Programacion en C#', 2, 3, 4, 'portada_default.png', 'Libro en buenas condiciones', 'Activo'),
-(4, 'Programacion en C#', 2, 3, 4, 'portada_default.png', 'Libro en buenas condiciones', 'Activo'),
-(5, 'Programacion en C#', 2, 3, 4, 'portada_default.png', 'Libro en buenas condiciones', 'Activo'),
-(6, 'Programacion en C#', 2, 3, 4, 'portada_default.png', 'Libro en buenas condiciones', 'Activo'),
-(7, 'Programacion en C#', 2, 3, 4, 'portada_default.png', 'Libro en buenas condiciones', 'Activo'),
-(8, 'Programacion en C#', 2, 3, 4, 'portada_default.png', 'Libro en buenas condiciones', 'Activo'),
-(9, 'Programacion en C#', 2, 3, 4, 'portada_default.png', 'Libro en buenas condiciones', 'Activo'),
-(10, 'Programacion en C#', 2, 3, 4, 'portada_default.png', 'Libro en buenas condiciones', 'Activo'),
-(11, 'Programacion en C#', 2, 3, 4, 'portada_default.png', 'Libro en buenas condiciones', 'Activo'),
-(12, 'El principito', 2, 2, 10, 'portada_default.png', 'Libro en buenas condiciones', 'Activo'),
-(14, 'Prueba de insercion de libro 1', 1, 3, 4, 'Captura de pantalla (110)_6523b4dba2ee8.png', 'Libro en buenas condiciones', 'Suspendido'),
-(15, 'Poemas Edgar Alan Poe', 1, 2, 1, 'Captura de pantalla (15)_65247c1eb2b09.png', 'Libro en buena condición', 'Activo'),
-(16, 'Prueba', 1, 1, 3, 'Captura de pantalla (1)_6524b29a8bff8.png', 'Libro en buena condición', 'Activo');
+INSERT INTO `libros` (`id_libro`, `titulo_libro`, `id_editorial`, `id_categoria`, `unidades_totales`, `unidades_restantes`, `imagen_portada`, `descripcion`, `estado_libro`) VALUES
+(14, 'El principito Vol. 1', 1, 3, 4, 0, 'Captura de pantalla (110)_6523b4dba2ee8.png', 'Libro en buenas condiciones', 'Activo'),
+(19, 'Poemas Edgar Alan Poet', 2, 2, 4, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(20, 'El principito Vol. 2', 1, 1, 2, 0, 'Captura de pantalla (20)_6529f6be36e96.png', 'Libro en buena condición', 'Activo'),
+(21, 'Prueba', 2, 2, 2, 0, 'Captura de pantalla (119)_652b546dd8497.png', 'Libro en buena condición', 'Activo'),
+(22, 'Prueba2', 1, 1, 3, 0, 'portada_default.png', 'Rallado de la portada', 'Inactivo'),
+(23, 'jnafskasfmkl', 1, 1, 20, 0, 'Captura de pantalla (111)_652b584d69c86.png', 'Libro en buena condición', 'Activo');
 
 -- --------------------------------------------------------
 
@@ -151,18 +132,20 @@ CREATE TABLE `prestamos` (
   `fecha_prestamo` timestamp NOT NULL DEFAULT current_timestamp(),
   `fecha_entrega` date NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `detalles_entrega` text NOT NULL DEFAULT 'Pendiente',
-  `estado_prestamo` enum('Activo','Inactivo') NOT NULL DEFAULT 'Activo'
+  `estado_prestamo` enum('Pendiente','Entregado') NOT NULL DEFAULT 'Pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `prestamos`
 --
 
-INSERT INTO `prestamos` (`id_prestamo`, `id_alumno`, `id_libro`, `unidades_prestamo`, `fecha_prestamo`, `fecha_entrega`, `id_usuario`, `detalles_entrega`, `estado_prestamo`) VALUES
-(1, 4, 2, 4, '2023-10-10 00:10:17', '2023-10-27', 1, 'Pendiente', 'Activo'),
-(2, 2, 2, 1, '2023-10-10 00:10:17', '2023-10-07', 2, 'Pendiente', 'Activo'),
-(3, 5, 2, 4, '2023-10-10 00:10:17', '2023-10-10', 1, 'Pendiente', 'Activo');
+INSERT INTO `prestamos` (`id_prestamo`, `id_alumno`, `id_libro`, `unidades_prestamo`, `fecha_prestamo`, `fecha_entrega`, `id_usuario`, `estado_prestamo`) VALUES
+(11, 1, 14, 1, '2023-10-15 01:33:45', '2023-10-15', 1, 'Pendiente'),
+(12, 14, 19, 2, '2023-10-15 01:48:09', '2023-10-15', 1, 'Pendiente'),
+(13, 2, 19, 1, '2023-10-15 02:09:18', '2023-10-15', 1, 'Entregado'),
+(14, 2, 14, 1, '2023-10-15 02:15:15', '2023-10-15', 1, 'Pendiente'),
+(15, 17, 20, 23, '2023-10-15 02:18:11', '2023-10-29', 1, 'Entregado'),
+(16, 1, 23, 4, '2023-10-15 03:12:11', '2023-10-25', 1, 'Entregado');
 
 -- --------------------------------------------------------
 
@@ -188,19 +171,10 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_usuario`, `rol_usuario`, `usuario`, `contrasenia`, `nombre_usuario`, `telefono_usuario`, `correo_usuario`, `creacion_cuenta`, `estado_usuario`) VALUES
 (1, 'Admin', 'Admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Yatzamil Román Ángeles', '924 143 5497', 'admin@gmail.com', '2023-10-06 23:02:18', 'Activo'),
-(2, 'Usuario', 'ArturoPrueba', 'e8bc682de39f8160e26870ce75968bfd56ccc87b', 'Jose Carlos Mendoza Cardenas', '(924) 143-5498', 'arturo@gmail.com', '2023-10-07 23:40:43', 'Activo'),
-(4, 'Usuario', 'Alejandro', 'e0c9035898dd52fc65c41454cec9c4d2611bfb37', 'Alejandro Martinez Echeverria', '235 354 5623', 'alejandro@gmail.com', '2023-10-08 02:49:56', 'Activo'),
-(5, 'Usuario', 'Marcos', 'dfadc855249b015fd2bb015c0b099b2189c58748', 'Marcos Osorio Juárez', '(924) 342-5347', 'marcos12@gmail.com', '2023-10-08 05:35:13', 'Activo'),
-(6, 'Usuario', 'Teodoro', '145a1a1bf4a6e67317c10fc6bde8be3502ac95eb', 'Teodoro Jimenez Mancera', '924 435 2352', 'teodoro@gmail.com', '2023-10-08 07:26:59', 'Activo'),
-(7, 'Usuario', 'Gael', 'e7582b9507331a5564b63863c9f53d17cb7fc228', 'Gael Fonseca Uribe', '924 356 2355', 'gael@gmail.com', '2023-10-08 07:28:14', 'Activo'),
-(8, 'Usuario', 'Admins', 'c5a2dc3dcb24a8c9c790110e437b2a1960cba13e', 'Arturo Saslas Hernandez', '', 'correo@gmail.com', '2023-10-08 22:40:45', 'Activo'),
-(9, 'Usuario', 'administrador', '9dbf7c1488382487931d10235fc84a74bff5d2f4', 's', '', '', '2023-10-09 03:38:23', 'Activo'),
-(10, 'Usuario', 'prueba', '711383a59fda05336fd2ccf70c8059d1523eb41a', 'prueba', '', '', '2023-10-09 03:40:23', 'Activo'),
-(11, 'Usuario', 'nuevaPrueba', 'af7d6e49fba82594f23ef5a2db30cdec7bb4f90c', 'prueba ssd', '', '', '2023-10-09 03:46:17', 'Activo'),
-(12, 'Usuario', 'qwertyui', '8df9b22644c33d73ee63af25d7a727b72ff30e70', 'ertyui', '', '', '2023-10-09 03:50:04', 'Activo'),
-(13, 'Usuario', 'prueba2', 'd8c7468774962290ed594c33e79c2c219b2c2f42', 'prueba insercion divida', 'No definido', 'prueba@gmail.com', '2023-10-09 04:15:46', 'Activo'),
-(14, 'Usuario', 'prueba3', 'ee5ed95c37d99b7a07981ce3bda95ad246d784e5', 'prueba insercion divida dos', '(924) 143-5499', 'No definido', '2023-10-09 04:16:25', 'Activo'),
-(15, 'Usuario', 'nuevoU', '27e947077092f91aea86a2e1e830e83237b9fe44', 'nuevo', '(924) 143-5498', '', '2023-10-09 04:21:51', 'Activo');
+(5, 'Usuario', 'Marcos', 'dfadc855249b015fd2bb015c0b099b2189c58748', 'Marcos Osorio Juáres', '(924) 342-5347', 'marcos12@gmail.com', '2023-10-08 05:35:13', 'Activo'),
+(23, 'Usuario', 'arturo15', '65e313615c709400f57b2c19b11931eabffd8cf6', 'Arturo salas hernandez', '(111) 111-1111', 'correo@gmail.com', '2023-10-14 19:17:19', 'Activo'),
+(26, 'Usuario', 'NuevoUser', '711383a59fda05336fd2ccf70c8059d1523eb41a', 'Prueba', '(923) 435-4675', 'nuevo@gmail.com', '2023-10-14 20:33:31', 'Activo'),
+(28, 'Usuario', 'Arturo20', 'dce3b12e8d1767cf1416c2f73b7d0f83c5ed5976', 'SALAS HERNANDEZ ARTURO', '(924) 143-5497', 'salashernandez@gmail.com', '2023-10-15 03:09:04', 'Activo');
 
 --
 -- Índices para tablas volcadas
@@ -255,7 +229,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `alumnos`
 --
 ALTER TABLE `alumnos`
-  MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -273,19 +247,19 @@ ALTER TABLE `editoriales`
 -- AUTO_INCREMENT de la tabla `libros`
 --
 ALTER TABLE `libros`
-  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Restricciones para tablas volcadas

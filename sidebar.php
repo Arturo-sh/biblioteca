@@ -1,28 +1,39 @@
 <?php
 
-$prestamos_active = "";
-$libros_active = "";
-$alumnos_active = "";
-$usuarios_active = "";
+$home_active = "";
+$loans_active = "";
+$books_active = "";
+$students_active = "";
+$users_active = "";
 
-if (!empty($_GET)) {
-    if ($_GET['module'] == "prestamos" || $_GET['module'] == "form_prestamo") {
-        $prestamos_active = "active";
-    }
-    elseif ($_GET['module'] == "libros" || $_GET['module'] == "form_libro") {
-        $libros_active = "active";
-    }
-    elseif ($_GET['module'] == "alumnos"  || $_GET['module'] == "form_alumno") {
-        $alumnos_active = "active";
-    }
-    elseif ($_GET['module'] == "usuarios" || $_GET['module'] == "form_usuario") {
-        $usuarios_active = "active";
+if (!empty($_GET) && isset($_GET['module'])) {
+    switch($_GET['module']){
+      case 'home':
+        $home_active = 'active'; break;
+      case 'prestamos':
+        $loans_active = 'active'; break;
+      case 'libros':
+        $books_active = 'active'; break;
+      case 'alumnos':
+        $students_active = 'active'; break;
+      case 'usuarios':
+        $users_active = 'active'; break;
     }
 }
 
 echo "
+<li class='nav-item mb-3'>
+    <a href='?module=home' class='nav-link text-left btn btn-outline-secondary $home_active'>
+      <i class='nav-icon fas fas fa-home'></i>
+      <p>
+        Inicio
+      </p>
+    </a>
+</li>";
+
+echo "
 <li class='nav-item'>
-    <a href='?module=prestamos' class='nav-link text-left btn btn-outline-secondary $prestamos_active'>
+    <a href='?module=prestamos' class='nav-link text-left btn btn-outline-secondary $loans_active'>
       <i class='nav-icon fas fas fa-edit'></i>
       <p>
         Préstamos
@@ -32,7 +43,7 @@ echo "
 
 echo "
 <li class='nav-item'>
-  <a href='?module=libros' class='nav-link text-left btn btn-outline-secondary $libros_active'>
+  <a href='?module=libros' class='nav-link text-left btn btn-outline-secondary $books_active'>
     <i class='nav-icon fas fas fa-book'></i>
     <p>
       Libros
@@ -42,7 +53,7 @@ echo "
 
 echo "
 <li class='nav-item'>
-  <a href='?module=alumnos' class='nav-link text-left btn btn-outline-secondary $alumnos_active'>
+  <a href='?module=alumnos' class='nav-link text-left btn btn-outline-secondary $students_active'>
     <i class='nav-icon fas fas fa-users'></i>
     <p>
       Alumnos
@@ -52,7 +63,7 @@ echo "
 
 echo "
 <li class='nav-item'>
-  <a href='?module=usuarios' class='nav-link text-left btn btn-outline-secondary $usuarios_active'>
+  <a href='?module=usuarios' class='nav-link text-left btn btn-outline-secondary $users_active'>
     <i class='nav-icon fas fas fa-user'></i>
     <p>
       Usuarios
@@ -69,15 +80,4 @@ echo "
     </p>
   </a>
 </li>";
-
-// echo "
-// <li class='nav-item mt-3'>
-//   <a href='pages/#' class='nav-link bg-info'>
-//     <i class='nav-icon fas fas fa-edit'></i>
-//     <p>
-//       Configurar perfil
-//       <!-- <span class='right badge badge-danger'>New</span> -->
-//     </p>
-//   </a>
-// </li>";
 ?>
