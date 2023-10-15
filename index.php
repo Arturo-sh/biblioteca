@@ -229,6 +229,13 @@ $(function () {
 <!-- Toast (SweetAlert2) -->
 <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 
+<script>
+  $(document).on('click', '.btn-view', function() {
+    var image_name = $(this).attr("image-name");
+    $("#image-form").attr("src", "dist/portadas/" + image_name);
+  });
+</script>
+
 <?php
   function show_action_alert($data) {
     $icon = $data['icon'];

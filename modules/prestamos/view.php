@@ -34,26 +34,28 @@
                   <div class='form-group col-md-12'>
                     <input type='hidden' class='form-control' id='id_prestamo' name='id_prestamo'>
                     <label for='id_alumno'>Alumno</label>
-                    <select class='form-control select2' style='width: 100%;' id='id_alumno' name='id_alumno' required>";
-                    while ($row = mysqli_fetch_array($result_get_students)) {
-                      $id_alumno = $row['id_alumno'];
-                      $matricula = $row['matricula'];
-                      $nombre_alumno = $row['nombre_alumno'];
+                    <select class='form-control select2' style='width: 100%;' id='id_alumno' name='id_alumno' required>
+                      <option selected disabled>Seleccionar</option>";
+                      while ($row = mysqli_fetch_array($result_get_students)) {
+                        $id_alumno = $row['id_alumno'];
+                        $matricula = $row['matricula'];
+                        $nombre_alumno = $row['nombre_alumno'];
 
-                      echo "<option value='$id_alumno'>$matricula - $nombre_alumno</option>";
-                    }
+                        echo "<option value='$id_alumno'>$matricula - $nombre_alumno</option>";
+                      }
                     echo "
                     </select>
                   </div>
                   <div class='form-group col-md-12'>
                     <label for='id_libro'>Libro</label>
-                    <select class='form-control select2' style='width: 100%;' id='id_libro' name='id_libro' required>";
-                    while ($row = mysqli_fetch_array($result_get_books)) {
-                      $id_libro = $row['id_libro'];
-                      $titulo_libro = $row['titulo_libro'];
+                    <select class='form-control select2' style='width: 100%;' id='id_libro' name='id_libro' required>
+                      <option selected disabled>Seleccionar</option>";
+                      while ($row = mysqli_fetch_array($result_get_books)) {
+                        $id_libro = $row['id_libro'];
+                        $titulo_libro = $row['titulo_libro'];
 
-                      echo "<option value='$id_libro' class='add_book'>$titulo_libro</option>";
-                    }
+                        echo "<option value='$id_libro' class='add_book'>$titulo_libro</option>";
+                      }
                     echo "
                     </select>
                   </div>

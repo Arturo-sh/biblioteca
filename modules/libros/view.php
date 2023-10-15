@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row">
           <?php
-          $table_width = "col-md-3";
+          $table_width = "col-md-12";
           if ($_SESSION['rol_usuario'] == "Admin") {
             require_once "modules/database.php";
             $table_width = "col-md-9";
@@ -38,25 +38,27 @@
                   </div>
                   <div class='form-group col-md-12'>
                     <label for='id_editorial'>Editorial</label>
-                    <select class='form-control select2' style='width: 100%;' id='id_editorial' name='id_editorial' required>";
-                    while ($row = mysqli_fetch_array($result_get_publishers)) {
-                      $id_editorial = $row['id_editorial'];
-                      $nombre_editorial = $row['nombre_editorial'];
+                    <select class='form-control select2' style='width: 100%;' id='id_editorial' name='id_editorial' required>
+                      <option selected disabled>Seleccionar</option>";
+                      while ($row = mysqli_fetch_array($result_get_publishers)) {
+                        $id_editorial = $row['id_editorial'];
+                        $nombre_editorial = $row['nombre_editorial'];
 
-                      echo "<option value='$id_editorial'>$nombre_editorial</option>";
-                    }
+                        echo "<option value='$id_editorial'>$nombre_editorial</option>";
+                      }
                     echo "
                     </select>
                   </div>
                   <div class='form-group col-md-12'>
                     <label for='id_categoria'>Categoría</label>
-                    <select class='form-control select2' style='width: 100%;' id='id_categoria' name='id_categoria' required>";
-                    while ($row = mysqli_fetch_array($result_get_categories)) {
-                      $id_categoria = $row['id_categoria'];
-                      $nombre_categoria = $row['nombre_categoria'];
+                    <select class='form-control select2' style='width: 100%;' id='id_categoria' name='id_categoria' required>
+                      <option selected disabled>Seleccionar</option>";
+                      while ($row = mysqli_fetch_array($result_get_categories)) {
+                        $id_categoria = $row['id_categoria'];
+                        $nombre_categoria = $row['nombre_categoria'];
 
-                      echo "<option value='$id_categoria'>$nombre_categoria</option>";
-                    }
+                        echo "<option value='$id_categoria'>$nombre_categoria</option>";
+                      }
                     echo "
                     </select>
                   </div>
@@ -143,7 +145,11 @@
                         <td>$nombre_editorial</td>
                         <td>$nombre_categoria</td>
                         <td>$unidades_totales</td>
-                        <td class='text-center'><img src='dist/portadas/$imagen_portada' style='width: 100%;'></td>
+                        <td class='text-center'>
+                          <button image-name='$imagen_portada' class='btn btn-sm btn-warning btn-view' data-toggle='modal' data-target='#modal-image' >
+                            <i class='fas fa-eye'></i>
+                          </button>
+                        </td>
                         <td>$descripcion</td>
                         <td class='text-center'><span class='badge $badge_color'>$estado_libro</span></td>";
                         if ($_SESSION['rol_usuario'] == "Admin") {
@@ -176,3 +182,22 @@
     </section>
     <!-- /.content -->
     <!-- /.table -->
+
+    <div class='modal fade' id='modal-image' id='staticBackdrop' data-backdrop='static' tabindex='-1' role='dialog' aria-labelledby='staticBackdropLabel' aria-hidden='true'>
+      <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <h4 class='modal-title'>Imagen portada</h4>
+            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+              <span aria-hidden='true'>&times;</span>
+            </button>
+          </div>
+          <div class='modal-body'>
+            <img src="#" id="image-form" alt="Recurso no disponible" style="width: 100%;">
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->

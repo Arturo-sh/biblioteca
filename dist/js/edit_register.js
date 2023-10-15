@@ -19,8 +19,6 @@ function reset_loan_data() {
     $("#id_alumno").val("1").trigger("change");
     // $("#id_libro").val("19").trigger("change");
     $("#id_libro").data('lastValue', $("#id_libro").val().trigger("change"));
-
-
 }
 
 function set_book_data(response) {
@@ -65,9 +63,24 @@ function set_user_data(response) {
     $("#estado_usuario").val(data[0].estado_usuario);
     $(".btn-next").attr("name", "btn_update");
     $(".btn-next").text("Actualizar");
-    $("#pass-label").text("Nueva contraseña");
     $("#contrasenia").removeAttr("required");
-    $("#estado_usuario").removeAttr("disabled"); 
+    $("#estado_usuario").removeAttr("disabled");
+}
+
+function reset_user_data() {
+    $("#id_usuario").val("");
+    $("#rol_usuario").val("Usuario");
+    $("#usuario").val("");
+    $("#nombre_usuario").val("");
+    $("#telefono_usuario").val("");
+    $("#correo_usuario").val("");
+    $("#estado_usuario").val("");
+    $(".btn-next").attr("name", "btn_insert");
+    $(".btn-next").text("Guardar");
+    $("#pass-label").text("Contraseña");
+    $("#estado_usuario").val("Activo"); 
+    $("#contrasenia").attr("required", true);
+    $("#estado_usuario").attr("disabled", true);
 }
 
 $(document).on('click', '.btn-edit', function() {
@@ -102,21 +115,21 @@ $(document).on('click', '.btn-edit', function() {
     });
 });
 
-$(document).on('click', '.btn-reset', function() {
-    var module = $(this).attr("mod");    
+// $(document).on('click', '.btn-reset', function() {
+//     var module = $(this).attr("mod");    
 
-    switch(module) {
-        case 'prestamos':
-            reset_loan_data();
-            break;
-        case 'libros':
-            reset_book_data();
-            break;
-        case 'alumnos':
-            reset_student_data();
-            break;
-        case 'usuarios':
-            reset_user_data();
-            break;
-        }
-});
+//     switch(module) {
+//         case 'prestamos':
+//             reset_loan_data();
+//             break;
+//         case 'libros':
+//             reset_book_data();
+//             break;
+//         case 'alumnos':
+//             reset_student_data();
+//             break;
+//         case 'usuarios':
+//             reset_user_data();
+//             break;
+//         }
+// });
