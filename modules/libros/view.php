@@ -10,38 +10,99 @@
     </div>
     <!-- /.content-header -->
 
-    <?php
-    if ($_SESSION['rol_usuario'] == "Admin") {
-      echo "
-      <!-- Main content -->
-      <section class='content'>
-        <div class='container-fluid'>
-          <!-- Small boxes (Stat box) -->
-          <div class='row'>
-            <div class='col-lg-3 col-6'>
-              <a href='index.php?module=form_libro&action=insert' class='btn btn-md btn-outline-primary my-2'>Nuevo libro</a>
-            </div>
-            <!-- ./col -->
-          </div>
-          <!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </section>
-      <!-- /.content -->";
-    }
-    ?>
-
     <!-- Tabla que muestra los libros traidos de la BD -->
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-12">
+          <?php
+          $table_width = "col-md-3";
+          if ($_SESSION['rol_usuario'] == "Admin") {
+            require_once "modules/database.php";
+            $table_width = "col-md-9";
+    
+            $query_get_publishers = "SELECT id_editorial, nombre_editorial FROM editoriales";
+            $result_get_publishers = mysqli_query($conn, $query_get_publishers);
+
+            $query_get_categories = "SELECT id_categoria, nombre_categoria FROM categorias";
+            $result_get_categories = mysqli_query($conn, $query_get_categories);
+
+            echo "
+            <div class='col-md-3'>
+              <form method='POST' action='modules/libros/model.php' enctype='multipart/form-data'>
+                <div class='card-body row'>
+                  <div class='form-group col-md-12'>
+                    <label for='titulo_libro'>Título del libro</label>
+                    <input type='hidden' class='form-control' id='id_libro' name='id_libro'>
+                    <input type='text' class='form-control' id='titulo_libro' name='titulo_libro' placeholder='Ejemplo: El principito' required>
+                  </div>
+                  <div class='form-group col-md-12'>
+                    <label for='id_editorial'>Editorial</label>
+                    <select class='form-control select2' style='width: 100%;' id='id_editorial' name='id_editorial' required>";
+                    while ($row = mysqli_fetch_array($result_get_publishers)) {
+                      $id_editorial = $row['id_editorial'];
+                      $nombre_editorial = $row['nombre_editorial'];
+
+                      echo "<option value='$id_editorial'>$nombre_editorial</option>";
+                    }
+                    echo "
+                    </select>
+                  </div>
+                  <div class='form-group col-md-12'>
+                    <label for='id_categoria'>Categoría</label>
+                    <select class='form-control select2' style='width: 100%;' id='id_categoria' name='id_categoria' required>";
+                    while ($row = mysqli_fetch_array($result_get_categories)) {
+                      $id_categoria = $row['id_categoria'];
+                      $nombre_categoria = $row['nombre_categoria'];
+
+                      echo "<option value='$id_categoria'>$nombre_categoria</option>";
+                    }
+                    echo "
+                    </select>
+                  </div>
+                  <div class='form-group col-md-12'>
+                    <label for='unidades_totales'>Unidades totales</label>
+                    <input type='text' class='form-control' id='unidades_totales' name='unidades_totales' placeholder='1' pattern='[0-9]+' title='Digite solo números sin espacios' required>
+                  </div>
+                  <div class='form-group col-md-12'>
+                    <label for='unidades'>Imagen portada</label>
+                    <div class='custom-file'>
+                      <input type='file' class='custom-file-input' id='imagen' name='imagen'>
+                      <label class='custom-file-label' for='exampleInputFile'></label>
+                    </div>
+                  </div>
+                  <div class='form-group col-md-12 image-field' hidden>
+                    <img id='image-view' src='dist/portadas/portada_default.png' style='width: 100%;'>
+                  </div>
+                  <div class='form-group col-md-12'>
+                    <label for='descripcion'>Breve descripción</label>
+                    <input type='text' class='form-control' id='descripcion' name='descripcion' placeholder='Ejemplo: Libro en buenas condiciones...'>
+                  </div>
+                  <div class='form-group col-md-12'>
+                    <label for='estado_libro'>Estatus</label>
+                    <select class='form-control' id='estado_libro' name='estado_libro' disabled> 
+                      <option value='Activo'>Activo</option>
+                      <option value='Inactivo'>Inactivo</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class='text-center mb-4'>
+                  <button type='reset' class='btn btn-outline-danger'>Cancelar</button>
+                  <button type='submit' class='btn btn-outline-success btn-next' name='btn_insert'>Guardar</button>
+                </div>
+              </form>
+            </div>";
+          }
+          ?>
+
+          <div class="<?php echo $table_width; ?>">
             <div class="card">
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>ID</th>
                     <th>Título</th>
                     <th>Editorial</th>
                     <th>Categoría</th>
@@ -78,20 +139,19 @@
                         
                     echo "
                       <tr>
-                        <td>$id_libro</td>
                         <td>$titulo_libro</td>
                         <td>$nombre_editorial</td>
                         <td>$nombre_categoria</td>
                         <td>$unidades_totales</td>
-                        <td class='text-center'><img src='dist/portadas/$imagen_portada' style='width: 50%;'></td>
+                        <td class='text-center'><img src='dist/portadas/$imagen_portada' style='width: 100%;'></td>
                         <td>$descripcion</td>
                         <td class='text-center'><span class='badge $badge_color'>$estado_libro</span></td>";
                         if ($_SESSION['rol_usuario'] == "Admin") {
                           echo "
                             <td>
-                              <a href='index.php?module=form_libro&action=edit&id=$id_libro' class='btn btn-sm btn-primary'>
+                              <button id='$id_libro' url='modules/libros/model.php' class='btn btn-sm btn-primary btn-edit'>
                                 <i class='fas fa-pen'></i>
-                              </a>
+                              </button>
                               <button id='$id_libro' url='modules/libros/model.php' class='btn btn-sm btn-danger btn-delete'>
                                 <i class='fas fa-trash'></i>
                               </button>
