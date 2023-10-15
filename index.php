@@ -64,7 +64,7 @@ if (!isset($_SESSION['id_usuario'])) {
     </ul>
   </nav>
   <!-- /.navbar -->
-
+  
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -84,6 +84,18 @@ if (!isset($_SESSION['id_usuario'])) {
         <div class="info">
           <!-- Aqui va la inclusion del archivo php que trae el nombre de usuario -->
           <a href="#" class="d-block"><?php echo $_SESSION['nombre_usuario']; ?></a>
+        </div>
+      </div>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -180,8 +192,7 @@ $(function () {
       buttons: [{
         extend: 'collection',
         text: 'Exportar',
-        buttons: [
-          {
+        buttons: [{
             extend: 'pdf',
             text: "Generar PDF",
             pageSize: 'LEGAL'
@@ -223,8 +234,10 @@ $(function () {
   });
 </script>
 <!-- Extras datatables -->
-<script src="dist/js/change_grade.js"></script>
+<script src="dist/js/add_books.js"></script>
+<script src="dist/js/edit_register.js"></script>
 <script src="dist/js/delete_register.js"></script>
+<script src="dist/js/change_grade.js"></script>
 <!-- Toast (SweetAlert2) -->
 <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 

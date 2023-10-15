@@ -10,42 +10,72 @@
     </div>
     <!-- /.content-header -->
 
-    <?php
-    if ($_SESSION['rol_usuario'] == "Admin") {
-      echo "
-      <!-- Main content -->
-      <section class='content'>
-        <div class='container-fluid'>
-          <!-- Small boxes (Stat box) -->
-          <div class='row'>
-            <div class='pr-2'>
-              <a href='index.php?module=form_alumno&action=insert' class='btn btn-md btn-outline-primary my-2'>Nuevo alumno</a>
-            </div>
-            <div class='pr-2'>
-              <button id='1' url='modules/alumnos/model.php' class='btn btn-md btn-outline-danger btn-change-grade my-2'>
-                <i class='fas fa-minus'></i> 1 semestre
-              </button>
-            </div>
-            <div class='pr-2'>
-              <button id='2' url='modules/alumnos/model.php' class='btn btn-md btn-outline-primary btn-change-grade my-2'>
-                <i class='fas fa-plus'></i> 1 semestre
-              </button>
-            </div>
-            <!-- ./col -->
-          </div>
-          <!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </section>
-      <!-- /.content -->";
-    }
-    ?>
-
     <!-- Tabla que muestra los alumnos traidos de la BD -->
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-12">
+          <?php
+          $table_width = "col-md-12";
+          if ($_SESSION['rol_usuario'] == "Admin") {
+            $table_width = "col-md-9";
+
+            echo "
+            <div class='col-md-3'>
+              <div class='row'>
+                <div class='form-group col-md-6'>
+                  <button id='1' url='modules/alumnos/model.php' class='btn btn-md btn-outline-danger btn-change-grade'>
+                    <i class='fas fa-minus'></i> 1 semestre
+                  </button>
+                </div>
+                <div class='form-group col-md-6'>
+                  <button id='2' url='modules/alumnos/model.php' class='btn btn-md btn-outline-primary btn-change-grade'>
+                    <i class='fas fa-plus'></i> 1 semestre
+                  </button>
+                </div>
+              </div>
+              <form method='POST' action='modules/alumnos/model.php'>
+                <div class='card-body row'>
+                  <div class='form-group col-md-12'>
+                    <label for='matricula'>Matrícula</label>
+                    <input type='hidden' class='form-control' id='id_alumno' name='id_alumno'>
+                    <input type='text' class='form-control' id='matricula' name='matricula' pattern='[0-9]{8}' title='Ingrese una mátricula válida' placeholder='Ejemplo: 12435678' required>
+                  </div>
+                  <div class='form-group col-md-12'>
+                    <label for='nombre_alumno'>Nombre</label>
+                    <input type='text' class='form-control' id='nombre_alumno' name='nombre_alumno' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Jorge...' required>
+                  </div>
+                  <div class='form-group col-md-12'>
+                    <label for='semestre'>Semestre</label>
+                    <select class='form-control' id='semestre' name='semestre'>
+                      <option value='1'>1er semestre</option>
+                      <option value='2'>2do semestre</option>
+                      <option value='3'>3er semestre</option>
+                      <option value='4'>4to semestre</option>
+                      <option value='5'>5to semestre</option>
+                      <option value='6'>6to semestre</option>
+                    </select>
+                  </div>
+                  <div class='form-group col-md-12'>
+                    <label for='estado_alumno'>Estatus</label>
+                    <select class='form-control' id='estado_alumno' name='estado_alumno' disabled> 
+                      <option value='Activo'>Activo</option>
+                      <option value='Baja'>Baja</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class='text-center mb-4'>
+                  <button type='reset' class='btn btn-outline-danger'>Cancelar</button>
+                  <button type='submit' class='btn btn-outline-success btn-next' name='btn_insert'>Guardar</button>
+                </div>
+              </form>
+            </div>";
+          }
+          ?>
+
+          <div class="<?php echo $table_width; ?>">
             <div class="card">
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
@@ -91,9 +121,9 @@
                         if ($_SESSION['rol_usuario'] == "Admin") {
                           echo "
                             <td>
-                              <a href='index.php?module=form_alumno&action=edit&id=$id_alumno' class='btn btn-sm btn-primary'>
+                              <button id='$id_alumno' url='modules/alumnos/model.php' class='btn btn-sm btn-primary btn-edit'>
                                 <i class='fas fa-pen'></i>
-                              </a>
+                              </button>
                               <button id='$id_alumno' url='modules/alumnos/model.php' class='btn btn-sm btn-danger btn-delete'>
                                 <i class='fas fa-trash'></i>
                               </button>

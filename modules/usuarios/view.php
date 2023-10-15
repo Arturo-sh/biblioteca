@@ -10,38 +10,73 @@
     </div>
     <!-- /.content-header -->
 
-    <?php
-    if ($_SESSION['rol_usuario'] == "Admin") {
-      echo "
-      <!-- Main content -->
-      <section class='content'>
-        <div class='container-fluid'>
-          <!-- Small boxes (Stat box) -->
-          <div class='row'>
-            <div class='col-lg-3 col-6'>
-              <a href='index.php?module=form_usuario&action=insert' class='btn btn-md btn-outline-primary my-2'>Nuevo usuario</a>
-            </div>
-            <!-- ./col -->
-          </div>
-          <!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </section>
-      <!-- /.content -->";
-    }
-    ?>
-
     <!-- Tabla que muestra los usuarios traidos de la BD -->
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-12">
+          <?php
+          $table_width = "col-md-12";
+          if ($_SESSION['rol_usuario'] == "Admin") {
+            $table_width = "col-md-9";
+           
+            echo "
+            <div class='col-md-3'>
+              <form method='POST' action='modules/usuarios/model.php'>
+                <div class='card-body row'>
+                  <div class='form-group col-md-12'>
+                    <label for='usuario'>Nombre de usuario</label>
+                    <input type='hidden' class='form-control' id='id_usuario' name='id_usuario'>
+                    <input type='text' class='form-control' id='usuario' name='usuario' pattern='^([\w]){6,}$' title='Ingrese nombre de usuario mayor a 5 carácteres y sin espacios' placeholder='Nombre corto (sin espacios)' required>
+                  </div>
+                  <div class='form-group col-md-12'>
+                    <label for='contrasenia' id='pass-label'>Contraseña</label>
+                    <input type='password' class='form-control' id='contrasenia' name='contrasenia' pattern='^([\w]){6,}$' title='Ingrese una contraseña mayor a 5 carácteres' required>
+                  </div>
+                  <div class='form-group col-md-12'>
+                    <label for='nombre_usuario'>Nombre completo</label>
+                    <input type='text' class='form-control' id='nombre_usuario' name='nombre_usuario' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Pedro...' required>
+                  </div>
+                  <div class='form-group col-md-12'>
+                    <label for='telefono_usuario'>Teléfono</label>
+                    <input type='text' class='form-control' id='telefono_usuario' name='telefono_usuario' data-inputmask='\"mask\": \"(999) 999-9999\"' data-mask placeholder='(999) 999-9999'>
+                  </div>
+                  <div class='form-group col-md-12'>
+                    <label for='correo_usuario'>Correo</label>
+                    <input type='email' class='form-control' id='correo_usuario' name='correo_usuario' placeholder='usuario@gmail.com'>
+                  </div>
+                  <div class='form-group col-md-12'>
+                    <label for='rol_usuario'>Rol de usuario</label>
+                    <select class='form-control' id='rol_usuario' name='rol_usuario'>
+                      <option value='Usuario'>Usuario</option>
+                      <option value='Admin'>Admin</option>
+                    </select>
+                  </div>
+                  <div class='form-group col-md-12'>
+                    <label for='rol_usuario'>Estatus</label>
+                    <select class='form-control' id='estado_usuario' name='estado_usuario' disabled>
+                      <option value='Activo'>Activo</option>
+                      <option value='Suspendido'>Suspendido</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class='text-center mb-4'>
+                  <button type='reset' class='btn btn-outline-danger'>Cancelar</button>
+                  <button type='submit' class='btn btn-outline-success btn-next' name='btn_insert'>Guardar</button>
+                </div>
+              </form>
+            </div>";
+          }
+          ?>
+
+          <div class="<?php echo $table_width; ?>">
             <div class="card">
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>ID</th>
                     <th>Usuario</th>
                     <th>Nombre</th>
                     <th>Teléfono</th>
@@ -80,7 +115,6 @@
 
                     echo "
                       <tr>
-                        <td>$id_usuario</td>
                         <td>$usuario</td>
                         <td>$nombre_usuario</td>
                         <td>$telefono_usuario</td>
@@ -90,9 +124,9 @@
                         if ($_SESSION['rol_usuario'] == "Admin") {
                           echo "
                             <td>
-                              <a href='index.php?module=form_usuario&action=edit&id=$id_usuario' class='btn btn-sm btn-primary'>
+                              <button id='$id_usuario' url='modules/usuarios/model.php' class='btn btn-sm btn-primary btn-edit'>
                                 <i class='fas fa-pen'></i>
-                              </a>";
+                              </button>";
                             if ($rol_usuario != 'Admin') {
                               echo "
                               <button id='$id_usuario' url='modules/usuarios/model.php' class='btn btn-sm btn-danger btn-delete'>

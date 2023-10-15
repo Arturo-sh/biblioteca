@@ -24,6 +24,8 @@ if ($rows > 0) {
 		header("Location: index.php?module=home");
 	} else {
 		$msg = "Cuenta inhabilitada, solicite la activación con el administrador!";
+		$_SESSION['invalid_credentials'] = ["msg" => $msg];
+		header("Location: login.php");
 	} 
 } else {
 	$_SESSION['invalid_credentials'] = ["msg" => $msg];

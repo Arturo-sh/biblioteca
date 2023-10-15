@@ -6,10 +6,10 @@ if ($_SESSION['rol_usuario'] != "Admin") {
 if ($_GET['action'] == "insert") {
     require_once "modules/database.php";
     
-    $query_get_students = "SELECT id_alumno, matricula, nombre_alumno FROM alumnos WHERE estado_alumno != 'Baja'";
+    $query_get_students = "SELECT id_alumno, matricula, nombre_alumno FROM alumnos WHERE estado_alumno = 'Activo'";
     $result_get_students = mysqli_query($conn, $query_get_students);
 
-    $query_get_books = "SELECT id_libro, titulo_libro FROM libros";
+    $query_get_books = "SELECT id_libro, titulo_libro FROM libros WHERE estado_libro = 'Activo'";
     $result_get_books = mysqli_query($conn, $query_get_books);
 
     echo "
@@ -49,7 +49,7 @@ if ($_GET['action'] == "insert") {
                             $id_libro = $row['id_libro'];
                             $titulo_libro = $row['titulo_libro'];
 
-                            echo "<option value='$id_libro'>$titulo_libro</option>";
+                            echo "<option value='$id_libro' class='add_book'>$titulo_libro</option>";
                         }
                         echo "
                         </select>
