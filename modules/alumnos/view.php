@@ -67,7 +67,7 @@
                 <!-- /.card-body -->
 
                 <div class='text-center mb-4'>
-                  <button type='reset' class='btn btn-outline-danger'>Cancelar</button>
+                  <button type='reset' class='btn btn-outline-danger' onclick='reset_student_data()'>Cancelar</button>
                   <button type='submit' class='btn btn-outline-success btn-next' name='btn_insert'>Guardar</button>
                 </div>
               </form>

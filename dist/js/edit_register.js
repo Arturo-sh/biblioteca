@@ -16,9 +16,16 @@ function set_loan_data(response) {
 }
 
 function reset_loan_data() {
-    $("#id_alumno").val("1").trigger("change");
-    // $("#id_libro").val("19").trigger("change");
-    $("#id_libro").data('lastValue', $("#id_libro").val().trigger("change"));
+    $("#id_prestamo").val("");
+    $("#id_alumno").val("0").trigger("change");
+    $("#id_libro").val("0").trigger("change");
+    $("#titulo_libro").val("");
+    $("#unidades_prestamo").val("");
+    $("#fecha_entrega").val("");
+    $("#estado_prestamo").val("Pendiente");
+    $(".btn-next").attr("name", "btn_insert");
+    $(".btn-next").text("Guardar");
+    $("#estado_prestamo").attr("disabled", true);
 }
 
 function set_book_data(response) {
@@ -38,6 +45,21 @@ function set_book_data(response) {
     $("#estado_libro").removeAttr("disabled");
 }
 
+function reset_book_data() {
+    $("#id_libro").val("");
+    $("#titulo_libro").val("");
+    $("#id_editorial").val("0").trigger("change");
+    $("#id_categoria").val("0").trigger("change");
+    $("#unidades_totales").val("");
+    $("#image-view").attr("src", "dist/portadas/portada_default.png");
+    $(".image-field").attr("hidden", true);
+    $("#descripcion").val("");
+    $("#estado_libro").val("Activo");
+    $(".btn-next").attr("name", "btn_insert");
+    $(".btn-next").text("Guardar");
+    $("#estado_libro").attr("disabled", true);
+}
+
 function set_student_data(response) {
     let data = JSON.parse(response);
     
@@ -49,6 +71,17 @@ function set_student_data(response) {
     $(".btn-next").attr("name", "btn_update");
     $(".btn-next").text("Actualizar");
     $("#estado_alumno").removeAttr("disabled");
+}
+
+function reset_student_data() {    
+    $("#id_alumno").val("");
+    $("#matricula").val("");
+    $("#nombre_alumno").val("");
+    $("#semestre").val("1");
+    $("#estado_alumno").val("Activo");
+    $(".btn-next").attr("name", "btn_insert");
+    $(".btn-next").text("Guardar");
+    $("#estado_alumno").attr("disabled", true);
 }
 
 function set_user_data(response) {

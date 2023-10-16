@@ -39,7 +39,7 @@
                   <div class='form-group col-md-12'>
                     <label for='id_editorial'>Editorial</label>
                     <select class='form-control select2' style='width: 100%;' id='id_editorial' name='id_editorial' required>
-                      <option selected disabled>Seleccionar</option>";
+                      <option value='0' selected disabled>Seleccionar</option>";
                       while ($row = mysqli_fetch_array($result_get_publishers)) {
                         $id_editorial = $row['id_editorial'];
                         $nombre_editorial = $row['nombre_editorial'];
@@ -52,7 +52,7 @@
                   <div class='form-group col-md-12'>
                     <label for='id_categoria'>Categoría</label>
                     <select class='form-control select2' style='width: 100%;' id='id_categoria' name='id_categoria' required>
-                      <option selected disabled>Seleccionar</option>";
+                      <option value='0' selected disabled>Seleccionar</option>";
                       while ($row = mysqli_fetch_array($result_get_categories)) {
                         $id_categoria = $row['id_categoria'];
                         $nombre_categoria = $row['nombre_categoria'];
@@ -91,7 +91,7 @@
                 <!-- /.card-body -->
 
                 <div class='text-center mb-4'>
-                  <button type='reset' class='btn btn-outline-danger'>Cancelar</button>
+                  <button type='reset' class='btn btn-outline-danger' onclick='reset_book_data()'>Cancelar</button>
                   <button type='submit' class='btn btn-outline-success btn-next' name='btn_insert'>Guardar</button>
                 </div>
               </form>
@@ -145,10 +145,14 @@
                         <td>$nombre_editorial</td>
                         <td>$nombre_categoria</td>
                         <td>$unidades_totales</td>
-                        <td class='text-center'>
+                        <td>";
+                        if ($imagen_portada != "portada_default.png") {
+                          echo "
                           <button image-name='$imagen_portada' class='btn btn-sm btn-warning btn-view' data-toggle='modal' data-target='#modal-image' >
                             <i class='fas fa-eye'></i>
-                          </button>
+                          </button>";
+                        }
+                        echo "
                         </td>
                         <td>$descripcion</td>
                         <td class='text-center'><span class='badge $badge_color'>$estado_libro</span></td>";
