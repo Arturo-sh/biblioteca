@@ -32,13 +32,15 @@ if ($_SESSION['rol_usuario'] == "Admin") {
 
     if (isset($_POST['action']) && $_POST['action'] == "update") {
         $id_usuario = htmlspecialchars(trim($_POST['id_usuario']), ENT_QUOTES, 'UTF-8');
-        $rol_usuario = isset($_POST['rol_usuario']) ? htmlspecialchars(trim($_POST['rol_usuario']), ENT_QUOTES, 'UTF-8') : "Admin";
+        $rol_usuario = htmlspecialchars(trim($_POST['rol_usuario']), ENT_QUOTES, 'UTF-8');
+        // $rol_usuario = isset($_POST['rol_usuario']) ? htmlspecialchars(trim($_POST['rol_usuario']), ENT_QUOTES, 'UTF-8') : "Admin";
         $usuario = htmlspecialchars(trim($_POST['usuario']), ENT_QUOTES, 'UTF-8');
         $contrasenia = htmlspecialchars(trim($_POST['contrasenia']), ENT_QUOTES, 'UTF-8');
         $nombre_usuario = htmlspecialchars(trim($_POST['nombre_usuario']), ENT_QUOTES, 'UTF-8');
         $telefono_usuario = htmlspecialchars(trim($_POST['telefono_usuario']), ENT_QUOTES, 'UTF-8');
         $correo_usuario = htmlspecialchars(trim($_POST['correo_usuario']), ENT_QUOTES, 'UTF-8');
-        $estado_usuario = isset($_POST['estado_usuario']) ? htmlspecialchars(trim($_POST['estado_usuario']), ENT_QUOTES, 'UTF-8') : "Activo";
+        $estado_usuario = htmlspecialchars(trim($_POST['estado_usuario']), ENT_QUOTES, 'UTF-8');
+        // $estado_usuario = isset($_POST['estado_usuario']) ? htmlspecialchars(trim($_POST['estado_usuario']), ENT_QUOTES, 'UTF-8') : "Activo";
         if ($_SESSION['id_usuario'] == $id_usuario) $_SESSION['nombre_usuario'] = $nombre_usuario;
         
         if ($contrasenia == "") {

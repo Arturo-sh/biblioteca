@@ -174,142 +174,93 @@ if (!isset($_SESSION['id_usuario'])) {
 <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- Page specific script -->
+<script src="dist/js/fill_datatable.js"></script>
 
 <script>
   var table;
-  
+
   $(document).ready(function () {
-    table = $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": false, 
-      pageLength: 5,
-      buttons: [
-        {
-          extend: 'collection',
-          text: 'Exportar',
-          buttons: [
-            {
-              extend: 'pdf',
-              text: "Generar PDF",
-              pageSize: 'LEGAL'
-            },
-            {
-              extend: 'excel',
-              text: 'Generar Excel'
-            },
-            {
-              extend: 'print',
-              text: "Imprimir"
-            }
-          ]
-        },
-        {
-          extend: 'colvis',
-          text: 'Visor de columnas',
-        }
-      ],
-      ajax: {
-        url: "modules/usuarios/table.php",
-        dataSrc: ""
-      },
-      columns: [
-        { data: "id_usuario" },
-        { data: "usuario" },
-        { data: "nombre_usuario" },
-        { data: "telefono_usuario" },
-        { data: "correo_usuario" },
-        { data: "creacion_cuenta" },
-        { 
-          data: "estado_usuario",
-          render: function (data, type) {
-            if (type === 'display') {
-              let template = `
-              <td class='text-center'>
-                <span class='badge bg-danger'>${data}</span>
-              </td>`;
- 
-              if (data == "Activo") {
-                template = `
-                <td class='text-center'>
-                  <span class='badge bg-success'>${data}</span>
-                </td>`;
+    var module = window.location.search.split("=")[1];
+    switch (module) {
+      case 'prestamos':
+        cols = fill_tbl_loans();
+        load_datatable(module, cols)
+        break;
+      case 'libros':
+        cols = fill_tbl_books();
+        load_datatable(module, cols)
+        break;
+      case 'alumnos':
+        cols = fill_tbl_students();
+        load_datatable(module, cols)
+        break;
+      case 'usuarios':
+        cols = fill_tbl_users();
+        load_datatable(module, cols)
+        break;
+    }
+
+    function load_datatable(module, cols) {
+      table = $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": false, 
+        pageLength: 5,
+        buttons: [
+          {
+            extend: 'collection',
+            text: 'Exportar',
+            buttons: [
+              {
+                extend: 'pdf',
+                text: "Generar PDF",
+                pageSize: 'LEGAL'
+              },
+              {
+                extend: 'excel',
+                text: 'Generar Excel'
+              },
+              {
+                extend: 'print',
+                text: "Imprimir"
               }
-
-              return template;
-            }
- 
-            return data;
-          } 
+            ]
+          },
+          {
+            extend: 'colvis',
+            text: 'Visor de columnas',
+          }
+        ],
+        ajax: {
+          url: "modules/" + module + "/table.php",
+          dataSrc: ""
         },
-        {
-          data: "usuario",
-          render: function (data, type, row, meta) {
-            if (type === 'display') {
-              let template = `
-              <button id='${row.id_usuario}' mod='usuarios' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
-                <i class='fas fa-pen'></i>
-              </button>`;
- 
-              if (data != "Admin") {
-                template = `
-                <button id='${row.id_usuario}' mod='usuarios' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
-                  <i class='fas fa-pen'></i>
-                </button>
-                <button id='${row.id_usuario}' mod='usuarios' class='btn btn-sm btn-danger btn-delete'>
-                  <i class='fas fa-trash'></i>
-                </button>`;
-              }
-
-              return template;
-            }
-
-            return data;
+        columns: cols,
+        language: {
+          "emptyTable": "No hay registros",
+          "info": "Mostrando _START_ a _END_ de _TOTAL_ resultados",
+          "infoEmpty": "Mostrando 0 a 0 de 0 resultados",
+          "infoFiltered": "(Filtrado de _MAX_ entradas totales)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lengthMenu": "Mostrar _MENU_ resultados",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+            "first": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
           }
         }
-      ],
-      language: {
-        "emptyTable": "No hay registros",
-        "info": "Mostrando _START_ a _END_ de _TOTAL_ resultados",
-        "infoEmpty": "Mostrando 0 a 0 de 0 resultados",
-        "infoFiltered": "(Filtrado de _MAX_ entradas totales)",
-        "infoPostFix": "",
-        "thousands": ",",
-        "lengthMenu": "Mostrar _MENU_ resultados",
-        "loadingRecords": "Cargando...",
-        "processing": "Procesando...",
-        "search": "Buscar:",
-        "zeroRecords": "Sin resultados encontrados",
-        "paginate": {
-          "first": "Primero",
-          "last": "Ultimo",
-          "next": "Siguiente",
-          "previous": "Anterior"
-        }
-      }
-    });
-    // .buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      });
+      // .buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    }
   });
-
 </script>
 
 <!-- Extras datatables -->
-<script src="dist/js/insert_update_register.js"></script>
-<script src="dist/js/edit_register.js"></script>
-<script src="dist/js/delete_register.js"></script>
-<!-- <script src="dist/js/change_grade.js"></script> -->
-
-<script>
-  $("#form").submit(function(e){
-    e.preventDefault();
-  });
-</script>
-
-<!-- Mostrar las portadas en formulario -->
-<script>
-  $(document).on('click', '.btn-view', function() {
-    var image_name = $(this).attr("image-name");
-    $("#image-form").attr("src", "dist/portadas/" + image_name);
-  });
-</script>
+<script src="dist/js/main.js"></script>
 
 </body>
 </html>
