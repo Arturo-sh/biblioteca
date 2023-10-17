@@ -27,7 +27,7 @@ function reset_loan_data() {
     $("#unidades_prestamo").val("");
     $("#fecha_entrega").val("");
     $("#estado_prestamo").val("Pendiente");
-    $(".btn-next").attr("name", "btn_insert");
+    $(".btn-next").attr("action", "insert");
     $(".btn-next").text("Guardar");
     $("#estado_prestamo").attr("disabled", true);
 }
@@ -85,18 +85,17 @@ jquery se obtienen los datos del formulario (usando id's) y los almacena en un o
 donde la clave tiene el mismo nombre que el id del campo en cuestión, esto para enviarlo 
 mediante jquery al backend.
 */
-// Función que captura datos de usuarios.
-function get_user_data(action) {
+
+// Función que captura datos de préstamos.
+function get_loan_data(action) {
     data = {
         "action": action,
-        "id_usuario": $("#id_usuario").val(),
-        "rol_usuario": $("#rol_usuario").val(),
-        "usuario": $("#usuario").val(),
-        "contrasenia": $("#contrasenia").val(),
-        "nombre_usuario": $("#nombre_usuario").val(),
-        "telefono_usuario": $("#telefono_usuario").val(),
-        "correo_usuario": $("#correo_usuario").val(),
-        "estado_usuario": $("#estado_usuario").val()
+        "id_prestamo": $("#id_prestamo").val(),
+        "id_alumno": $("#id_alumno").val(),
+        "id_libro": $("#id_libro").val(),
+        "unidades_prestamo": $("#unidades_prestamo").val(),
+        "fecha_entrega": $("#fecha_entrega").val(),
+        "estado_prestamo": $("#estado_prestamo").val()
     }
 
     return data;
@@ -111,6 +110,23 @@ function get_student_data(action) {
         "nombre_alumno": $("#nombre_alumno").val(),
         "semestre": $("#semestre").val(),
         "estado_alumno": $("#estado_alumno").val()
+    }
+
+    return data;
+}
+
+// Función que captura datos de usuarios.
+function get_user_data(action) {
+    data = {
+        "action": action,
+        "id_usuario": $("#id_usuario").val(),
+        "rol_usuario": $("#rol_usuario").val(),
+        "usuario": $("#usuario").val(),
+        "contrasenia": $("#contrasenia").val(),
+        "nombre_usuario": $("#nombre_usuario").val(),
+        "telefono_usuario": $("#telefono_usuario").val(),
+        "correo_usuario": $("#correo_usuario").val(),
+        "estado_usuario": $("#estado_usuario").val()
     }
 
     return data;
@@ -181,7 +197,7 @@ function set_loan_data(response) {
     $("#unidades_prestamo").val(data[0].unidades_prestamo);
     $("#fecha_entrega").val(data[0].fecha_entrega);
     $("#estado_prestamo").val(data[0].estado_prestamo);
-    $(".btn-next").attr("name", "btn_update");
+    $(".btn-next").attr("action", "update");
     $(".btn-next").text("Actualizar");
     $("#estado_prestamo").removeAttr("disabled");
 }

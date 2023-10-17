@@ -180,7 +180,6 @@ if (!isset($_SESSION['id_usuario'])) {
   var table;
 
   $(document).ready(function () {
-
     var module = window.location.search.split("=")[1];
     switch (module) {
       case 'prestamos':
