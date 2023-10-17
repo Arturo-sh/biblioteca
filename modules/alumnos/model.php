@@ -73,15 +73,16 @@ if ($_SESSION['rol_usuario'] == "Admin") {
     if (isset($_POST['action_change_semester'])) {
         $action = $_POST['action_change_semester'];
 
-        $query_update_students = "UPDATE alumnos SET semestre = semestre - 1 WHERE estado_alumno != 'Baja'";
         if ($action == "more") {
+            $query_withdraw_students = "UPDATE alumnos SET estado_alumno = 'Baja' WHERE semestre = 6";
             $query_update_students = "UPDATE alumnos SET semestre = semestre + 1 WHERE estado_alumno != 'Baja'";
-        } 
+        } else {
+            $query_withdraw_students = "UPDATE alumnos SET estado_alumno = 'Baja' WHERE semestre = 1";
+            $query_update_students = "UPDATE alumnos SET semestre = semestre - 1 WHERE estado_alumno != 'Baja'";
+        }
 
+        $result_withdraw_students = mysqli_query($conn, $query_withdraw_students);
         $result_update_students = mysqli_query($conn, $query_update_students);
-        
-        $query_withdraw_students = "UPDATE alumnos SET estado_alumno = 'Baja' WHERE semestre > 6 OR semestre < 1";
-        $result_withdraw_students = mysqli_query($conn, $query_withdraw_students);    
 
         if ($result_update_students && $result_withdraw_students) {
             echo "Registros actualizados!";
