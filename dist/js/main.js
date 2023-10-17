@@ -27,9 +27,9 @@ function reset_loan_data() {
     $("#unidades_prestamo").val("");
     $("#fecha_entrega").val("");
     $("#estado_prestamo").val("Pendiente");
+    $("#estado_prestamo").attr("disabled", true);
     $(".btn-next").attr("action", "insert");
     $(".btn-next").text("Guardar");
-    $("#estado_prestamo").attr("disabled", true);
 }
 
 // Función limpiar para el formulario de libros.
@@ -43,9 +43,9 @@ function reset_book_data() {
     $(".image-field").attr("hidden", true);
     $("#descripcion").val("");
     $("#estado_libro").val("Activo");
-    $(".btn-next").attr("name", "btn_insert");
-    $(".btn-next").text("Guardar");
     $("#estado_libro").attr("disabled", true);
+    $(".btn-next").attr("action", "insert");
+    $(".btn-next").text("Guardar");
 }
 
 // Función limpiar para el formulario de libros.
@@ -55,9 +55,9 @@ function reset_student_data() {
     $("#nombre_alumno").val("");
     $("#semestre").val("1");
     $("#estado_alumno").val("Activo");
+    $("#estado_alumno").attr("disabled", true);
     $(".btn-next").attr("action", "insert");
     $(".btn-next").text("Guardar");
-    $("#estado_alumno").attr("disabled", true);
 }
 
 // Función limpiar para el formulario de usuarios.
@@ -85,7 +85,6 @@ jquery se obtienen los datos del formulario (usando id's) y los almacena en un o
 donde la clave tiene el mismo nombre que el id del campo en cuestión, esto para enviarlo 
 mediante jquery al backend.
 */
-
 // Función que captura datos de préstamos.
 function get_loan_data(action) {
     data = {
@@ -96,6 +95,27 @@ function get_loan_data(action) {
         "unidades_prestamo": $("#unidades_prestamo").val(),
         "fecha_entrega": $("#fecha_entrega").val(),
         "estado_prestamo": $("#estado_prestamo").val()
+    }
+
+    return data;
+}
+
+// Función que captura datos de libros.
+function get_book_data(action) {
+    var formData = new FormData();
+    var files = $('#imagen')[0].files[0];
+    formData.append('file',files);
+
+    data = {
+        "action": action,
+        "id_libro": $("#id_libro").val(),
+        "titulo_libro": $("#titulo_libro").val(),
+        "id_editorial": $("#id_editorial").val(),
+        "id_categoria": $("#id_categoria").val(),
+        "unidades_totales": $("#unidades_totales").val(),
+        "imagen": formData,
+        "descripcion": $("#descripcion").val(),
+        "estado_libro": $("#estado_libro").val()
     }
 
     return data;
@@ -152,7 +172,7 @@ $(document).on('click', '.btn-next', function() {
             break;
         case 'libros':
             values = get_book_data(action);
-            reset_book_data();
+            // reset_book_data(); // Pendiente por revisar
             break;
         case 'alumnos':
             values = get_student_data(action);
@@ -215,7 +235,7 @@ function set_book_data(response) {
     $(".image-field").removeAttr("hidden");
     $("#descripcion").val(data[0].descripcion);
     $("#estado_libro").val(data[0].estado_libro);
-    $(".btn-next").attr("name", "btn_update");
+    $(".btn-next").attr("action", "update");
     $(".btn-next").text("Actualizar");
     $("#estado_libro").removeAttr("disabled");
 }

@@ -8,22 +8,22 @@
       $query_get_books = "SELECT id_libro, titulo_libro FROM libros WHERE estado_libro = 'Activo'";
       $result_get_books = mysqli_query($conn, $query_get_books);
 
-      $option_students = "";
-      $option_books = "";
+      $student_options = "";
+      $book_options = "";
 
       while ($row = mysqli_fetch_array($result_get_students)) {
         $id_alumno = $row['id_alumno'];
         $matricula = $row['matricula'];
         $nombre_alumno = $row['nombre_alumno'];
 
-        $option_students .= "<option value='$id_alumno'>$matricula - $nombre_alumno</option>";
+        $student_options .= "<option value='$id_alumno'>$matricula - $nombre_alumno</option>";
       }
 
       while ($row = mysqli_fetch_array($result_get_books)) {
         $id_libro = $row['id_libro'];
         $titulo_libro = $row['titulo_libro'];
 
-        $option_books .= "<option value='$id_libro' class='add_book'>$titulo_libro</option>";
+        $book_options .= "<option value='$id_libro' class='add_book'>$titulo_libro</option>";
       }
     }
     ?>
@@ -52,15 +52,15 @@
                   <input type='hidden' class='form-control' id='id_prestamo' name='id_prestamo'>
                   <label for='id_alumno'>Alumno</label>
                   <select class='form-control select2' style='width: 100%;' id='id_alumno' name='id_alumno' required>
-                    <option value='0' selected disabled>Seleccionar</option>";
-                    <?php echo $option_students; ?>
+                    <option value='0' selected disabled>Seleccionar</option>
+                    <?php echo $student_options; ?>
                   </select>
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='id_libro'>Libro</label>
                   <select class='form-control select2' style='width: 100%;' id='id_libro' name='id_libro' required>
-                    <option value='0' selected disabled>Seleccionar</option>";
-                    <?php echo $option_books; ?>
+                    <option value='0' selected disabled>Seleccionar</option>
+                    <?php echo $book_options; ?>
                   </select>
                 </div>
                 <div class='form-group col-md-12'>

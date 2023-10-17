@@ -3,7 +3,7 @@ session_start();
 require_once "../database.php";
 
 if ($_SESSION['rol_usuario'] == "Admin") {
-    if (isset($_POST['btn_insert'])) {
+    if (isset($_POST['action']) && $_POST['action'] == "insert") {
         $titulo_libro = htmlspecialchars(trim($_POST['titulo_libro']), ENT_QUOTES, 'UTF-8');
         $id_editorial = htmlspecialchars(trim($_POST['id_editorial']), ENT_QUOTES, 'UTF-8');
         $id_categoria = htmlspecialchars(trim($_POST['id_categoria']), ENT_QUOTES, 'UTF-8');
@@ -38,13 +38,9 @@ if ($_SESSION['rol_usuario'] == "Admin") {
 
         $result_book_insert = mysqli_query($conn, $query_insert_book);
 
-        $_SESSION['book_insert'] = ["icon" => "error", "action" => "insertar"];
-
         if ($result_book_insert) {
-            $_SESSION['book_insert'] = ["icon" => "success", "title" => "Libro registrado!"];
+            echo "Libro registrado!";
         }
-
-        header("Location: ../../index.php?module=libros");
     } 
         
     if (isset($_POST['edit_id'])) {
@@ -57,7 +53,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         echo json_encode($row, JSON_UNESCAPED_UNICODE);
     }
 
-    if (isset($_POST['btn_update'])) {
+    if (isset($_POST['action']) && $_POST['action'] == "update") {
         $id_libro = htmlspecialchars(trim($_POST['id_libro']), ENT_QUOTES, 'UTF-8');
         $titulo_libro = htmlspecialchars(trim($_POST['titulo_libro']), ENT_QUOTES, 'UTF-8');
         $id_editorial = htmlspecialchars(trim($_POST['id_editorial']), ENT_QUOTES, 'UTF-8');
@@ -94,27 +90,19 @@ if ($_SESSION['rol_usuario'] == "Admin") {
 
         $result_book_update = mysqli_query($conn, $query_update_book);
 
-        $_SESSION['book_update'] = ["icon" => "error", "action" => "actualizar"];
-
         if ($result_book_update) {
-            $_SESSION['book_update'] = ["icon" => "success", "title" => "Datos del libro actualizados!"];
+            echo "Libro actualizado!";
         }
-
-        header("Location: ../../index.php?module=libros");
     }
 
     if (isset($_POST['delete_id'])) {
         $id_libro = $_POST['delete_id'];
         
-        $book_deleted = ["icon" => "error", "title" => "Ha ocurridó un error, inténtelo de nuevo!"];
-        
         $query_book_delete = "DELETE FROM libros WHERE id_libro = $id_libro";
         $result_book_delete = mysqli_query($conn, $query_book_delete);    
 
         if ($result_book_delete) {
-            $book_deleted = ["icon" => "success", "title" => "Libro eliminado!"];
-            echo json_encode($book_deleted);
-            return;
+            echo "Libro eliminado!";
         }
     }
 }
