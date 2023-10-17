@@ -1,7 +1,6 @@
 // Edición de registros
 function set_loan_data(response) {
     let data = JSON.parse(response);
-    console.log(data)
     
     $("#id_prestamo").val(data[0].id_prestamo);
     $("#id_alumno").val(data[0].id_alumno).trigger("change");
@@ -94,7 +93,7 @@ function set_user_data(response) {
     $("#telefono_usuario").val(data[0].telefono_usuario);
     $("#correo_usuario").val(data[0].correo_usuario);
     $("#estado_usuario").val(data[0].estado_usuario);
-    $(".btn-next").attr("name", "btn_update");
+    $(".btn-next").attr("action", "update");
     $(".btn-next").text("Actualizar");
     $("#contrasenia").removeAttr("required");
     $("#estado_usuario").removeAttr("disabled");
@@ -104,13 +103,13 @@ function reset_user_data() {
     $("#id_usuario").val("");
     $("#rol_usuario").val("Usuario");
     $("#usuario").val("");
+    $("#contrasenia").val("");
     $("#nombre_usuario").val("");
     $("#telefono_usuario").val("");
     $("#correo_usuario").val("");
     $("#estado_usuario").val("");
-    $(".btn-next").attr("name", "btn_insert");
+    $(".btn-next").attr("action", "insert");
     $(".btn-next").text("Guardar");
-    $("#pass-label").text("Contraseña");
     $("#estado_usuario").val("Activo"); 
     $("#contrasenia").attr("required", true);
     $("#estado_usuario").attr("disabled", true);
@@ -118,16 +117,13 @@ function reset_user_data() {
 
 $(document).on('click', '.btn-edit', function() {
     var edit_id = $(this).attr("id");
-    var url = $(this).attr("url");
-
-    let temp = url.split("/");
-    let module = temp[1];
+    var module = $(this).attr("mod");
 
     $.ajax({
-        url: url,
+        url: "modules/" + module + "/model.php",
         method: "POST",
         data: {
-            edit_id: edit_id
+            edit_id
         },
         success: function(response) {
             switch(module) {
@@ -141,28 +137,10 @@ $(document).on('click', '.btn-edit', function() {
                     set_student_data(response);
                     break;
                 case 'usuarios':
+                    reset_user_data();
                     set_user_data(response);
                     break;
             }
         }
     });
 });
-
-// $(document).on('click', '.btn-reset', function() {
-//     var module = $(this).attr("mod");    
-
-//     switch(module) {
-//         case 'prestamos':
-//             reset_loan_data();
-//             break;
-//         case 'libros':
-//             reset_book_data();
-//             break;
-//         case 'alumnos':
-//             reset_student_data();
-//             break;
-//         case 'usuarios':
-//             reset_user_data();
-//             break;
-//         }
-// });

@@ -154,10 +154,12 @@ if (!isset($_SESSION['id_usuario'])) {
 <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- Page specific script -->
 <script>
-$(function () {
-  bsCustomFileInput.init();
-});
+  $(function () {
+    bsCustomFileInput.init();
+  });
 </script>
+<!-- Toast (SweetAlert2) -->
+<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- DataTables  & Plugins -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -172,33 +174,98 @@ $(function () {
 <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- Page specific script -->
+
 <script>
-  $(function () {
-    var table = $("#example1").DataTable({
+  var table;
+  
+  $(document).ready(function () {
+    table = $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": false, 
       pageLength: 5,
-      buttons: [{
-        extend: 'collection',
-        text: 'Exportar',
-        buttons: [{
-            extend: 'pdf',
-            text: "Generar PDF",
-            pageSize: 'LEGAL'
-          },
-          {
-            extend: 'excel',
-            text: 'Generar Excel'
-          },
-          {
-            extend: 'print',
-            text: "Imprimir"
-          }
-        ]
+      buttons: [
+        {
+          extend: 'collection',
+          text: 'Exportar',
+          buttons: [
+            {
+              extend: 'pdf',
+              text: "Generar PDF",
+              pageSize: 'LEGAL'
+            },
+            {
+              extend: 'excel',
+              text: 'Generar Excel'
+            },
+            {
+              extend: 'print',
+              text: "Imprimir"
+            }
+          ]
+        },
+        {
+          extend: 'colvis',
+          text: 'Visor de columnas',
+        }
+      ],
+      ajax: {
+        url: "modules/usuarios/table.php",
+        dataSrc: ""
       },
-      {
-        extend: 'colvis',
-        text: 'Visor de columnas',
-      }],
+      columns: [
+        { data: "id_usuario" },
+        { data: "usuario" },
+        { data: "nombre_usuario" },
+        { data: "telefono_usuario" },
+        { data: "correo_usuario" },
+        { data: "creacion_cuenta" },
+        { 
+          data: "estado_usuario",
+          render: function (data, type) {
+            if (type === 'display') {
+              let template = `
+              <td class='text-center'>
+                <span class='badge bg-danger'>${data}</span>
+              </td>`;
+ 
+              if (data == "Activo") {
+                template = `
+                <td class='text-center'>
+                  <span class='badge bg-success'>${data}</span>
+                </td>`;
+              }
+
+              return template;
+            }
+ 
+            return data;
+          } 
+        },
+        {
+          data: "usuario",
+          render: function (data, type, row, meta) {
+            if (type === 'display') {
+              let template = `
+              <button id='${row.id_usuario}' mod='usuarios' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
+                <i class='fas fa-pen'></i>
+              </button>`;
+ 
+              if (data != "Admin") {
+                template = `
+                <button id='${row.id_usuario}' mod='usuarios' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
+                  <i class='fas fa-pen'></i>
+                </button>
+                <button id='${row.id_usuario}' mod='usuarios' class='btn btn-sm btn-danger btn-delete'>
+                  <i class='fas fa-trash'></i>
+                </button>`;
+              }
+
+              return template;
+            }
+
+            return data;
+          }
+        }
+      ],
       language: {
         "emptyTable": "No hay registros",
         "info": "Mostrando _START_ a _END_ de _TOTAL_ resultados",
@@ -218,90 +285,31 @@ $(function () {
           "previous": "Anterior"
         }
       }
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+    // .buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
+
 </script>
+
 <!-- Extras datatables -->
-<script src="dist/js/add_books.js"></script>
+<script src="dist/js/insert_update_register.js"></script>
 <script src="dist/js/edit_register.js"></script>
 <script src="dist/js/delete_register.js"></script>
-<script src="dist/js/change_grade.js"></script>
-<!-- Toast (SweetAlert2) -->
-<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- <script src="dist/js/change_grade.js"></script> -->
 
+<script>
+  $("#form").submit(function(e){
+    e.preventDefault();
+  });
+</script>
+
+<!-- Mostrar las portadas en formulario -->
 <script>
   $(document).on('click', '.btn-view', function() {
     var image_name = $(this).attr("image-name");
     $("#image-form").attr("src", "dist/portadas/" + image_name);
   });
 </script>
-
-<?php
-  function show_action_alert($data) {
-    $icon = $data['icon'];
-    $title = $data['title'];
-
-    if ($data['icon'] == "error") {
-      $icon = "error";
-      $action = $data['action'];
-      $title = "Ha ocurrido un error al $action el registro, intentelo de nuevo!";
-    }
-
-    echo "
-      <script>
-        Swal.fire({
-          icon: '$icon',
-          title: '$title',
-          showConfirmButton: false,
-          timer: 2000
-        });
-      </script>";      
-  }
-
-  // Alertas para la Inserción/Actualización/Eliminación de alumnos
-  if (isset($_SESSION['student_insert'])) { 
-    show_action_alert($_SESSION['student_insert']);
-    unset($_SESSION['student_insert']);
-  }
-
-  if (isset($_SESSION['student_update'])) { 
-    show_action_alert($_SESSION['student_update']);
-    unset($_SESSION['student_update']);
-  }
-
-  // Alertas para la Inserción/Actualización/Eliminación de usuarios
-  if (isset($_SESSION['user_insert'])) { 
-    show_action_alert($_SESSION['user_insert']);
-    unset($_SESSION['user_insert']);
-  }
-
-  if (isset($_SESSION['user_update'])) { 
-    show_action_alert($_SESSION['user_update']);
-    unset($_SESSION['user_update']);
-  }
-
-  // Alertas para la Inserción/Actualización/Eliminación de libros
-  if (isset($_SESSION['book_insert'])) { 
-    show_action_alert($_SESSION['book_insert']);
-    unset($_SESSION['book_insert']);
-  }
-
-  if (isset($_SESSION['book_update'])) { 
-    show_action_alert($_SESSION['book_update']);
-    unset($_SESSION['book_update']);
-  }
-
-  // Alertas para la Inserción/Actualización/Eliminación de préstamos
-  if (isset($_SESSION['loan_insert'])) { 
-    show_action_alert($_SESSION['loan_insert']);
-    unset($_SESSION['loan_insert']);
-  }
-
-  if (isset($_SESSION['loan_update'])) { 
-    show_action_alert($_SESSION['loan_update']);
-    unset($_SESSION['loan_update']);
-  }
-?>
 
 </body>
 </html>
