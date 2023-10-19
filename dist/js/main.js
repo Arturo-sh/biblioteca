@@ -28,6 +28,7 @@ function reset_loan_data() {
     $("#fecha_entrega").val("");
     $("#estado_prestamo").val("Pendiente");
     $("#estado_prestamo").attr("disabled", true);
+    $("#estado_prestamo").attr("disabled", true);
     $(".btn-next").attr("action", "insert");
     $(".btn-next").text("Guardar");
 }
@@ -46,6 +47,8 @@ function reset_book_data() {
     $("#estado_libro").attr("disabled", true);
     $(".btn-next").attr("action", "insert");
     $(".btn-next").text("Guardar");
+    $(".btn-next").attr("action", "insert");
+    $(".btn-next").text("Guardar");
 }
 
 // Función limpiar para el formulario de libros.
@@ -55,6 +58,7 @@ function reset_student_data() {
     $("#nombre_alumno").val("");
     $("#semestre").val("1");
     $("#estado_alumno").val("Activo");
+    $("#estado_alumno").attr("disabled", true);
     $("#estado_alumno").attr("disabled", true);
     $(".btn-next").attr("action", "insert");
     $(".btn-next").text("Guardar");
@@ -147,6 +151,7 @@ function set_book_data(response) {
     $(".image-field").removeAttr("hidden");
     $("#descripcion").val(data[0].descripcion);
     $("#estado_libro").val(data[0].estado_libro);
+    $(".btn-next").attr("action", "update");
     $(".btn-next").attr("action", "update");
     $(".btn-next").text("Actualizar");
     $("#estado_libro").removeAttr("disabled");
