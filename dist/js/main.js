@@ -77,81 +77,6 @@ function reset_user_data() {
 }
 // ----------------------------------------------------------------------------------------------
 
-/*
-A continuación se presentan las funciones que capturan los datos de los formularios al 
-momento de realizar inserciones y/o modificaciones. Dichas funciones reciben el parametro
-'action' que representa el tipo de acción a realizar (inserción/modificación), mediante 
-jquery se obtienen los datos del formulario (usando id's) y los almacena en un objeto 
-donde la clave tiene el mismo nombre que el id del campo en cuestión, esto para enviarlo 
-mediante jquery al backend.
-*/
-// Función que captura datos de préstamos.
-function get_loan_data(action) {
-    data = {
-        "action": action,
-        "id_prestamo": $("#id_prestamo").val(),
-        "id_alumno": $("#id_alumno").val(),
-        "id_libro": $("#id_libro").val(),
-        "unidades_prestamo": $("#unidades_prestamo").val(),
-        "fecha_entrega": $("#fecha_entrega").val(),
-        "estado_prestamo": $("#estado_prestamo").val()
-    }
-
-    return data;
-}
-
-// Función que captura datos de libros.
-function get_book_data(action) {
-    var formData = new FormData();
-    var files = $('#imagen')[0].files[0];
-    formData.append('file',files);
-
-    data = {
-        "action": action,
-        "id_libro": $("#id_libro").val(),
-        "titulo_libro": $("#titulo_libro").val(),
-        "id_editorial": $("#id_editorial").val(),
-        "id_categoria": $("#id_categoria").val(),
-        "unidades_totales": $("#unidades_totales").val(),
-        "imagen": formData,
-        "descripcion": $("#descripcion").val(),
-        "estado_libro": $("#estado_libro").val()
-    }
-
-    return data;
-}
-
-// Función que captura datos de alumnos.
-function get_student_data(action) {
-    data = {
-        "action": action,
-        "id_alumno": $("#id_alumno").val(),
-        "matricula": $("#matricula").val(),
-        "nombre_alumno": $("#nombre_alumno").val(),
-        "semestre": $("#semestre").val(),
-        "estado_alumno": $("#estado_alumno").val()
-    }
-
-    return data;
-}
-
-// Función que captura datos de usuarios.
-function get_user_data(action) {
-    data = {
-        "action": action,
-        "id_usuario": $("#id_usuario").val(),
-        "rol_usuario": $("#rol_usuario").val(),
-        "usuario": $("#usuario").val(),
-        "contrasenia": $("#contrasenia").val(),
-        "nombre_usuario": $("#nombre_usuario").val(),
-        "telefono_usuario": $("#telefono_usuario").val(),
-        "correo_usuario": $("#correo_usuario").val(),
-        "estado_usuario": $("#estado_usuario").val()
-    }
-
-    return data;
-}
-
 /* 
 Cuando se presiona el boton .btn-next se captura el módulo (mod) a donde se enviara el registro, 
 también se captura la accion (action) para cambiar el tipo de registro entre insercion y/o 
@@ -163,31 +88,17 @@ response exitoso se muestra un sweetalert2 y se refresca la tabla en cuestion.
 $(document).on('click', '.btn-next', function() {
     let module = $(this).attr("mod");
     let action = $(this).attr("action");
-    let values;
 
-    switch (module) {
-        case 'prestamos':
-            values = get_loan_data(action);
-            reset_loan_data();
-            break;
-        case 'libros':
-            values = get_book_data(action);
-            // reset_book_data(); // Pendiente por revisar
-            break;
-        case 'alumnos':
-            values = get_student_data(action);
-            reset_student_data();
-            break;
-        case 'usuarios':
-            values = get_user_data(action);
-            reset_user_data();
-            break;
-    }
+    let form = document.getElementById("form");
+    var formData = new FormData(form);
+    formData.append('action', action);
 
     $.ajax({
         url: "modules/" + module + "/model.php",
         method: "POST",
-        data: values,
+        data: formData,
+        processData: false,
+        contentType: false,
         success: function(response) {
             Swal.fire({
                 icon: "success",
@@ -195,10 +106,11 @@ $(document).on('click', '.btn-next', function() {
                 showConfirmButton: false,
                 timer: 2000
             });
+        },
+        complete: function() {
+            table.ajax.reload();
         }
     });
-
-    table.ajax.reload();
 });
 // ----------------------------------------------------------------------------------------------
 
@@ -337,13 +249,15 @@ $(document).on('click', '.btn-delete', function() {
                     delete_id
                 },
                 success: function(response) {
-                    table.ajax.reload();
                     Swal.fire({
                         icon: "success",
                         title: response,
                         showConfirmButton: false,
                         timer: 2000
                     });
+                },
+                complete: function() {
+                    table.ajax.reload();
                 }
             });
         }
@@ -391,13 +305,15 @@ $(document).on('click', '.btn-change-grade', function() {
                             action_change_semester
                         },
                         success: function(response) {
-                            table.ajax.reload();
                             Swal.fire({
                                 icon: "success",
                                 title: response,
                                 showConfirmButton: false,
                                 timer: 2000
                             });
+                        },
+                        complete: function() {
+                            table.ajax.reload();
                         }
                     });
                 }
