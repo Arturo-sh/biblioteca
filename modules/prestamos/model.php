@@ -5,16 +5,43 @@ require_once "../database.php";
 if ($_SESSION['rol_usuario'] == "Admin") {
     if (isset($_POST['action']) && $_POST['action'] == "insert") {
         $id_alumno = htmlspecialchars(trim($_POST['id_alumno']), ENT_QUOTES, 'UTF-8');
-        $id_libro = htmlspecialchars(trim($_POST['id_libro']), ENT_QUOTES, 'UTF-8');
-        $unidades_prestamo = htmlspecialchars(trim($_POST['unidades_prestamo']), ENT_QUOTES, 'UTF-8');
-        $fecha_entrega = $_POST['fecha_entrega'];
         $id_usuario = $_SESSION['id_usuario'];
+        $fecha_entrega = $_POST['fecha_entrega'];
+        $id_libros = $_POST['id_libros'];
 
-        $query_loan_insert = "INSERT INTO prestamos(id_prestamo, id_alumno, id_libro, unidades_prestamo, fecha_entrega, id_usuario) VALUES (NULL, $id_alumno, $id_libro, $unidades_prestamo, '$fecha_entrega', $id_usuario)";                
-        $result_loan_insert = mysqli_query($conn, $query_loan_insert);
+        mysqli_begin_transaction($conn);
 
-        if ($result_loan_insert) {
-            echo "Préstamo registrado!";
+        try {
+            // Se hace el insert en la tabla transaccion
+            $query_transaction_insert = "INSERT INTO transaccion_prestamo(id_transaccion, id_alumno, id_usuario, fecha_entrega) VALUES (NULL, $id_alumno, $id_usuario, '$fecha_entrega')";                
+            $result_transaction_insert = mysqli_query($conn, $query_transaction_insert);
+
+            // Se obtiene el id de la ultima transaccion
+            $id_transaccion = mysqli_insert_id($conn);
+
+            $libros = explode(",", $id_libros);
+            $limite = count($libros);
+
+            for ($i = 0; $i < $limite; $i++) {
+                $id_libro = $libros[$i];
+                
+                // Comienza el insert mediante un ciclo para insertar los libros ocurridos durante la transaccion
+                $query_loans_insert = "INSERT INTO prestamos(id_prestamo, id_transaccion, id_libro) VALUES (NULL, $id_transaccion, $id_libro)";                
+                $result_loans_insert = mysqli_query($conn, $query_loans_insert);   
+            }
+            
+            // Verifica si las inserciones fueron exitosas
+            if ($result_loans_insert) {
+                echo "Préstamo registrado!";
+            }
+
+            // Confirmar transacción
+            mysqli_commit($conn);
+            
+        } catch (Exception $e) {
+            // Ocurrió un error, realizar rollback
+            mysqli_rollback($conn);
+            echo "Error: " . $e->getMessage();
         }
     } 
 
@@ -45,13 +72,13 @@ if ($_SESSION['rol_usuario'] == "Admin") {
     }
 
     if (isset($_POST['delete_id'])) {
-        $id_prestamo = $_POST['delete_id'];
+        $id_transaccion = $_POST['delete_id'];
         
-        $query_loan_delete = "DELETE FROM prestamos WHERE id_prestamo = $id_prestamo";
-        $result_loan_delete = mysqli_query($conn, $query_loan_delete);    
+        $query_transaction_delete = "DELETE FROM transaccion_prestamo WHERE id_transaccion = $id_transaccion";
+        $result_transaction_delete = mysqli_query($conn, $query_transaction_delete);    
         
-        if ($result_loan_delete) {
-            echo "Libro entregado!";
+        if ($result_transaction_delete) {
+            echo "Devolución satisfactoria!";
         }
     }
 }
