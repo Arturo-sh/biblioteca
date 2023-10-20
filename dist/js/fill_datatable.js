@@ -1,12 +1,10 @@
 function fill_tbl_loans() {
   let cols = [
-    { data: "id_prestamo" },
+    { data: "id_transaccion" },
     { data: "nombre_alumno" },
-    { data: "titulo_libro" },
-    { data: "unidades_prestamo" },
+    { data: "nombre_usuario" },
     { data: "fecha_prestamo" },
     { data: "fecha_entrega" },
-    { data: "nombre_usuario" },
     { 
       data: "estado_prestamo",
       render: function (data, type) {
@@ -28,15 +26,15 @@ function fill_tbl_loans() {
       } 
     },
     {
-      data: "id_prestamo",
+      data: "id_transaccion",
       render: function (data, type) {
         if (type === 'display') {
           template = `
-          <button id='${data}' mod='prestamos' class='btn btn-sm btn-primary btn-edit'>
-            <i class='fas fa-pen'></i>
+          <button id='${data}' mod='prestamos' class='btn btn-sm btn-primary btn-show-transaction'>
+            <i class='fas fa-eye'></i>
           </button>
-          <button id='${data}' mod='prestamos' class='btn btn-sm btn-danger btn-delete'>
-            <i class='fas fa-trash'></i>
+          <button id='${data}' mod='prestamos' class='btn btn-sm btn-success btn-delete'>
+            <i class='fas fa-check'></i>
           </button>`;
         }
         return template;

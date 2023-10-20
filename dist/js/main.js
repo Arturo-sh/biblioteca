@@ -96,6 +96,7 @@ $(document).on('click', '.btn-next', function() {
     let form = document.getElementById("form");
     let formData = new FormData(form);
     formData.append('action', action);
+    formData.append('id_libros', id_libros);
 
     $.ajax({
         url: "modules/" + module + "/model.php",
@@ -113,7 +114,7 @@ $(document).on('click', '.btn-next', function() {
             });
         },
         complete: function() {
-            form.reset();
+            // form.reset();
             table.ajax.reload();
         }
     });

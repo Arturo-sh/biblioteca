@@ -1,7 +1,7 @@
 <?php
 require_once "../database.php";
 
-$query_get_loans = "SELECT p.id_prestamo, a.nombre_alumno, l.titulo_libro, p.unidades_prestamo, p.fecha_prestamo, p.fecha_entrega, u.nombre_usuario, p.estado_prestamo FROM prestamos AS p INNER JOIN alumnos AS a ON p.id_alumno = a.id_alumno INNER JOIN libros AS l ON p.id_libro = l.id_libro INNER JOIN usuarios AS u ON p.id_usuario = u.id_usuario";
+$query_get_loans = "SELECT t.id_transaccion, a.nombre_alumno, u.nombre_usuario, t.fecha_prestamo, t.fecha_entrega, t.estado_prestamo FROM transaccion_prestamo AS t INNER JOIN alumnos AS a ON t.id_alumno = a.id_alumno INNER JOIN usuarios AS u ON t.id_usuario = u.id_usuario";
 $data_loans = mysqli_query($conn, $query_get_loans);
 
 $data = mysqli_fetch_all($data_loans, MYSQLI_ASSOC);
