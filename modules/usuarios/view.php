@@ -30,7 +30,7 @@
                   </button>
                 </div>
                 <div class='modal-body'>
-                  <form id='form' method='POST' action='modules/usuarios/model.php'>
+                  <form method='POST' id='form' action='modules/usuarios/model.php'>
                     <div class='card-body row'>
                       <div class='form-group col-md-6'>
                         <label for='usuario'>Nombre de usuario</label>

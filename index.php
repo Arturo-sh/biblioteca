@@ -129,6 +129,51 @@ if (!isset($_SESSION['id_usuario'])) {
 </script>
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="plugins/jquery-validation/jquery.validate.min.js"></script>
+
+<!-- Page specific script -->
+<script>
+$( document ).ready(function() {
+  $("#form").validate({
+    rules: {
+      id_libro: {
+        required: true
+      },
+      unidades_prestamo: {
+        required: true
+      },
+      fecha_prestamo: {
+        required: true
+      }
+    },
+    messages: {
+      unidades_prestamo: {
+        required: "Por favor digita una cantidad entera"
+      },
+      fecha_prestamo: {
+        required: "Seleccione una fecha"
+      },
+      id_libro: {
+        required: "Seleccione un libro"
+      }
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
+});
+</script>
+
 <!-- overlayScrollbars -->
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->

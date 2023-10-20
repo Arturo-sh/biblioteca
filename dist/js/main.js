@@ -94,7 +94,7 @@ $(document).on('click', '.btn-next', function() {
     let action = $(this).attr("action");
 
     let form = document.getElementById("form");
-    var formData = new FormData(form);
+    let formData = new FormData(form);
     formData.append('action', action);
 
     $.ajax({
@@ -104,6 +104,7 @@ $(document).on('click', '.btn-next', function() {
         processData: false,
         contentType: false,
         success: function(response) {
+            if(response == "") return
             Swal.fire({
                 icon: "success",
                 title: response,
@@ -112,6 +113,7 @@ $(document).on('click', '.btn-next', function() {
             });
         },
         complete: function() {
+            form.reset();
             table.ajax.reload();
         }
     });
