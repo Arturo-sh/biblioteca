@@ -110,6 +110,10 @@ $(document).on('click', '.btn-next', function() {
             });
         },
         complete: function() {
+            // if(module == "prestamos") {
+            //     $(".btn-delete").attr("data-dismiss", "modal");
+            //     $(".btn-delete").trigger();
+            // }
             // form.reset();
             table.ajax.reload();
         }
@@ -122,6 +126,7 @@ A continuación se presentan las funciones que colocan/remueven los datos de los
 momento de realizar una edición.
 */
 // Función setter para formulario préstamos.
+function set_transaction_data(response) {
 function set_transaction_data(response) {
     let data = JSON.parse(response);
 
@@ -210,6 +215,7 @@ $(document).on('click', '.btn-edit', function() {
         success: function(response) {
             switch(module) {
                 case 'prestamos':
+                    set_transaction_data(response);
                     set_transaction_data(response);
                     break;
                 case 'libros':
