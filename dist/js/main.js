@@ -1,3 +1,34 @@
+// Autocompletado de libros
+$(document).ready(function() {
+    id_libros = []; // Arreglo que almacena los id´s de los libros prestados
+  
+    $('#key').on('keyup', function() {
+      var key = $(this).val();		
+      var dataString = 'key='+key;
+  
+      $.ajax({
+        type: "POST",
+        url: "modules/prestamos/ajax.php",
+        data: dataString,
+        success: function(response) {
+          //Escribimos las sugerencias que nos manda la consulta
+          $('#suggestions').fadeIn(1000).html(response);
+          $('.suggest-element').on('click', function(){
+            var id = $(this).attr('id');
+            var titulo = $(this).attr('titulo');
+            id_libros.push(id);
+  
+            let libros_seleccionados = $('#libros-prestamo').html();
+            $('#libros-prestamo').html(libros_seleccionados + `<p id-libro='${id}'><i class='fa fa-sm btn-danger btn-remove-book' style='border: 1px; padding: 4px;'>x</i> <i class='fa fa-sm fa-book'></i> ${titulo}</p>`);
+            $('#suggestions').fadeOut(1000);
+            $("#key").val("");
+            return false;
+        });
+      }
+      });
+    });
+  }); 
+
 // Se previene el redireccionamiento que produce el envío de un formulario.
 $("#form").submit(function(e){
     e.preventDefault();
@@ -20,7 +51,6 @@ realizar una inserción y/o modificiación.
 */
 // Función limpiar para el formulario de préstamos.
 function reset_transaction_data() {
-    $("#id_transaccion").val("");
     $("#label_nombre_alumno").text("");
     $("#label_nombre_usuario").text("");
     $("#label_fecha_prestamo").text("");
@@ -110,10 +140,6 @@ $(document).on('click', '.btn-next', function() {
             });
         },
         complete: function() {
-            // if(module == "prestamos") {
-            //     $(".btn-delete").attr("data-dismiss", "modal");
-            //     $(".btn-delete").trigger();
-            // }
             // form.reset();
             table.ajax.reload();
         }
@@ -127,10 +153,8 @@ momento de realizar una edición.
 */
 // Función setter para formulario préstamos.
 function set_transaction_data(response) {
-function set_transaction_data(response) {
     let data = JSON.parse(response);
 
-    $("#id_transaccion").val(data.transaccion_data[0].id_transaccion);
     $("#label_nombre_alumno").text(data.transaccion_data[0].nombre_alumno);
     $("#label_nombre_usuario").text(data.transaccion_data[0].nombre_usuario);
     $("#label_fecha_prestamo").text(data.transaccion_data[0].fecha_prestamo);
@@ -215,7 +239,6 @@ $(document).on('click', '.btn-edit', function() {
         success: function(response) {
             switch(module) {
                 case 'prestamos':
-                    set_transaction_data(response);
                     set_transaction_data(response);
                     break;
                 case 'libros':

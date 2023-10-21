@@ -31,9 +31,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
             }
             
             // Verifica si las inserciones fueron exitosas
-            if ($result_loans_insert) {
-                echo "Préstamo registrado!";
-            }
+            if ($result_loans_insert) echo "Préstamo registrado!";
 
             // Confirmar transacción
             mysqli_commit($conn);
@@ -46,7 +44,6 @@ if ($_SESSION['rol_usuario'] == "Admin") {
     } 
 
     if (isset($_POST['edit_id'])) {
-        $id_transaccion = $_POST['edit_id'];
         $id_transaccion = $_POST['edit_id'];
         
         $query_transaction_data = "SELECT t.id_transaccion, a.nombre_alumno, u.nombre_usuario, t.fecha_prestamo, t.fecha_entrega, t.estado_prestamo FROM transaccion_prestamo AS t INNER JOIN prestamos AS p ON t.id_transaccion = p.id_transaccion INNER JOIN alumnos AS a ON t.id_alumno = a.id_alumno INNER JOIN usuarios AS u ON t.id_usuario = u.id_usuario WHERE t.id_transaccion = $id_transaccion";
@@ -66,22 +63,12 @@ if ($_SESSION['rol_usuario'] == "Admin") {
 
     if (isset($_POST['action']) && $_POST['action'] == "update") {
         $id_transaccion = $_POST['id_transaccion'];
-        $id_transaccion = $_POST['id_transaccion'];
         $estado_prestamo = htmlspecialchars(trim($_POST['estado_prestamo']), ENT_QUOTES, 'UTF-8');
-        // $fecha_entrega = $_POST['fecha_entrega']; // Pendiente para editar la fecha de los préstamos
-        // $fecha_entrega = $_POST['fecha_entrega']; // Pendiente para editar la fecha de los préstamos
 
         $query_transaction_update = "UPDATE transaccion_prestamo SET estado_prestamo = '$estado_prestamo' WHERE id_transaccion = $id_transaccion";                
         $result_transaction_update = mysqli_query($conn, $query_transaction_update);
         
-        if ($result_transaction_update) {
-            echo "Recepción exitosa!";
-        $query_transaction_update = "UPDATE transaccion_prestamo SET estado_prestamo = '$estado_prestamo' WHERE id_transaccion = $id_transaccion";                
-        $result_transaction_update = mysqli_query($conn, $query_transaction_update);
-        
-        if ($result_transaction_update) {
-            echo "Recepción exitosa!";
-        }
+        if ($result_transaction_update) echo "Recepción exitosa!";
     }
 
     if (isset($_POST['delete_id'])) {
@@ -90,10 +77,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $query_transaction_delete = "DELETE FROM transaccion_prestamo WHERE id_transaccion = $id_transaccion";
         $result_transaction_delete = mysqli_query($conn, $query_transaction_delete);    
         
-        if ($result_transaction_delete) {
-            echo "Préstamo eliminado!";
-            echo "Préstamo eliminado!";
-        }
+        if ($result_transaction_delete) echo "Préstamo eliminado!";
     }
 }
 

@@ -15,9 +15,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $query_user_insert = "INSERT INTO usuarios(id_usuario, rol_usuario, usuario, contrasenia, nombre_usuario, telefono_usuario, correo_usuario) VALUES(NULL, '$rol_usuario', '$usuario', '$contrasenia_segura', '$nombre_usuario', '$telefono_usuario', '$correo_usuario')";
         $result_user_insert = mysqli_query($conn, $query_user_insert);  
 
-        if ($result_user_insert) {
-            echo "Usuario registrado!";
-        }
+        if ($result_user_insert) echo "Usuario registrado!";
     }
 
     if (isset($_POST['edit_id'])) {
@@ -50,9 +48,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
 
         $result_user_update = mysqli_query($conn, $query_user_update);
         
-        if ($result_user_update) {
-            echo "Datos del usuario actualizados!";
-        }        
+        if ($result_user_update) echo "Datos del usuario actualizados!";
     }
 
     if (isset($_POST['delete_id'])) {
@@ -61,9 +57,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $query_user_delete = "DELETE FROM usuarios WHERE id_usuario = $id_usuario";
         $result_user_delete = mysqli_query($conn, $query_user_delete);    
 
-        if ($result_user_delete) {
-            echo "Usuario eliminado!";
-        }
+        if ($result_user_delete) echo "Usuario eliminado!";
     }
 }
 

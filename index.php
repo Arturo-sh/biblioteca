@@ -174,38 +174,6 @@ $( document ).ready(function() {
 });
 </script>
 
-<script>
-$(document).ready(function() {
-  id_libros = []; // Arreglo que almacena los id´s de los libros prestados
-
-  $('#key').on('keyup', function() {
-    var key = $(this).val();		
-    var dataString = 'key='+key;
-
-    $.ajax({
-      type: "POST",
-      url: "modules/prestamos/ajax.php",
-      data: dataString,
-      success: function(response) {
-        //Escribimos las sugerencias que nos manda la consulta
-        $('#suggestions').fadeIn(1000).html(response);
-        $('.suggest-element').on('click', function(){
-          var id = $(this).attr('id');
-          var titulo = $(this).attr('titulo');
-          id_libros.push(id);
-
-          let libros_seleccionados = $('#libros-prestamo').html();
-          $('#libros-prestamo').html(libros_seleccionados + `<p id-libro='${id}'><i class='fa fa-sm btn-danger btn-remove-book' style='border: 1px; padding: 4px;'>x</i> <i class='fa fa-sm fa-book'></i> ${titulo}</p>`);
-          $('#suggestions').fadeOut(1000);
-          $("#key").val("");
-          return false;
-      });
-    }
-    });
-  });
-}); 
-  </script>
-
 <!-- overlayScrollbars -->
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->

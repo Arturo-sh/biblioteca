@@ -7,5 +7,6 @@ $data_users = mysqli_query($conn, $query_get_users);
 $data = mysqli_fetch_all($data_users, MYSQLI_ASSOC);
 
 echo json_encode($data, JSON_UNESCAPED_UNICODE);
+
 mysqli_close($conn);
 ?>

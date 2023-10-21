@@ -11,9 +11,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $query_student_insert = "INSERT INTO alumnos(id_alumno, matricula, nombre_alumno, semestre) VALUES(NULL, $matricula, '$nombre_alumno', $semestre)";
         $result_student_insert = mysqli_query($conn, $query_student_insert);
 
-        if ($result_student_insert) {
-            echo "Alumn@ registrado!";
-        }
+        if ($result_student_insert) echo "Alumn@ registrado!";
     }
 
     if (isset($_POST['edit_id'])) {
@@ -36,9 +34,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $query_student_update = "UPDATE alumnos SET matricula = $matricula, nombre_alumno  = '$nombre_alumno', semestre = $semestre, estado_alumno = '$estado_alumno' WHERE id_alumno = $id_alumno";
         $result_student_update = mysqli_query($conn, $query_student_update);
     
-        if ($result_student_update) {
-            echo "Datos del alumn@ actualizados!";
-        }
+        if ($result_student_update) echo "Datos del alumn@ actualizados!";
     }
 
     if (isset($_POST['delete_id'])) {
@@ -47,9 +43,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $query_student_delete = "DELETE FROM alumnos WHERE id_alumno = $id_alumno";
         $result_student_delete = mysqli_query($conn, $query_student_delete);    
 
-        if ($result_student_delete) {
-            echo "Alumn@ eliminado!";
-        }
+        if ($result_student_delete) echo "Alumn@ eliminado!";
     }
 
     if (isset($_POST['action_id'])) {
@@ -84,9 +78,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $result_withdraw_students = mysqli_query($conn, $query_withdraw_students);
         $result_update_students = mysqli_query($conn, $query_update_students);
 
-        if ($result_update_students && $result_withdraw_students) {
-            echo "Registros actualizados!";
-        }         
+        if ($result_update_students && $result_withdraw_students) echo "Registros actualizados!";
     }
 }
 

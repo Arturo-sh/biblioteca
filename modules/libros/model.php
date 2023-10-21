@@ -35,9 +35,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
 
         $result_book_insert = mysqli_query($conn, $query_insert_book);
 
-        if ($result_book_insert) {
-            echo "Libro registrado!";
-        }
+        if ($result_book_insert) echo "Libro registrado!";
     } 
         
     if (isset($_POST['edit_id'])) {
@@ -84,9 +82,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
 
         $result_book_update = mysqli_query($conn, $query_update_book);
 
-        if ($result_book_update) {
-            echo "Libro actualizado!";
-        }
+        if ($result_book_update) echo "Libro actualizado!";
     }
 
     if (isset($_POST['delete_id'])) {
@@ -95,9 +91,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $query_book_delete = "DELETE FROM libros WHERE id_libro = $id_libro";
         $result_book_delete = mysqli_query($conn, $query_book_delete);    
 
-        if ($result_book_delete) {
-            echo "Libro eliminado!";
-        }
+        if ($result_book_delete) echo "Libro eliminado!";
     }
 }
 
