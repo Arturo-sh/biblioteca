@@ -30,7 +30,7 @@ function fill_tbl_loans() {
       render: function (data, type) {
         if (type === 'display') {
           template = `
-          <button id='${data}' mod='prestamos' class='btn btn-sm btn-primary btn-show-transaction'>
+          <button id='${data}' mod='prestamos' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default' onclick='reset_transaction_data()'>
             <i class='fas fa-eye'></i>
           </button>
           <button id='${data}' mod='prestamos' class='btn btn-sm btn-success btn-delete'>
