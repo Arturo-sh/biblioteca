@@ -30,11 +30,14 @@ function fill_tbl_loans() {
       render: function (data, type) {
         if (type === 'display') {
           template = `
-          <button id='${data}' mod='prestamos' class='btn btn-sm btn-primary btn-show-transaction'>
+          <button id='${data}' mod='prestamos' class='btn btn-xs btn-primary btn-edit' data-toggle='modal' data-target='#modal-default' onclick='reset_transaction_data()'>
             <i class='fas fa-eye'></i>
           </button>
-          <button id='${data}' mod='prestamos' class='btn btn-sm btn-success btn-delete'>
+          <button id='${data}' mod='prestamos' class='btn btn-xs btn-success btn-receive'>
             <i class='fas fa-check'></i>
+          </button>
+          <button id='${data}' mod='prestamos' class='btn btn-xs btn-danger btn-delete'>
+            <i class='fas fa-trash'></i>
           </button>`;
         }
         return template;
@@ -91,10 +94,10 @@ function fill_tbl_books() {
       render: function (data, type) {
         if (type === 'display') {
           template = `
-          <button id='${data}' mod='libros' class='btn btn-sm btn-primary btn-edit'>
+          <button id='${data}' mod='libros' class='btn btn-xs btn-primary btn-edit'>
             <i class='fas fa-pen'></i>
           </button>
-          <button id='${data}' mod='libros' class='btn btn-sm btn-danger btn-delete'>
+          <button id='${data}' mod='libros' class='btn btn-xs btn-danger btn-delete'>
             <i class='fas fa-trash'></i>
           </button>`;
         }
@@ -135,10 +138,10 @@ function fill_tbl_students() {
       render: function (data, type) {
         if (type === 'display') {
           template = `
-          <button id='${data}' mod='alumnos' class='btn btn-sm btn-primary btn-edit'>
+          <button id='${data}' mod='alumnos' class='btn btn-xs btn-primary btn-edit'>
             <i class='fas fa-pen'></i>
           </button>
-          <button id='${data}' mod='alumnos' class='btn btn-sm btn-danger btn-delete'>
+          <button id='${data}' mod='alumnos' class='btn btn-xs btn-danger btn-delete'>
             <i class='fas fa-trash'></i>
           </button>`;
         }
@@ -181,16 +184,16 @@ function fill_tbl_users() {
       render: function (data, type, row, meta) {
         if (type === 'display') {
           let template = `
-          <button id='${row.id_usuario}' mod='usuarios' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
+          <button id='${row.id_usuario}' mod='usuarios' class='btn btn-xs btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
             <i class='fas fa-pen'></i>
           </button>`;
  
         if (data != "Admin") {
           template = `
-          <button id='${row.id_usuario}' mod='usuarios' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
+          <button id='${row.id_usuario}' mod='usuarios' class='btn btn-xs btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
             <i class='fas fa-pen'></i>
           </button>
-          <button id='${row.id_usuario}' mod='usuarios' class='btn btn-sm btn-danger btn-delete'>
+          <button id='${row.id_usuario}' mod='usuarios' class='btn btn-xs btn-danger btn-delete'>
             <i class='fas fa-trash'></i>
           </button>`;
         }

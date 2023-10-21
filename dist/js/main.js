@@ -19,18 +19,14 @@ A continuación se presentan las funciones que limpian los formularios después 
 realizar una inserción y/o modificiación.
 */
 // Función limpiar para el formulario de préstamos.
-function reset_loan_data() {
-    $("#id_prestamo").val("");
-    $("#id_alumno").val("0").trigger("change");
-    $("#id_libro").val("0").trigger("change");
-    $("#titulo_libro").val("");
-    $("#unidades_prestamo").val("");
-    $("#fecha_entrega").val("");
-    $("#estado_prestamo").val("Pendiente");
-    $("#estado_prestamo").attr("disabled", true);
-    $("#estado_prestamo").attr("disabled", true);
-    $(".btn-next").attr("action", "insert");
-    $(".btn-next").text("Guardar");
+function reset_transaction_data() {
+    $("#id_transaccion").val("");
+    $("#label_nombre_alumno").text("");
+    $("#label_nombre_usuario").text("");
+    $("#label_fecha_prestamo").text("");
+    $("#label_fecha_entrega").text("");
+
+    $("#lista-libros").html("");    
 }
 
 // Función limpiar para el formulario de libros.
@@ -126,19 +122,22 @@ A continuación se presentan las funciones que colocan/remueven los datos de los
 momento de realizar una edición.
 */
 // Función setter para formulario préstamos.
-function set_loan_data(response) {
+function set_transaction_data(response) {
     let data = JSON.parse(response);
+
+    $("#id_transaccion").val(data.transaccion_data[0].id_transaccion);
+    $("#label_nombre_alumno").text(data.transaccion_data[0].nombre_alumno);
+    $("#label_nombre_usuario").text(data.transaccion_data[0].nombre_usuario);
+    $("#label_fecha_prestamo").text(data.transaccion_data[0].fecha_prestamo);
+    $("#label_fecha_entrega").text(data.transaccion_data[0].fecha_entrega);
     
-    $("#id_prestamo").val(data[0].id_prestamo);
-    $("#id_alumno").val(data[0].id_alumno).trigger("change");
-    $("#id_libro").val(data[0].id_libro).trigger("change");
-    $("#titulo_libro").val(data[0].titulo_libro);
-    $("#unidades_prestamo").val(data[0].unidades_prestamo);
-    $("#fecha_entrega").val(data[0].fecha_entrega);
-    $("#estado_prestamo").val(data[0].estado_prestamo);
-    $(".btn-next").attr("action", "update");
-    $(".btn-next").text("Actualizar");
-    $("#estado_prestamo").removeAttr("disabled");
+    var librosData = data.libros_data;
+    var listaLibros = $('#lista-libros');
+    
+    $.each(librosData, function(index, libro) {
+        var li = $('<li class="d-inline-flex m-1" style="list-style: none !important;"><span class="bg-warning p-2 rounded"><i class="fa fa-sm fa-book"></i> ' + libro.titulo_libro + '</span></li>');
+        listaLibros.append(li);
+    });
 }
 
 // Función setter para formulario libros.
@@ -211,7 +210,7 @@ $(document).on('click', '.btn-edit', function() {
         success: function(response) {
             switch(module) {
                 case 'prestamos':
-                    set_loan_data(response);
+                    set_transaction_data(response);
                     break;
                 case 'libros':
                     set_book_data(response);

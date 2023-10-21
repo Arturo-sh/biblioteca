@@ -46,28 +46,33 @@ if ($_SESSION['rol_usuario'] == "Admin") {
     } 
 
     if (isset($_POST['edit_id'])) {
-        $id_prestamo = $_POST['edit_id'];
+        $id_transaccion = $_POST['edit_id'];
         
-        $query_loan_data = "SELECT p.id_prestamo, a.id_alumno, a.nombre_alumno, l.id_libro, p.unidades_prestamo, p.fecha_entrega, p.estado_prestamo FROM prestamos AS p INNER JOIN alumnos AS a ON p.id_alumno = a.id_alumno INNER JOIN libros AS l ON p.id_libro = l.id_libro INNER JOIN usuarios AS u ON p.id_usuario = u.id_usuario WHERE id_prestamo = $id_prestamo";
-        $loan_data = mysqli_query($conn, $query_loan_data);
-        $row = mysqli_fetch_all($loan_data, MYSQLI_ASSOC);
+        $query_transaction_data = "SELECT t.id_transaccion, a.nombre_alumno, u.nombre_usuario, t.fecha_prestamo, t.fecha_entrega, t.estado_prestamo FROM transaccion_prestamo AS t INNER JOIN prestamos AS p ON t.id_transaccion = p.id_transaccion INNER JOIN alumnos AS a ON t.id_alumno = a.id_alumno INNER JOIN usuarios AS u ON t.id_usuario = u.id_usuario WHERE t.id_transaccion = $id_transaccion";
+        $transaction_data = mysqli_query($conn, $query_transaction_data);
+        $row = mysqli_fetch_all($transaction_data, MYSQLI_ASSOC);
 
-        echo json_encode($row, JSON_UNESCAPED_UNICODE);
+        $query_books_data = "SELECT l.titulo_libro FROM prestamos AS p INNER JOIN libros AS l ON p.id_libro = l.id_libro WHERE id_transaccion = $id_transaccion ORDER BY titulo_libro ASC";
+        $books_data = mysqli_query($conn, $query_books_data);
+        $row_books = mysqli_fetch_all($books_data, MYSQLI_ASSOC);
+        
+        // Combinar los resultados en un solo arreglo
+        $resultado_combinado = array("transaccion_data" => $row, "libros_data" => $row_books);
+
+        // Codificar como JSON
+        echo json_encode($resultado_combinado, JSON_UNESCAPED_UNICODE);
     }
 
     if (isset($_POST['action']) && $_POST['action'] == "update") {
-        $id_prestamo = htmlspecialchars(trim($_POST['id_prestamo']), ENT_QUOTES, 'UTF-8');
-        $id_alumno = htmlspecialchars(trim($_POST['id_alumno']), ENT_QUOTES, 'UTF-8');
-        $id_libro = htmlspecialchars(trim($_POST['id_libro']), ENT_QUOTES, 'UTF-8');
-        $unidades_prestamo = htmlspecialchars(trim($_POST['unidades_prestamo']), ENT_QUOTES, 'UTF-8');
+        $id_transaccion = $_POST['id_transaccion'];
         $estado_prestamo = htmlspecialchars(trim($_POST['estado_prestamo']), ENT_QUOTES, 'UTF-8');
-        $fecha_entrega = $_POST['fecha_entrega'];
+        // $fecha_entrega = $_POST['fecha_entrega']; // Pendiente para editar la fecha de los préstamos
 
-        $query_loan_update = "UPDATE prestamos SET id_alumno = $id_alumno, id_libro = $id_libro, unidades_prestamo = $unidades_prestamo, fecha_entrega = '$fecha_entrega', estado_prestamo = '$estado_prestamo' WHERE id_prestamo = $id_prestamo";                
-        $result_loan_update = mysqli_query($conn, $query_loan_update);
-
-        if ($result_loan_update) {
-            echo "Préstamo actualizado!";
+        $query_transaction_update = "UPDATE transaccion_prestamo SET estado_prestamo = '$estado_prestamo' WHERE id_transaccion = $id_transaccion";                
+        $result_transaction_update = mysqli_query($conn, $query_transaction_update);
+        
+        if ($result_transaction_update) {
+            echo "Recepción exitosa!";
         }
     }
 
@@ -78,7 +83,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $result_transaction_delete = mysqli_query($conn, $query_transaction_delete);    
         
         if ($result_transaction_delete) {
-            echo "Devolución satisfactoria!";
+            echo "Préstamo eliminado!";
         }
     }
 }
