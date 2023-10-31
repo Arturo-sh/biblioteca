@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class='container-fluid mb-3'>
-            <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modal-default' onclick='reset_user_data()'>
+            <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modal-default' onclick='resetForm()'>
               Nuevo usuario
             </button>
           </div>
@@ -72,7 +72,7 @@
         
                     <div class='text-center mb-4'>
                       <button type='reset' class='btn btn-outline-danger' data-dismiss='modal'>Cancelar</button>
-                      <button type='submit' mod='usuarios' class='btn btn-outline-success btn-next' action='insert' data-dismiss='modal'>Guardar</button>
+                      <button type='submit' class='btn btn-outline-success btn-next' action='insert' data-dismiss='modal'>Guardar</button>
                     </div>
                   </form>
                 </div>
@@ -116,3 +116,5 @@
     </section>
     <!-- /.content -->
     <!-- /.table -->
+
+    <script src="dist/js/usuarios.js"></script>

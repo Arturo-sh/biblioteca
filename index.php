@@ -1,9 +1,6 @@
 <?php 
 session_start(); 
-
-if (!isset($_SESSION['id_usuario'])) {
-  header("Location: login.php");
-}
+if (!isset($_SESSION['id_usuario'])) header("Location: login.php");
 ?>
 
 <!DOCTYPE html>
@@ -13,14 +10,13 @@ if (!isset($_SESSION['id_usuario'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Biblioteca 24 de febrero</title>
 
+  <!-- CSS files -->
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
@@ -31,10 +27,42 @@ if (!isset($_SESSION['id_usuario'])) {
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
   <!-- Theme style -->
-   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+
+  <!-- JS files -->
+  <!-- jQuery -->
+  <script src="plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="dist/js/adminlte.js"></script>
+  <!-- Select2 -->
+  <script src="plugins/select2/js/select2.full.min.js"></script>
+  <!-- InputMask -->
+  <script src="plugins/inputmask/jquery.inputmask.min.js"></script>
+  <!-- bs-custom-file-input -->
+  <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+  <!-- Toast (SweetAlert2) -->
+  <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+  <!-- DataTables  & Plugins -->
+  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+  <script src="plugins/jszip/jszip.min.js"></script>
+  <script src="plugins/pdfmake/pdfmake.min.js"></script>
+  <script src="plugins/pdfmake/vfs_fonts.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+  <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+<!-- Wrapper -->
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -53,7 +81,6 @@ if (!isset($_SESSION['id_usuario'])) {
         <a href="index.php?module=home" class="nav-link">Inicio</a>
       </li>
     </ul>
-
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
@@ -72,21 +99,19 @@ if (!isset($_SESSION['id_usuario'])) {
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">TEBAEV 24</span>
     </a>
-
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
+        <!-- <div class="image"> -->
           <!-- Logo default -->
-          <img src="dist/img/user-default.png" class="img-circle elevation-2" alt="User Image">
-        </div>
+          <!-- <img src="dist/img/user-default.png" class="img-circle elevation-2" alt="User Image"> -->
+        <!-- </div> -->
         <div class="info">
           <!-- Aqui va la inclusion del archivo php que trae el nombre de usuario -->
           <a href="#" class="d-block"><?php echo $_SESSION['nombre_usuario']; ?></a>
         </div>
       </div>
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -99,6 +124,7 @@ if (!isset($_SESSION['id_usuario'])) {
     </div>
     <!-- /.sidebar -->
   </aside>
+  <!-- /. main sidebar content-->
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -119,193 +145,20 @@ if (!isset($_SESSION['id_usuario'])) {
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<!-- Initialization elements -->
 <script>
-  $.widget.bridge('uibutton', $.ui.button)
+  //Initialize Jquery UI
+  $.widget.bridge('uibutton', $.ui.button);
+
+  //Initialize Select2 Elements
+  $('.select2').select2();
+
+  //Initialize inputMask Elements
+  $('[data-mask]').inputmask();
+  
+  //Initialize bsCustomFileInput Elements
+  bsCustomFileInput.init();
 </script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<script src="plugins/jquery-validation/additional-methods.min.js"></script>
-<script src="plugins/jquery-validation/jquery.validate.min.js"></script>
-
-<!-- Page specific script -->
-<script>
-$( document ).ready(function() {
-  $("#form").validate({
-    rules: {
-      id_libro: {
-        required: true
-      },
-      unidades_prestamo: {
-        required: true
-      },
-      fecha_prestamo: {
-        required: true
-      }
-    },
-    messages: {
-      unidades_prestamo: {
-        required: "Por favor digita una cantidad entera"
-      },
-      fecha_prestamo: {
-        required: "Seleccione una fecha"
-      },
-      id_libro: {
-        required: "Seleccione un libro"
-      }
-    },
-    errorElement: 'span',
-    errorPlacement: function (error, element) {
-      error.addClass('invalid-feedback');
-      element.closest('.form-group').append(error);
-    },
-    highlight: function (element, errorClass, validClass) {
-      $(element).addClass('is-invalid');
-    },
-    unhighlight: function (element, errorClass, validClass) {
-      $(element).removeClass('is-invalid');
-    }
-  });
-});
-</script>
-
-<!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
-<!-- Select2 -->
-<script src="plugins/select2/js/select2.full.min.js"></script>
-<!-- Page specific script -->
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
-  });
-</script>
-<!-- InputMask -->
-<script src="plugins/inputmask/jquery.inputmask.min.js"></script>
-<!-- Page specific script -->
-<script>
-  $('[data-mask]').inputmask()
-</script>
-<!-- bs-custom-file-input -->
-<script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<!-- Page specific script -->
-<script>
-  $(function () {
-    bsCustomFileInput.init();
-  });
-</script>
-<!-- Toast (SweetAlert2) -->
-<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
-<!-- DataTables  & Plugins -->
-<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="plugins/jszip/jszip.min.js"></script>
-<script src="plugins/pdfmake/pdfmake.min.js"></script>
-<script src="plugins/pdfmake/vfs_fonts.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- Page specific script -->
-<script src="dist/js/fill_datatable.js"></script>
-
-<script>
-  var table;
-
-  $(document).ready(function () {
-    var module = window.location.search.split("=")[1];
-    switch (module) {
-      case 'prestamos':
-        cols = fill_tbl_loans();
-        load_datatable(module, cols)
-        break;
-      case 'libros':
-        cols = fill_tbl_books();
-        load_datatable(module, cols)
-        break;
-      case 'alumnos':
-        cols = fill_tbl_students();
-        load_datatable(module, cols)
-        break;
-      case 'usuarios':
-        cols = fill_tbl_users();
-        load_datatable(module, cols)
-        break;
-    }
-
-    function load_datatable(module, cols) {
-      table = $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": false, 
-        pageLength: 5,
-        buttons: [
-          {
-            extend: 'collection',
-            text: 'Exportar',
-            buttons: [
-              {
-                extend: 'pdf',
-                text: "Generar PDF",
-                pageSize: 'LEGAL'
-              },
-              {
-                extend: 'excel',
-                text: 'Generar Excel'
-              },
-              {
-                extend: 'print',
-                text: "Imprimir"
-              }
-            ]
-          },
-          {
-            extend: 'colvis',
-            text: 'Visor de columnas',
-          }
-        ],
-        ajax: {
-          url: "modules/" + module + "/table.php",
-          dataSrc: ""
-        },
-        columns: cols,
-        language: {
-          "emptyTable": "No hay registros",
-          "info": "Mostrando _START_ a _END_ de _TOTAL_ resultados",
-          "infoEmpty": "Mostrando 0 a 0 de 0 resultados",
-          "infoFiltered": "(Filtrado de _MAX_ entradas totales)",
-          "infoPostFix": "",
-          "thousands": ",",
-          "lengthMenu": "Mostrar _MENU_ resultados",
-          "loadingRecords": "Cargando...",
-          "processing": "Procesando...",
-          "search": "Buscar:",
-          "zeroRecords": "Sin resultados encontrados",
-          "paginate": {
-            "first": "Primero",
-            "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
-          }
-        }
-      });
-      // .buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    }
-  });
-</script>
-
-<!-- Extras datatables -->
-<script src="dist/js/main.js"></script>
 
 </body>
 </html>

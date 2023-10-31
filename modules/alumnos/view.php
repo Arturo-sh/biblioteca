@@ -61,8 +61,8 @@
               <!-- /.card-body -->
 
               <div class='text-center mb-4'>
-                <button type='reset' class='btn btn-outline-danger' onclick='reset_student_data()'>Cancelar</button>
-                <button type='submit' mod='alumnos' class='btn btn-outline-success btn-next' action='insert'>Guardar</button>
+                <button type='reset' class='btn btn-outline-danger' onclick='resetForm()'>Cancelar</button>
+                <button type='submit' class='btn btn-outline-success btn-next' action='insert'>Guardar</button>
               </div>
             </form>
           </div>
@@ -98,3 +98,5 @@
     </section>
     <!-- /.content -->
     <!-- /.table -->
+
+    <script src="dist/js/alumnos.js"></script>
