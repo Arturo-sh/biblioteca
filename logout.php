@@ -6,5 +6,5 @@ session_start();
 session_destroy();
 
 // Redireccionamiento al inicio de sesión
-header("Location: login.php");
+header("Location: iniciar_sesion");
 ?>

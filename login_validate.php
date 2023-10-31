@@ -21,14 +21,14 @@ if ($rows > 0) {
 		$_SESSION['usuario'] = $row['usuario'];
 		$_SESSION['nombre_usuario'] = $row['nombre_usuario'];
 		
-		header("Location: index.php?module=home");
+		header("Location: home");
 	} else {
 		$msg = "Cuenta inhabilitada, solicite la activación con el administrador!";
 		$_SESSION['invalid_credentials'] = ["msg" => $msg];
-		header("Location: login.php");
+		header("Location: iniciar_sesion");
 	} 
 } else {
 	$_SESSION['invalid_credentials'] = ["msg" => $msg];
-	header("Location: login.php");
+	header("Location: iniciar_sesion");
 }
 ?>
