@@ -38,16 +38,16 @@ $(document).ready(function () {
         render: function (data, type, row, meta) {
           if (type === 'display') {
             let template = `
-            <button id='${row.id_usuario}' class='btn btn-xs btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
+            <button id='${row.id_usuario}' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
               <i class='fas fa-pen'></i>
             </button>`;
    
             if (data != "Admin") {
                 template = `
-                <button id='${row.id_usuario}' class='btn btn-xs btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
+                <button id='${row.id_usuario}' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
                   <i class='fas fa-pen'></i>
                 </button>
-                <button id='${row.id_usuario}' class='btn btn-xs btn-danger btn-delete'>
+                <button id='${row.id_usuario}' class='btn btn-sm btn-danger btn-delete'>
                   <i class='fas fa-trash'></i>
                 </button>`;
             }

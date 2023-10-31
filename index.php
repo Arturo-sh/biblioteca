@@ -4,8 +4,7 @@ if (!isset($_SESSION['id_usuario'])) header("Location: login.php");
 ?>
 
 <!DOCTYPE html>
-<!-- <html lang="en"> -->
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +12,7 @@ if (!isset($_SESSION['id_usuario'])) header("Location: login.php");
 
   <!-- CSS files -->
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"> -->
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- iCheck -->
@@ -29,6 +28,7 @@ if (!isset($_SESSION['id_usuario'])) header("Location: login.php");
   <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="dist/css/bootstrap.min.css">
 
   <!-- JS files -->
   <!-- jQuery -->
@@ -96,7 +96,7 @@ if (!isset($_SESSION['id_usuario'])) header("Location: login.php");
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
+    <a href="#" class="brand-link" style="text-decoration: none;">
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">TEBAEV 24</span>
     </a>
@@ -110,7 +110,7 @@ if (!isset($_SESSION['id_usuario'])) header("Location: login.php");
         <!-- </div> -->
         <div class="info">
           <!-- Aqui va la inclusion del archivo php que trae el nombre de usuario -->
-          <a href="#" class="d-block"><?php echo $_SESSION['nombre_usuario']; ?></a>
+          <a href="#" class="d-block" style="text-decoration: none;"><i class='fa fas fa-user mr-2'></i> <?php echo $_SESSION['nombre_usuario']; ?></a>
         </div>
       </div>
       <!-- Sidebar Menu -->
@@ -158,7 +158,7 @@ if (!isset($_SESSION['id_usuario'])) header("Location: login.php");
   $('[data-mask]').inputmask();
   
   //Initialize bsCustomFileInput Elements
-  bsCustomFileInput.init();
+  // bsCustomFileInput.init();
 </script>
 
 </body>

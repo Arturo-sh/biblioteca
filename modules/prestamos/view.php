@@ -93,7 +93,7 @@
                         <p class='form-control' id='label_estado_prestamo'></p>
                       </div>
                     </div>
-                        <!-- /.card-body -->
+                    <!-- /.card-body -->
         
                     <div class='text-center'>
                       <button type='reset' class='btn btn-outline-info' data-dismiss='modal'>Regresar</button>
@@ -107,7 +107,7 @@
           </div>
           <!-- /.modal -->
 
-          <div class='col-md-3'>
+          <div class='col-md-3' hidden>
             <form method='POST' id='form' action='modules/prestamos/model.php'>
               <div class='card-body row'>
                 <div class='form-group col-md-12'>
@@ -152,7 +152,7 @@
             </form>
           </div>
 
-          <div class="col-md-9">
+          <div class="col-md-12">
             <div class="card">
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">

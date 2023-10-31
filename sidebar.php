@@ -23,7 +23,7 @@ if (!empty($_GET) && isset($_GET['module'])) {
 
 echo "
 <li class='nav-item mb-3'>
-    <a href='?module=home' class='nav-link text-left btn btn-outline-secondary $home_active'>
+    <a href='home' class='nav-link text-left btn btn-outline-secondary $home_active'>
       <i class='nav-icon fas fas fa-home'></i>
       <p>
         Inicio
@@ -33,7 +33,7 @@ echo "
 
 echo "
 <li class='nav-item'>
-    <a href='?module=prestamos' class='nav-link text-left btn btn-outline-secondary $loans_active'>
+    <a href='prestamos' class='nav-link text-left btn btn-outline-secondary $loans_active'>
       <i class='nav-icon fas fas fa-edit'></i>
       <p>
         Préstamos
@@ -43,7 +43,7 @@ echo "
 
 echo "
 <li class='nav-item'>
-  <a href='?module=libros' class='nav-link text-left btn btn-outline-secondary $books_active'>
+  <a href='libros' class='nav-link text-left btn btn-outline-secondary $books_active'>
     <i class='nav-icon fas fas fa-book'></i>
     <p>
       Libros
@@ -53,7 +53,7 @@ echo "
 
 echo "
 <li class='nav-item'>
-  <a href='?module=alumnos' class='nav-link text-left btn btn-outline-secondary $students_active'>
+  <a href='alumnos' class='nav-link text-left btn btn-outline-secondary $students_active'>
     <i class='nav-icon fas fas fa-users'></i>
     <p>
       Alumnos
@@ -63,7 +63,7 @@ echo "
 
 echo "
 <li class='nav-item'>
-  <a href='?module=usuarios' class='nav-link text-left btn btn-outline-secondary $users_active'>
+  <a href='usuarios' class='nav-link text-left btn btn-outline-secondary $users_active'>
     <i class='nav-icon fas fas fa-user'></i>
     <p>
       Usuarios

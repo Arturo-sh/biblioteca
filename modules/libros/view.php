@@ -54,28 +54,25 @@
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='id_editorial'>Editorial</label>
-                  <select class='form-control select2' style='width: 100%;' id='id_editorial' name='id_editorial' required>
+                  <select class='form-select' id='id_editorial' name='id_editorial' required>
                     <option value='0' selected disabled>Seleccionar</option>
                     <?php echo $publisher_options; ?>
                   </select>
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='id_categoria'>Categoría</label>
-                  <select class='form-control select2' style='width: 100%;' id='id_categoria' name='id_categoria' required>
+                  <select class="form-select" id="id_categoria" name="id_categoria"  required>
                     <option value='0' selected disabled>Seleccionar</option>
                     <?php echo $category_options; ?>
                   </select>
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='unidades_totales'>Unidades totales</label>
-                  <input type='text' class='form-control' id='unidades_totales' name='unidades_totales' placeholder='1' pattern='[0-9]+' title='Digite solo números sin espacios' required>
+                  <input type='number' class='form-control' id='unidades_totales' name='unidades_totales' placeholder='1' pattern='[0-9]+' title='Digite solo números sin espacios' required>
                 </div>
                 <div class='form-group col-md-12'>
-                  <label for='unidades'>Imagen portada</label>
-                  <div class='custom-file'>
-                    <input type='file' class='custom-file-input' id='imagen' name='imagen'>
-                    <label class='custom-file-label' for='exampleInputFile'></label>
-                  </div>
+                  <label for='imagen'>Imagen portada</label>
+                  <input type='file' class='form-control' id='imagen' name='imagen'>
                 </div>
                 <div class='form-group col-md-12 image-field' hidden>
                   <img id='image-view' src='dist/portadas/portada_default.png' style='width: 100%;'>
@@ -86,7 +83,7 @@
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='estado_libro'>Estatus</label>
-                  <select class='form-control' id='estado_libro' name='estado_libro' disabled> 
+                  <select class='form-select' id='estado_libro' name='estado_libro' disabled> 
                     <option value='Activo'>Activo</option>
                     <option value='Inactivo'>Inactivo</option>
                   </select>

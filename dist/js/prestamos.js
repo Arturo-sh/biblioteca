@@ -37,13 +37,13 @@ $(document).ready(function () {
         render: function (data, type) {
           if (type === 'display') {
             template = `
-            <button id='${data}' class='btn btn-xs btn-primary btn-edit' data-toggle='modal' data-target='#modal-default' onclick='reset_transaction_data()'>
+            <button id='${data}' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default' onclick='reset_transaction_data()'>
               <i class='fas fa-eye'></i>
             </button>
-            <button id='${data}' class='btn btn-xs btn-success btn-receive'>
+            <button id='${data}' class='btn btn-sm btn-success btn-receive'>
               <i class='fas fa-check'></i>
             </button>
-            <button id='${data}' class='btn btn-xs btn-danger btn-delete'>
+            <button id='${data}' class='btn btn-sm btn-danger btn-delete'>
               <i class='fas fa-trash'></i>
             </button>`;
           }

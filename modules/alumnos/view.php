@@ -33,7 +33,7 @@
                 <div class='form-group col-md-12'>
                   <label for='matricula'>Matrícula</label>
                   <input type='hidden' class='form-control' id='id_alumno' name='id_alumno'>
-                  <input type='text' class='form-control' id='matricula' name='matricula' pattern='[0-9]{8}' title='Ingrese una mátricula válida' placeholder='Ejemplo: 12435678' required>
+                  <input type='text' class='form-control' id='matricula' name='matricula' data-inputmask='"mask": "99999999"'data-mask placeholder='Ejemplo: 12435678' required>
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='nombre_alumno'>Nombre</label>
@@ -41,7 +41,7 @@
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='semestre'>Semestre</label>
-                  <select class='form-control' id='semestre' name='semestre'>
+                  <select class='form-select' id='semestre' name='semestre'>
                     <option value='1'>1er semestre</option>
                     <option value='2'>2do semestre</option>
                     <option value='3'>3er semestre</option>
@@ -52,7 +52,7 @@
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='estado_alumno'>Estatus</label>
-                  <select class='form-control' id='estado_alumno' name='estado_alumno' disabled> 
+                  <select class='form-select' id='estado_alumno' name='estado_alumno' disabled> 
                     <option value='Activo'>Activo</option>
                     <option value='Baja'>Baja</option>
                   </select>

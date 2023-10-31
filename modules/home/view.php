@@ -22,13 +22,12 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <h3><?php echo $_SESSION['cantidad_prestamos']; ?></h3>
-
                 <p>Préstamos activos</p>
               </div>
               <div class="icon">
                 <i class="nav-icon fas fa-edit"></i>
               </div>
-              <a href="?module=prestamos" class="small-box-footer">Administrar <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="prestamos" class="small-box-footer">Administrar <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -37,14 +36,13 @@
             <div class="small-box bg-success">
               <div class="inner">
                 <h3><?php echo $_SESSION['cantidad_libros']; ?></h3>
-
                 <p>Libros registrados</p>
               </div>
               <div class="icon">
                 <!-- <i class="ion ion-stats-bars"></i> -->
                 <i class="nav-icon fas fa-book"></i>
               </div>
-              <a href="?module=libros" class="small-box-footer">Administrar <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="libros" class="small-box-footer">Administrar <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -53,13 +51,12 @@
             <div class="small-box bg-warning">
               <div class="inner text-white">
                 <h3><?php echo $_SESSION['cantidad_alumnos']; ?></h3>
-
                 <p>Alumnos inscritos</p>
               </div>
               <div class="icon">
                 <i class="nav-icon fas fa-users"></i>
               </div>
-              <a href="?module=alumnos" class="small-box-footer" style="color: white !important;">Administrar <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="alumnos" class="small-box-footer" style="color: white !important;">Administrar <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -68,14 +65,13 @@
             <div class="small-box bg-danger">
               <div class="inner">
                 <h3><?php echo $_SESSION['cantidad_administradores']; ?></h3>
-
                 <p>Usuarios administradores</p>
               </div>
               <div class="icon">
                 <!-- <i class="ion ion-pie-graph"></i> -->
                 <i class="nav-icon fas fa-user"></i>
               </div>
-              <a href="?module=usuarios" class="small-box-footer">Administrar <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="usuarios" class="small-box-footer">Administrar <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

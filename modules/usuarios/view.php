@@ -55,14 +55,14 @@
                       </div>
                       <div class='form-group col-md-6'>
                         <label for='rol_usuario'>Rol de usuario</label>
-                        <select class='form-control' id='rol_usuario' name='rol_usuario'>
+                        <select class='form-select' id='rol_usuario' name='rol_usuario'>
                           <option value='Usuario'>Usuario</option>
                           <option value='Admin'>Admin</option>
                         </select>
                       </div>
                       <div class='form-group col-md-6'>
                         <label for='rol_usuario'>Estatus</label>
-                        <select class='form-control' id='estado_usuario' name='estado_usuario' disabled>
+                        <select class='form-select' id='estado_usuario' name='estado_usuario' disabled>
                           <option value='Activo'>Activo</option>
                           <option value='Suspendido'>Suspendido</option>
                         </select>

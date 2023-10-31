@@ -36,10 +36,10 @@ $(document).ready(function () {
         render: function (data, type) {
           if (type === 'display') {
             template = `
-            <button id='${data}' class='btn btn-xs btn-primary btn-edit'>
+            <button id='${data}' class='btn btn-sm btn-primary btn-edit'>
               <i class='fas fa-pen'></i>
             </button>
-            <button id='${data}' class='btn btn-xs btn-danger btn-delete'>
+            <button id='${data}' class='btn btn-sm btn-danger btn-delete'>
               <i class='fas fa-trash'></i>
             </button>`;
           }
