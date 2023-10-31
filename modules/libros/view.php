@@ -61,7 +61,6 @@
                 </div>
               </div>
               <!-- /.card-body -->
-
               <div class='text-center mb-4'>
                 <button type='reset' class='btn btn-outline-danger' onclick='resetForm()'>Cancelar</button>
                 <button type='submit' class='btn btn-outline-success btn-next' action='insert'>Guardar</button>
@@ -74,20 +73,20 @@
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Título</th>
-                    <th>Editorial</th>
-                    <th>Categoría</th>
-                    <th>Stock</th>
-                    <th>Imagen</th>
-                    <th>Descripción</th>
-                    <th>Estatus</th>
-                    <th>Opciones</th>
-                  </tr>
+                    <tr>
+                      <th>#</th>
+                      <th>Título</th>
+                      <th>Editorial</th>
+                      <th>Categoría</th>
+                      <th>Stock</th>
+                      <th>Imagen</th>
+                      <th>Descripción</th>
+                      <th>Estatus</th>
+                      <th>Opciones</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  <!-- Llenado dinámico -->
+                    <!-- Llenado dinámico -->
                   </tbody>
                 </table>
               </div>

@@ -29,11 +29,11 @@
                     <div class='card-body row'>
                       <div class='form-group col-md-6'>
                         <label for='nombre_alumno'>Alumno</label>
-                        <p class='form-control' id='label_nombre_alumno'></p>
+                        <p class='form-control' id='label_nombre_alumno' style="overflow-x: auto;"></p>
                       </div>
                       <div class='form-group col-md-6'>
                         <label for='nombre_usuario'>Responsable</label>
-                        <p class='form-control' id='label_nombre_usuario'></p>
+                        <p class='form-control' id='label_nombre_usuario' style="overflow-x: auto;"></p>
                       </div>
                       <div class='form-group col-md-6'>
                         <label for='fecha_prestamo'>Fecha préstamo</label>
@@ -53,7 +53,6 @@
                       </div>
                     </div>
                     <!-- /.card-body -->
-        
                     <div class='text-center'>
                       <button type='reset' class='btn btn-outline-info' data-dismiss='modal'>Regresar</button>
                     </div>
@@ -71,18 +70,18 @@
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>N. Alumno</th>
-                    <th>Responsable</th>
-                    <th>Fecha préstamo</th>
-                    <th>Fecha entrega</th>
-                    <th>Estatus</th>
-                    <th>Opciones</th>
-                  </tr>
+                    <tr>
+                      <th>#</th>
+                      <th>N. Alumno</th>
+                      <th>Responsable</th>
+                      <th>Fecha préstamo</th>
+                      <th>Fecha entrega</th>
+                      <th>Estatus</th>
+                      <th>Opciones</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  <!-- Llenado dinámico -->
+                    <!-- Llenado dinámico -->
                   </tbody>
                 </table>
               </div>

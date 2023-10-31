@@ -1,9 +1,14 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-6">
-            <h1 class="m-0">Usuarios Administradores</h1>
+        <div class="row mb-2">
+        <div class="col-md-12 d-inline-flex">
+            <div class="col-md-6">
+              <h1 class="">Inicio</h1>
+            </div>
+            <div class="col-md-6 text-right">
+              <button class="btn btn-md btn-primary" data-toggle='modal' data-target='#modal-default'><i class='nav-icon fas fas fa-user mr-1'></i> Nuevo usuario</button>
+            </div>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -15,11 +20,6 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class='container-fluid mb-3'>
-            <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modal-default' onclick='resetForm()'>
-              Nuevo usuario
-            </button>
-          </div>
           <div class='modal fade' id='modal-default' id='staticBackdrop' data-backdrop='static' tabindex='-1' role='dialog' aria-labelledby='staticBackdropLabel' aria-hidden='true'>
             <div class='modal-dialog' role='document'>
               <div class='modal-content'>
@@ -69,7 +69,6 @@
                       </div>
                     </div>
                     <!-- /.card-body -->
-        
                     <div class='text-center mb-4'>
                       <button type='reset' class='btn btn-outline-danger' data-dismiss='modal'>Cancelar</button>
                       <button type='submit' class='btn btn-outline-success btn-next' action='insert' data-dismiss='modal'>Guardar</button>
@@ -88,19 +87,19 @@
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Usuario</th>
-                    <th>Nombre</th>
-                    <th>Teléfono</th>
-                    <th>Correo</th>
-                    <th>Creación de cuenta</th>
-                    <th>Estatus</th>
-                    <th>Opciones</th>
-                  </tr>
+                    <tr>
+                      <th>#</th>
+                      <th>Usuario</th>
+                      <th>Nombre</th>
+                      <th>Teléfono</th>
+                      <th>Correo</th>
+                      <th>Creación de cuenta</th>
+                      <th>Estatus</th>
+                      <th>Opciones</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  <!-- Llenado dinámico -->
+                    <!-- Llenado dinámico -->
                   </tbody>
                 </table>
               </div>

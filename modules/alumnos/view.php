@@ -2,8 +2,18 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-6">
-            <h1 class="m-0">Alumnos</h1>
+        <div class="col-md-12 d-inline-flex">
+            <div class="col-md-6">
+              <h1 class="">Alumnos</h1>
+            </div>
+            <div class="col-md-6 text-right">
+              <button id='1' class='btn btn-md btn-outline-danger btn-change-grade'>
+                <i class='fas fa-minus'></i> 1 semestre
+              </button>
+              <button id='2' class='btn btn-md btn-outline-primary btn-change-grade'>
+                <i class='fas fa-plus'></i> 1 semestre
+              </button>
+            </div>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -16,18 +26,6 @@
       <div class="container-fluid">
         <div class="row">
           <div class='col-md-3'>
-            <div class='row'>
-              <div class='form-group col-md-6'>
-                <button id='1' url='modules/alumnos/model.php' class='btn btn-md btn-outline-danger btn-change-grade'>
-                  <i class='fas fa-minus'></i> 1 semestre
-                </button>
-              </div>
-              <div class='form-group col-md-6'>
-                <button id='2' url='modules/alumnos/model.php' class='btn btn-md btn-outline-primary btn-change-grade'>
-                  <i class='fas fa-plus'></i> 1 semestre
-                </button>
-              </div>
-            </div>
             <form method='POST' id='form' action='modules/alumnos/model.php'>
               <div class='card-body row'>
                 <div class='form-group col-md-12'>
@@ -59,7 +57,6 @@
                 </div>
               </div>
               <!-- /.card-body -->
-
               <div class='text-center mb-4'>
                 <button type='reset' class='btn btn-outline-danger' onclick='resetForm()'>Cancelar</button>
                 <button type='submit' class='btn btn-outline-success btn-next' action='insert'>Guardar</button>
@@ -72,17 +69,17 @@
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Matrícula</th>
-                    <th>Nombre</th>
-                    <th>Semestre</th>
-                    <th>Estatus</th>
-                    <th>Opciones</th>
-                  </tr>
+                    <tr>
+                      <th>#</th>
+                      <th>Matrícula</th>
+                      <th>Nombre</th>
+                      <th>Semestre</th>
+                      <th>Estatus</th>
+                      <th>Opciones</th>
+                    </tr>
                   </thead>
                   <tbody>
-                  <!-- Llenado dinámico -->
+                    <!-- Llenado dinámico -->
                   </tbody>
                 </table>
               </div>

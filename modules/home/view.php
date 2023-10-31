@@ -27,7 +27,6 @@
           <div class='modal-body'>
             <form method='POST' id='form' action='modules/usuarios/model.php'>
               <div class='card-body row'>
-                
                 <div class='form-group col-md-12'>
                   <label for='id_alumno'>Nombre de usuario</label>
                   <select class="form-select"  id="id_alumno" name="id_alumno">
@@ -43,22 +42,22 @@
                   <input type="search" class="form-control" name="key" id="key" placeholder="Buscar libro...">
                   <div id="suggestions"></div>
                 </div>
-
                 <div class='form-group col-md-12'>
                   <table class="table table-sm table-striped">
                     <thead>
-                      <th class="col-md-8">Libro</th>
-                      <th class="col-md-2">Unidades</th>
-                      <th class="col-md-2">Remover</th>
+                      <tr>
+                        <th class="col-md-8">Libro</th>
+                        <th class="col-md-2">Unidades</th>
+                        <th class="col-md-2">Remover</th>
+                      </tr>
                     </thead>
                     <tbody id="tbl-libros">
-                      <!-- Se rellena dinamicamente -->
+                      <!-- Llenado dinámico -->
                     </tbody>
                   </table>
                 </div>
               </div>
               <!-- /.card-body -->
-   
               <div class='text-center mb-4'>
                 <button type='reset' class='btn btn-outline-danger' data-dismiss='modal'>Cancelar</button>
                 <button type='submit' class='btn btn-outline-success btn-next' action='insert' data-dismiss='modal'>Guardar</button>
