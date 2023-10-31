@@ -72,7 +72,7 @@
         
                     <div class='text-center mb-4'>
                       <button type='reset' class='btn btn-outline-danger' data-dismiss='modal'>Cancelar</button>
-                      <button type='submit' mod='usuarios' class='btn btn-outline-success btn-next' action='insert' data-dismiss='modal'>Guardar</button>
+                      <button type='submit' class='btn btn-outline-success btn-next' action='insert' data-dismiss='modal'>Guardar</button>
                     </div>
                   </form>
                 </div>

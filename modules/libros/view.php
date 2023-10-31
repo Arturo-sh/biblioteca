@@ -96,7 +96,7 @@
 
               <div class='text-center mb-4'>
                 <button type='reset' class='btn btn-outline-danger' onclick='resetForm()'>Cancelar</button>
-                <button type='submit' mod='libros' class='btn btn-outline-success btn-next' action='insert'>Guardar</button>
+                <button type='submit' class='btn btn-outline-success btn-next' action='insert'>Guardar</button>
               </div>
             </form>
           </div>
