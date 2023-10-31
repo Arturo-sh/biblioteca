@@ -111,6 +111,22 @@ $(document).ready(function () {
   
   table.buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
+  // Cargar lista de alumnos en el select.
+  $.ajax({
+    type: "POST",
+    url: "modules/libros/model.php",
+    data: { load_selects: true },
+    success: function (response) {
+        let data = JSON.parse(response);
+
+        $("#id_categoria").append(data.categorias);
+        $("#id_editorial").append(data.editoriales);
+    },
+    error: function (response) {
+        console.log(response);
+    }
+  });
+
   // Se previene el redireccionamiento que produce el envío del formulario.
   $("form").submit(function(e){
       e.preventDefault();

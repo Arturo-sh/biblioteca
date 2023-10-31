@@ -1,32 +1,3 @@
-    <?php
-    if ($_SESSION['rol_usuario'] == "Admin") {
-      require_once "modules/database.php";
-
-      $query_get_publishers = "SELECT id_editorial, nombre_editorial FROM editoriales";
-      $result_get_publishers = mysqli_query($conn, $query_get_publishers);
-
-      $query_get_categories = "SELECT id_categoria, nombre_categoria FROM categorias";
-      $result_get_categories = mysqli_query($conn, $query_get_categories);
-
-      $publisher_options = "";
-      $category_options = "";
-
-      while ($row = mysqli_fetch_array($result_get_publishers)) {
-        $id_editorial = $row['id_editorial'];
-        $nombre_editorial = $row['nombre_editorial'];
-
-        $publisher_options .= "<option value='$id_editorial'>$nombre_editorial</option>";
-      }
-
-      while ($row = mysqli_fetch_array($result_get_categories)) {
-        $id_categoria = $row['id_categoria'];
-        $nombre_categoria = $row['nombre_categoria'];
-
-        $category_options .= "<option value='$id_categoria'>$nombre_categoria</option>";
-      }
-    }
-    ?>
-    
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -56,14 +27,14 @@
                   <label for='id_editorial'>Editorial</label>
                   <select class='form-select' id='id_editorial' name='id_editorial' required>
                     <option value='0' selected disabled>Seleccionar</option>
-                    <?php echo $publisher_options; ?>
+                    <!-- LLenado dinámico -->
                   </select>
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='id_categoria'>Categoría</label>
                   <select class="form-select" id="id_categoria" name="id_categoria"  required>
                     <option value='0' selected disabled>Seleccionar</option>
-                    <?php echo $category_options; ?>
+                    <!-- LLenado dinámico -->
                   </select>
                 </div>
                 <div class='form-group col-md-12'>

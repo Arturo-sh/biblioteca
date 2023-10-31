@@ -37,7 +37,7 @@ $(document).ready(function () {
         render: function (data, type) {
           if (type === 'display') {
             template = `
-            <button id='${data}' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default' onclick='reset_transaction_data()'>
+            <button id='${data}' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
               <i class='fas fa-eye'></i>
             </button>
             <button id='${data}' class='btn btn-sm btn-success btn-receive'>
@@ -145,10 +145,11 @@ $(document).ready(function () {
       });
   });
 
-  // Cargar datos del prestamo al card.
+  // Cargar datos del prestamo al card de visualizacion.
   $(document).on('click', '.btn-edit', function() {
       var edit_id = $(this).attr("id");
-  
+      $('#lista-libros').html("");
+
       $.ajax({
           url: "modules/prestamos/model.php",
           method: "POST",
@@ -167,14 +168,55 @@ $(document).ready(function () {
               var listaLibros = $('#lista-libros');
               
               $.each(librosData, function(index, libro) {
-                  var li = $('<li class="d-inline-flex m-1" style="list-style: none !important;"><span class="bg-warning p-2 rounded"><i class="fa fa-sm fa-book"></i> ' + libro.titulo_libro + '</span></li>');
+                  let template = `
+                  <li class="d-inline-flex mr-1" style="list-style: none !important;">
+                    <span class="p-1 rounded"><i class="fa fa-sm fa-book"></i> ${libro.titulo_libro} (${libro.unidades_prestamo} unidades)</span>
+                  </li>`;
+                  var li = $(template);
                   listaLibros.append(li);
               });
           }
       });
   });
 
-  // Eliminar libro.
+  // Eliminar prestamo.
+  $(document).on('click', '.btn-receive', function() {
+      var update_id = $(this).attr("id");
+  
+      Swal.fire({
+          title: `¿Desea recepcionar el préstamo con ID ${update_id}?`,
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, continuar!',
+          cancelButtonText: 'Cancelar'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              $.ajax({
+                  url: "modules/prestamos/model.php",
+                  method: "POST",
+                  data: {
+                      action: "update",
+                      update_id
+                  },
+                  success: function(response) {
+                      Swal.fire({
+                          icon: "success",
+                          title: response,
+                          showConfirmButton: false,
+                          timer: 2000
+                      });
+                  },
+                  complete: function() {
+                      table.ajax.reload();
+                  }
+              });
+          }
+      });
+  });
+
+  // Eliminar prestamo.
   $(document).on('click', '.btn-delete', function() {
       var delete_id = $(this).attr("id");
   
@@ -210,36 +252,5 @@ $(document).ready(function () {
           }
       });
   });
-
-  // Autocompletado de libros
-  $(document).ready(function() {
-    id_libros = []; // Arreglo que almacena los id´s de los libros prestados
-  
-    $('#key').on('keyup', function() {
-      var key = $(this).val();		
-      var dataString = 'key='+key;
-  
-      $.ajax({
-        type: "POST",
-        url: "modules/prestamos/ajax.php",
-        data: dataString,
-        success: function(response) {
-          //Escribimos las sugerencias que nos manda la consulta
-          $('#suggestions').fadeIn(500).html(response);
-          $('.suggest-element').on('click', function(){
-            var id = $(this).attr('id');
-            var titulo = $(this).attr('titulo');
-            id_libros.push(id);
-  
-            let libros_seleccionados = $('#libros-prestamo').html();
-            $('#libros-prestamo').html(libros_seleccionados + `<p id-libro='${id}'><i class='fa fa-sm btn-danger btn-remove-book' style='border: 1px; padding: 4px;'>x</i> <i class='fa fa-sm fa-book'></i> ${titulo}</p>`);
-            $('#suggestions').fadeOut(500);
-            $("#key").val("");
-            return false;
-          });
-        }
-      });
-    });
-  }); 
 
 });

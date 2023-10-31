@@ -3,6 +3,38 @@ session_start();
 require_once "../database.php";
 
 if ($_SESSION['rol_usuario'] == "Admin") {
+    if (isset($_POST['load_selects'])) {
+        $query_get_publishers = "SELECT id_editorial, nombre_editorial FROM editoriales";
+        $result_get_publishers = mysqli_query($conn, $query_get_publishers);
+  
+        $query_get_categories = "SELECT id_categoria, nombre_categoria FROM categorias";
+        $result_get_categories = mysqli_query($conn, $query_get_categories);
+  
+        $publisher_options = "";
+        $category_options = "";
+  
+        while ($row = mysqli_fetch_array($result_get_publishers)) {
+          $id_editorial = $row['id_editorial'];
+          $nombre_editorial = $row['nombre_editorial'];
+  
+          $publisher_options .= "<option value='$id_editorial'>$nombre_editorial</option>";
+        }
+  
+        while ($row = mysqli_fetch_array($result_get_categories)) {
+          $id_categoria = $row['id_categoria'];
+          $nombre_categoria = $row['nombre_categoria'];
+  
+          $category_options .= "<option value='$id_categoria'>$nombre_categoria</option>";
+        }
+
+        $arr = [
+            "categorias" => $category_options,
+            "editoriales" => $publisher_options
+        ];
+
+        echo json_encode($arr);
+    }
+
     if (isset($_POST['action']) && $_POST['action'] == "insert") {
         $titulo_libro = htmlspecialchars(trim($_POST['titulo_libro']), ENT_QUOTES, 'UTF-8');
         $id_editorial = htmlspecialchars(trim($_POST['id_editorial']), ENT_QUOTES, 'UTF-8');

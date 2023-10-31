@@ -2,7 +2,7 @@
 session_start(); 
 
 if (isset($_SESSION['id_usuario'])) {
-    header("Location: index.php?module=home");
+    header("Location: home");
 }
 ?>
 <!DOCTYPE html>

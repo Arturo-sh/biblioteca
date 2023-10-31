@@ -28,7 +28,10 @@ if (!isset($_SESSION['id_usuario'])) header("Location: login.php");
   <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- Bootstrap 5 -->
   <link rel="stylesheet" href="dist/css/bootstrap.min.css">
+  <!-- Suggestions search books -->
+  <link rel="stylesheet" href="dist/css/suggestions.css">
 
   <!-- JS files -->
   <!-- jQuery -->
@@ -79,7 +82,7 @@ if (!isset($_SESSION['id_usuario'])) header("Location: login.php");
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.php?module=home" class="nav-link">Inicio</a>
+        <a href="home" class="nav-link">Inicio</a>
       </li>
     </ul>
     <!-- Right navbar links -->
@@ -152,7 +155,7 @@ if (!isset($_SESSION['id_usuario'])) header("Location: login.php");
   $.widget.bridge('uibutton', $.ui.button);
 
   //Initialize Select2 Elements
-  $('.select2').select2();
+  // $('.select2').select2();
 
   //Initialize inputMask Elements
   $('[data-mask]').inputmask();

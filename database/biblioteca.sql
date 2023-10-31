@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2023 a las 12:21:15
+-- Tiempo de generación: 31-10-2023 a las 17:58:10
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.3.13
 
@@ -41,21 +41,23 @@ CREATE TABLE `alumnos` (
 --
 
 INSERT INTO `alumnos` (`id_alumno`, `matricula`, `nombre_alumno`, `semestre`, `estado_alumno`) VALUES
-(1, 19180054, 'Arturo Salas Hernandez', 6, 'Baja'),
+(1, 19180054, 'Jorge Martínez García', 3, 'Activo'),
 (2, 19180010, 'Jorge Villarreal Vélez', 3, 'Activo'),
-(14, 12345679, 'Julián Gomez Pérez', 3, 'Activo'),
-(17, 19183344, 'Ramón Dante Fernández', 1, 'Baja'),
+(14, 12345679, 'Julián Osorio Pérez', 3, 'Activo'),
+(17, 19183344, 'Ramón Dante Fernández', 4, 'Baja'),
 (19, 15120143, 'Jesús Macedo López', 1, 'Baja'),
 (20, 19180090, 'Pedro Casas Montreal', 1, 'Baja'),
 (21, 19180023, 'Prueba Alumno siete', 1, 'Baja'),
 (22, 19180023, 'Prueba Alumno siete', 3, 'Activo'),
 (23, 19180023, 'Prueba Alumno siete', 3, 'Activo'),
-(24, 19822412, 'Prueba', 5, 'Activo'),
+(24, 19822412, 'Prueba', 6, 'Baja'),
 (25, 19283124, 'Horge', 6, 'Baja'),
 (26, 19189943, 'Pedro Hernandez Montiel', 6, 'Baja'),
 (27, 18190054, 'Arturo Hernandez Salas', 1, 'Baja'),
 (28, 2147483647, 'Aldair Mendoza Fernández', 1, 'Baja'),
-(29, 32545634, 'Jose Martinez Garcia', 1, 'Baja');
+(29, 32545634, 'Jose Martinez Garcia', 1, 'Baja'),
+(30, 19180010, 'Jose López Contreras', 2, 'Baja'),
+(31, 19880422, 'Nuevo Alumno Prueba 1', 2, 'Baja');
 
 -- --------------------------------------------------------
 
@@ -110,7 +112,6 @@ CREATE TABLE `libros` (
   `id_editorial` int(11) NOT NULL,
   `id_categoria` int(11) NOT NULL,
   `unidades_totales` int(4) NOT NULL DEFAULT 1,
-  `unidades_restantes` int(11) NOT NULL,
   `imagen_portada` text NOT NULL DEFAULT 'portada_default.png',
   `descripcion` text NOT NULL,
   `estado_libro` enum('Activo','Inactivo') NOT NULL DEFAULT 'Activo'
@@ -120,40 +121,43 @@ CREATE TABLE `libros` (
 -- Volcado de datos para la tabla `libros`
 --
 
-INSERT INTO `libros` (`id_libro`, `titulo_libro`, `id_editorial`, `id_categoria`, `unidades_totales`, `unidades_restantes`, `imagen_portada`, `descripcion`, `estado_libro`) VALUES
-(14, 'El principito Vol. 1', 1, 3, 4, 0, 'IMG_20210215_103615_652da3168a528.jpg', 'Libro en buenas condiciones', 'Activo'),
-(19, 'Poemas Edgar Alan Poet', 2, 2, 4, 0, 'Captura de pantalla (1)_652da2c024bf0.png', 'Libro en buena condición', 'Activo'),
-(20, 'El principito Vol. 2', 1, 1, 2000, 0, 'IMG_20210324_163134_65312876ce8df.jpg', 'Libro en buena condición', 'Activo'),
-(21, 'Prueba', 2, 2, 2, 0, 'Captura de pantalla (119)_652b546dd8497.png', 'Libro en buena condición', 'Activo'),
-(22, 'Prueba2', 1, 1, 3000, 0, 'IMG_20210324_163134_653128ac9230f.jpg', 'Rallado de la portada', 'Inactivo'),
-(23, 'Cuentos de méxico', 2, 1, 3, 0, 'Captura de pantalla (111)_652b584d69c86.png', 'Libros con ralladuras en la portada', 'Activo'),
-(24, 'Aprende a programar en PHP', 1, 3, 2, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
-(25, 'Don quijote de la mancha', 2, 2, 4, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
-(27, 'Poemas Edgar Alan Poet', 2, 2, 202, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
-(28, 'insert', 2, 1, 234, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
-(29, 'Prueba2', 1, 1, 3, 0, 'portada_default.png', 'Rallado de la portada', 'Activo'),
-(30, 'insert', 2, 1, 234, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
-(31, 'Prueba2', 1, 1, 3, 0, 'portada_default.png', 'Rallado de la portada', 'Activo'),
-(32, 'Prueba2', 1, 1, 3, 0, 'portada_default.png', 'Rallado de la portada', 'Activo'),
-(33, 'prueba', 2, 3, 2, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
-(34, 'adsdf', 1, 3, 4, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
-(35, 'Poemas Edgar Alan Poets', 1, 1, 2, 0, 'portada_default.png', 'er', 'Activo'),
-(36, 'Poemas Edgar Alan Poet', 1, 1, 2, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
-(37, 'Poemas Edgar Alan Poets', 1, 1, 2, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
-(38, 'Prueba', 1, 2, 3, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
-(39, 'Prueba insercion', 1, 2, 3, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
-(40, 'Prueba libro', 1, 1, 3, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
-(41, 'Prueba libro d', 1, 1, 3, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
-(42, 'Coca cola', 1, 1, 3, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
-(43, 'Coca cola', 1, 1, 3, 0, 'portada_default.png', 'Libro en buena condición', 'Activo'),
-(44, 'Prueba', 1, 2, 2, 0, 'Captura de pantalla (2)_653082079fa40.png', 'Breve', 'Activo'),
-(45, 'Prueba insercion de libro', 2, 3, 200, 0, 'Captura de pantalla (8)_6530827159bf4.png', 'Captura 8', 'Activo'),
-(46, 'Nuevo libro', 2, 2, 15, 0, 'Captura de pantalla (12)_65308314eb576.png', 'Captura 12', 'Activo'),
-(47, 'Prueba 29', 1, 1, 29, 0, 'Captura de pantalla (5)_653096ec41cf2.png', 'Captura 5', 'Activo'),
-(48, 'Prueba de insercion 30', 2, 3, 30, 0, 'Captura de pantalla (8)_6530976accc17.png', 'Captura 8', 'Activo'),
-(49, 'Registro 31', 1, 1, 31, 0, '798f290997c158b81a68d69cf52ee4e7_653098d119243.jpg', 'Libro rallado en la pagina 31', 'Activo'),
-(50, 'Libro 32 editado', 1, 3, 32, 0, 'portada_default.png', 'Libro en buen estado 32', 'Inactivo'),
-(51, 'Prueba 33', 1, 3, 33, 0, 'IMG_20210324_163134_6531282ff2b71.jpg', 'Libro de prueba n 33', 'Activo');
+INSERT INTO `libros` (`id_libro`, `titulo_libro`, `id_editorial`, `id_categoria`, `unidades_totales`, `imagen_portada`, `descripcion`, `estado_libro`) VALUES
+(14, 'El principito Vol. 1', 1, 3, 3, 'IMG_20210215_103615_652da3168a528.jpg', 'Libro en buenas condiciones', 'Activo'),
+(19, 'Poemas Edgar Alan Poet', 2, 2, 4, 'Captura de pantalla (1)_652da2c024bf0.png', 'Libro en buena condición', 'Activo'),
+(20, 'El principito Vol. 2', 1, 1, 2, 'IMG_20210324_163134_65312876ce8df.jpg', 'Libro en buena condición', 'Activo'),
+(21, 'Prueba', 2, 2, 2, 'Captura de pantalla (119)_652b546dd8497.png', 'Libro en buena condición', 'Activo'),
+(22, 'Prueba2', 1, 1, 3000, 'IMG_20210324_163134_653128ac9230f.jpg', 'Rallado de la portada', 'Inactivo'),
+(23, 'Cuentos de méxico', 2, 1, 3, 'Captura de pantalla (111)_652b584d69c86.png', 'Libros con ralladuras en la portada', 'Activo'),
+(24, 'Aprende a programar en PHP', 1, 3, 2, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(25, 'Don quijote de la mancha', 2, 2, 4, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(27, 'Poemas Edgar Alan Poet', 2, 2, 202, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(28, 'insert', 2, 1, 234, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(29, 'Prueba22', 1, 1, 3, 'Captura de pantalla (3)_65413426198cd.png', 'Rallado de la portada', 'Activo'),
+(30, 'insert', 2, 1, 234, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(31, 'Prueba2', 1, 1, 3, 'Captura de pantalla (3)_6541343318d4f.png', 'Rallado de la portada', 'Activo'),
+(33, 'prueba', 2, 3, 2, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(34, 'adsdf', 1, 3, 4, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(35, 'Poemas Edgar Alan Poets', 1, 1, 2023, 'portada_default.png', 'Modificado', 'Activo'),
+(36, 'Poemas Edgar Alan Poet', 1, 1, 2, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(37, 'Poemas Edgar Alan Poets', 1, 1, 2, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(38, 'Prueba', 1, 2, 3, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(39, 'Prueba insercion', 1, 2, 3, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(40, 'Prueba libro', 1, 1, 3, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(41, 'Prueba libro d', 1, 1, 3, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(42, 'Coca cola', 1, 1, 3, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(43, 'Coca cola', 1, 1, 3, 'portada_default.png', 'Libro en buena condición', 'Activo'),
+(44, 'Prueba', 1, 2, 2, 'Captura de pantalla (2)_653082079fa40.png', 'Breve', 'Activo'),
+(45, 'Prueba insercion de libro', 2, 3, 200, 'Captura de pantalla (8)_6530827159bf4.png', 'Captura 8', 'Activo'),
+(46, 'Nuevo libro', 2, 2, 15, 'Captura de pantalla (12)_65308314eb576.png', 'Captura 12', 'Activo'),
+(47, 'Prueba 29', 1, 1, 29, 'Captura de pantalla (5)_653096ec41cf2.png', 'Captura 5', 'Activo'),
+(48, 'Prueba de insercion 30', 2, 3, 30, 'Captura de pantalla (96)_65348411342fd.png', 'Captura 8', 'Activo'),
+(49, 'Registro 31', 1, 1, 31, '798f290997c158b81a68d69cf52ee4e7_653098d119243.jpg', 'Libro rallado en la pagina 31', 'Activo'),
+(50, 'Libro 32 editado', 1, 3, 32, 'portada_default.png', 'Libro en buen estado 32', 'Inactivo'),
+(51, 'Prueba 33', 1, 3, 33, 'IMG_20210324_163134_6531282ff2b71.jpg', 'Libro de prueba n 33', 'Activo'),
+(52, 'Nuevo Livro', 2, 3, 5, 'Captura de pantalla (121)_653483e931896.png', 'Captura 121', 'Activo'),
+(53, 'Nuevo Libro 34 Update', 1, 3, 35, 'Captura de pantalla (131)_65410e87c5cd2.png', 'Se rallo la pasta', 'Inactivo'),
+(54, 'Nuevo Libro Para Prestamos De La Biblioteca 24 De Febrero', 1, 1, 10, 'Captura de pantalla (131)_654184385e29e.png', 'Libro recien llegado', 'Activo'),
+(55, 'Esta es una prueba de libro con nombre largo para ver el resultado en la seccion de prestamo', 2, 1, 20, 'Captura de pantalla (4)_654185280d3e1.png', 'Excelente', 'Activo');
 
 -- --------------------------------------------------------
 
@@ -164,19 +168,19 @@ INSERT INTO `libros` (`id_libro`, `titulo_libro`, `id_editorial`, `id_categoria`
 CREATE TABLE `prestamos` (
   `id_prestamo` int(11) NOT NULL,
   `id_transaccion` int(11) NOT NULL,
-  `id_libro` int(11) NOT NULL
+  `id_libro` int(11) NOT NULL,
+  `unidades_prestamo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `prestamos`
 --
 
-INSERT INTO `prestamos` (`id_prestamo`, `id_transaccion`, `id_libro`) VALUES
-(31, 2, 14),
-(42, 3, 24),
-(43, 4, 25),
-(44, 4, 20),
-(45, 4, 48);
+INSERT INTO `prestamos` (`id_prestamo`, `id_transaccion`, `id_libro`, `unidades_prestamo`) VALUES
+(86, 27, 14, 1),
+(87, 28, 14, 1),
+(88, 29, 54, 2),
+(90, 31, 21, 1);
 
 -- --------------------------------------------------------
 
@@ -198,9 +202,10 @@ CREATE TABLE `transaccion_prestamo` (
 --
 
 INSERT INTO `transaccion_prestamo` (`id_transaccion`, `id_alumno`, `id_usuario`, `fecha_prestamo`, `fecha_entrega`, `estado_prestamo`) VALUES
-(2, 19, 55, '2023-10-20 08:22:21', '2023-10-22', 'Pendiente'),
-(3, 14, 1, '2023-10-20 10:10:49', '2023-10-21', 'Pendiente'),
-(4, 2, 1, '2023-10-20 10:12:33', '2023-10-22', 'Pendiente');
+(27, 1, 1, '2023-10-31 22:44:25', '2023-10-31', 'Pendiente'),
+(28, 1, 1, '2023-10-31 22:46:07', '2023-10-31', 'Pendiente'),
+(29, 27, 1, '2023-10-31 22:49:29', '2023-11-01', 'Pendiente'),
+(31, 1, 1, '2023-10-31 16:30:44', '2023-11-01', 'Pendiente');
 
 -- --------------------------------------------------------
 
@@ -226,7 +231,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_usuario`, `rol_usuario`, `usuario`, `contrasenia`, `nombre_usuario`, `telefono_usuario`, `correo_usuario`, `creacion_cuenta`, `estado_usuario`) VALUES
 (1, 'Admin', 'Admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Yatzamil Román Ángeles', '924 143 5497', 'admin@gmail.com', '2023-10-06 23:02:18', 'Activo'),
-(5, 'Usuario', 'Marcos', 'dfadc855249b015fd2bb015c0b099b2189c58748', 'Marcos Osorio Juáres', '(924) 342-5347', 'marcos12@gmail.com', '2023-10-08 05:35:13', 'Suspendido'),
+(5, 'Admin', 'Marcos', 'dfadc855249b015fd2bb015c0b099b2189c58748', 'Marcos Garcia Juárez', '(924) 342-5347', 'marcos12@gmail.com', '2023-10-08 05:35:13', 'Activo'),
 (23, 'Usuario', 'arturo15', '65e313615c709400f57b2c19b11931eabffd8cf6', 'Arturo salas hernandez', '(111) 111-1111', 'correo@gmail.com', '2023-10-14 19:17:19', 'Activo'),
 (28, 'Admin', 'Arturo1512', 'e8bc682de39f8160e26870ce75968bfd56ccc87b', 'SALAS HERNANDEZ ARTURO', '(924) 143-5497', 'salashernandez@gmail.com', '2023-10-15 03:09:04', 'Suspendido'),
 (32, 'Usuario', 'Arturo902', 'e8bc682de39f8160e26870ce75968bfd56ccc87b', 'Arturo Mancera Gomez', '(354) 657-7653', 'correo@gmail.com', '2023-10-17 01:05:43', 'Activo'),
@@ -259,7 +264,10 @@ INSERT INTO `usuarios` (`id_usuario`, `rol_usuario`, `usuario`, `contrasenia`, `
 (72, 'Usuario', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', '', '', '2023-10-19 23:36:25', 'Activo'),
 (73, 'Usuario', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', '', '', '2023-10-19 23:36:34', 'Activo'),
 (74, 'Usuario', '', 'aff024fe4ab0fece4091de044c58c9ae4233383a', '', '', '', '2023-10-20 01:09:42', 'Activo'),
-(75, 'Usuario', 's', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '', '', '', '2023-10-20 01:11:22', 'Activo');
+(75, 'Usuario', 's', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '', '', '', '2023-10-20 01:11:22', 'Activo'),
+(76, 'Admin', 'Usuario36', 'e72dde61f4095b352d67b1ecab11b1111b52652a', 'Usuario prueba 36', '(345) 465-7875', 'correo@gmail.com', '2023-10-22 02:06:02', 'Suspendido'),
+(77, 'Admin', 'NuevoUsuario37', 'a90c8b09a681c6a15acfc99f9cc63f522cf2c3ab', 'Nuevo Usuario 37', '(923) 487-3699', 'correoUsuario37@gmail.com', '2023-10-31 13:44:25', 'Activo'),
+(79, 'Usuario', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', '', '', '2023-10-31 16:48:57', 'Activo');
 
 --
 -- Índices para tablas volcadas
@@ -321,7 +329,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `alumnos`
 --
 ALTER TABLE `alumnos`
-  MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -339,25 +347,25 @@ ALTER TABLE `editoriales`
 -- AUTO_INCREMENT de la tabla `libros`
 --
 ALTER TABLE `libros`
-  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT de la tabla `transaccion_prestamo`
 --
 ALTER TABLE `transaccion_prestamo`
-  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- Restricciones para tablas volcadas

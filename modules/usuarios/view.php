@@ -68,7 +68,7 @@
                         </select>
                       </div>
                     </div>
-                        <!-- /.card-body -->
+                    <!-- /.card-body -->
         
                     <div class='text-center mb-4'>
                       <button type='reset' class='btn btn-outline-danger' data-dismiss='modal'>Cancelar</button>

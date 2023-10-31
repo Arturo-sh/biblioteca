@@ -54,7 +54,7 @@ echo "
 echo "
 <li class='nav-item'>
   <a href='alumnos' class='nav-link text-left btn btn-outline-secondary $students_active'>
-    <i class='nav-icon fas fas fa-users'></i>
+    <i class='nav-icon fas fas fa-graduation-cap'></i>
     <p>
       Alumnos
     </p>
@@ -64,7 +64,7 @@ echo "
 echo "
 <li class='nav-item'>
   <a href='usuarios' class='nav-link text-left btn btn-outline-secondary $users_active'>
-    <i class='nav-icon fas fas fa-user'></i>
+    <i class='nav-icon fas fas fa-users'></i>
     <p>
       Usuarios
     </p>
