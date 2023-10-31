@@ -95,7 +95,7 @@
               <!-- /.card-body -->
 
               <div class='text-center mb-4'>
-                <button type='reset' class='btn btn-outline-danger' onclick='reset_book_data()'>Cancelar</button>
+                <button type='reset' class='btn btn-outline-danger' onclick='resetForm()'>Cancelar</button>
                 <button type='submit' mod='libros' class='btn btn-outline-success btn-next' action='insert'>Guardar</button>
               </div>
             </form>
@@ -154,3 +154,5 @@
       <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
+
+    <script src="dist/js/libros.js"></script>

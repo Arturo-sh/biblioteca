@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class='container-fluid mb-3'>
-            <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modal-default' onclick='reset_user_data()'>
+            <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#modal-default' onclick='resetForm()'>
               Nuevo usuario
             </button>
           </div>
@@ -116,3 +116,5 @@
     </section>
     <!-- /.content -->
     <!-- /.table -->
+
+    <script src="dist/js/usuarios.js"></script>
