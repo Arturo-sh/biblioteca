@@ -7,7 +7,7 @@
               <h1 class="">Inicio</h1>
             </div>
             <div class="col-md-6 text-right">
-              <button class="btn btn-md btn-primary" data-toggle='modal' data-target='#modal-default'><i class='nav-icon fas fas fa-paperclip'></i> Nuevo préstamo</button>
+              <button id="nuevo-prestamo" class="btn btn-md btn-primary" data-toggle='modal' data-target='#modal-default'><i class='nav-icon fas fas fa-paperclip'></i> Nuevo préstamo</button>
             </div>
           </div><!-- /.col -->
         </div><!-- /.row -->

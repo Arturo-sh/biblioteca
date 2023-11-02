@@ -25,19 +25,25 @@ $(document).ready(function() {
     load_cards();
 
     // Cargar lista de alumnos en el select.
-    $.ajax({
-        type: "POST",
-        url: "modules/home/model.php",
-        data: { students: true },
-        success: function (response) {
-            $("#id_alumno").append(response);
-            var date = new Date();
-            current_date = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-            $("#fecha_entrega").val(current_date);
-        },
-        error: function (response) {
-            console.log(response);
-        }
+    $("#nuevo-prestamo").on("click", function() {
+        $.ajax({
+            type: "POST",
+            url: "modules/home/model.php",
+            data: { students: true },
+            success: function (response) {
+                $("#id_alumno").append(response);
+                let fecha = new Date();
+                let year = fecha.getFullYear();
+                let month = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Agrega ceros al mes si es necesario
+                let day = fecha.getDate().toString().padStart(2, '0'); // Agrega ceros al día si es necesario
+
+                current_date = `${year}-${month}-${day}`;
+                $("#fecha_entrega").val(current_date);
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        });
     });
 
     // Autocompletado de libros

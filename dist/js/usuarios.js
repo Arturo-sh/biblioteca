@@ -1,7 +1,5 @@
-var table;
-
 $(document).ready(function () {
-  table = $("#example1").DataTable({
+  var table = $("#example1").DataTable({
     "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": false, 
     pageLength: 5,
     ajax: {
@@ -65,15 +63,33 @@ $(document).ready(function () {
           {
             extend: 'pdf',
             text: "Generar PDF",
-            pageSize: 'LEGAL'
+            pageSize: 'LEGAL',
+            exportOptions: {
+              columns: [ 0, 1, 2, 3, 4, 5 ]
+            },
+            modifier: {
+              search: 'applied'
+            }
           },
           {
             extend: 'excel',
-            text: 'Generar Excel'
+            text: 'Generar Excel',
+            exportOptions: {
+              columns: [ 0, 1, 2, 3, 4, 5 ]
+            },
+            modifier: {
+              search: 'applied'
+            }
           },
           {
             extend: 'print',
-            text: "Imprimir"
+            text: "Imprimir",
+            exportOptions: {
+              columns: [ 0, 1, 2, 3, 4, 5 ]
+            },
+            modifier: {
+              search: 'applied'
+            }
           }
         ]
       },
@@ -100,10 +116,12 @@ $(document).ready(function () {
         "next": "Siguiente",
         "previous": "Anterior"
       }
+    },
+    initComplete: function () {
+      table.buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     }
   });
   
-  table.buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
   // Se previene el redireccionamiento que produce el envío del formulario.
   $("form").submit(function(e){

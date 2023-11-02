@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2023 a las 17:58:10
+-- Tiempo de generación: 03-11-2023 a las 00:19:59
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.3.13
 
@@ -114,7 +114,7 @@ CREATE TABLE `libros` (
   `unidades_totales` int(4) NOT NULL DEFAULT 1,
   `imagen_portada` text NOT NULL DEFAULT 'portada_default.png',
   `descripcion` text NOT NULL,
-  `estado_libro` enum('Activo','Inactivo') NOT NULL DEFAULT 'Activo'
+  `estado_libro` enum('Activo','Suspendido') NOT NULL DEFAULT 'Activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -124,10 +124,10 @@ CREATE TABLE `libros` (
 INSERT INTO `libros` (`id_libro`, `titulo_libro`, `id_editorial`, `id_categoria`, `unidades_totales`, `imagen_portada`, `descripcion`, `estado_libro`) VALUES
 (14, 'El principito Vol. 1', 1, 3, 3, 'IMG_20210215_103615_652da3168a528.jpg', 'Libro en buenas condiciones', 'Activo'),
 (19, 'Poemas Edgar Alan Poet', 2, 2, 4, 'Captura de pantalla (1)_652da2c024bf0.png', 'Libro en buena condición', 'Activo'),
-(20, 'El principito Vol. 2', 1, 1, 2, 'IMG_20210324_163134_65312876ce8df.jpg', 'Libro en buena condición', 'Activo'),
+(20, 'El principito Vol. 2', 1, 1, 2, 'IMG_20210324_163134_65312876ce8df.jpg', 'Libro en buena condición', 'Suspendido'),
 (21, 'Prueba', 2, 2, 2, 'Captura de pantalla (119)_652b546dd8497.png', 'Libro en buena condición', 'Activo'),
-(22, 'Prueba2', 1, 1, 3000, 'IMG_20210324_163134_653128ac9230f.jpg', 'Rallado de la portada', 'Inactivo'),
-(23, 'Cuentos de méxico', 2, 1, 3, 'Captura de pantalla (111)_652b584d69c86.png', 'Libros con ralladuras en la portada', 'Activo'),
+(22, 'Prueba2', 1, 1, 3000, 'IMG_20210324_163134_653128ac9230f.jpg', 'Rallado de la portada', 'Activo'),
+(23, 'Cuentos de méxico', 2, 1, 3, 'Captura de pantalla (111)_652b584d69c86.png', 'Libros con ralladuras en la portada', 'Suspendido'),
 (24, 'Aprende a programar en PHP', 1, 3, 2, 'portada_default.png', 'Libro en buena condición', 'Activo'),
 (25, 'Don quijote de la mancha', 2, 2, 4, 'portada_default.png', 'Libro en buena condición', 'Activo'),
 (27, 'Poemas Edgar Alan Poet', 2, 2, 202, 'portada_default.png', 'Libro en buena condición', 'Activo'),
@@ -152,10 +152,10 @@ INSERT INTO `libros` (`id_libro`, `titulo_libro`, `id_editorial`, `id_categoria`
 (47, 'Prueba 29', 1, 1, 29, 'Captura de pantalla (5)_653096ec41cf2.png', 'Captura 5', 'Activo'),
 (48, 'Prueba de insercion 30', 2, 3, 30, 'Captura de pantalla (96)_65348411342fd.png', 'Captura 8', 'Activo'),
 (49, 'Registro 31', 1, 1, 31, '798f290997c158b81a68d69cf52ee4e7_653098d119243.jpg', 'Libro rallado en la pagina 31', 'Activo'),
-(50, 'Libro 32 editado', 1, 3, 32, 'portada_default.png', 'Libro en buen estado 32', 'Inactivo'),
+(50, 'Libro 32 editado', 1, 3, 32, 'portada_default.png', 'Libro en buen estado 32', ''),
 (51, 'Prueba 33', 1, 3, 33, 'IMG_20210324_163134_6531282ff2b71.jpg', 'Libro de prueba n 33', 'Activo'),
 (52, 'Nuevo Livro', 2, 3, 5, 'Captura de pantalla (121)_653483e931896.png', 'Captura 121', 'Activo'),
-(53, 'Nuevo Libro 34 Update', 1, 3, 35, 'Captura de pantalla (131)_65410e87c5cd2.png', 'Se rallo la pasta', 'Inactivo'),
+(53, 'Nuevo Libro 34 Update', 1, 3, 35, 'Captura de pantalla (131)_65410e87c5cd2.png', 'Se rallo la pasta', ''),
 (54, 'Nuevo Libro Para Prestamos De La Biblioteca 24 De Febrero', 1, 1, 10, 'Captura de pantalla (131)_654184385e29e.png', 'Libro recien llegado', 'Activo'),
 (55, 'Esta es una prueba de libro con nombre largo para ver el resultado en la seccion de prestamo', 2, 1, 20, 'Captura de pantalla (4)_654185280d3e1.png', 'Excelente', 'Activo');
 
@@ -178,9 +178,10 @@ CREATE TABLE `prestamos` (
 
 INSERT INTO `prestamos` (`id_prestamo`, `id_transaccion`, `id_libro`, `unidades_prestamo`) VALUES
 (86, 27, 14, 1),
-(87, 28, 14, 1),
 (88, 29, 54, 2),
-(90, 31, 21, 1);
+(90, 31, 21, 1),
+(97, 40, 55, 2),
+(98, 41, 21, 1);
 
 -- --------------------------------------------------------
 
@@ -203,9 +204,10 @@ CREATE TABLE `transaccion_prestamo` (
 
 INSERT INTO `transaccion_prestamo` (`id_transaccion`, `id_alumno`, `id_usuario`, `fecha_prestamo`, `fecha_entrega`, `estado_prestamo`) VALUES
 (27, 1, 1, '2023-10-31 22:44:25', '2023-10-31', 'Pendiente'),
-(28, 1, 1, '2023-10-31 22:46:07', '2023-10-31', 'Pendiente'),
-(29, 27, 1, '2023-10-31 22:49:29', '2023-11-01', 'Pendiente'),
-(31, 1, 1, '2023-10-31 16:30:44', '2023-11-01', 'Pendiente');
+(29, 27, 1, '2023-10-31 22:49:29', '2023-11-01', 'Entregado'),
+(31, 1, 1, '2023-10-31 16:30:44', '2023-11-01', 'Pendiente'),
+(40, 19, 1, '2023-11-02 23:01:57', '2023-11-02', 'Pendiente'),
+(41, 1, 1, '2023-11-02 23:17:38', '2023-11-01', 'Pendiente');
 
 -- --------------------------------------------------------
 
@@ -353,13 +355,13 @@ ALTER TABLE `libros`
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT de la tabla `transaccion_prestamo`
 --
 ALTER TABLE `transaccion_prestamo`
-  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
