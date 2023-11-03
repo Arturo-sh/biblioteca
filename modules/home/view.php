@@ -28,7 +28,7 @@
             <form method='POST' id='form' action='modules/usuarios/model.php'>
               <div class='card-body row'>
                 <div class='form-group col-md-12'>
-                  <label for='id_alumno'>Nombre de usuario</label>
+                  <label for='id_alumno'>Alumno</label>
                   <select class="form-select"  id="id_alumno" name="id_alumno">
                     <!-- Se rellena dinamicamente -->
                   </select>

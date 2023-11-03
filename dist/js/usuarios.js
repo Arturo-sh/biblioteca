@@ -1,6 +1,6 @@
 $(document).ready(function () {
   var table = $("#example1").DataTable({
-    "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": false, 
+    "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": true, 
     pageLength: 5,
     ajax: {
       url: "modules/usuarios/table.php",
@@ -16,23 +16,18 @@ $(document).ready(function () {
       { data: "estado_usuario",
         render: function (data, type) {
           if (type === 'display') {
+            let badge_color = data == "Activo" ? "bg-success" : "bg-danger";
+
             let template = `
             <td class='text-center'>
-              <span class='badge bg-danger'>${data}</span>
+              <span class='badge ${badge_color}'>${data}</span>
             </td>`;
-   
-            if (data == "Activo") {
-              template = `
-              <td class='text-center'>
-                <span class='badge bg-success'>${data}</span>
-              </td>`;
-            }
             return template;
           }
           return data;
         } 
       },
-      { data: "rol_usuario",
+      { data: "rol_usuario", "orderable": false,
         render: function (data, type, row, meta) {
           if (type === 'display') {
             let template = `

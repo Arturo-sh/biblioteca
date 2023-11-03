@@ -1,6 +1,6 @@
 $(document).ready(function () {
   var table = $("#example1").DataTable({
-    "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": false, 
+    "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": true, 
     pageLength: 5,
     ajax: {
       url: "modules/prestamos/table.php",
@@ -21,9 +21,7 @@ $(document).ready(function () {
             librosEnPrestamo += `<li><i class='fa fas fa-book'></i> ${titulo_libro} (${unidades_prestamo} ${unidad})</li>`;
           });
 
-          librosEnPrestamo += `</ul>`;
-    
-          // Elimina la última coma y el espacio en blanco
+          librosEnPrestamo += `</ul>`;    
           return librosEnPrestamo;
         }
       },
@@ -33,23 +31,18 @@ $(document).ready(function () {
       { data: "estado_prestamo",
         render: function (data, type) {
           if (type === 'display') {
+            let badge_color = data == "Entregado" ? "bg-success" : "bg-danger";
+
             let template = `
             <td class='text-center'>
-              <span class='badge bg-primary'>${data}</span>
+              <span class='badge ${badge_color}'>${data}</span>
             </td>`;
-    
-            if (data == "Entregado") {
-              template = `
-              <td class='text-center'>
-                <span class='badge bg-success'>${data}</span>
-              </td>`;
-            }
             return template;
           }
           return data;
         } 
       },
-      { data: "id_transaccion",
+      { data: "id_transaccion", "orderable": false,
         render: function (data, type) {
           if (type === 'display') {
             template = `
