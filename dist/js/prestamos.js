@@ -9,6 +9,24 @@ $(document).ready(function () {
     columns: [
       { data: "id_transaccion" },
       { data: "nombre_alumno" },
+      { data: "libro_prestamo",
+        render: function(data, type, row) {
+          var librosEnPrestamo = `<ul class='list-unstyled'>`;
+            
+          data.forEach(function(libro) {
+            var titulo_libro = libro.titulo_libro;
+            var unidades_prestamo = libro.unidades_prestamo;
+            unidades_prestamo > 1 ? unidad = `unidades` : unidad = `unidad`;
+    
+            librosEnPrestamo += `<li><i class='fa fas fa-book'></i> ${titulo_libro} (${unidades_prestamo} ${unidad})</li>`;
+          });
+
+          librosEnPrestamo += `</ul>`;
+    
+          // Elimina la última coma y el espacio en blanco
+          return librosEnPrestamo;
+        }
+      },
       { data: "nombre_usuario" },
       { data: "fecha_prestamo" },
       { data: "fecha_entrega" },
@@ -35,11 +53,8 @@ $(document).ready(function () {
         render: function (data, type) {
           if (type === 'display') {
             template = `
-            <button id='${data}' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
-              <i class='fas fa-eye'></i>
-            </button>
             <button id='${data}' class='btn btn-sm btn-success btn-receive'>
-              <i class='fas fa-check'></i>
+              <i class='fas fa-arrow-right-arrow-left'></i>
             </button>
             <button id='${data}' class='btn btn-sm btn-danger btn-delete'>
               <i class='fas fa-trash'></i>
@@ -59,7 +74,7 @@ $(document).ready(function () {
             text: "Generar PDF",
             pageSize: 'LEGAL',
             exportOptions: {
-              columns: [ 0, 1, 2, 3, 4, 5 ]
+              columns: [ 0, 1, 2, 3, 4, 5, 6 ]
             },
             modifier: {
               search: 'applied'
@@ -69,7 +84,7 @@ $(document).ready(function () {
             extend: 'excel',
             text: 'Generar Excel',
             exportOptions: {
-              columns: [ 0, 1, 2, 3, 4, 5 ]
+              columns: [ 0, 1, 2, 3, 4, 5, 6 ]
             },
             modifier: {
               search: 'applied'
@@ -79,7 +94,7 @@ $(document).ready(function () {
             extend: 'print',
             text: "Imprimir",
             exportOptions: {
-              columns: [ 0, 1, 2, 3, 4, 5 ]
+              columns: [ 0, 1, 2, 3, 4, 5, 6 ]
             },
             modifier: {
               search: 'applied'
@@ -164,46 +179,12 @@ $(document).ready(function () {
       });
   });
 
-  // Cargar datos del prestamo al card de visualizacion.
-  $(document).on('click', '.btn-edit', function() {
-      var edit_id = $(this).attr("id");
-      $('#lista-libros').html("");
-
-      $.ajax({
-          url: "modules/prestamos/model.php",
-          method: "POST",
-          data: {
-              edit_id
-          },
-          success: function(response) {
-              let data = JSON.parse(response);
-      
-              $("#label_nombre_alumno").text(data.transaccion_data[0].nombre_alumno);
-              $("#label_nombre_usuario").text(data.transaccion_data[0].nombre_usuario);
-              $("#label_fecha_prestamo").text(data.transaccion_data[0].fecha_prestamo);
-              $("#label_fecha_entrega").text(data.transaccion_data[0].fecha_entrega);
-              
-              var librosData = data.libros_data;
-              var listaLibros = $('#lista-libros');
-              
-              $.each(librosData, function(index, libro) {
-                  let template = `
-                  <li class="d-inline-flex mr-1" style="list-style: none !important;">
-                    <span class="p-1 rounded"><i class="fa fa-sm fa-book"></i> ${libro.titulo_libro} (${libro.unidades_prestamo} unidades)</span>
-                  </li>`;
-                  var li = $(template);
-                  listaLibros.append(li);
-              });
-          }
-      });
-  });
-
   // Eliminar prestamo.
   $(document).on('click', '.btn-receive', function() {
       var update_id = $(this).attr("id");
   
       Swal.fire({
-          title: `¿Desea recepcionar el préstamo con ID ${update_id}?`,
+          title: `¿Desea cambiar el estado del préstamo con ID: ${update_id}?`,
           icon: 'question',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
