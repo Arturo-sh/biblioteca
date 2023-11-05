@@ -3,6 +3,8 @@ $modules = [
     "home" => "modules/home/view.php",
     "prestamos" => "modules/prestamos/view.php",
     "libros" => "modules/libros/view.php",
+    "editoriales" => "modules/editoriales/view.php",
+    "categorias" => "modules/categorias/view.php",
     "alumnos" => "modules/alumnos/view.php",
     "usuarios" => "modules/usuarios/view.php"
 ];
@@ -12,6 +14,8 @@ if (empty($_GET) || !isset($_GET['module'])) {
 } else { 
     $module = $_GET['module'];
 }
+
+$_SESSION['module_redirect'] = $module;
 
 if (array_key_exists($module, $modules)) {
     $load_module = $modules[$module];

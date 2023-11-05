@@ -3,6 +3,15 @@ session_start();
 require_once "../database.php";
 
 if ($_SESSION['rol_usuario'] == "Admin") {
+    if (isset($_POST['users_table'])) {
+        $query_get_users = "SELECT id_usuario, rol_usuario, usuario, nombre_usuario, telefono_usuario, correo_usuario, creacion_cuenta, estado_usuario FROM usuarios";
+        $users_data = mysqli_query($conn, $query_get_users);
+    
+        $data = mysqli_fetch_all($users_data, MYSQLI_ASSOC);
+    
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+    }
+
     if (isset($_POST['action']) && $_POST['action'] == "insert") {
         $rol_usuario = htmlspecialchars(trim($_POST['rol_usuario']), ENT_QUOTES, 'UTF-8');
         $usuario = htmlspecialchars(trim($_POST['usuario']), ENT_QUOTES, 'UTF-8');

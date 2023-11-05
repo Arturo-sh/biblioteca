@@ -3,6 +3,15 @@ session_start();
 require_once "../database.php";
 
 if ($_SESSION['rol_usuario'] == "Admin") {
+    if (isset($_POST['students_table'])) {
+        $query_get_students = "SELECT * FROM alumnos";
+        $students_data = mysqli_query($conn, $query_get_students);
+    
+        $data = mysqli_fetch_all($students_data, MYSQLI_ASSOC);
+    
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+    }
+
     if (isset($_POST['action']) && $_POST['action'] == "insert") {
         $matricula = htmlspecialchars(trim($_POST['matricula']), ENT_QUOTES, 'UTF-8'); 
         $nombre_alumno = htmlspecialchars(trim($_POST['nombre_alumno']), ENT_QUOTES, 'UTF-8'); 

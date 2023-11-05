@@ -3,7 +3,11 @@ $(document).ready(function () {
     "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": true, 
     pageLength: 5,
     ajax: {
-      url: "modules/libros/table.php",
+      url: "modules/libros/model.php",
+      method: "POST",
+      data: {
+        books_table: true
+      },
       dataSrc: ""
     },
     columns: [
@@ -123,8 +127,6 @@ $(document).ready(function () {
     }
   });
   
-  table.buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
   // Cargar lista de alumnos en el select.
   $.ajax({
     type: "POST",

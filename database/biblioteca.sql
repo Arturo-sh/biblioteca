@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-11-2023 a las 00:19:59
+-- Tiempo de generación: 05-11-2023 a las 12:40:22
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.3.13
 
@@ -57,7 +57,8 @@ INSERT INTO `alumnos` (`id_alumno`, `matricula`, `nombre_alumno`, `semestre`, `e
 (28, 2147483647, 'Aldair Mendoza Fernández', 1, 'Baja'),
 (29, 32545634, 'Jose Martinez Garcia', 1, 'Baja'),
 (30, 19180010, 'Jose López Contreras', 2, 'Baja'),
-(31, 19880422, 'Nuevo Alumno Prueba 1', 2, 'Baja');
+(31, 19880422, 'Nuevo Alumno Prueba 1', 2, 'Baja'),
+(35, 35465768, 'Julian Perez Chu', 1, 'Activo');
 
 -- --------------------------------------------------------
 
@@ -78,7 +79,8 @@ CREATE TABLE `categorias` (
 INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`, `descripcion_categoria`) VALUES
 (1, 'Cuentos', 'Libros que cuentan historias de diferentes tipos ambientados en diferentes lugares'),
 (2, 'Poemas', 'Libros que almacenan gran variedad de poemas y liricas'),
-(3, 'Informativos', 'Libros que contienen amplia informacion de aprendizaje de multiples temas');
+(3, 'Informativos', 'Libros que contienen amplia informacion de aprendizaje de múltiples temas'),
+(6, 'Didacticos', 'Libros de la SEP');
 
 -- --------------------------------------------------------
 
@@ -98,7 +100,8 @@ CREATE TABLE `editoriales` (
 
 INSERT INTO `editoriales` (`id_editorial`, `nombre_editorial`, `pais_editorial`) VALUES
 (1, 'Marcombo', 'Brazil'),
-(2, 'Alfa Omega', 'Mexico');
+(2, 'Alfa Omega', 'Mexico'),
+(8, 'Pearson', 'Mexico');
 
 -- --------------------------------------------------------
 
@@ -155,7 +158,7 @@ INSERT INTO `libros` (`id_libro`, `titulo_libro`, `id_editorial`, `id_categoria`
 (50, 'Libro 32 editado', 1, 3, 32, 'portada_default.png', 'Libro en buen estado 32', ''),
 (51, 'Prueba 33', 1, 3, 33, 'IMG_20210324_163134_6531282ff2b71.jpg', 'Libro de prueba n 33', 'Activo'),
 (52, 'Nuevo Livro', 2, 3, 5, 'Captura de pantalla (121)_653483e931896.png', 'Captura 121', 'Activo'),
-(53, 'Nuevo Libro 34 Update', 1, 3, 35, 'Captura de pantalla (131)_65410e87c5cd2.png', 'Se rallo la pasta', ''),
+(53, 'Nuevo Libro 34 Update', 1, 3, 35, 'Captura de pantalla (131)_65410e87c5cd2.png', 'Se rallo la pasta', 'Suspendido'),
 (54, 'Nuevo Libro Para Prestamos De La Biblioteca 24 De Febrero', 1, 1, 10, 'Captura de pantalla (131)_654184385e29e.png', 'Libro recien llegado', 'Activo'),
 (55, 'Esta es una prueba de libro con nombre largo para ver el resultado en la seccion de prestamo', 2, 1, 20, 'Captura de pantalla (4)_654185280d3e1.png', 'Excelente', 'Activo');
 
@@ -177,11 +180,12 @@ CREATE TABLE `prestamos` (
 --
 
 INSERT INTO `prestamos` (`id_prestamo`, `id_transaccion`, `id_libro`, `unidades_prestamo`) VALUES
-(86, 27, 14, 1),
 (88, 29, 54, 2),
 (90, 31, 21, 1),
 (97, 40, 55, 2),
-(98, 41, 21, 1);
+(99, 42, 14, 1),
+(100, 42, 24, 1),
+(101, 42, 35, 1);
 
 -- --------------------------------------------------------
 
@@ -203,11 +207,12 @@ CREATE TABLE `transaccion_prestamo` (
 --
 
 INSERT INTO `transaccion_prestamo` (`id_transaccion`, `id_alumno`, `id_usuario`, `fecha_prestamo`, `fecha_entrega`, `estado_prestamo`) VALUES
-(27, 1, 1, '2023-10-31 22:44:25', '2023-10-31', 'Pendiente'),
 (29, 27, 1, '2023-10-31 22:49:29', '2023-11-01', 'Entregado'),
 (31, 1, 1, '2023-10-31 16:30:44', '2023-11-01', 'Pendiente'),
-(40, 19, 1, '2023-11-02 23:01:57', '2023-11-02', 'Pendiente'),
-(41, 1, 1, '2023-11-02 23:17:38', '2023-11-01', 'Pendiente');
+(40, 19, 1, '2023-11-02 23:01:57', '2023-11-02', 'Entregado'),
+(42, 14, 1, '2023-11-03 09:58:37', '2023-11-03', 'Pendiente'),
+(45, 31, 1, '2023-11-04 03:12:33', '2023-11-04', 'Entregado'),
+(47, 1, 1, '2023-11-05 11:05:01', '2023-11-05', 'Pendiente');
 
 -- --------------------------------------------------------
 
@@ -331,37 +336,37 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `alumnos`
 --
 ALTER TABLE `alumnos`
-  MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `editoriales`
 --
 ALTER TABLE `editoriales`
-  MODIFY `id_editorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_editorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `libros`
 --
 ALTER TABLE `libros`
-  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT de la tabla `transaccion_prestamo`
 --
 ALTER TABLE `transaccion_prestamo`
-  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

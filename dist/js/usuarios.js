@@ -3,7 +3,11 @@ $(document).ready(function () {
     "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": true, 
     pageLength: 5,
     ajax: {
-      url: "modules/usuarios/table.php",
+      url: "modules/usuarios/model.php",
+      method: "POST",
+      data: {
+        users_table: true
+      },
       dataSrc: ""
     },
     columns: [
@@ -116,7 +120,6 @@ $(document).ready(function () {
       table.buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     }
   });
-  
 
   // Se previene el redireccionamiento que produce el envío del formulario.
   $("form").submit(function(e){

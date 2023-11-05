@@ -20,8 +20,15 @@ if ($rows > 0) {
 		$_SESSION['rol_usuario'] = $row['rol_usuario'];
 		$_SESSION['usuario'] = $row['usuario'];
 		$_SESSION['nombre_usuario'] = $row['nombre_usuario'];
-		
-		header("Location: home");
+
+		if (isset($_SESSION['module_redirect'])) {
+			$module_redirect = $_SESSION['module_redirect'];
+			unset($_SESSION['module_redirect']);
+			header("Location: $module_redirect");
+			return;
+		} else {
+			header("Location: home");
+		}
 	} else {
 		$msg = "Cuenta inhabilitada, solicite la activación con el administrador!";
 		$_SESSION['invalid_credentials'] = ["msg" => $msg];

@@ -3,6 +3,15 @@ session_start();
 require_once "../database.php";
 
 if ($_SESSION['rol_usuario'] == "Admin") {
+    if (isset($_POST['books_table'])) {
+        $query_get_books = "SELECT l.id_libro, l.titulo_libro, e.nombre_editorial, c.nombre_categoria, l.unidades_totales, l.imagen_portada, l.descripcion, l.estado_libro FROM libros AS l INNER JOIN editoriales AS e ON l.id_editorial = e.id_editorial INNER JOIN categorias AS c ON l.id_categoria = c.id_categoria";
+        $books_data = mysqli_query($conn, $query_get_books);
+    
+        $data = mysqli_fetch_all($books_data, MYSQLI_ASSOC);
+    
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+    }
+
     if (isset($_POST['load_selects'])) {
         $query_get_publishers = "SELECT id_editorial, nombre_editorial FROM editoriales";
         $result_get_publishers = mysqli_query($conn, $query_get_publishers);

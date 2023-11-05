@@ -4,7 +4,7 @@
         <div class="row mb-2">
         <div class="col-md-12 d-inline-flex">
             <div class="col-md-6">
-              <h1 class="">Inicio</h1>
+              <h1 class="">Usuarios</h1>
             </div>
             <div class="col-md-6 text-right">
               <button class="btn btn-md btn-primary" data-toggle='modal' data-target='#modal-default'><i class='nav-icon fas fas fa-user mr-1'></i> Nuevo usuario</button>
