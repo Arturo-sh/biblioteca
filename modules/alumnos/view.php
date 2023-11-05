@@ -50,7 +50,7 @@
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='estado_alumno'>Estatus</label>
-                  <select class='form-select' id='estado_alumno' name='estado_alumno' disabled> 
+                  <select class='form-select estatus' id='estado_alumno' name='estado_alumno' disabled> 
                     <option value='Activo'>Activo</option>
                     <option value='Baja'>Baja</option>
                   </select>

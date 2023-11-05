@@ -54,15 +54,6 @@ $(document).ready(function () {
   $("form").submit(function(e){
       e.preventDefault();
   });
-  
-  // Función limpiar para el formulario de categorias.
-  function resetForm() {
-      $("#id_categoria").val("");
-      $("#nombre_categoria").val("");
-      $("#descripcion_categoria").val("");
-      $(".btn-next").attr("action", "insert");
-      $(".btn-next").text("Guardar");
-  }
 
   // Registrar categoria.
   $(document).on('click', '.btn-next', function() {

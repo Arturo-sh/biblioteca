@@ -54,15 +54,6 @@ $(document).ready(function () {
   $("form").submit(function(e){
       e.preventDefault();
   });
-  
-  // Función limpiar para el formulario de editoriales.
-  function resetForm() {
-      $("#id_editorial").val("");
-      $("#nombre_editorial").val("");
-      $("#pais_editorial").val("");
-      $(".btn-next").attr("action", "insert");
-      $(".btn-next").text("Guardar");
-  }
 
   // Registrar editorial.
   $(document).on('click', '.btn-next', function() {

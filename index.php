@@ -162,6 +162,17 @@ if (!isset($_SESSION['id_usuario'])) header("Location: iniciar_sesion");
   
   //Initialize bsCustomFileInput Elements
   // bsCustomFileInput.init();
+
+ // Función limpiar para el formulario de usuarios.
+ function resetForm() {
+      // Se limpia el formulario.
+      $("#form")[0].reset();
+      
+      $(".estatus").attr("disabled", true);
+      $(".image-field").attr("hidden", true);
+      $(".btn-next").attr("action", "insert");
+      $(".btn-next").text("Guardar");
+  }
 </script>
 
 </body>

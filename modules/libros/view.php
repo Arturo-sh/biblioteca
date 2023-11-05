@@ -54,7 +54,7 @@
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='estado_libro'>Estatus</label>
-                  <select class='form-select' id='estado_libro' name='estado_libro' disabled> 
+                  <select class='form-select estatus' id='estado_libro' name='estado_libro' disabled> 
                     <option value='Activo'>Activo</option>
                     <option value='Suspendido'>Suspendido</option>
                   </select>

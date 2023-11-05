@@ -41,6 +41,8 @@ $(document).ready(function() {
 
                 current_date = `${year}-${month}-${day}`;
                 $("#fecha_entrega").val(current_date);
+
+                $("#tbl-libros").html("");
             },
             error: function (response) {
                 console.log(response);

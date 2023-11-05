@@ -147,24 +147,6 @@ $(document).ready(function () {
   $("form").submit(function(e){
       e.preventDefault();
   });
-  
-  // Función limpiar para el formulario de libros.
-  function resetForm() {
-    $("#id_libro").val("");
-    $("#titulo_libro").val("");
-    $("#id_editorial").val("0").trigger("change");
-    $("#id_categoria").val("0").trigger("change");
-    $("#unidades_totales").val("");
-    $("#image-view").attr("src", "dist/portadas/portada_default.png");
-    $(".image-field").attr("hidden", true);
-    $("#descripcion").val("");
-    $("#estado_libro").val("Activo");
-    $("#estado_libro").attr("disabled", true);
-    $(".btn-next").attr("action", "insert");
-    $(".btn-next").text("Guardar");
-    $(".btn-next").attr("action", "insert");
-    $(".btn-next").text("Guardar");
-  }
 
   // Registrar libro.
   $(document).on('click', '.btn-next', function() {

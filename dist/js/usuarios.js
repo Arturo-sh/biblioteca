@@ -119,22 +119,6 @@ $(document).ready(function () {
   $("form").submit(function(e){
       e.preventDefault();
   });
-  
-  // Función limpiar para el formulario de usuarios.
-  function resetForm() {
-      $("#id_usuario").val("");
-      $("#rol_usuario").val("Usuario");
-      $("#usuario").val("");
-      $("#contrasenia").val("");
-      $("#nombre_usuario").val("");
-      $("#telefono_usuario").val("");
-      $("#correo_usuario").val("");
-      $("#estado_usuario").val("Activo");
-      $("#estado_usuario").attr("disabled", true);
-      $("#contrasenia").attr("required", true);
-      $(".btn-next").attr("action", "insert");
-      $(".btn-next").text("Guardar");
-  }
 
   // Registrar usuario.
   $(document).on('click', '.btn-next', function() {

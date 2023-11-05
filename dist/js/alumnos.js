@@ -115,19 +115,6 @@ $(document).ready(function () {
   $("form").submit(function(e){
       e.preventDefault();
   });
-  
-  // Función limpiar para el formulario de alumnos.
-  function resetForm() {
-    $("#id_alumno").val("");
-    $("#matricula").val("");
-    $("#nombre_alumno").val("");
-    $("#semestre").val("1");
-    $("#estado_alumno").val("Activo");
-    $("#estado_alumno").attr("disabled", true);
-    $("#estado_alumno").attr("disabled", true);
-    $(".btn-next").attr("action", "insert");
-    $(".btn-next").text("Guardar");
-  }
 
   // Registrar alumno.
   $(document).on('click', '.btn-next', function() {

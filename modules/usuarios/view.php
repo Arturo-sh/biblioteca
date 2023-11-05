@@ -4,10 +4,10 @@
         <div class="row mb-2">
         <div class="col-md-12 d-inline-flex">
             <div class="col-md-6">
-              <h1 class="">Usuarios</h1>
+              <h1>Usuarios</h1>
             </div>
             <div class="col-md-6 text-right">
-              <button class="btn btn-md btn-primary" data-toggle='modal' data-target='#modal-default'><i class='nav-icon fas fas fa-user mr-1'></i> Nuevo usuario</button>
+              <button class='btn btn-md btn-primary' data-toggle='modal' data-target='#modal-default' onclick='resetForm()'><i class='nav-icon fas fas fa-user mr-1'></i> Nuevo usuario</button>
             </div>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -55,7 +55,7 @@
                       </div>
                       <div class='form-group col-md-6'>
                         <label for='rol_usuario'>Estatus</label>
-                        <select class='form-select' id='estado_usuario' name='estado_usuario' disabled>
+                        <select class='form-select estatus' id='estado_usuario' name='estado_usuario' disabled>
                           <option value='Activo'>Activo</option>
                           <option value='Suspendido'>Suspendido</option>
                         </select>

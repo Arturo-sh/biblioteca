@@ -133,16 +133,6 @@ $(document).ready(function () {
       e.preventDefault();
   });
   
-  // Función limpiar para el formulario de prestamos.
-  function resetForm() {
-    $("#label_nombre_alumno").text("");
-    $("#label_nombre_usuario").text("");
-    $("#label_fecha_prestamo").text("");
-    $("#label_fecha_entrega").text("");
-
-    $("#lista-libros").html("");  
-  }
-
   // Registrar prestamo.
   $(document).on('click', '.btn-next', function() {
       let action = $(this).attr("action");
