@@ -12,6 +12,8 @@ $(document).ready(function() {
 
                 $("#card_prestamos").text(data.card_prestamos);
                 $("#card_libros").text(data.card_libros);
+                $("#card_editoriales").text(data.card_editoriales);
+                $("#card_categorias").text(data.card_categorias);
                 $("#card_alumnos").text(data.card_alumnos);
                 $("#card_usuarios").text(data.card_usuarios);
             },
@@ -29,7 +31,7 @@ $(document).ready(function() {
         $.ajax({
             type: "POST",
             url: "modules/home/model.php",
-            data: { students: true },
+            data: { students_select: true },
             success: function (response) {
                 $("#id_alumno").append(response);
                 let fecha = new Date();
@@ -53,8 +55,11 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "modules/home/search.php",
-            data: dataString,
+            url: "modules/home/model.php",
+            data: {
+                autocomplete: true,
+                key: key
+            },
             success: function(response) {
             $('#suggestions').fadeIn(100).html(response);
             $('.suggest-element').on('click', function(){

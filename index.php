@@ -138,7 +138,7 @@ if (!isset($_SESSION['id_usuario'])) header("Location: iniciar_sesion");
   
   <!-- Main-footer -->
   <footer class="main-footer text-center">
-    <strong>Copyright &copy; <?php echo date('Y'); ?> - <a href="#">Telebachillerato 24 de febrero</a>.</strong>
+    <strong>Copyright &copy; <?php echo date('Y'); ?> - <a href="#" style="text-decoration: none;">Telebachillerato 24 de febrero</a>.</strong>
     Todos los derechos reservados.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0

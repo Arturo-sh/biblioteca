@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-11-2023 a las 12:40:22
+-- Tiempo de generación: 05-11-2023 a las 13:41:40
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.3.13
 
@@ -44,7 +44,7 @@ INSERT INTO `alumnos` (`id_alumno`, `matricula`, `nombre_alumno`, `semestre`, `e
 (1, 19180054, 'Jorge Martínez García', 3, 'Activo'),
 (2, 19180010, 'Jorge Villarreal Vélez', 3, 'Activo'),
 (14, 12345679, 'Julián Osorio Pérez', 3, 'Activo'),
-(17, 19183344, 'Ramón Dante Fernández', 4, 'Baja'),
+(17, 19183344, 'Ramón Dante Fernández', 4, 'Activo'),
 (19, 15120143, 'Jesús Macedo López', 1, 'Baja'),
 (20, 19180090, 'Pedro Casas Montreal', 1, 'Baja'),
 (21, 19180023, 'Prueba Alumno siete', 1, 'Baja'),
@@ -181,11 +181,9 @@ CREATE TABLE `prestamos` (
 
 INSERT INTO `prestamos` (`id_prestamo`, `id_transaccion`, `id_libro`, `unidades_prestamo`) VALUES
 (88, 29, 54, 2),
-(90, 31, 21, 1),
 (97, 40, 55, 2),
-(99, 42, 14, 1),
-(100, 42, 24, 1),
-(101, 42, 35, 1);
+(112, 48, 24, 2),
+(113, 48, 21, 1);
 
 -- --------------------------------------------------------
 
@@ -208,11 +206,8 @@ CREATE TABLE `transaccion_prestamo` (
 
 INSERT INTO `transaccion_prestamo` (`id_transaccion`, `id_alumno`, `id_usuario`, `fecha_prestamo`, `fecha_entrega`, `estado_prestamo`) VALUES
 (29, 27, 1, '2023-10-31 22:49:29', '2023-11-01', 'Entregado'),
-(31, 1, 1, '2023-10-31 16:30:44', '2023-11-01', 'Pendiente'),
 (40, 19, 1, '2023-11-02 23:01:57', '2023-11-02', 'Entregado'),
-(42, 14, 1, '2023-11-03 09:58:37', '2023-11-03', 'Pendiente'),
-(45, 31, 1, '2023-11-04 03:12:33', '2023-11-04', 'Entregado'),
-(47, 1, 1, '2023-11-05 11:05:01', '2023-11-05', 'Pendiente');
+(48, 19, 1, '2023-11-05 11:52:47', '2023-11-06', 'Pendiente');
 
 -- --------------------------------------------------------
 
@@ -222,7 +217,7 @@ INSERT INTO `transaccion_prestamo` (`id_transaccion`, `id_alumno`, `id_usuario`,
 
 CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
-  `rol_usuario` enum('Admin','Usuario') NOT NULL DEFAULT 'Usuario',
+  `rol_usuario` enum('Admin','Usuario') NOT NULL DEFAULT 'Admin',
   `usuario` text NOT NULL,
   `contrasenia` text NOT NULL,
   `nombre_usuario` text NOT NULL,
@@ -239,42 +234,29 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`, `rol_usuario`, `usuario`, `contrasenia`, `nombre_usuario`, `telefono_usuario`, `correo_usuario`, `creacion_cuenta`, `estado_usuario`) VALUES
 (1, 'Admin', 'Admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Yatzamil Román Ángeles', '924 143 5497', 'admin@gmail.com', '2023-10-06 23:02:18', 'Activo'),
 (5, 'Admin', 'Marcos', 'dfadc855249b015fd2bb015c0b099b2189c58748', 'Marcos Garcia Juárez', '(924) 342-5347', 'marcos12@gmail.com', '2023-10-08 05:35:13', 'Activo'),
-(23, 'Usuario', 'arturo15', '65e313615c709400f57b2c19b11931eabffd8cf6', 'Arturo salas hernandez', '(111) 111-1111', 'correo@gmail.com', '2023-10-14 19:17:19', 'Activo'),
+(23, 'Admin', 'arturo15', '65e313615c709400f57b2c19b11931eabffd8cf6', 'Arturo salas hernandez', '(111) 111-1111', 'correo@gmail.com', '2023-10-14 19:17:19', 'Activo'),
 (28, 'Admin', 'Arturo1512', 'e8bc682de39f8160e26870ce75968bfd56ccc87b', 'SALAS HERNANDEZ ARTURO', '(924) 143-5497', 'salashernandez@gmail.com', '2023-10-15 03:09:04', 'Suspendido'),
-(32, 'Usuario', 'Arturo902', 'e8bc682de39f8160e26870ce75968bfd56ccc87b', 'Arturo Mancera Gomez', '(354) 657-7653', 'correo@gmail.com', '2023-10-17 01:05:43', 'Activo'),
-(33, 'Usuario', 'qwerty', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'qwerty', '(345) 432-2435', 'correo@gmail.com', '2023-10-17 01:10:29', 'Activo'),
-(34, 'Usuario', 'admins', '78220db283035fcb69a4281adbc00e17d0018a71', 'asdfsdf', '(434) 522-4635', 'correo@gmail.com', '2023-10-17 01:39:14', 'Activo'),
-(35, 'Usuario', 'prueba', '711383a59fda05336fd2ccf70c8059d1523eb41a', 'Prueba Insercion Ajax', '(924) 723-6122', 'ajax@gmail.com', '2023-10-17 01:41:25', 'Activo'),
-(36, 'Usuario', 'mei100', '88bad360bf302e910256cbc1aa8473ae4af25ab4', 'Mei', '(824) 356-4743', 'correo@gmail.com', '2023-10-17 01:45:40', 'Activo'),
-(38, 'Usuario', 'Marcos', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'Marcos Osorio Juáres', '(924) 342-5347', 'marcos12@gmail.com', '2023-10-17 01:55:45', 'Activo'),
-(39, 'Usuario', 'PruebaUsuario13', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'Prueba insercion de usuario', '(945) 364-7585', 'Acorreo@gmail.com', '2023-10-17 01:55:51', 'Activo'),
-(40, 'Usuario', 'preuba', '711383a59fda05336fd2ccf70c8059d1523eb41a', 'prueba de insercion', '(923) 435-4677', 'admin@gmail.com', '2023-10-17 02:07:44', 'Activo'),
+(33, 'Admin', 'qwerty', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'qwerty', '(345) 432-2435', 'correo@gmail.com', '2023-10-17 01:10:29', 'Activo'),
+(34, 'Admin', 'admins', '78220db283035fcb69a4281adbc00e17d0018a71', 'asdfsdf', '(434) 522-4635', 'correo@gmail.com', '2023-10-17 01:39:14', 'Activo'),
+(35, 'Admin', 'prueba', '711383a59fda05336fd2ccf70c8059d1523eb41a', 'Prueba Insercion Ajax', '(924) 723-6122', 'ajax@gmail.com', '2023-10-17 01:41:25', 'Activo'),
+(36, 'Admin', 'mei100', '88bad360bf302e910256cbc1aa8473ae4af25ab4', 'Mei', '(824) 356-4743', 'correo@gmail.com', '2023-10-17 01:45:40', 'Activo'),
+(38, 'Admin', 'Marcos', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'Marcos Osorio Juáres', '(924) 342-5347', 'marcos12@gmail.com', '2023-10-17 01:55:45', 'Activo'),
+(39, 'Admin', 'PruebaUsuario13', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 'Prueba insercion de usuario', '(945) 364-7585', 'Acorreo@gmail.com', '2023-10-17 01:55:51', 'Activo'),
+(40, 'Admin', 'preuba', '711383a59fda05336fd2ccf70c8059d1523eb41a', 'prueba de insercion', '(923) 435-4677', 'admin@gmail.com', '2023-10-17 02:07:44', 'Activo'),
 (41, 'Admin', 'Prueba', '711383a59fda05336fd2ccf70c8059d1523eb41a', 'Prueba de insercion', '(923) 435-4677', 'admin@gmail.com', '2023-10-17 02:08:16', 'Activo'),
-(42, 'Usuario', 'NuevoUsuario', '5043f762841a8c17c7385efd931b64d46ce0b044', 'Nuevo Usuario de prueba', '(924) 356-7585', 'nuevoPrueba@gmail.com', '2023-10-17 02:34:59', 'Activo'),
-(49, 'Usuario', 'Nuevo19', '74ee05eda008abd1a76ee10f8492a559dc11f4b1', 'Nuevo Usuario 19', '(123) 424-3314', 'correo19@gmail.com', '2023-10-17 04:11:02', 'Activo'),
+(42, 'Admin', 'NuevoUsuario', '5043f762841a8c17c7385efd931b64d46ce0b044', 'Nuevo Usuario de prueba', '(924) 356-7585', 'nuevoPrueba@gmail.com', '2023-10-17 02:34:59', 'Activo'),
+(49, 'Admin', 'Nuevo19', '74ee05eda008abd1a76ee10f8492a559dc11f4b1', 'Nuevo Usuario 19', '(123) 424-3314', 'correo19@gmail.com', '2023-10-17 04:11:02', 'Activo'),
 (50, 'Admin', 'Prueba167', '612c44c535dfd0b25d398ca3cc23db9119098a06', 'Prueba de registro 167', '(161) 616-1617', 'prueba167@gmail.com', '2023-10-17 04:16:26', 'Activo'),
 (51, 'Admin', 'admins', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 'prueba', '(234) 331-3234', 'correo@gmail.com', '2023-10-17 04:18:17', 'Activo'),
 (55, 'Admin', 'NuevoUser20', '5043f762841a8c17c7385efd931b64d46ce0b044', 'Nuevo 20', '(924) 536-2311', 'cooreo@gmail.com', '2023-10-17 08:04:26', 'Suspendido'),
-(57, 'Usuario', 'adminsar', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', '(324) 352-3123', 'admin@gmail.com', '2023-10-17 08:15:23', 'Activo'),
+(57, 'Admin', 'adminsar', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', '(324) 352-3123', 'admin@gmail.com', '2023-10-17 08:15:23', 'Activo'),
 (59, 'Admin', 'Ale2024', '2f98fc393008fea0cfac0b59a294657e6b1a5024', 'Alejandra Villarreal Vélez', '(924) 455-2334', 'aleVillarreal@gmail.com', '2023-10-18 20:46:45', 'Activo'),
-(60, 'Usuario', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', '', '', '2023-10-18 21:07:08', 'Activo'),
-(61, 'Usuario', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', '', '', '2023-10-18 21:07:16', 'Activo'),
-(62, 'Usuario', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', '', '', '2023-10-18 21:07:28', 'Activo'),
-(63, 'Usuario', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', '', '', '2023-10-18 21:08:28', 'Activo'),
-(64, 'Usuario', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', '', '', '2023-10-18 21:14:03', 'Activo'),
-(65, 'Usuario', 'NuevoUser233', '711383a59fda05336fd2ccf70c8059d1523eb41a', 'Pedro Casto jimenez', '(243) 625-4632', 'coorreo@gmal.com', '2023-10-19 00:20:30', 'Activo'),
-(66, 'Usuario', 'Nuevo27', '3f7f1d4c3d1fbe5018c042d4498fea6e69f0ff88', 'Nuevo registro 27', '(923) 834-7748', 'correo27@gmail.com', '2023-10-19 02:42:59', 'Activo'),
-(68, 'Usuario', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', '', '', '2023-10-19 03:36:16', 'Activo'),
-(69, 'Usuario', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', '', '', '2023-10-19 03:42:45', 'Activo'),
-(70, 'Usuario', 'Prueba30', 'b68ac55b2c59c71399ddb3329fc916d041a6c04c', 'Registro de prueba 30', '(433) 243-5235', 'prueba30@gmail.com', '2023-10-19 23:21:17', 'Activo'),
-(71, 'Usuario', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', '', '', '2023-10-19 23:30:34', 'Activo'),
-(72, 'Usuario', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', '', '', '2023-10-19 23:36:25', 'Activo'),
-(73, 'Usuario', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', '', '', '2023-10-19 23:36:34', 'Activo'),
-(74, 'Usuario', '', 'aff024fe4ab0fece4091de044c58c9ae4233383a', '', '', '', '2023-10-20 01:09:42', 'Activo'),
-(75, 'Usuario', 's', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '', '', '', '2023-10-20 01:11:22', 'Activo'),
+(65, 'Admin', 'NuevoUser233', '711383a59fda05336fd2ccf70c8059d1523eb41a', 'Pedro Casto jimenez', '(243) 625-4632', 'coorreo@gmal.com', '2023-10-19 00:20:30', 'Activo'),
+(70, 'Admin', 'Prueba30', 'b68ac55b2c59c71399ddb3329fc916d041a6c04c', 'Registro de prueba 30', '(433) 243-5235', 'prueba30@gmail.com', '2023-10-19 23:21:17', 'Activo'),
 (76, 'Admin', 'Usuario36', 'e72dde61f4095b352d67b1ecab11b1111b52652a', 'Usuario prueba 36', '(345) 465-7875', 'correo@gmail.com', '2023-10-22 02:06:02', 'Suspendido'),
 (77, 'Admin', 'NuevoUsuario37', 'a90c8b09a681c6a15acfc99f9cc63f522cf2c3ab', 'Nuevo Usuario 37', '(923) 487-3699', 'correoUsuario37@gmail.com', '2023-10-31 13:44:25', 'Activo'),
-(79, 'Usuario', '', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '', '', '', '2023-10-31 16:48:57', 'Activo');
+(80, 'Admin', 'oscar', '2dff4fc90e2973f54d62e257480de234bc59e2c4', 'Oscar Gomez Urias', '(923) 454-6345', 'correo@gmail.com', '2023-11-05 11:57:00', 'Activo'),
+(81, 'Admin', 'NuevoAdmin', 'b25a2edc1cdbe76cd9e683689df84adbc693d029', 'Nuevo Usuario Admin', '(934) 573-7823', 'correoAdmin@gmail.com', '2023-11-05 12:09:51', 'Activo');
 
 --
 -- Índices para tablas volcadas
@@ -360,19 +342,19 @@ ALTER TABLE `libros`
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT de la tabla `transaccion_prestamo`
 --
 ALTER TABLE `transaccion_prestamo`
-  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- Restricciones para tablas volcadas

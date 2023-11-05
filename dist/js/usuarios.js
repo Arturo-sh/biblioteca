@@ -34,20 +34,14 @@ $(document).ready(function () {
       { data: "rol_usuario", "orderable": false,
         render: function (data, type, row, meta) {
           if (type === 'display') {
-            let template = `
+            template = `
             <button id='${row.id_usuario}' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
               <i class='fas fa-pen'></i>
+            </button>
+            <button id='${row.id_usuario}' class='btn btn-sm btn-danger btn-delete'>
+              <i class='fas fa-trash'></i>
             </button>`;
-   
-            if (data != "Admin") {
-                template = `
-                <button id='${row.id_usuario}' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
-                  <i class='fas fa-pen'></i>
-                </button>
-                <button id='${row.id_usuario}' class='btn btn-sm btn-danger btn-delete'>
-                  <i class='fas fa-trash'></i>
-                </button>`;
-            }
+            
             return template;
           }
           return data;
@@ -158,9 +152,10 @@ $(document).ready(function () {
           contentType: false,
           success: function(response) {
               if(response == "") return
+              let data = JSON.parse(response);
               Swal.fire({
-                  icon: "success",
-                  title: response,
+                  icon: data.icon,
+                  title: data.msg,
                   showConfirmButton: false,
                   timer: 2000
               });
@@ -222,9 +217,10 @@ $(document).ready(function () {
                       delete_id
                   },
                   success: function(response) {
+                      let data = JSON.parse(response);
                       Swal.fire({
-                          icon: "success",
-                          title: response,
+                          icon: data.icon,
+                          title: data.msg,
                           showConfirmButton: false,
                           timer: 2000
                       });

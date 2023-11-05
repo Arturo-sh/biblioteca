@@ -78,7 +78,7 @@
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box bg-primary">
               <div class="inner">
                 <!-- <h3><?php //echo $_SESSION['cantidad_prestamos']; ?></h3> -->
                 <h3 id="card_prestamos"></h3>
@@ -93,7 +93,7 @@
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-danger">
               <div class="inner">
                 <!-- <h3><?php // echo $_SESSION['cantidad_libros']; ?></h3> -->
                 <h3 id="card_libros"></h3>
@@ -124,17 +124,49 @@
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box bg-success">
               <div class="inner">
                 <!-- <h3><?php // echo $_SESSION['cantidad_administradores']; ?></h3> -->
                 <h3 id="card_usuarios"></h3>
-                <p>Usuarios administradores</p>
+                <p>Administradores</p>
               </div>
               <div class="icon">
                 <!-- <i class="ion ion-pie-graph"></i> -->
                 <i class="nav-icon fas fa-users"></i>
               </div>
               <a href="usuarios" class="small-box-footer">Administrar <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-secondary">
+              <div class="inner">
+                <!-- <h3><?php // echo $_SESSION['cantidad_administradores']; ?></h3> -->
+                <h3 id="card_editoriales"></h3>
+                <p>Editoriales</p>
+              </div>
+              <div class="icon">
+                <!-- <i class="ion ion-pie-graph"></i> -->
+                <i class="nav-icon fas fa-newspaper"></i>
+              </div>
+              <a href="editoriales" class="small-box-footer">Administrar <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <!-- <h3><?php // echo $_SESSION['cantidad_administradores']; ?></h3> -->
+                <h3 id="card_categorias"></h3>
+                <p>Categorías de libros</p>
+              </div>
+              <div class="icon">
+                <!-- <i class="ion ion-pie-graph"></i> -->
+                <i class="nav-icon fas fa-list"></i>
+              </div>
+              <a href="categorias" class="small-box-footer">Administrar <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
