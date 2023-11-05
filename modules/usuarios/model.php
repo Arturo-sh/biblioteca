@@ -50,6 +50,12 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $estado_usuario = htmlspecialchars(trim($_POST['estado_usuario']), ENT_QUOTES, 'UTF-8');
         if ($_SESSION['id_usuario'] == $id_usuario) $_SESSION['nombre_usuario'] = $nombre_usuario;
         
+        $response = ["icon" => "success", "msg" => "Datos del usuario actualizados!"];
+        if ($_SESSION['id_usuario'] == $id_usuario) {
+            $estado_usuario = "Activo";
+            $response = ["icon" => "success", "msg" => "Datos del usuario actualizados (no se puede actualizar su propio estatus)!"];
+        }
+        
         if ($contrasenia == "") {
             $query_user_update = "UPDATE usuarios SET usuario = '$usuario', nombre_usuario = '$nombre_usuario', telefono_usuario = '$telefono_usuario', correo_usuario = '$correo_usuario', estado_usuario = '$estado_usuario' WHERE id_usuario = $id_usuario";
         } else {
@@ -58,15 +64,14 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         }
 
         $result_user_update = mysqli_query($conn, $query_user_update);
-        
-        if ($result_user_update) echo json_encode(["icon" => "success", "msg" => "Datos del usuario actualizados!"], JSON_UNESCAPED_UNICODE);
+        if ($result_user_update) echo json_encode($response, JSON_UNESCAPED_UNICODE);
     }
 
     if (isset($_POST['delete_id'])) {
         $id_usuario = $_POST['delete_id'];
                 
         if ($_SESSION['id_usuario'] == $id_usuario) {
-            echo json_encode(["icon" => "error", "msg" => "No puedes eliminar tu propio usuario!"], JSON_UNESCAPED_UNICODE);
+            echo json_encode(["icon" => "error", "msg" => "No puede eliminar su propio usuario!"], JSON_UNESCAPED_UNICODE);
             exit;
         }
 
