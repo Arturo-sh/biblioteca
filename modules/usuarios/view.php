@@ -7,7 +7,7 @@
               <h1>Usuarios</h1>
             </div>
             <div class="col-md-6 text-right">
-              <button class='btn btn-md btn-primary' data-toggle='modal' data-target='#modal-default' onclick='resetForm()'><i class='nav-icon fas fas fa-user mr-1'></i> Nuevo usuario</button>
+              <button class='btn btn-md btn-primary btn-add' data-toggle='modal' data-target='#modal-default' onclick='resetForm()'><i class='nav-icon fas fas fa-user mr-1'></i> Nuevo usuario</button>
             </div>
           </div><!-- /.col -->
         </div><!-- /.row -->

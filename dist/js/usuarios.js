@@ -120,6 +120,32 @@ $(document).ready(function () {
       e.preventDefault();
   });
 
+  // Funcion para habilitar el boton para registrar usuario cuando se rellene el formulario.
+  function checkForm() {
+      var camposCompletos = true;
+      
+      $('#usuario, #nombre_usuario, #telefono_usuario, #correo_usuario').each(function() {
+        if ($(this).val() === '') {
+          camposCompletos = false;
+          return false;
+        }
+      });
+
+      if ($('.btn-next').attr('action') === 'insert') {
+        if ($('#contrasena').val() === '') camposCompletos = false;
+      }
+  
+      $('.btn-next').attr('disabled', !camposCompletos);
+  }
+
+  $("form").on("keyup change", "input, select", function() {
+      checkForm();
+  });
+
+  $(document).on("click", ".btn-add", function() {
+    checkForm();
+  });
+
   // Registrar usuario.
   $(document).on('click', '.btn-next', function() {
       let action = $(this).attr("action");
@@ -175,6 +201,8 @@ $(document).ready(function () {
               $("#contrasenia").removeAttr("required");
               $(".btn-next").attr("action", "update");
               $(".btn-next").text("Actualizar");
+
+              checkForm();
           }
       });
   });

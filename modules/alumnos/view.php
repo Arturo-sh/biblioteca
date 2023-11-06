@@ -31,11 +31,11 @@
                 <div class='form-group col-md-12'>
                   <label for='matricula'>Matrícula</label>
                   <input type='hidden' class='form-control' id='id_alumno' name='id_alumno'>
-                  <input type='text' class='form-control' id='matricula' name='matricula' data-inputmask='"mask": "99999999"'data-mask placeholder='Ejemplo: 12435678' required>
+                  <input type='text' class='form-control' id='matricula' name='matricula' data-inputmask='"mask": "99999999"'data-mask placeholder='00000000' required>
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='nombre_alumno'>Nombre</label>
-                  <input type='text' class='form-control' id='nombre_alumno' name='nombre_alumno' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Jorge...' required>
+                  <input type='text' class='form-control' id='nombre_alumno' name='nombre_alumno' pattern='^[^\d]+$' title='Ingrese un nombre válido' required>
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='semestre'>Semestre</label>

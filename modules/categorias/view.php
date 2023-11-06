@@ -18,16 +18,16 @@
       <div class="container-fluid">
         <div class="row">
         <div class='col-md-3'>
-            <form method='POST' id='form' action='modules/editoriales/model.php'>
+            <form method='POST' id='form' action='modules/categorias/model.php'>
               <div class='card-body row'>
                 <div class='form-group col-md-12'>
                   <label for='nombre_categoria'>Categoría</label>
                   <input type='hidden' class='form-control' id='id_categoria' name='id_categoria'>
-                  <input type='text' class='form-control' id='nombre_categoria' name='nombre_categoria' required>
+                  <input type='text' class='form-control' id='nombre_categoria' name='nombre_categoria' placeholder='Ej. Cuentos' required>
                 </div>
                 <div class='form-group col-md-12'>
-                  <label for='descripcion_categoria'>Breve descripción</label>
-                  <input type='text' class='form-control' id='descripcion_categoria' name='descripcion_categoria'>
+                  <label for='descripcion_categoria'>Breve descripción (opcional)</label>
+                  <input type='text' class='form-control' id='descripcion_categoria' name='descripcion_categoria' placeholder='Ej. Narraciones breves basadas en ...' required>
                 </div>
               </div>
               <!-- /.card-body -->

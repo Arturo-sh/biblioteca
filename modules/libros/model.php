@@ -26,14 +26,16 @@ if ($_SESSION['rol_usuario'] == "Admin") {
           $id_editorial = $row['id_editorial'];
           $nombre_editorial = $row['nombre_editorial'];
   
-          $publisher_options .= "<option value='$id_editorial'>$nombre_editorial</option>";
+          $publisher_options .= "
+          <option value='$id_editorial'>$nombre_editorial</option>";
         }
   
         while ($row = mysqli_fetch_array($result_get_categories)) {
           $id_categoria = $row['id_categoria'];
           $nombre_categoria = $row['nombre_categoria'];
   
-          $category_options .= "<option value='$id_categoria'>$nombre_categoria</option>";
+          $category_options .= "
+          <option value='$id_categoria'>$nombre_categoria</option>";
         }
 
         $arr = [

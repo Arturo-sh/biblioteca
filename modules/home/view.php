@@ -25,7 +25,7 @@
             </button>
           </div>
           <div class='modal-body'>
-            <form method='POST' id='form' action='modules/usuarios/model.php'>
+            <form method='POST' id='form' action='modules/home/model.php'>
               <div class='card-body row'>
                 <div class='form-group col-md-12'>
                   <label for='id_alumno'>Alumno</label>
@@ -44,7 +44,7 @@
                 </div>
                 <div class='form-group col-md-12'>
                   <table class="table table-sm table-striped">
-                    <thead>
+                    <thead id='tbl-header'>
                       <tr>
                         <th class="col-md-8">Libro</th>
                         <th class="col-md-2">Unidades</th>

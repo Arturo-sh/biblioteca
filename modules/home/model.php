@@ -2,8 +2,8 @@
 session_start();
 require_once "../database.php";
 
-if (isset($_POST['students_select'])){
-    $html = '';
+if (isset($_POST['students_select'])) {
+    $html = "<option value='0' selected disabled>Selecciona un alumno</option>";
 
     $query = "SELECT id_alumno, matricula, nombre_alumno FROM alumnos WHERE estado_alumno = 'Activo'";
     $result = mysqli_query($conn, $query);
@@ -22,7 +22,7 @@ if (isset($_POST['students_select'])){
     echo $html;
 }
 
-if (isset($_POST['cards_info'])){
+if (isset($_POST['cards_info'])) {
     $query_get_loans = "SELECT * FROM transaccion_prestamo WHERE estado_prestamo = 'Pendiente'";
     $result_get_loans = mysqli_query($conn, $query_get_loans);
 
@@ -53,7 +53,7 @@ if (isset($_POST['cards_info'])){
     echo json_encode($arr);
 }
 
-if (isset($_POST['autocomplete'])){
+if (isset($_POST['autocomplete'])) {
     $html = '';
     $key = $_POST['key'];
 

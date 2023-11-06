@@ -116,6 +116,26 @@ $(document).ready(function () {
       e.preventDefault();
   });
 
+  // Funcion para habilitar el boton para registrar alumnos cuando se rellene el formulario.
+  function checkForm() {
+      var camposCompletos = true;
+      
+      $('#matricula, #nombre_alumno').each(function() {
+        if ($(this).val() === '') {
+          camposCompletos = false;
+          return false;
+        }
+      });
+  
+      $('.btn-next').attr('disabled', !camposCompletos);
+  }
+
+  $("form").on("keyup change", "input, select", function() {
+      checkForm();
+  });
+
+  checkForm();
+
   // Registrar alumno.
   $(document).on('click', '.btn-next', function() {
       let action = $(this).attr("action");
@@ -167,6 +187,8 @@ $(document).ready(function () {
               $(".btn-next").attr("action", "update");
               $(".btn-next").text("Actualizar");
               $("#estado_alumno").removeAttr("disabled");
+
+              checkForm();
           }
       });
   });

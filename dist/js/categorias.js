@@ -13,7 +13,14 @@ $(document).ready(function () {
     columns: [
       { data: "id_categoria" },
       { data: "nombre_categoria" },
-      { data: "descripcion_categoria" },
+      { data: "descripcion_categoria",
+        render: function (data, type) {
+          if (type === 'display') {
+            if (data === '') data = 'Sin descripción';
+          }
+          return data;
+        }
+      },
       { data: "id_categoria", "orderable": false,
         render: function (data, type) {
           if (type === 'display') {
@@ -54,6 +61,21 @@ $(document).ready(function () {
   $("form").submit(function(e){
       e.preventDefault();
   });
+
+  // Funcion para habilitar el boton para registrar categorias cuando se rellene el formulario.
+  function checkForm() {
+      var camposCompletos = true;
+      
+      if ($('#nombre_categoria').val() === '') camposCompletos = false;
+  
+      $('.btn-next').attr('disabled', !camposCompletos);
+  }
+
+  $("form").on("keyup change", "input", function() {
+      checkForm();
+  });
+
+  checkForm();
 
   // Registrar categoria.
   $(document).on('click', '.btn-next', function() {
@@ -103,6 +125,8 @@ $(document).ready(function () {
               $("#descripcion_categoria").val(data[0].descripcion_categoria);
               $(".btn-next").attr("action", "update");
               $(".btn-next").text("Actualizar");
+
+              checkForm();
           }
       });
   });

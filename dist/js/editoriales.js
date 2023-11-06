@@ -13,7 +13,14 @@ $(document).ready(function () {
     columns: [
       { data: "id_editorial" },
       { data: "nombre_editorial" },
-      { data: "pais_editorial" },
+      { data: "pais_editorial",
+        render: function (data, type) {
+          if (type === 'display') {
+            if (data === '') data = 'Desconocido';
+          }
+          return data;
+        }
+      },
       { data: "id_editorial", "orderable": false,
         render: function (data, type) {
           if (type === 'display') {
@@ -54,6 +61,21 @@ $(document).ready(function () {
   $("form").submit(function(e){
       e.preventDefault();
   });
+
+  // Funcion para habilitar el boton para registrar editoriales cuando se rellene el formulario.
+  function checkForm() {
+      var camposCompletos = true;
+      
+      if ($('#nombre_editorial').val() === '') camposCompletos = false;
+  
+      $('.btn-next').attr('disabled', !camposCompletos);
+  }
+
+  $("form").on("keyup change", "input", function() {
+      checkForm();
+  });
+
+  checkForm();
 
   // Registrar editorial.
   $(document).on('click', '.btn-next', function() {
@@ -103,6 +125,8 @@ $(document).ready(function () {
               $("#pais_editorial").val(data[0].pais_editorial);
               $(".btn-next").attr("action", "update");
               $(".btn-next").text("Actualizar");
+
+              checkForm();
           }
       });
   });

@@ -148,6 +148,33 @@ $(document).ready(function () {
       e.preventDefault();
   });
 
+  // Funcion para habilitar el boton para registrar libros cuando se rellene el formulario.
+  function checkForm() {
+      var camposCompletos = true;
+      
+      $('#titulo_libro, #unidades_totales').each(function() {
+        if ($(this).val() === '') {
+          camposCompletos = false;
+          return false;
+        }
+      });
+  
+      $('#id_editorial, #id_categoria').each(function() {
+        if ($(this).val() <= 0) {
+          camposCompletos = false;
+          return false;
+        }
+      });
+  
+      $('.btn-next').attr('disabled', !camposCompletos);
+  }
+
+  $("form").on("keyup change", "input, select", function() {
+      checkForm();
+  });
+
+  checkForm();
+
   // Registrar libro.
   $(document).on('click', '.btn-next', function() {
       let action = $(this).attr("action");
@@ -204,6 +231,8 @@ $(document).ready(function () {
               $(".btn-next").attr("action", "update");
               $(".btn-next").text("Actualizar");
               $("#estado_libro").removeAttr("disabled");
+
+              checkForm();
           }
       });
   });

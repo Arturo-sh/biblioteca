@@ -1,5 +1,25 @@
 $(document).ready(function() {
-    id_libros = [];
+    id_libros = []; // Arreglo para almacenar los id de los libros que se van a prestar.
+
+    // Funcion para habilitar el boton para registrar préstamos cuando se rellene el formulario.
+    function checkForm() {
+        var camposCompletos = true;
+
+        if ($('#id_alumno').val() <= 0) camposCompletos = false;
+        if ($('#fecha_entrega').val() === '') camposCompletos = false;
+        if ($('#tbl-libros tr').length <= 0) camposCompletos = false;
+        $('#tbl-libros tr').each(function () {
+            if ($(this).find('input[type="number"]').val() <= 0) camposCompletos = false;
+        });
+
+        $('.btn-next').attr('disabled', !camposCompletos);
+    }
+  
+    $("form").on("keyup change", "input, select", function() {
+        checkForm();
+    });
+  
+    checkForm();
 
     // Cargar datos para los cards.
     function load_cards() {
@@ -28,6 +48,7 @@ $(document).ready(function() {
 
     // Cargar lista de alumnos en el select.
     $("#nuevo-prestamo").on("click", function() {
+        $("#id_alumno").html("");
         $.ajax({
             type: "POST",
             url: "modules/home/model.php",
@@ -53,7 +74,6 @@ $(document).ready(function() {
     // Autocompletado de libros
     $('#key').on('keyup', function() {
         var key = $(this).val();		
-        var dataString = 'key='+key;
 
         $.ajax({
             type: "POST",
@@ -92,6 +112,7 @@ $(document).ready(function() {
                 }
                 id_libros.push(id);
         
+                checkForm();
                 $('#suggestions').fadeOut(100);
                 $("#key").val("");
                 return false;
@@ -108,10 +129,12 @@ $(document).ready(function() {
         $(this).closest('tr').remove();
 
         // Eliminar el producto del arreglo
-        var index = id_productos.indexOf(id);
+        var index = id_libros.indexOf(id);
         if (index !== -1) {
             id_productos.splice(index, 1);
         }
+
+        checkForm();
     });
 
     // Se envian los datos al servidor
@@ -142,29 +165,11 @@ $(document).ready(function() {
                 });
 			},
             complete: function() {
+                resetForm();
                 load_cards();
                 $("#tbl-libros").html("");
-                // habilitar_venta();
             }
         });
 	});
-
-
-    // Funcion que habilita el boton de venta cuando hay productos en la tabla 
-    // function habilitar_venta() {
-    //     var existingRows = $('#tbl-productos tr');
-    //     if (existingRows.length > 0 && parseFloat($('#total-pagar').text()) > 0) {
-    //         $("#tbl-header").removeAttr("hidden");
-	//         $("#btn-sell").removeAttr("disabled");
-    //         $("#btn-sell").fadeIn(500);
-
-    //     } else {
-    //         $("#tbl-header").attr("hidden", true);
-    //         $("#btn-sell").attr("disabled", true);
-    //         $("#btn-sell").fadeOut(500);
-    //     }
-    // }
-
-    // habilitar_venta();
 
   });

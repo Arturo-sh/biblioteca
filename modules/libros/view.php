@@ -21,7 +21,7 @@
                 <div class='form-group col-md-12'>
                   <label for='titulo_libro'>Título del libro</label>
                   <input type='hidden' class='form-control' id='id_libro' name='id_libro'>
-                  <input type='text' class='form-control' id='titulo_libro' name='titulo_libro' placeholder='Ejemplo: El principito' required>
+                  <input type='text' class='form-control' id='titulo_libro' name='titulo_libro' required>
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='id_editorial'>Editorial</label>
@@ -39,18 +39,18 @@
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='unidades_totales'>Unidades totales</label>
-                  <input type='number' class='form-control' id='unidades_totales' name='unidades_totales' placeholder='1' pattern='[0-9]+' title='Digite solo números sin espacios' required>
+                  <input type='number' class='form-control' id='unidades_totales' name='unidades_totales' placeholder='Ej. 1' pattern='[0-9]+' title='Digite solo números sin espacios' required>
                 </div>
                 <div class='form-group col-md-12'>
-                  <label for='imagen'>Imagen portada</label>
+                  <label for='imagen'>Imagen portada (opcional)</label>
                   <input type='file' class='form-control' id='imagen' name='imagen'>
                 </div>
                 <div class='form-group col-md-12 image-field' hidden>
                   <img id='image-view' src='dist/portadas/portada_default.png' style='width: 100%;'>
                 </div>
                 <div class='form-group col-md-12'>
-                  <label for='descripcion'>Breve descripción</label>
-                  <input type='text' class='form-control' id='descripcion' name='descripcion' placeholder='Ejemplo: Libro en buenas condiciones...'>
+                  <label for='descripcion'>Breve descripción (opcional)</label>
+                  <input type='text' class='form-control' id='descripcion' name='descripcion' placeholder='Ej. Libro en buenas condiciones...'>
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='estado_libro'>Estatus</label>
