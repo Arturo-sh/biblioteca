@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-11-2023 a las 12:21:22
+-- Tiempo de generación: 06-11-2023 a las 12:33:07
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.3.13
 
@@ -36,6 +36,14 @@ CREATE TABLE `alumnos` (
   `estado_alumno` enum('Activo','Baja') NOT NULL DEFAULT 'Activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `alumnos`
+--
+
+INSERT INTO `alumnos` (`id_alumno`, `matricula`, `nombre_alumno`, `semestre`, `estado_alumno`) VALUES
+(1, 19180054, 'Arturo Salas Hernández', 6, 'Activo'),
+(2, 19180055, 'Marcos Osorio Fernández', 4, 'Baja');
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +56,13 @@ CREATE TABLE `categorias` (
   `descripcion_categoria` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`, `descripcion_categoria`) VALUES
+(1, 'Programación', '');
+
 -- --------------------------------------------------------
 
 --
@@ -59,6 +74,13 @@ CREATE TABLE `editoriales` (
   `nombre_editorial` text NOT NULL,
   `pais_editorial` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `editoriales`
+--
+
+INSERT INTO `editoriales` (`id_editorial`, `nombre_editorial`, `pais_editorial`) VALUES
+(1, 'Alfa Omega', '');
 
 -- --------------------------------------------------------
 
@@ -77,6 +99,14 @@ CREATE TABLE `libros` (
   `estado_libro` enum('Activo','Suspendido') NOT NULL DEFAULT 'Activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `libros`
+--
+
+INSERT INTO `libros` (`id_libro`, `titulo_libro`, `id_editorial`, `id_categoria`, `unidades_totales`, `imagen_portada`, `descripcion`, `estado_libro`) VALUES
+(1, 'Visual Basic Vol. 1', 1, 1, 4, 'Captura de pantalla (134)_6548ce3266771.png', 'Libro en buena condición', 'Activo'),
+(2, 'El gran libro de Android 10', 1, 1, 2, 'portada_default.png', 'Nuevos', 'Suspendido');
+
 -- --------------------------------------------------------
 
 --
@@ -89,6 +119,13 @@ CREATE TABLE `prestamos` (
   `id_libro` int(11) NOT NULL,
   `unidades_prestamo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `prestamos`
+--
+
+INSERT INTO `prestamos` (`id_prestamo`, `id_transaccion`, `id_libro`, `unidades_prestamo`) VALUES
+(1, 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -104,6 +141,13 @@ CREATE TABLE `transaccion_prestamo` (
   `fecha_entrega` date NOT NULL,
   `estado_prestamo` enum('Pendiente','Entregado') NOT NULL DEFAULT 'Pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `transaccion_prestamo`
+--
+
+INSERT INTO `transaccion_prestamo` (`id_transaccion`, `id_alumno`, `id_usuario`, `fecha_prestamo`, `fecha_entrega`, `estado_prestamo`) VALUES
+(1, 1, 1, '2023-11-06 11:32:40', '2023-11-07', 'Pendiente');
 
 -- --------------------------------------------------------
 
@@ -128,7 +172,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `rol_usuario`, `usuario`, `contrasenia`, `nombre_usuario`, `telefono_usuario`, `correo_usuario`, `creacion_cuenta`, `estado_usuario`) VALUES
-(1, 'Admin', 'Admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Arturo Salas Hernández', '(924) 143-5497', 'admin@gmail.com', '2023-10-06 23:02:18', 'Activo');
+(1, 'Admin', 'Admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Arturo Salas Hernández', '(924) 143-5497', 'admin@gmail.com', '2023-10-06 23:02:18', 'Activo'),
+(2, 'Admin', 'carlos', 'ab5e2bca84933118bbc9d48ffaccce3bac4eeb64', 'Carlos López Ocampo', '(924) 132-5252', 'carlos@gmail.com', '2023-11-06 11:23:52', 'Suspendido');
 
 --
 -- Índices para tablas volcadas
@@ -190,43 +235,43 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `alumnos`
 --
 ALTER TABLE `alumnos`
-  MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `editoriales`
 --
 ALTER TABLE `editoriales`
-  MODIFY `id_editorial` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_editorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `libros`
 --
 ALTER TABLE `libros`
-  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `transaccion_prestamo`
 --
 ALTER TABLE `transaccion_prestamo`
-  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_transaccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
