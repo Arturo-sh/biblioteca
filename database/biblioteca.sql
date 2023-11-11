@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-11-2023 a las 12:21:22
+-- Tiempo de generación: 11-11-2023 a las 10:08:00
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.3.13
 
@@ -69,6 +69,7 @@ CREATE TABLE `editoriales` (
 CREATE TABLE `libros` (
   `id_libro` int(11) NOT NULL,
   `titulo_libro` text NOT NULL,
+  `autor` text NOT NULL,
   `id_editorial` int(11) NOT NULL,
   `id_categoria` int(11) NOT NULL,
   `unidades_totales` int(4) NOT NULL DEFAULT 1,

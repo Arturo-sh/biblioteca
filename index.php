@@ -82,7 +82,7 @@ if (!isset($_SESSION['id_usuario'])) header("Location: iniciar_sesion");
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="home" class="nav-link">Inicio</a>
+        <a href="inicio" class="nav-link">Inicio</a>
       </li>
     </ul>
     <!-- Right navbar links -->

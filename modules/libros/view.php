@@ -80,6 +80,7 @@
                     <tr>
                       <th>#</th>
                       <th>Título</th>
+                      <th>Autor(es)</th>
                       <th>Editorial</th>
                       <th>Categoría</th>
                       <th>Stock</th>

@@ -1,6 +1,6 @@
 <?php 
 session_start(); 
-if (isset($_SESSION['id_usuario'])) header("Location: home");
+if (isset($_SESSION['id_usuario'])) header("Location: inicio");
 ?>
 <!DOCTYPE html>
 <html lang="en">

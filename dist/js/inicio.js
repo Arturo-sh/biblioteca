@@ -25,7 +25,7 @@ $(document).ready(function() {
     function load_cards() {
         $.ajax({
             type: "POST",
-            url: "modules/home/model.php",
+            url: "modules/inicio/model.php",
             data: { cards_info: true },
             success: function (response) {
                 let data = JSON.parse(response);
@@ -51,7 +51,7 @@ $(document).ready(function() {
         $("#id_alumno").html("");
         $.ajax({
             type: "POST",
-            url: "modules/home/model.php",
+            url: "modules/inicio/model.php",
             data: { students_select: true },
             success: function (response) {
                 $("#id_alumno").append(response);
@@ -77,7 +77,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-            url: "modules/home/model.php",
+            url: "modules/inicio/model.php",
             data: {
                 autocomplete: true,
                 key: key
@@ -153,7 +153,7 @@ $(document).ready(function() {
         // Enviar los datos al servidor como un objeto JSON
         $.ajax({
             type: "POST",
-            url: "modules/home/model.php",
+            url: "modules/inicio/model.php",
             data: { prestamo: JSON.stringify(dataToSend) },
             success: function (response) {
                 if (response == "") return false;

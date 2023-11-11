@@ -71,7 +71,7 @@ $(document).ready(function () {
             text: "Generar PDF",
             pageSize: 'LEGAL',
             exportOptions: {
-              columns: [ 0, 1, 2, 3, 4, 5, 6 ]
+              columns: [ 1, 2, 3, 4, 5, 6 ]
             },
             modifier: {
               search: 'applied'
@@ -81,7 +81,7 @@ $(document).ready(function () {
             extend: 'excel',
             text: 'Generar Excel',
             exportOptions: {
-              columns: [ 0, 1, 2, 3, 4, 5, 6 ]
+              columns: [ 1, 2, 3, 4, 5, 6 ]
             },
             modifier: {
               search: 'applied'
@@ -91,7 +91,7 @@ $(document).ready(function () {
             extend: 'print',
             text: "Imprimir",
             exportOptions: {
-              columns: [ 0, 1, 2, 3, 4, 5, 6 ]
+              columns: [ 1, 2, 3, 4, 5, 6 ]
             },
             modifier: {
               search: 'applied'

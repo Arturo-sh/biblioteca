@@ -7,7 +7,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         if ($_SESSION['id_usuario'] != 1) {
             $query_get_users = "SELECT id_usuario, rol_usuario, usuario, nombre_usuario, telefono_usuario, correo_usuario, creacion_cuenta, estado_usuario FROM usuarios WHERE id_usuario != 1";
         } else {
-            $query_get_users = "SELECT id_usuario, rol_usuario, usuario, nombre_usuario, telefono_usuario, correo_usuario, creacion_cuenta, estado_usuario FROM usuarios";
+            $query_get_users = "SELECT id_usuario, rol_usuario, usuario, nombre_usuario, telefono_usuario, correo_usuario, DATE_FORMAT(creacion_cuenta, '%a. %d de %b. de %Y a las %r') AS creacion_cuenta, estado_usuario FROM usuarios";
         }
 
         $users_data = mysqli_query($conn, $query_get_users);

@@ -4,7 +4,7 @@ require_once "../database.php";
 
 if ($_SESSION['rol_usuario'] == "Admin") {
     if (isset($_POST['books_table'])) {
-        $query_get_books = "SELECT l.id_libro, l.titulo_libro, e.nombre_editorial, c.nombre_categoria, l.unidades_totales, l.imagen_portada, l.descripcion, l.estado_libro FROM libros AS l INNER JOIN editoriales AS e ON l.id_editorial = e.id_editorial INNER JOIN categorias AS c ON l.id_categoria = c.id_categoria";
+        $query_get_books = "SELECT l.id_libro, l.titulo_libro, l.autor, e.nombre_editorial, c.nombre_categoria, l.unidades_totales, l.imagen_portada, l.descripcion, l.estado_libro FROM libros AS l INNER JOIN editoriales AS e ON l.id_editorial = e.id_editorial INNER JOIN categorias AS c ON l.id_categoria = c.id_categoria";
         $books_data = mysqli_query($conn, $query_get_books);
     
         $data = mysqli_fetch_all($books_data, MYSQLI_ASSOC);
@@ -48,13 +48,14 @@ if ($_SESSION['rol_usuario'] == "Admin") {
 
     if (isset($_POST['action']) && $_POST['action'] == "insert") {
         $titulo_libro = htmlspecialchars(trim($_POST['titulo_libro']), ENT_QUOTES, 'UTF-8');
+        $autor = htmlspecialchars(trim($_POST['autor']), ENT_QUOTES, 'UTF-8');
         $id_editorial = htmlspecialchars(trim($_POST['id_editorial']), ENT_QUOTES, 'UTF-8');
         $id_categoria = htmlspecialchars(trim($_POST['id_categoria']), ENT_QUOTES, 'UTF-8');
         $unidades_totales = htmlspecialchars(trim($_POST['unidades_totales']), ENT_QUOTES, 'UTF-8');
         $descripcion = htmlspecialchars(trim($_POST['descripcion']), ENT_QUOTES, 'UTF-8');
         if ($descripcion == "") $descripcion = "Libro en buena condición";
 
-        $query_insert_book = "INSERT INTO libros(id_libro, titulo_libro, id_editorial, id_categoria, unidades_totales, descripcion) VALUES (NULL, '$titulo_libro', $id_editorial, $id_categoria, $unidades_totales, '$descripcion')";        
+        $query_insert_book = "INSERT INTO libros(id_libro, titulo_libro, autor, id_editorial, id_categoria, unidades_totales, descripcion) VALUES (NULL, '$titulo_libro', '$autor', $id_editorial, $id_categoria, $unidades_totales, '$descripcion')";        
         
         if (!empty($_FILES['imagen']['name'])) {
             $nombre_imagen = $_FILES['imagen']['name'];
@@ -94,6 +95,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
     if (isset($_POST['action']) && $_POST['action'] == "update") {
         $id_libro = htmlspecialchars(trim($_POST['id_libro']), ENT_QUOTES, 'UTF-8');
         $titulo_libro = htmlspecialchars(trim($_POST['titulo_libro']), ENT_QUOTES, 'UTF-8');
+        $autor = htmlspecialchars(trim($_POST['autor']), ENT_QUOTES, 'UTF-8');
         $id_editorial = htmlspecialchars(trim($_POST['id_editorial']), ENT_QUOTES, 'UTF-8');
         $id_categoria = htmlspecialchars(trim($_POST['id_categoria']), ENT_QUOTES, 'UTF-8');
         $unidades_totales = htmlspecialchars(trim($_POST['unidades_totales']), ENT_QUOTES, 'UTF-8');
@@ -101,7 +103,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $estado_libro = htmlspecialchars(trim($_POST['estado_libro']), ENT_QUOTES, 'UTF-8');
         if ($descripcion == "") $descripcion = "Libro en buena condición";
 
-        $query_update_book = "UPDATE libros SET titulo_libro = '$titulo_libro', id_editorial = $id_editorial, id_categoria = $id_categoria, unidades_totales = $unidades_totales, descripcion = '$descripcion', estado_libro = '$estado_libro' WHERE id_libro = $id_libro";        
+        $query_update_book = "UPDATE libros SET titulo_libro = '$titulo_libro', autor = '$autor', id_editorial = $id_editorial, id_categoria = $id_categoria, unidades_totales = $unidades_totales, descripcion = '$descripcion', estado_libro = '$estado_libro' WHERE id_libro = $id_libro";        
         
         if (!empty($_FILES['imagen']['name'])) {
             $nombre_imagen = $_FILES['imagen']['name'];

@@ -27,7 +27,7 @@ if ($rows > 0) {
 			header("Location: $module_redirect");
 			return;
 		} else {
-			header("Location: home");
+			header("Location: inicio");
 		}
 	} else {
 		$msg = "Cuenta inhabilitada, solicite la activación con el administrador!";

@@ -1,0 +1,6 @@
+Importante
+
+En la configuración del servidor MySQL (my.ini) agregar la siguiente línea para ajustar el idioma Español
+lc_time_names="es_ES"
+
+Para los formatos de fecha en la sección de préstamos

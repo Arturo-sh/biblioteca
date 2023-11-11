@@ -11,7 +11,7 @@ $book_menu = '';
 
 if (!empty($_GET) && isset($_GET['module'])) {
     switch($_GET['module']){
-      case 'home':
+      case 'inicio':
         $home_active = 'active'; break;
       case 'prestamos':
         $loans_active = 'active'; break;
@@ -39,7 +39,7 @@ if (!empty($_GET) && isset($_GET['module'])) {
 
 echo "
 <li class='nav-item mb-3'>
-    <a href='home' class='nav-link text-left btn btn-outline-secondary $home_active'>
+    <a href='inicio' class='nav-link text-left btn btn-outline-secondary $home_active'>
       <i class='nav-icon fas fas fa-home'></i>
       <p>
         Inicio

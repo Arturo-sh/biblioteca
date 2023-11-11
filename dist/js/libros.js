@@ -13,6 +13,7 @@ $(document).ready(function () {
     columns: [
       { data: "id_libro" },
       { data: "titulo_libro" },
+      { data: "autor" },
       { data: "nombre_editorial" },
       { data: "nombre_categoria" },
       { data: "unidades_totales" },
@@ -152,7 +153,7 @@ $(document).ready(function () {
   function checkForm() {
       var camposCompletos = true;
       
-      $('#titulo_libro, #unidades_totales').each(function() {
+      $('#titulo_libro, #autor, #unidades_totales').each(function() {
         if ($(this).val() === '') {
           camposCompletos = false;
           return false;

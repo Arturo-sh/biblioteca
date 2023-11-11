@@ -1,6 +1,6 @@
 <?php
 $modules = [
-    "home" => "modules/home/view.php",
+    "inicio" => "modules/inicio/view.php",
     "prestamos" => "modules/prestamos/view.php",
     "libros" => "modules/libros/view.php",
     "editoriales" => "modules/editoriales/view.php",
