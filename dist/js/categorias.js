@@ -71,7 +71,7 @@ $(document).ready(function () {
       $('.btn-next').attr('disabled', !camposCompletos);
   }
 
-  $("form").on("keyup change", "input", function() {
+  $("form").on("keyup change", "textarea", function() {
       checkForm();
   });
 

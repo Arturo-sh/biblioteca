@@ -35,7 +35,7 @@
                       <div class='form-group col-md-6'>
                         <label for='usuario'>Nombre de usuario</label>
                         <input type='hidden' class='form-control' id='id_usuario' name='id_usuario'>
-                        <input type='text' class='form-control' id='usuario' name='usuario' pattern='^([\w]){6,}$' title='Ingrese nombre de usuario mayor a 5 carácteres y sin espacios' placeholder='Nombre corto (sin espacios)' required>
+                        <textarea class='form-control' id='usuario' name='usuario' rows='2' placeholder='Nombre corto (preferentemente sin espacios)' required></textarea>
                       </div>
                       <div class='form-group col-md-6'>
                         <label for='contrasenia' id='pass-label'>Contraseña</label>
@@ -43,7 +43,7 @@
                       </div>
                       <div class='form-group col-md-6'>
                         <label for='nombre_usuario'>Nombre completo</label>
-                        <input type='text' class='form-control' id='nombre_usuario' name='nombre_usuario' pattern='^[^\d]+$' title='Ingrese un nombre válido' placeholder='Ejemplo: Pedro...' required>
+                        <textarea class='form-control' id='nombre_usuario' name='nombre_usuario' rows='1' placeholder='Nombre completo' required></textarea>
                       </div>
                       <div class='form-group col-md-6'>
                         <label for='telefono_usuario'>Teléfono</label>
@@ -51,7 +51,7 @@
                       </div>
                       <div class='form-group col-md-6'>
                         <label for='correo_usuario'>Correo</label>
-                        <input type='email' class='form-control' id='correo_usuario' name='correo_usuario' placeholder='usuario@gmail.com'>
+                        <textarea class='form-control' id='correo_usuario' name='correo_usuario' rows='1' placeholder='admin@gmail.com' required></textarea>
                       </div>
                       <div class='form-group col-md-6'>
                         <label for='rol_usuario'>Estatus</label>

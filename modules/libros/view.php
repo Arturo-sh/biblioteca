@@ -21,7 +21,11 @@
                 <div class='form-group col-md-12'>
                   <label for='titulo_libro'>Título del libro</label>
                   <input type='hidden' class='form-control' id='id_libro' name='id_libro'>
-                  <input type='text' class='form-control' id='titulo_libro' name='titulo_libro' required>
+                  <textarea class='form-control' id='titulo_libro' name='titulo_libro' rows='2' required></textarea>
+                </div>
+                <div class='form-group col-md-12'>
+                  <label for='autor'>Autor(es)</label>
+                  <textarea class='form-control' id='autor' name='autor' rows='2' required></textarea>
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='id_editorial'>Editorial</label>
@@ -50,7 +54,7 @@
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='descripcion'>Breve descripción (opcional)</label>
-                  <input type='text' class='form-control' id='descripcion' name='descripcion' placeholder='Ej. Libro en buenas condiciones...'>
+                  <textarea class='form-control' id='descripcion' name='descripcion' rows='2' placeholder='Ej. Libro en buenas condiciones ...' required></textarea>
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='estado_libro'>Estatus</label>

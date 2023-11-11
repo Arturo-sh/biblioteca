@@ -35,7 +35,7 @@
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='nombre_alumno'>Nombre</label>
-                  <input type='text' class='form-control' id='nombre_alumno' name='nombre_alumno' pattern='^[^\d]+$' title='Ingrese un nombre válido' required>
+                  <textarea class='form-control' id='nombre_alumno' name='nombre_alumno' rows='1' required></textarea>
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='semestre'>Semestre</label>

@@ -23,11 +23,11 @@
                 <div class='form-group col-md-12'>
                   <label for='nombre_editorial'>Editorial</label>
                   <input type='hidden' class='form-control' id='id_editorial' name='id_editorial'>
-                  <input type='text' class='form-control' id='nombre_editorial' name='nombre_editorial' placeholder='Ej. Pearson' required>
+                  <textarea class='form-control' id='nombre_editorial' name='nombre_editorial' rows='2' placeholder='Ej. Pearson' required></textarea>
                 </div>
                 <div class='form-group col-md-12'>
                   <label for='pais_editorial'>País (opcional)</label>
-                  <input type='text' class='form-control' id='pais_editorial' name='pais_editorial' placeholder='Ej. México' required>
+                  <textarea class='form-control' id='pais_editorial' name='pais_editorial' rows='2' placeholder='Ej. México' required></textarea>
                 </div>
               </div>
               <!-- /.card-body -->
