@@ -32,6 +32,8 @@ if (!isset($_SESSION['id_usuario'])) header("Location: iniciar_sesion");
   <link rel="stylesheet" href="dist/css/bootstrap.min.css">
   <!-- Suggestions search books -->
   <link rel="stylesheet" href="dist/css/suggestions.css">
+  <!-- Responsive DataTables for mobile devices -->
+  <link rel="stylesheet" href="dist/css/responsive_datatable.css">
 
   <!-- JS files -->
   <!-- jQuery -->
@@ -154,15 +156,9 @@ if (!isset($_SESSION['id_usuario'])) header("Location: iniciar_sesion");
   //Initialize Jquery UI
   $.widget.bridge('uibutton', $.ui.button);
 
-  //Initialize Select2 Elements
-  // $('.select2').select2();
-
   //Initialize inputMask Elements
   $('[data-mask]').inputmask();
   
-  //Initialize bsCustomFileInput Elements
-  // bsCustomFileInput.init();
-
  // Función limpiar para el formulario de usuarios.
  function resetForm() {
       $("#form")[0].reset();
@@ -172,6 +168,12 @@ if (!isset($_SESSION['id_usuario'])) header("Location: iniciar_sesion");
       $(".btn-next").attr("disabled", true);
       $(".btn-next").text("Guardar");
   }
+
+  //Initialize Select2 Elements
+  // $('.select2').select2();
+
+  //Initialize bsCustomFileInput Elements
+  // bsCustomFileInput.init();
 </script>
 
 </body>

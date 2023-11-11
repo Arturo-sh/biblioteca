@@ -15,48 +15,48 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class='col-md-3'>
+          <div class='col-12 col-sm-12 col-md-3'>
             <form method='POST' id='form' action='modules/libros/model.php' enctype='multipart/form-data'>
               <div class='card-body row'>
-                <div class='form-group col-md-12'>
+                <div class='col-md-12 col-6 p-1'>
                   <label for='titulo_libro'>Título del libro</label>
                   <input type='hidden' class='form-control' id='id_libro' name='id_libro'>
-                  <textarea class='form-control' id='titulo_libro' name='titulo_libro' rows='2' required></textarea>
+                  <textarea class='form-control' id='titulo_libro' name='titulo_libro' rows='1' required></textarea>
                 </div>
-                <div class='form-group col-md-12'>
+                <div class='col-md-12 col-6 p-1'>
                   <label for='autor'>Autor(es)</label>
-                  <textarea class='form-control' id='autor' name='autor' rows='2' required></textarea>
+                  <textarea class='form-control' id='autor' name='autor' rows='1' required></textarea>
                 </div>
-                <div class='form-group col-md-12'>
+                <div class='col-md-12 col-6 p-1'>
                   <label for='id_editorial'>Editorial</label>
                   <select class='form-select' id='id_editorial' name='id_editorial' required>
                     <option value='0' selected disabled>Seleccionar</option>
                     <!-- LLenado dinámico -->
                   </select>
                 </div>
-                <div class='form-group col-md-12'>
+                <div class='col-md-12 col-6 p-1'>
                   <label for='id_categoria'>Categoría</label>
                   <select class="form-select" id="id_categoria" name="id_categoria"  required>
                     <option value='0' selected disabled>Seleccionar</option>
                     <!-- LLenado dinámico -->
                   </select>
                 </div>
-                <div class='form-group col-md-12'>
+                <div class='col-md-12 col-6 p-1'>
                   <label for='unidades_totales'>Unidades totales</label>
                   <input type='number' class='form-control' id='unidades_totales' name='unidades_totales' placeholder='Ej. 1' pattern='[0-9]+' title='Digite solo números sin espacios' required>
                 </div>
-                <div class='form-group col-md-12'>
-                  <label for='imagen'>Imagen portada (opcional)</label>
+                <div class='col-md-12 col-6 p-1'>
+                  <label for='imagen'>Portada (opcional)</label>
                   <input type='file' class='form-control' id='imagen' name='imagen'>
                 </div>
-                <div class='form-group col-md-12 image-field' hidden>
+                <div class='col-md-12 p-1 image-field' hidden>
                   <img id='image-view' src='dist/portadas/portada_default.png' style='width: 100%;'>
                 </div>
-                <div class='form-group col-md-12'>
-                  <label for='descripcion'>Breve descripción (opcional)</label>
-                  <textarea class='form-control' id='descripcion' name='descripcion' rows='2' placeholder='Ej. Libro en buenas condiciones ...' required></textarea>
+                <div class='col-md-12 col-6 p-1'>
+                  <label for='descripcion'>Descripción</label>
+                  <textarea class='form-control' id='descripcion' name='descripcion' rows='1' placeholder='(Opcional) Ej. Libro en buenas condiciones ...' required></textarea>
                 </div>
-                <div class='form-group col-md-12'>
+                <div class='col-md-12 col-6 p-1'>
                   <label for='estado_libro'>Estatus</label>
                   <select class='form-select estatus' id='estado_libro' name='estado_libro' disabled> 
                     <option value='Activo'>Activo</option>
@@ -66,8 +66,8 @@
               </div>
               <!-- /.card-body -->
               <div class='text-center mb-4'>
-                <button type='reset' class='btn btn-outline-danger' onclick='resetForm()'>Cancelar</button>
-                <button type='submit' class='btn btn-outline-success btn-next' action='insert'>Guardar</button>
+                <button type='reset' class='btn btn-sm btn-outline-danger' onclick='resetForm()'>Cancelar</button>
+                <button type='submit' class='btn btn-sm btn-outline-success btn-next' action='insert'>Guardar</button>
               </div>
             </form>
           </div>

@@ -1,6 +1,6 @@
 $(document).ready(function () {
   var table = $("#example1").DataTable({
-    "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": true, 
+    "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": true, // pagingType: 'simple_numbers', // Opciones: 'simple', 'simple_numbers', 'full', 'full_numbers'
     pageLength: 5,
     ajax: {
       url: "modules/alumnos/model.php",

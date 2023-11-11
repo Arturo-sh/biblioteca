@@ -6,11 +6,11 @@
             <div class="col-md-6">
               <h1 class="">Alumnos</h1>
             </div>
-            <div class="col-md-6 text-right">
-              <button id='1' class='btn btn-md btn-outline-danger btn-change-grade'>
+            <div class="col-6 text-right">
+              <button id='1' class='btn btn-sm btn-outline-danger btn-change-grade'>
                 <i class='fas fa-minus'></i> 1 semestre
               </button>
-              <button id='2' class='btn btn-md btn-outline-primary btn-change-grade'>
+              <button id='2' class='btn btn-sm btn-outline-primary btn-change-grade'>
                 <i class='fas fa-plus'></i> 1 semestre
               </button>
             </div>
@@ -25,19 +25,19 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class='col-md-3'>
+          <div class='col-12 col-sm-12 col-md-3'>
             <form method='POST' id='form' action='modules/alumnos/model.php'>
               <div class='card-body row'>
-                <div class='form-group col-md-12'>
+                <div class='col-md-12 col-6 p-1'>
                   <label for='matricula'>Matrícula</label>
                   <input type='hidden' class='form-control' id='id_alumno' name='id_alumno'>
                   <input type='text' class='form-control' id='matricula' name='matricula' data-inputmask='"mask": "99999999"'data-mask placeholder='00000000' required>
                 </div>
-                <div class='form-group col-md-12'>
+                <div class='col-md-12 col-6 p-1'>
                   <label for='nombre_alumno'>Nombre</label>
                   <textarea class='form-control' id='nombre_alumno' name='nombre_alumno' rows='1' required></textarea>
                 </div>
-                <div class='form-group col-md-12'>
+                <div class='col-md-12 col-6 p-1'>
                   <label for='semestre'>Semestre</label>
                   <select class='form-select' id='semestre' name='semestre'>
                     <option value='1'>1er semestre</option>
@@ -48,7 +48,7 @@
                     <option value='6'>6to semestre</option>
                   </select>
                 </div>
-                <div class='form-group col-md-12'>
+                <div class='col-md-12 col-6 p-1'>
                   <label for='estado_alumno'>Estatus</label>
                   <select class='form-select estatus' id='estado_alumno' name='estado_alumno' disabled> 
                     <option value='Activo'>Activo</option>
@@ -58,8 +58,8 @@
               </div>
               <!-- /.card-body -->
               <div class='text-center mb-4'>
-                <button type='reset' class='btn btn-outline-danger' onclick='resetForm()'>Cancelar</button>
-                <button type='submit' class='btn btn-outline-success btn-next' action='insert'>Guardar</button>
+                <button type='reset' class='btn btn-sm btn-outline-danger' onclick='resetForm()'>Cancelar</button>
+                <button type='submit' class='btn btn-sm btn-outline-success btn-next' action='insert'>Guardar</button>
               </div>
             </form>
           </div>

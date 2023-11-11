@@ -4,7 +4,7 @@
         <div class="row mb-2">
           <div class="col-md-12 d-inline-flex">
             <div class="col-md-6">
-              <h1 class="">Inicio</h1>
+              <h1>Inicio</h1>
             </div>
             <div class="col-md-6 text-right">
               <button id="nuevo-prestamo" class="btn btn-md btn-primary" data-toggle='modal' data-target='#modal-default'><i class='nav-icon fas fas fa-paperclip'></i> Nuevo préstamo</button>
@@ -27,22 +27,22 @@
           <div class='modal-body'>
             <form method='POST' id='form' action='modules/home/model.php'>
               <div class='card-body row'>
-                <div class='form-group col-md-12'>
+                <div class='col-md-12 p-1'>
                   <label for='id_alumno'>Alumno</label>
                   <select class="form-select"  id="id_alumno" name="id_alumno">
                     <!-- Se rellena dinamicamente -->
                   </select>
                 </div>
-                <div class='form-group col-md-12'>
+                <div class='col-md-12 p-1'>
                   <label for='fecha_entrega'>Fecha de entrega</label>
                   <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
                 </div>
-                <div class='form-group col-md-12'>
+                <div class='col-md-12 p-1'>
                   <label for='key'>Libro</label>
                   <input type="search" class="form-control" name="key" id="key" placeholder="Buscar libro...">
                   <div id="suggestions"></div>
                 </div>
-                <div class='form-group col-md-12'>
+                <div class='col-md-12 p-1'>
                   <table class="table table-sm table-striped">
                     <thead id='tbl-header'>
                       <tr>
@@ -59,8 +59,8 @@
               </div>
               <!-- /.card-body -->
               <div class='text-center mb-4'>
-                <button type='reset' class='btn btn-outline-danger' data-dismiss='modal'>Cancelar</button>
-                <button type='submit' class='btn btn-outline-success btn-next' action='insert' data-dismiss='modal'>Guardar</button>
+                <button type='reset' class='btn btn-sm btn-outline-danger' data-dismiss='modal'>Cancelar</button>
+                <button type='submit' class='btn btn-sm btn-outline-success btn-next' action='insert' data-dismiss='modal'>Guardar</button>
               </div>
             </form>
           </div>
@@ -76,7 +76,7 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
+          <div class="col-sm-3 col-6">
             <!-- small box -->
             <div class="small-box bg-primary">
               <div class="inner">
@@ -91,7 +91,7 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-sm-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
@@ -107,7 +107,7 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-sm-3 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner text-white">
@@ -122,7 +122,7 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-sm-3 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
@@ -138,7 +138,7 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-sm-3 col-6">
             <!-- small box -->
             <div class="small-box bg-secondary">
               <div class="inner">
@@ -154,7 +154,7 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-sm-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">

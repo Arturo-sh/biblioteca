@@ -17,23 +17,23 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-        <div class='col-md-3'>
+        <div class='col-12 col-sm-12 col-md-3'>
             <form method='POST' id='form' action='modules/categorias/model.php'>
               <div class='card-body row'>
-                <div class='form-group col-md-12'>
+                <div class='col-md-12 col-6 p-1'>
                   <label for='nombre_categoria'>Categoría</label>
                   <input type='hidden' class='form-control' id='id_categoria' name='id_categoria'>
-                  <textarea class='form-control' id='nombre_categoria' name='nombre_categoria' rows='2' placeholder='Ej. Cuentos' required></textarea>
+                  <textarea class='form-control' id='nombre_categoria' name='nombre_categoria' rows='1' placeholder='Ej. Cuentos' required></textarea>
                 </div>
-                <div class='form-group col-md-12'>
-                  <label for='descripcion_categoria'>Breve descripción (opcional)</label>
-                  <textarea class='form-control' id='descripcion_categoria' name='descripcion_categoria' rows='2' placeholder='Ej. Narraciones breves basadas en ...' required></textarea>
+                <div class='col-md-12 col-6 p-1'>
+                  <label for='descripcion_categoria'>Descripción</label>
+                  <textarea class='form-control' id='descripcion_categoria' name='descripcion_categoria' rows='1' placeholder='(Opcional) Ej. Narraciones breves basadas en ...' required></textarea>
                 </div>
               </div>
               <!-- /.card-body -->
               <div class='text-center mb-4'>
-                <button type='reset' class='btn btn-outline-danger' onclick='resetForm()'>Cancelar</button>
-                <button type='submit' class='btn btn-outline-success btn-next' action='insert'>Guardar</button>
+                <button type='reset' class='btn btn-sm btn-outline-danger' onclick='resetForm()'>Cancelar</button>
+                <button type='submit' class='btn btn-sm btn-outline-success btn-next' action='insert'>Guardar</button>
               </div>
             </form>
           </div>
