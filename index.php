@@ -2,7 +2,6 @@
 session_start(); 
 if (!isset($_SESSION['id_usuario'])) header("Location: iniciar_sesion");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,6 +64,9 @@ if (!isset($_SESSION['id_usuario'])) header("Location: iniciar_sesion");
   <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
   <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
   <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <!-- Service Worker -->
+  <link rel="manifest" href="dist/js/manifest.json">
+  <link rel="manifest" href="dist/js/index.js">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
