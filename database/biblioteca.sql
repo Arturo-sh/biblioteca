@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-11-2023 a las 10:08:00
+-- Tiempo de generación: 11-11-2023 a las 11:37:06
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.3.13
 
@@ -129,7 +129,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `rol_usuario`, `usuario`, `contrasenia`, `nombre_usuario`, `telefono_usuario`, `correo_usuario`, `creacion_cuenta`, `estado_usuario`) VALUES
-(1, 'Admin', 'Admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Arturo Salas Hernández', '(924) 143-5497', 'admin@gmail.com', '2023-10-06 23:02:18', 'Activo');
+(1, 'Admin', 'teba24', '$2y$10$J87lU56I.bVRsmjVtwX12.2GTAtvGuRIMcxIEikzJGX9sF9myLJym', 'Telebachillerato 24', '(000) 000-0000', 'No registrado', '2023-11-10 14:00:00', 'Activo');
 
 --
 -- Índices para tablas volcadas

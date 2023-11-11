@@ -4,3 +4,7 @@ En la configuración del servidor MySQL (my.ini) agregar la siguiente línea par
 lc_time_names="es_ES"
 
 Para los formatos de fecha en la sección de préstamos
+
+Credenciales por defecto para inicio de sesión:
+usuario: teba24
+contraseña: admin
