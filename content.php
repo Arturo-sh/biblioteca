@@ -10,7 +10,7 @@ $modules = [
 ];
 
 if (empty($_GET) || !isset($_GET['module'])) {
-    $module = "home";
+    $module = "inicio";
 } else { 
     $module = $_GET['module'];
 }
