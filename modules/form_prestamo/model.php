@@ -1,5 +1,7 @@
 <?php
 session_start();
+if (!isset($_SESSION['id_usuario'])) exit;
+
 require_once "../database.php";
 
 if (isset($_POST['students_select'])) {
