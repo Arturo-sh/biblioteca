@@ -22,7 +22,7 @@ $(document).ready(function () {
         data: "correo_usuario",
         render: function (data, type) {
           if (type === "display") {
-            if (data === "") data = "No especificado";
+            if (data === "") data = "No registrado";
           }
           return data;
         },
@@ -138,7 +138,7 @@ $(document).ready(function () {
   function checkForm() {
     var camposCompletos = true;
 
-    $("#usuario, #nombre_usuario, #telefono_usuario, #correo_usuario").each(
+    $("#usuario, #nombre_usuario, #telefono_usuario").each(
       function () {
         if ($(this).val() === "") {
           camposCompletos = false;

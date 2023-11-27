@@ -27,7 +27,7 @@
                 </div>
                 <div class='col-md-12 col-6 p-1'>
                   <label for='descripcion_categoria'>Descripción</label>
-                  <textarea class='form-control' id='descripcion_categoria' name='descripcion_categoria' rows='1' placeholder='(Opcional) Ej. Narraciones breves basadas en ...'></textarea>
+                  <textarea class='form-control' id='descripcion_categoria' name='descripcion_categoria' rows='1' placeholder='(Opcional) Ej. Narraciones breves basadas en...'></textarea>
                 </div>
               </div>
               <!-- /.card-body -->

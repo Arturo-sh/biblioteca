@@ -17,7 +17,19 @@ $(document).ready(function () {
       { data: "id_alumno" },
       { data: "matricula" },
       { data: "nombre_alumno" },
-      { data: "semestre" },
+      {
+        data: "semestre",
+        render: function (data, type) {
+          if (type === "display") {
+            switch (data) {
+              case "1": case "3": data = `${data}er`; break;
+              case "2": data = `${data}do`; break;
+              case "4": case "5": case "6": data = `${data}to`; break;
+            }
+          }
+          return data;
+        },
+      },
       {
         data: "estado_alumno",
         render: function (data, type) {
@@ -122,6 +134,27 @@ $(document).ready(function () {
     e.preventDefault();
   });
 
+  // Funcion para cargar la siguiente matricula a almacenar
+  function loadLastConfig() {
+    $.ajax({
+      type: "POST",
+      url: "modules/alumnos/model.php",
+      data: {
+        last_config: true
+      },
+      success: function (response) {
+        let data = JSON.parse(response);
+        if (data == "") $("#matricula").val("C1360");
+        let ultimosDigitos = data[0].matricula.slice(1); 
+        let siguienteMatricula = parseInt(ultimosDigitos) + 1; 
+        $("#matricula").val(`C${siguienteMatricula}`);
+        $("#semestre").val(data[0].semestre);
+      }
+    });
+  }
+
+  loadLastConfig();
+
   // Funcion para habilitar el boton para registrar alumnos cuando se rellene el formulario.
   function checkForm() {
     var camposCompletos = true;
@@ -162,11 +195,12 @@ $(document).ready(function () {
           icon: "success",
           title: response,
           showConfirmButton: false,
-          timer: 2000,
+          timer: 800,
         });
       },
       complete: function () {
         resetForm();
+        loadLastConfig();
         table.ajax.reload();
       },
     });

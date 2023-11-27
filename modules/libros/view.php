@@ -54,7 +54,7 @@
                 </div>
                 <div class='col-md-12 col-6 p-1'>
                   <label for='descripcion'>Descripción</label>
-                  <textarea class='form-control' id='descripcion' name='descripcion' rows='1' placeholder='(Opcional) Ej. Libro en buenas condiciones ...'></textarea>
+                  <textarea class='form-control' id='descripcion' name='descripcion' rows='1' placeholder='(Opcional) Ej. Libro en buenas condiciones...'></textarea>
                 </div>
                 <div class='col-md-12 col-6 p-1'>
                   <label for='estado_libro'>Estatus</label>

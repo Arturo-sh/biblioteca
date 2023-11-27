@@ -12,12 +12,20 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 
+    if (isset($_POST['last_config'])) {
+        $query_get_code = "SELECT matricula, semestre FROM alumnos WHERE estado_alumno = 'Activo' ORDER BY id_alumno DESC LIMIT 1";
+        $student_code = mysqli_query($conn, $query_get_code);
+        $row = mysqli_fetch_all($student_code, MYSQLI_ASSOC);
+
+        echo json_encode($row, JSON_UNESCAPED_UNICODE);
+    }
+
     if (isset($_POST['action']) && $_POST['action'] == "insert") {
         $matricula = htmlspecialchars(trim($_POST['matricula']), ENT_QUOTES, 'UTF-8');
         $nombre_alumno = htmlspecialchars(trim($_POST['nombre_alumno']), ENT_QUOTES, 'UTF-8');
         $semestre = htmlspecialchars(trim($_POST['semestre']), ENT_QUOTES, 'UTF-8');
 
-        $query_student_insert = "INSERT INTO alumnos(id_alumno, matricula, nombre_alumno, semestre) VALUES(NULL, $matricula, '$nombre_alumno', $semestre)";
+        $query_student_insert = "INSERT INTO alumnos(id_alumno, matricula, nombre_alumno, semestre) VALUES(NULL, '$matricula', '$nombre_alumno', $semestre)";
         $result_student_insert = mysqli_query($conn, $query_student_insert);
 
         if ($result_student_insert) echo "Alumn@ registrado!";
@@ -40,7 +48,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $semestre = htmlspecialchars(trim($_POST['semestre']), ENT_QUOTES, 'UTF-8');
         $estado_alumno = htmlspecialchars(trim($_POST['estado_alumno']), ENT_QUOTES, 'UTF-8');
 
-        $query_student_update = "UPDATE alumnos SET matricula = $matricula, nombre_alumno  = '$nombre_alumno', semestre = $semestre, estado_alumno = '$estado_alumno' WHERE id_alumno = $id_alumno";
+        $query_student_update = "UPDATE alumnos SET matricula = '$matricula', nombre_alumno  = '$nombre_alumno', semestre = $semestre, estado_alumno = '$estado_alumno' WHERE id_alumno = $id_alumno";
         $result_student_update = mysqli_query($conn, $query_student_update);
 
         if ($result_student_update) echo "Datos del alumn@ actualizados!";

@@ -237,8 +237,8 @@ $(document).ready(function () {
         $("#id_libro").val(data[0].id_libro);
         $("#titulo_libro").val(data[0].titulo_libro);
         $("#autor").val(data[0].autor);
-        // $("#id_editorial").val(data[0].id_editorial).trigger("change");
-        // $("#id_categoria").val(data[0].id_categoria).trigger("change");
+        $("#id_editorial").val(data[0].id_editorial).trigger("change");
+        $("#id_categoria").val(data[0].id_categoria).trigger("change");
         $("#unidades_totales").val(data[0].unidades_totales);
         $("#image-view").attr("src", "dist/portadas/" + data[0].imagen_portada);
         $(".image-field").removeAttr("hidden");

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2023 a las 16:04:23
+-- Tiempo de generación: 27-11-2023 a las 14:28:09
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.3.13
 
@@ -30,55 +30,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alumnos` (
   `id_alumno` int(11) NOT NULL,
-  `matricula` varchar(11) NOT NULL,
+  `matricula` int(11) NOT NULL,
   `nombre_alumno` text NOT NULL,
   `semestre` int(11) NOT NULL,
   `estado_alumno` enum('Activo','Baja') NOT NULL DEFAULT 'Activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `alumnos`
---
-
-INSERT INTO `alumnos` (`id_alumno`, `matricula`, `nombre_alumno`, `semestre`, `estado_alumno`) VALUES
-(1, 'C136001', 'AGUILAR MULATO ARLETTE', 1, 'Activo'),
-(2, 'C136002', 'BARRIENTOS TOGA DANIEL ARMANDO', 1, 'Activo'),
-(3, 'C136003', 'BAUTISTA ALVARADO VANESA', 1, 'Activo'),
-(4, 'C136004', 'CARBAJAL CECILIO ALIZON MICHELL', 1, 'Activo'),
-(5, 'C136005', 'DOMINGUEZ TLAPA YAMILETH', 1, 'Activo'),
-(6, 'C136006', 'GOMEZ GONZALEZ ISMAEL', 1, 'Activo'),
-(7, 'C136007', 'GONZALES PARRA VALENTIN', 1, 'Activo'),
-(8, 'C136008', 'ISABEL AGUILAR LEONARDO', 1, 'Activo'),
-(9, 'C136009', 'MACEDO HERNANDEZ JOSHELYN', 1, 'Activo'),
-(10, 'C136010', 'MULATO MENDEZ GISELLE', 1, 'Activo'),
-(11, 'C136011', 'PACHECO ANGEL HEIDI', 1, 'Activo'),
-(12, 'C136012', 'PARRA MONTILLO JOEL', 1, 'Activo'),
-(13, 'c136013', 'RAMOS GUZMAN DANIEL', 1, 'Activo'),
-(14, 'C136014', 'RAMOS GUZMAN DAVID', 1, 'Activo'),
-(15, 'C136015', 'SALAS SALAZAR KARINA AYLIN', 1, 'Activo'),
-(16, 'C136016', 'SANTIAGO GUTIERRES BRAYAN', 1, 'Activo'),
-(17, 'C136017', 'SANTIAGO PEREZ EFRAIN', 1, 'Activo'),
-(18, 'C136018', 'CHAMA ARENAL JESUS', 3, 'Activo'),
-(19, 'C136019', 'DOMINGUEZ FACUNDO DANNA KRISCEL', 3, 'Activo'),
-(20, 'C135474', 'GUZMAN RAMIREZ MARGARITA', 3, 'Activo'),
-(21, 'C136020', 'HERNANDEZ BAUTISTA KEVIN', 3, 'Activo'),
-(22, 'C136021', 'JIMENEZ SANTIAGO MAYRIN', 3, 'Activo'),
-(23, 'C136022', 'PACHECO JESUS ALBERTO', 3, 'Activo'),
-(24, 'C136023', 'PACHECO-GALLARDO CESAR', 3, 'Activo'),
-(25, 'C136024', 'PEREZ CHAMA JOVANNI', 3, 'Activo'),
-(26, 'C136025', 'ROJAS HERNANDEZ ALAN', 3, 'Activo'),
-(27, 'C136026', 'SANCHEZ SALGADO ANDIE JULISSA', 3, 'Activo'),
-(28, 'C136027', 'SANTIAGO PEREZ ERIC', 3, 'Activo'),
-(29, 'C136028', 'SANTIAGO PEREZ NERI', 3, 'Activo'),
-(30, 'C136029', 'SANTIAGO TINOCO MARELI', 3, 'Activo'),
-(31, 'C136030', 'XALATE VILLANUEVA TANIA JAQUELIN', 3, 'Activo'),
-(32, 'C136031', 'DOMINGUEZ TLAPA HEIDY JOSSELYN', 5, 'Activo'),
-(33, 'C136032', 'FELIPE REYES AURELIO', 5, 'Activo'),
-(34, 'C136033', 'MOLINA DEL ANGEL ALIN AMARIS', 5, 'Activo'),
-(35, 'C136034', 'MULATO LIZZETTE', 5, 'Activo'),
-(36, 'C136035', 'PACHECO PEREZ OSCAR GIOVANNI', 5, 'Activo'),
-(37, 'C136036', 'PARRA MONTILLO ROBERTO', 5, 'Activo'),
-(38, 'C136037', 'SALAZAR LOPEZ LITZY', 5, 'Activo');
 
 -- --------------------------------------------------------
 
@@ -235,7 +191,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `alumnos`
 --
 ALTER TABLE `alumnos`
-  MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`

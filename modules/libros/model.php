@@ -53,7 +53,6 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $id_categoria = htmlspecialchars(trim($_POST['id_categoria']), ENT_QUOTES, 'UTF-8');
         $unidades_totales = htmlspecialchars(trim($_POST['unidades_totales']), ENT_QUOTES, 'UTF-8');
         $descripcion = htmlspecialchars(trim($_POST['descripcion']), ENT_QUOTES, 'UTF-8');
-        if ($descripcion == "") $descripcion = "Libro en buena condición";
 
         $query_insert_book = "INSERT INTO libros(id_libro, titulo_libro, autor, id_editorial, id_categoria, unidades_totales, descripcion) VALUES (NULL, '$titulo_libro', '$autor', $id_editorial, $id_categoria, $unidades_totales, '$descripcion')";
 
@@ -101,7 +100,6 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $unidades_totales = htmlspecialchars(trim($_POST['unidades_totales']), ENT_QUOTES, 'UTF-8');
         $descripcion = htmlspecialchars(trim($_POST['descripcion']), ENT_QUOTES, 'UTF-8');
         $estado_libro = htmlspecialchars(trim($_POST['estado_libro']), ENT_QUOTES, 'UTF-8');
-        if ($descripcion == "") $descripcion = "Libro en buena condición";
 
         $query_update_book = "UPDATE libros SET titulo_libro = '$titulo_libro', autor = '$autor', id_editorial = $id_editorial, id_categoria = $id_categoria, unidades_totales = $unidades_totales, descripcion = '$descripcion', estado_libro = '$estado_libro' WHERE id_libro = $id_libro";
 

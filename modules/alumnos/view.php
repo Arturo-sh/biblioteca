@@ -31,7 +31,8 @@
                 <div class='col-md-12 col-6 p-1'>
                   <label for='matricula'>Matrícula</label>
                   <input type='hidden' class='form-control' id='id_alumno' name='id_alumno'>
-                  <input type='text' class='form-control' id='matricula' name='matricula' data-inputmask='"mask": "99999999"' data-mask placeholder='000000' required>
+                  <!-- <input type='text' class='form-control' id='matricula' name='matricula' data-inputmask='"mask": "99999999"' data-mask placeholder='000000' required> -->
+                  <input type='text' class='form-control' id='matricula' name='matricula' data-inputmask='"mask": "[a|A]999999"' data-mask placeholder='C1360xx' required>
                 </div>
                 <div class='col-md-12 col-6 p-1'>
                   <label for='nombre_alumno'>Nombre</label>
