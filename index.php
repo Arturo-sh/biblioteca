@@ -172,11 +172,32 @@ if (!isset($_SESSION['id_usuario'])) header("Location: iniciar_sesion");
       $(".btn-next").text("Guardar");
     }
 
-    //Initialize Select2 Elements
-    // $('.select2').select2();
+    // Cargar datos para los cards.
+    function load_cards() {
+      $.ajax({
+        type: "POST",
+        url: "modules/inicio/model.php",
+        data: {
+          cards_info: true
+        },
+        success: function(response) {
+          let data = JSON.parse(response);
 
-    //Initialize bsCustomFileInput Elements
-    // bsCustomFileInput.init();
+          $("#card_prestamos").text(data.card_prestamos);
+          $("#card_libros").text(data.card_libros);
+          $("#card_editoriales").text(data.card_editoriales);
+          $("#card_categorias").text(data.card_categorias);
+          $("#card_alumnos").text(data.card_alumnos);
+          $("#card_usuarios").text(data.card_usuarios);
+        },
+        error: function(response) {
+          console.log(response);
+        },
+      });
+    }
+
+    // Se ejecuta la funcion que carga los datos de los cards.
+    load_cards();
   </script>
 
 </body>

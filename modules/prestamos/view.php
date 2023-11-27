@@ -1,14 +1,22 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-6">
-            <h1 class="m-0">Préstamos</h1>
+        <div class="row my-2">
+          <div class="col-md-12 d-inline-flex">
+            <div class="col-md-6">
+              <h1>Préstamos</h1>
+            </div>
+            <div class="col-md-6 text-right">
+              <button id="nuevo-prestamo" class="btn btn-md btn-primary" data-toggle='modal' data-target='#modal-default'><i class='nav-icon fas fas fa-paperclip'></i> Nuevo préstamo</button>
+            </div>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+
+    <!-- Formulario de registro de prestamo -->
+    <?php require_once 'modules/form_prestamo/view.php'; ?>
 
     <!-- Tabla que muestra los prestamos traidos de la BD -->
     <!-- Main content -->
@@ -50,3 +58,4 @@
     <!-- /.table -->
 
     <script src="dist/js/prestamos.js"></script>
+    <script src="dist/js/form_prestamo.js"></script>

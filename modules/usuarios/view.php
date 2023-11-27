@@ -1,7 +1,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row my-2">
           <div class="col-md-12 d-inline-flex">
             <div class="col-md-6">
               <h1>Usuarios</h1>
@@ -54,7 +54,7 @@
                         <textarea class='form-control' id='correo_usuario' name='correo_usuario' rows='1' placeholder='(Opcional) Ej. admin@gmail.com'></textarea>
                       </div>
                       <div class='col-md-6 p-1'>
-                        <label for='rol_usuario'>Estatus</label>
+                        <label for='estado_usuario'>Estatus</label>
                         <select class='form-select estatus' id='estado_usuario' name='estado_usuario' disabled>
                           <option value='Activo'>Activo</option>
                           <option value='Suspendido'>Suspendido</option>

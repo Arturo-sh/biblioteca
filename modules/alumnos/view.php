@@ -1,7 +1,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row">
+        <div class="row my-2">
           <div class="col-md-12 d-inline-flex">
             <div class="col-md-6">
               <h1 class="">Alumnos</h1>
