@@ -36,7 +36,7 @@
                 </div>
                 <div class='col-md-12 col-6 p-1'>
                   <label for='id_categoria'>Categoría</label>
-                  <select class="form-select" id="id_categoria" name="id_categoria"  required>
+                  <select class="form-select" id="id_categoria" name="id_categoria" required>
                     <option value='0' selected disabled>Seleccionar</option>
                     <!-- LLenado dinámico -->
                   </select>
@@ -54,11 +54,11 @@
                 </div>
                 <div class='col-md-12 col-6 p-1'>
                   <label for='descripcion'>Descripción</label>
-                  <textarea class='form-control' id='descripcion' name='descripcion' rows='1' placeholder='(Opcional) Ej. Libro en buenas condiciones ...' required></textarea>
+                  <textarea class='form-control' id='descripcion' name='descripcion' rows='1' placeholder='(Opcional) Ej. Libro en buenas condiciones ...'></textarea>
                 </div>
                 <div class='col-md-12 col-6 p-1'>
                   <label for='estado_libro'>Estatus</label>
-                  <select class='form-select estatus' id='estado_libro' name='estado_libro' disabled> 
+                  <select class='form-select estatus' id='estado_libro' name='estado_libro' disabled>
                     <option value='Activo'>Activo</option>
                     <option value='Suspendido'>Suspendido</option>
                   </select>
@@ -112,7 +112,7 @@
       <div class='modal-dialog' role='document'>
         <div class='modal-content'>
           <div class='modal-header'>
-            <h4 class='modal-title'>Imagen portada</h4>
+            <h4 class='modal-title'>Portada</h4>
             <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
               <span aria-hidden='true'>&times;</span>
             </button>

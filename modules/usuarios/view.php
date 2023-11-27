@@ -51,7 +51,7 @@
                       </div>
                       <div class='col-md-6 p-1'>
                         <label for='correo_usuario'>Correo</label>
-                        <textarea class='form-control' id='correo_usuario' name='correo_usuario' rows='1' placeholder='admin@gmail.com' required></textarea>
+                        <textarea class='form-control' id='correo_usuario' name='correo_usuario' rows='1' placeholder='(Opcional) Ej. admin@gmail.com'></textarea>
                       </div>
                       <div class='col-md-6 p-1'>
                         <label for='rol_usuario'>Estatus</label>
@@ -74,7 +74,7 @@
             <!-- /.modal-dialog -->
           </div>
           <!-- /.modal -->
-          
+
           <div class="col-md-12">
             <div class="card">
               <div class="card-body">

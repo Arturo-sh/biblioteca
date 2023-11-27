@@ -1,25 +1,37 @@
 $(document).ready(function () {
   var table = $("#example1").DataTable({
-    "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": true, 
+    responsive: true,
+    lengthChange: false,
+    autoWidth: false,
+    ordering: true,
     pageLength: 5,
     ajax: {
       url: "modules/usuarios/model.php",
       method: "POST",
       data: {
-        users_table: true
+        users_table: true,
       },
-      dataSrc: ""
+      dataSrc: "",
     },
     columns: [
       { data: "id_usuario" },
       { data: "usuario" },
       { data: "nombre_usuario" },
       { data: "telefono_usuario" },
-      { data: "correo_usuario" },
-      { data: "creacion_cuenta" },
-      { data: "estado_usuario",
+      {
+        data: "correo_usuario",
         render: function (data, type) {
-          if (type === 'display') {
+          if (type === "display") {
+            if (data === "") data = "No especificado";
+          }
+          return data;
+        },
+      },
+      { data: "creacion_cuenta" },
+      {
+        data: "estado_usuario",
+        render: function (data, type) {
+          if (type === "display") {
             let badge_color = data == "Activo" ? "bg-success" : "bg-danger";
 
             let template = `
@@ -29,11 +41,13 @@ $(document).ready(function () {
             return template;
           }
           return data;
-        } 
+        },
       },
-      { data: "rol_usuario", "orderable": false,
+      {
+        data: "rol_usuario",
+        orderable: false,
         render: function (data, type, row, meta) {
-          if (type === 'display') {
+          if (type === "display") {
             template = `
             <button id='${row.id_usuario}' class='btn btn-sm btn-primary btn-edit' data-toggle='modal' data-target='#modal-default'>
               <i class='fas fa-pen'></i>
@@ -41,208 +55,209 @@ $(document).ready(function () {
             <button id='${row.id_usuario}' class='btn btn-sm btn-danger btn-delete'>
               <i class='fas fa-trash'></i>
             </button>`;
-            
+
             return template;
           }
           return data;
-        }
-      }
+        },
+      },
     ],
     buttons: [
       {
-        extend: 'collection',
-        text: 'Exportar',
+        extend: "collection",
+        text: "Exportar",
         buttons: [
           {
-            extend: 'pdf',
+            extend: "pdf",
             text: "Generar PDF",
-            pageSize: 'LEGAL',
+            pageSize: "LEGAL",
             exportOptions: {
-              columns: [ 0, 1, 2, 3, 4, 5 ]
+              columns: [0, 1, 2, 3, 4, 5],
             },
             modifier: {
-              search: 'applied'
-            }
+              search: "applied",
+            },
           },
           {
-            extend: 'excel',
-            text: 'Generar Excel',
+            extend: "excel",
+            text: "Generar Excel",
             exportOptions: {
-              columns: [ 0, 1, 2, 3, 4, 5 ]
+              columns: [0, 1, 2, 3, 4, 5],
             },
             modifier: {
-              search: 'applied'
-            }
+              search: "applied",
+            },
           },
           {
-            extend: 'print',
+            extend: "print",
             text: "Imprimir",
             exportOptions: {
-              columns: [ 0, 1, 2, 3, 4, 5 ]
+              columns: [0, 1, 2, 3, 4, 5],
             },
             modifier: {
-              search: 'applied'
-            }
-          }
-        ]
+              search: "applied",
+            },
+          },
+        ],
       },
       {
-        extend: 'colvis',
-        text: 'Visor de columnas',
-      }
+        extend: "colvis",
+        text: "Visor de columnas",
+      },
     ],
     language: {
-      "emptyTable": "No hay registros",
-      "info": "Mostrando _START_ a _END_ de _TOTAL_ resultados",
-      "infoEmpty": "Mostrando 0 a 0 de 0 resultados",
-      "infoFiltered": "(Filtrado de _MAX_ entradas totales)",
-      "infoPostFix": "",
-      "thousands": ",",
-      "lengthMenu": "Mostrar _MENU_ resultados",
-      "loadingRecords": "Cargando...",
-      "processing": "Procesando...",
-      "search": "Buscar:",
-      "zeroRecords": "Sin resultados encontrados",
-      "paginate": {
-        "first": "Primero",
-        "last": "Ultimo",
-        "next": "Siguiente",
-        "previous": "Anterior"
-      }
+      emptyTable: "No hay registros",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ resultados",
+      infoEmpty: "Mostrando 0 a 0 de 0 resultados",
+      infoFiltered: "(Filtrado de _MAX_ entradas totales)",
+      infoPostFix: "",
+      thousands: ",",
+      lengthMenu: "Mostrar _MENU_ resultados",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "Buscar:",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
     },
     initComplete: function () {
-      table.buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    }
+      table.buttons().container().appendTo("#example1_wrapper .col-md-6:eq(0)");
+    },
   });
 
   // Se previene el redireccionamiento que produce el envío del formulario.
-  $("form").submit(function(e){
-      e.preventDefault();
+  $("form").submit(function (e) {
+    e.preventDefault();
   });
 
   // Funcion para habilitar el boton para registrar usuario cuando se rellene el formulario.
   function checkForm() {
-      var camposCompletos = true;
-      
-      $('#usuario, #nombre_usuario, #telefono_usuario, #correo_usuario').each(function() {
-        if ($(this).val() === '') {
+    var camposCompletos = true;
+
+    $("#usuario, #nombre_usuario, #telefono_usuario, #correo_usuario").each(
+      function () {
+        if ($(this).val() === "") {
           camposCompletos = false;
           return false;
         }
-      });
-
-      if ($('.btn-next').attr('action') === 'insert') {
-        if ($('#contrasena').val() === '') camposCompletos = false;
       }
-  
-      $('.btn-next').attr('disabled', !camposCompletos);
+    );
+
+    if ($(".btn-next").attr("action") === "insert") {
+      if ($("#contrasena").val() === "") camposCompletos = false;
+    }
+
+    $(".btn-next").attr("disabled", !camposCompletos);
   }
 
-  $("form").on("keyup change", "textarea, input, select", function() {
-      checkForm();
+  $("form").on("keyup change", "textarea, input, select", function () {
+    checkForm();
   });
 
-  $(document).on("click", ".btn-add", function() {
+  $(document).on("click", ".btn-add", function () {
     checkForm();
   });
 
   // Registrar usuario.
-  $(document).on('click', '.btn-next', function() {
-      let action = $(this).attr("action");
-  
-      let form = document.getElementById("form");
-      let formData = new FormData(form);
-      formData.append('action', action);
-  
-      $.ajax({
-          url: "modules/usuarios/model.php",
-          method: "POST",
-          data: formData,
-          processData: false,
-          contentType: false,
-          success: function(response) {
-              if(response == "") return
-              let data = JSON.parse(response);
-              Swal.fire({
-                  icon: data.icon,
-                  title: data.msg,
-                  showConfirmButton: false,
-                  timer: 2000
-              });
-          },
-          complete: function() {
-              resetForm();
-              table.ajax.reload();
-          }
-      });
+  $(document).on("click", ".btn-next", function () {
+    let action = $(this).attr("action");
+
+    let form = document.getElementById("form");
+    let formData = new FormData(form);
+    formData.append("action", action);
+
+    $.ajax({
+      url: "modules/usuarios/model.php",
+      method: "POST",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        if (response == "") return;
+        let data = JSON.parse(response);
+        Swal.fire({
+          icon: data.icon,
+          title: data.msg,
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      },
+      complete: function () {
+        resetForm();
+        table.ajax.reload();
+      },
+    });
   });
 
   // Cargar datos del usuario al formulario.
-  $(document).on('click', '.btn-edit', function() {
-      var edit_id = $(this).attr("id");
-  
-      $.ajax({
-          url: "modules/usuarios/model.php",
-          method: "POST",
-          data: {
-              edit_id
-          },
-          success: function(response) {
-              let data = JSON.parse(response);
-      
-              $("#id_usuario").val(data[0].id_usuario);
-              $("#rol_usuario").val(data[0].rol_usuario);
-              $("#usuario").val(data[0].usuario);
-              $("#nombre_usuario").val(data[0].nombre_usuario);
-              $("#telefono_usuario").val(data[0].telefono_usuario);
-              $("#correo_usuario").val(data[0].correo_usuario);
-              $("#estado_usuario").removeAttr("disabled");
-              $("#estado_usuario").val(data[0].estado_usuario);
-              $("#contrasenia").removeAttr("required");
-              $(".btn-next").attr("action", "update");
-              $(".btn-next").text("Actualizar");
+  $(document).on("click", ".btn-edit", function () {
+    var edit_id = $(this).attr("id");
 
-              checkForm();
-          }
-      });
+    $.ajax({
+      url: "modules/usuarios/model.php",
+      method: "POST",
+      data: {
+        edit_id,
+      },
+      success: function (response) {
+        let data = JSON.parse(response);
+
+        $("#id_usuario").val(data[0].id_usuario);
+        $("#rol_usuario").val(data[0].rol_usuario);
+        $("#usuario").val(data[0].usuario);
+        $("#nombre_usuario").val(data[0].nombre_usuario);
+        $("#telefono_usuario").val(data[0].telefono_usuario);
+        $("#correo_usuario").val(data[0].correo_usuario);
+        $("#estado_usuario").removeAttr("disabled");
+        $("#estado_usuario").val(data[0].estado_usuario);
+        $("#contrasenia").removeAttr("required");
+        $(".btn-next").attr("action", "update");
+        $(".btn-next").text("Actualizar");
+
+        checkForm();
+      },
+    });
   });
 
   // Eliminar usuario.
-  $(document).on('click', '.btn-delete', function() {
-      var delete_id = $(this).attr("id");
-  
-      Swal.fire({
-          title: `Esta seguro de eliminar el registro ${delete_id}?`,
-          text: 'Esto no se puede revertir!',
-          icon: 'error',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Si, continuar!',
-          cancelButtonText: 'Cancelar'
-      }).then((result) => {
-          if (result.isConfirmed) {
-              $.ajax({
-                  url: "modules/usuarios/model.php",
-                  method: "POST",
-                  data: {
-                      delete_id
-                  },
-                  success: function(response) {
-                      let data = JSON.parse(response);
-                      Swal.fire({
-                          icon: data.icon,
-                          title: data.msg,
-                          showConfirmButton: false,
-                          timer: 2000
-                      });
-                  },
-                  complete: function() {
-                      table.ajax.reload();
-                  }
-              });
-          }
-      });
-  });
+  $(document).on("click", ".btn-delete", function () {
+    var delete_id = $(this).attr("id");
 
+    Swal.fire({
+      title: `Esta seguro de eliminar el registro ${delete_id}?`,
+      text: "Esto no se puede revertir!",
+      icon: "error",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, continuar!",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: "modules/usuarios/model.php",
+          method: "POST",
+          data: {
+            delete_id,
+          },
+          success: function (response) {
+            let data = JSON.parse(response);
+            Swal.fire({
+              icon: data.icon,
+              title: data.msg,
+              showConfirmButton: false,
+              timer: 2000,
+            });
+          },
+          complete: function () {
+            table.ajax.reload();
+          },
+        });
+      }
+    });
+  });
 });

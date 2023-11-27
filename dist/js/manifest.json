@@ -1,16 +1,16 @@
 {
-    "name": "Biblioteca 24 de febrero",
-    "short_name": "Biblioteca24",
-    "start_url": "../../index.php",
-    "background_color": "#454d55",
-    "theme_color": "#454d55",
-    "display": "standalone",
-    "description": "Sistema de Biblioteca 24 de febrero",
-    "icons": [
-        {
-            "src": "../img/icon-library.png",
-            "sizes": "256x256",
-            "type": "image/png"
-        }
-    ]
+  "name": "Biblioteca 24 de febrero",
+  "short_name": "Biblioteca24",
+  "start_url": "../../index.php",
+  "background_color": "#454d55",
+  "theme_color": "#454d55",
+  "display": "standalone",
+  "description": "Sistema de Biblioteca 24 de febrero",
+  "icons": [
+    {
+      "src": "../img/icon-library.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
 }

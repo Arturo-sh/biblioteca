@@ -7,4 +7,3 @@ session_destroy();
 
 // Redireccionamiento al inicio de sesión
 header("Location: iniciar_sesion");
-?>

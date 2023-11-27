@@ -10,8 +10,8 @@ if (isset($_POST['students_select'])) {
 
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            $id_alumno = $row['id_alumno'];              
-            $matricula = $row['matricula'];              
+            $id_alumno = $row['id_alumno'];
+            $matricula = $row['matricula'];
             $nombre_alumno = $row['nombre_alumno'];
 
             $html .= "
@@ -49,7 +49,7 @@ if (isset($_POST['cards_info'])) {
         "card_alumnos" => mysqli_num_rows($result_get_students),
         "card_usuarios" => mysqli_num_rows($result_get_admins)
     ];
-    
+
     echo json_encode($arr);
 }
 
@@ -64,7 +64,7 @@ if (isset($_POST['autocomplete'])) {
 
     if (mysqli_num_rows($result_get_books) > 0) {
         while ($row = mysqli_fetch_assoc($result_get_books)) {
-            $id_libro = $row['id_libro'];              
+            $id_libro = $row['id_libro'];
             $titulo_libro = $row['titulo_libro'];
 
             $html .= "
@@ -90,7 +90,7 @@ if (isset($_POST['prestamo'])) {
 
     try {
         // Se hace el insert en la tabla transaccion
-        $query_transaction_insert = "INSERT INTO transaccion_prestamo(id_transaccion, id_alumno, id_usuario, fecha_entrega) VALUES (NULL, $id_alumno, $id_usuario, '$fecha_entrega')";                
+        $query_transaction_insert = "INSERT INTO transaccion_prestamo(id_transaccion, id_alumno, id_usuario, fecha_entrega) VALUES (NULL, $id_alumno, $id_usuario, '$fecha_entrega')";
         $result_transaction_insert = mysqli_query($conn, $query_transaction_insert);
 
         // Se obtiene el id de la ultima transaccion
@@ -99,28 +99,22 @@ if (isset($_POST['prestamo'])) {
         for ($i = 0; $i < $cantidad_libros_prestados; $i++) {
             $id_libro = $data[$i]['id_libro'];
             $unidades_prestamo = $data[$i]['unidades_prestamo'];
-            
-            // Comienza el insert mediante un ciclo para insertar los libros prestados durante la transaccion
-            $query_loans_insert = "INSERT INTO prestamos(id_prestamo, id_transaccion, id_libro, unidades_prestamo) VALUES (NULL, $id_transaccion, $id_libro, $unidades_prestamo)";                
-            $result_loans_insert = mysqli_query($conn, $query_loans_insert);
 
-            // Se actualiza la cantidad de stock de libros
-            $query_stock_update = "UPDATE libros SET unidades_restantes = unidades_restantes - $unidades_prestamo WHERE id_libro = $id_libro";                
-            $result_stock_update = mysqli_query($conn, $query_stock_update);
+            // Comienza el insert mediante un ciclo para insertar los libros prestados durante la transaccion
+            $query_loans_insert = "INSERT INTO prestamos(id_prestamo, id_transaccion, id_libro, unidades_prestamo) VALUES (NULL, $id_transaccion, $id_libro, $unidades_prestamo)";
+            $result_loans_insert = mysqli_query($conn, $query_loans_insert);
         }
-        
+
         // Verifica si las inserciones fueron exitosas
         if (isset($result_loans_insert) && $result_loans_insert) echo "Préstamo registrado!";
 
         // Confirmar transacción
         mysqli_commit($conn);
-        
     } catch (Exception $e) {
         // Ocurrió un error, realizar rollback
         mysqli_rollback($conn);
         echo "Error: " . $e->getMessage();
-    }   
+    }
 }
 
 mysqli_close($conn);
-?>

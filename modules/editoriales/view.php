@@ -2,7 +2,7 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-        <div class="col-md-12 d-inline-flex">
+          <div class="col-md-12 d-inline-flex">
             <div class="col-md-6">
               <h1 class="">Editoriales</h1>
             </div>
@@ -17,7 +17,7 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-        <div class='col-12 col-sm-12 col-md-3'>
+          <div class='col-12 col-sm-12 col-md-3'>
             <form method='POST' id='form' action='modules/editoriales/model.php'>
               <div class='card-body row'>
                 <div class='col-md-12 col-6 p-1'>
@@ -27,7 +27,7 @@
                 </div>
                 <div class='col-md-12 col-6 p-1'>
                   <label for='pais_editorial'>País</label>
-                  <textarea class='form-control' id='pais_editorial' name='pais_editorial' rows='1' placeholder='(Opcional) Ej. México' required></textarea>
+                  <textarea class='form-control' id='pais_editorial' name='pais_editorial' rows='1' placeholder='(Opcional) Ej. México'></textarea>
                 </div>
               </div>
               <!-- /.card-body -->

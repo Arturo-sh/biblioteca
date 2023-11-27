@@ -29,7 +29,7 @@
               <div class='card-body row'>
                 <div class='col-md-12 p-1'>
                   <label for='id_alumno'>Alumno</label>
-                  <select class="form-select"  id="id_alumno" name="id_alumno">
+                  <select class="form-select" id="id_alumno" name="id_alumno">
                     <!-- Se rellena dinamicamente -->
                   </select>
                 </div>
@@ -80,7 +80,8 @@
             <!-- small box -->
             <div class="small-box bg-primary">
               <div class="inner">
-                <!-- <h3><?php //echo $_SESSION['cantidad_prestamos']; ?></h3> -->
+                <!-- <h3><?php //echo $_SESSION['cantidad_prestamos']; 
+                          ?></h3> -->
                 <h3 id="card_prestamos"></h3>
                 <p>Préstamos activos</p>
               </div>
@@ -95,7 +96,8 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <!-- <h3><?php // echo $_SESSION['cantidad_libros']; ?></h3> -->
+                <!-- <h3><?php // echo $_SESSION['cantidad_libros']; 
+                          ?></h3> -->
                 <h3 id="card_libros"></h3>
                 <p>Libros registrados</p>
               </div>
@@ -111,7 +113,8 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner text-white">
-                <!-- <h3><?php // echo $_SESSION['cantidad_alumnos']; ?></h3> -->
+                <!-- <h3><?php // echo $_SESSION['cantidad_alumnos']; 
+                          ?></h3> -->
                 <h3 id="card_alumnos"></h3>
                 <p>Alumnos inscritos</p>
               </div>
@@ -126,7 +129,8 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <!-- <h3><?php // echo $_SESSION['cantidad_administradores']; ?></h3> -->
+                <!-- <h3><?php // echo $_SESSION['cantidad_administradores']; 
+                          ?></h3> -->
                 <h3 id="card_usuarios"></h3>
                 <p>Administradores</p>
               </div>
@@ -142,7 +146,8 @@
             <!-- small box -->
             <div class="small-box bg-secondary">
               <div class="inner">
-                <!-- <h3><?php // echo $_SESSION['cantidad_administradores']; ?></h3> -->
+                <!-- <h3><?php // echo $_SESSION['cantidad_administradores']; 
+                          ?></h3> -->
                 <h3 id="card_editoriales"></h3>
                 <p>Editoriales</p>
               </div>
@@ -158,7 +163,8 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <!-- <h3><?php // echo $_SESSION['cantidad_administradores']; ?></h3> -->
+                <!-- <h3><?php // echo $_SESSION['cantidad_administradores']; 
+                          ?></h3> -->
                 <h3 id="card_categorias"></h3>
                 <p>Categorías de libros</p>
               </div>
@@ -172,7 +178,7 @@
           <!-- ./col -->
         </div>
         <!-- /.row -->
-       
+
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->

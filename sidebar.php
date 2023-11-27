@@ -10,31 +10,35 @@ $menu_open = '';
 $book_menu = '';
 
 if (!empty($_GET) && isset($_GET['module'])) {
-    switch($_GET['module']){
-      case 'inicio':
-        $home_active = 'active'; break;
-      case 'prestamos':
-        $loans_active = 'active'; break;
-      case 'libros':
-        $books_active = 'active'; 
-        $book_menu = 'active';
-        $menu_open = 'menu-open';
-        break;
-      case 'editoriales':
-        $publishers_active = 'active';
-        $book_menu = 'active';
-        $menu_open = 'menu-open';
-        break;
-      case 'categorias':
-        $categories_active = 'active';
-        $book_menu = 'active';
-        $menu_open = 'menu-open';
-        break;
-      case 'alumnos':
-        $students_active = 'active'; break;
-      case 'usuarios':
-        $users_active = 'active'; break;
-    }
+  switch ($_GET['module']) {
+    case 'inicio':
+      $home_active = 'active';
+      break;
+    case 'prestamos':
+      $loans_active = 'active';
+      break;
+    case 'libros':
+      $books_active = 'active';
+      $book_menu = 'active';
+      $menu_open = 'menu-open';
+      break;
+    case 'editoriales':
+      $publishers_active = 'active';
+      $book_menu = 'active';
+      $menu_open = 'menu-open';
+      break;
+    case 'categorias':
+      $categories_active = 'active';
+      $book_menu = 'active';
+      $menu_open = 'menu-open';
+      break;
+    case 'alumnos':
+      $students_active = 'active';
+      break;
+    case 'usuarios':
+      $users_active = 'active';
+      break;
+  }
 }
 
 echo "
@@ -117,4 +121,3 @@ echo "
     </p>
   </a>
 </li>";
-?>

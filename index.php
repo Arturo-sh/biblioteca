@@ -1,9 +1,10 @@
-<?php 
-session_start(); 
+<?php
+session_start();
 if (!isset($_SESSION['id_usuario'])) header("Location: iniciar_sesion");
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,113 +71,114 @@ if (!isset($_SESSION['id_usuario'])) header("Location: iniciar_sesion");
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-<!-- Wrapper -->
-<div class="wrapper">
+  <!-- Wrapper -->
+  <div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center dark-mode">
-    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+    <!-- Preloader -->
+    <div class="preloader flex-column justify-content-center align-items-center dark-mode">
+      <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    </div>
 
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="inicio" class="nav-link">Inicio</a>
-      </li>
-    </ul>
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
-  
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="#" class="brand-link" style="text-decoration: none;">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">TEBAEV 24</span>
-    </a>
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <!-- <div class="image"> -->
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="inicio" class="nav-link">Inicio</a>
+        </li>
+      </ul>
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-link" style="text-decoration: none;">
+        <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">TEBAEV 24</span>
+      </a>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <!-- <div class="image"> -->
           <!-- Logo default -->
           <!-- <img src="dist/img/user-default.png" class="img-circle elevation-2" alt="User Image"> -->
-        <!-- </div> -->
-        <div class="info">
-          <!-- Aqui va la inclusion del archivo php que trae el nombre de usuario -->
-          <a href="#" class="d-block" style="text-decoration: none;"><i class='fa fas fa-user mr-2'></i> <?php echo $_SESSION['nombre_usuario']; ?></a>
+          <!-- </div> -->
+          <div class="info">
+            <!-- Aqui va la inclusion del archivo php que trae el nombre de usuario -->
+            <a href="#" class="d-block" style="text-decoration: none;"><i class='fa fas fa-user mr-2'></i> <?php echo $_SESSION['nombre_usuario']; ?></a>
+          </div>
         </div>
-      </div>
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <?php require_once "sidebar.php"; ?>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-  <!-- /. main sidebar content-->
+            <?php require_once "sidebar.php"; ?>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+    <!-- /. main sidebar content-->
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <?php require_once "content.php"; ?>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <?php require_once "content.php"; ?>
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main-footer -->
+    <footer class="main-footer text-center">
+      <strong>Copyright &copy; <?php echo date('Y'); ?> - <a href="#" style="text-decoration: none;">Telebachillerato 24 de febrero</a>.</strong>
+      Todos los derechos reservados.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 1.0
+      </div>
+    </footer>
+    <!-- ./main-footer -->
+
   </div>
-  <!-- /.content-wrapper -->
-  
-  <!-- Main-footer -->
-  <footer class="main-footer text-center">
-    <strong>Copyright &copy; <?php echo date('Y'); ?> - <a href="#" style="text-decoration: none;">Telebachillerato 24 de febrero</a>.</strong>
-    Todos los derechos reservados.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 1.0
-    </div>
-  </footer>
-  <!-- ./main-footer -->
+  <!-- ./wrapper -->
 
-</div>
-<!-- ./wrapper -->
+  <!-- Initialization elements -->
+  <script>
+    //Initialize Jquery UI
+    $.widget.bridge('uibutton', $.ui.button);
 
-<!-- Initialization elements -->
-<script>
-  //Initialize Jquery UI
-  $.widget.bridge('uibutton', $.ui.button);
+    //Initialize inputMask Elements
+    $('[data-mask]').inputmask();
 
-  //Initialize inputMask Elements
-  $('[data-mask]').inputmask();
-  
- // Función limpiar para el formulario de usuarios.
- function resetForm() {
+    // Función limpiar para el formulario de usuarios.
+    function resetForm() {
       $("#form")[0].reset();
       $(".estatus").attr("disabled", true);
       $(".image-field").attr("hidden", true);
       $(".btn-next").attr("action", "insert");
       $(".btn-next").attr("disabled", true);
       $(".btn-next").text("Guardar");
-  }
+    }
 
-  //Initialize Select2 Elements
-  // $('.select2').select2();
+    //Initialize Select2 Elements
+    // $('.select2').select2();
 
-  //Initialize bsCustomFileInput Elements
-  // bsCustomFileInput.init();
-</script>
+    //Initialize bsCustomFileInput Elements
+    // bsCustomFileInput.init();
+  </script>
 
 </body>
+
 </html>

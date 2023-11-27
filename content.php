@@ -11,7 +11,7 @@ $modules = [
 
 if (empty($_GET) || !isset($_GET['module'])) {
     $module = "inicio";
-} else { 
+} else {
     $module = $_GET['module'];
 }
 
@@ -23,4 +23,3 @@ if (array_key_exists($module, $modules)) {
 } else {
     include_once "error404.php";
 }
-?>

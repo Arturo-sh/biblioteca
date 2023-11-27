@@ -2,7 +2,7 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row">
-        <div class="col-md-12 d-inline-flex">
+          <div class="col-md-12 d-inline-flex">
             <div class="col-md-6">
               <h1 class="">Alumnos</h1>
             </div>
@@ -31,7 +31,7 @@
                 <div class='col-md-12 col-6 p-1'>
                   <label for='matricula'>Matrícula</label>
                   <input type='hidden' class='form-control' id='id_alumno' name='id_alumno'>
-                  <input type='text' class='form-control' id='matricula' name='matricula' data-inputmask='"mask": "99999999"'data-mask placeholder='00000000' required>
+                  <input type='text' class='form-control' id='matricula' name='matricula' data-inputmask='"mask": "99999999"' data-mask placeholder='000000' required>
                 </div>
                 <div class='col-md-12 col-6 p-1'>
                   <label for='nombre_alumno'>Nombre</label>
@@ -50,7 +50,7 @@
                 </div>
                 <div class='col-md-12 col-6 p-1'>
                   <label for='estado_alumno'>Estatus</label>
-                  <select class='form-select estatus' id='estado_alumno' name='estado_alumno' disabled> 
+                  <select class='form-select estatus' id='estado_alumno' name='estado_alumno' disabled>
                     <option value='Activo'>Activo</option>
                     <option value='Baja'>Baja</option>
                   </select>

@@ -6,16 +6,16 @@ if ($_SESSION['rol_usuario'] == "Admin") {
     if (isset($_POST['students_table'])) {
         $query_get_students = "SELECT * FROM alumnos";
         $students_data = mysqli_query($conn, $query_get_students);
-    
+
         $data = mysqli_fetch_all($students_data, MYSQLI_ASSOC);
-    
+
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 
     if (isset($_POST['action']) && $_POST['action'] == "insert") {
-        $matricula = htmlspecialchars(trim($_POST['matricula']), ENT_QUOTES, 'UTF-8'); 
-        $nombre_alumno = htmlspecialchars(trim($_POST['nombre_alumno']), ENT_QUOTES, 'UTF-8'); 
-        $semestre = htmlspecialchars(trim($_POST['semestre']), ENT_QUOTES, 'UTF-8'); 
+        $matricula = htmlspecialchars(trim($_POST['matricula']), ENT_QUOTES, 'UTF-8');
+        $nombre_alumno = htmlspecialchars(trim($_POST['nombre_alumno']), ENT_QUOTES, 'UTF-8');
+        $semestre = htmlspecialchars(trim($_POST['semestre']), ENT_QUOTES, 'UTF-8');
 
         $query_student_insert = "INSERT INTO alumnos(id_alumno, matricula, nombre_alumno, semestre) VALUES(NULL, $matricula, '$nombre_alumno', $semestre)";
         $result_student_insert = mysqli_query($conn, $query_student_insert);
@@ -25,32 +25,32 @@ if ($_SESSION['rol_usuario'] == "Admin") {
 
     if (isset($_POST['edit_id'])) {
         $id_alumno = $_POST['edit_id'];
-        
+
         $query_student_data = "SELECT * FROM alumnos WHERE id_alumno = $id_alumno";
         $student_data = mysqli_query($conn, $query_student_data);
         $row = mysqli_fetch_all($student_data, MYSQLI_ASSOC);
 
         echo json_encode($row, JSON_UNESCAPED_UNICODE);
     }
-        
+
     if (isset($_POST['action']) && $_POST['action'] == "update") {
-        $id_alumno = htmlspecialchars(trim($_POST['id_alumno']), ENT_QUOTES, 'UTF-8'); 
-        $matricula = htmlspecialchars(trim($_POST['matricula']), ENT_QUOTES, 'UTF-8'); 
-        $nombre_alumno = htmlspecialchars(trim($_POST['nombre_alumno']), ENT_QUOTES, 'UTF-8'); 
-        $semestre = htmlspecialchars(trim($_POST['semestre']), ENT_QUOTES, 'UTF-8'); 
-        $estado_alumno = htmlspecialchars(trim($_POST['estado_alumno']), ENT_QUOTES, 'UTF-8'); 
+        $id_alumno = htmlspecialchars(trim($_POST['id_alumno']), ENT_QUOTES, 'UTF-8');
+        $matricula = htmlspecialchars(trim($_POST['matricula']), ENT_QUOTES, 'UTF-8');
+        $nombre_alumno = htmlspecialchars(trim($_POST['nombre_alumno']), ENT_QUOTES, 'UTF-8');
+        $semestre = htmlspecialchars(trim($_POST['semestre']), ENT_QUOTES, 'UTF-8');
+        $estado_alumno = htmlspecialchars(trim($_POST['estado_alumno']), ENT_QUOTES, 'UTF-8');
 
         $query_student_update = "UPDATE alumnos SET matricula = $matricula, nombre_alumno  = '$nombre_alumno', semestre = $semestre, estado_alumno = '$estado_alumno' WHERE id_alumno = $id_alumno";
         $result_student_update = mysqli_query($conn, $query_student_update);
-    
+
         if ($result_student_update) echo "Datos del alumn@ actualizados!";
     }
 
     if (isset($_POST['delete_id'])) {
         $id_alumno = $_POST['delete_id'];
-                
+
         $query_student_delete = "DELETE FROM alumnos WHERE id_alumno = $id_alumno";
-        $result_student_delete = mysqli_query($conn, $query_student_delete);    
+        $result_student_delete = mysqli_query($conn, $query_student_delete);
 
         if ($result_student_delete) echo "Alumn@ eliminado!";
     }
@@ -70,7 +70,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
             echo json_encode(["action" => $action, "msg" => "Este cambio dará de baja a $total_students alumnos de $grade_students semestre.\n¿Desea continuar?"], JSON_UNESCAPED_UNICODE);
         } else {
             echo json_encode(["action" => $action, "msg" => "Este cambio modificará el semestre de todos los registros (menos los dados de baja).\n¿Desea continuar?"], JSON_UNESCAPED_UNICODE);
-        }      
+        }
     }
 
     if (isset($_POST['action_change_semester'])) {
@@ -92,4 +92,3 @@ if ($_SESSION['rol_usuario'] == "Admin") {
 }
 
 mysqli_close($conn);
-?>

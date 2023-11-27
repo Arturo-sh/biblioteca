@@ -1,9 +1,10 @@
-<?php 
-session_start(); 
+<?php
+session_start();
 if (isset($_SESSION['id_usuario'])) header("Location: inicio");
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +17,7 @@ if (isset($_SESSION['id_usuario'])) header("Location: inicio");
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
+
 <body class="hold-transition login-page bg-dark fixed container">
   <div class="login-box container">
     <!-- /.login-logo -->
@@ -30,7 +32,7 @@ if (isset($_SESSION['id_usuario'])) header("Location: inicio");
           echo "<p class='text-center text-danger'>$msg</p>";
           unset($_SESSION['invalid_credentials']);
         }
-        ?>  
+        ?>
         <form action="login_validate.php" method="POST">
           <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Usuario" name="usuario">
@@ -48,11 +50,11 @@ if (isset($_SESSION['id_usuario'])) header("Location: inicio");
               </div>
             </div>
           </div>
-            <!-- /.col -->
-            <div class="col-md-12 mt-4 text-right">
-              <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-            </div>
-            <!-- /.col -->
+          <!-- /.col -->
+          <div class="col-md-12 mt-4 text-right">
+            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+          </div>
+          <!-- /.col -->
         </form>
       </div>
       <!-- /.card-body -->
@@ -69,4 +71,5 @@ if (isset($_SESSION['id_usuario'])) header("Location: inicio");
   <script src="dist/js/adminlte.min.js"></script>
 
 </body>
+
 </html>

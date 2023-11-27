@@ -12,7 +12,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
 
         $users_data = mysqli_query($conn, $query_get_users);
         $data = mysqli_fetch_all($users_data, MYSQLI_ASSOC);
-    
+
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 
@@ -25,7 +25,7 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $correo_usuario = htmlspecialchars(trim($_POST['correo_usuario']), ENT_QUOTES, 'UTF-8');
 
         $query_user_insert = "INSERT INTO usuarios(id_usuario, usuario, contrasenia, nombre_usuario, telefono_usuario, correo_usuario) VALUES(NULL, '$usuario', '$contrasenia_hash', '$nombre_usuario', '$telefono_usuario', '$correo_usuario')";
-        $result_user_insert = mysqli_query($conn, $query_user_insert);  
+        $result_user_insert = mysqli_query($conn, $query_user_insert);
 
         if ($result_user_insert) echo json_encode(["icon" => "success", "msg" => "Usuario registrado!"], JSON_UNESCAPED_UNICODE);
     }
@@ -49,13 +49,13 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $correo_usuario = htmlspecialchars(trim($_POST['correo_usuario']), ENT_QUOTES, 'UTF-8');
         $estado_usuario = htmlspecialchars(trim($_POST['estado_usuario']), ENT_QUOTES, 'UTF-8');
         if ($_SESSION['id_usuario'] == $id_usuario) $_SESSION['nombre_usuario'] = $nombre_usuario;
-        
+
         $response = ["icon" => "success", "msg" => "Datos del usuario actualizados!"];
         if ($_SESSION['id_usuario'] == $id_usuario) {
             $estado_usuario = "Activo";
             $response = ["icon" => "success", "msg" => "Datos del usuario actualizados (no se puede actualizar su propio estatus)!"];
         }
-        
+
         if ($contrasenia == "") {
             $query_user_update = "UPDATE usuarios SET usuario = '$usuario', nombre_usuario = '$nombre_usuario', telefono_usuario = '$telefono_usuario', correo_usuario = '$correo_usuario', estado_usuario = '$estado_usuario' WHERE id_usuario = $id_usuario";
         } else {
@@ -69,18 +69,17 @@ if ($_SESSION['rol_usuario'] == "Admin") {
 
     if (isset($_POST['delete_id'])) {
         $id_usuario = $_POST['delete_id'];
-                
+
         if ($_SESSION['id_usuario'] == $id_usuario) {
             echo json_encode(["icon" => "error", "msg" => "No puede eliminar su propio usuario!"], JSON_UNESCAPED_UNICODE);
             exit;
         }
 
         $query_user_delete = "DELETE FROM usuarios WHERE id_usuario = $id_usuario";
-        $result_user_delete = mysqli_query($conn, $query_user_delete);    
+        $result_user_delete = mysqli_query($conn, $query_user_delete);
 
         if ($result_user_delete) echo json_encode(["icon" => "success", "msg" => "Usuario eliminado!"], JSON_UNESCAPED_UNICODE);
     }
 }
 
 mysqli_close($conn);
-?>
