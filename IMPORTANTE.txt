@@ -1,0 +1,39 @@
+### IMPORTANTE ###
+
+Credenciales de acceso al sistema
+Usuario: admin
+Contraseña: admin
+
+CONFIGURACIÓN ADICIONAL
+
+1.- Es indispensable modificar el archivo de configuración que se encuentra en la siguiente ruta: C:\xampp\php\php.ini
+Presiona Ctrl + B, en el cuadro de busqueda digitar: extension:gd
+Una vez encontrada la coincidencia modificar la línea eliminando el ;
+
+Quedando de la siguiente manera:
+
+extension=gd
+
+Esta configuración es para poder manipular imagenes con PHP (las imagenes de portadas de libros)
+
+-----------------------------------------------------------------------------------------------------
+
+ :: OPCIONAL ::
+
+2.- Modificar el siguiente archivo de configuracion de MySQL: C:\xampp\mysql\bin\my.ini
+Presiona Ctrl + B, en el cuadro de busqueda digitar: [mysqld]
+Una vez encontrada la primer coincidencia agregar la siguiente línea:
+lc_time_names="es_ES"
+
+Quedando de la siguiente manera:
+
+[mysqld]
+lc_time_names="es_ES"
+
+Esta configuración es para ajustar el idioma a Español al momento de mostrar las fechas dentro del sistema.
+
+-----------------------------------------------------------------------------------------------------
+
+ :: OPCIONAL ::
+
+Para poder "instalar" y crear un acceso directo del sistema es necesario tener un certificado SSL o en su caso tener un certificado autofirmado
