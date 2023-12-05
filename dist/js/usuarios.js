@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  var timeAlert = 800;
+
   var table = $("#example1").DataTable({
     responsive: true,
     lengthChange: false,
@@ -148,7 +150,7 @@ $(document).ready(function () {
     );
 
     if ($(".btn-next").attr("action") === "insert") {
-      if ($("#contrasena").val() === "") camposCompletos = false;
+      if ($("#contrasenia").val() === "") camposCompletos = false;
     }
 
     $(".btn-next").attr("disabled", !camposCompletos);
@@ -183,7 +185,7 @@ $(document).ready(function () {
           icon: data.icon,
           title: data.msg,
           showConfirmButton: false,
-          timer: 2000,
+          timer: timeAlert,
         });
       },
       complete: function () {
@@ -250,7 +252,7 @@ $(document).ready(function () {
               icon: data.icon,
               title: data.msg,
               showConfirmButton: false,
-              timer: 2000,
+              timer: timeAlert,
             });
           },
           complete: function () {

@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  var timeAlert = 800;
+
   var table = $("#example1").DataTable({
     responsive: true,
     lengthChange: false,
@@ -161,7 +163,7 @@ $(document).ready(function () {
           icon: "success",
           title: response,
           showConfirmButton: false,
-          timer: 2000,
+          timer: timeAlert,
         });
       },
       complete: function () {
@@ -171,7 +173,7 @@ $(document).ready(function () {
     });
   });
 
-  // Eliminar prestamo.
+  // Cambiar estado de préstamo.
   $(document).on("click", ".btn-receive", function () {
     var update_id = $(this).attr("id");
 
@@ -197,7 +199,7 @@ $(document).ready(function () {
               icon: "success",
               title: response,
               showConfirmButton: false,
-              timer: 2000,
+              timer: timeAlert,
             });
           },
           complete: function () {
@@ -234,7 +236,7 @@ $(document).ready(function () {
               icon: "success",
               title: response,
               showConfirmButton: false,
-              timer: 2000,
+              timer: timeAlert,
             });
           },
           complete: function () {
