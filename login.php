@@ -23,7 +23,7 @@ if (isset($_SESSION['id_usuario'])) header("Location: inicio");
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="#" class="h5 text-dark"><b>Biblioteca </b>24 de febrero</a>
+        <a href="#" class="h5 text-dark"><b>Biblioteca </b>24 de Febrero</a>
       </div>
       <div class="card-body">
         <?php

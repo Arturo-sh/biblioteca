@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `alumnos` (
   `id_alumno` int(11) NOT NULL,
-  `matricula` int(11) NOT NULL,
+  `matricula` varchar(11) NOT NULL,
   `nombre_alumno` text NOT NULL,
   `semestre` int(11) NOT NULL,
   `estado_alumno` enum('Activo','Baja') NOT NULL DEFAULT 'Activo'
