@@ -7,7 +7,7 @@ require_once "../database.php";
 if (isset($_POST['students_select'])) {
     $html = "<option value='0' selected disabled>Selecciona un alumno</option>";
 
-    $query = "SELECT id_alumno, matricula, nombre_alumno FROM alumnos WHERE estado_alumno = 'Activo'";
+    $query = "SELECT id_alumno, matricula, nombre_alumno FROM alumnos WHERE estado_alumno = 'Activo' ORDER BY nombre_alumno ASC";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) > 0) {
