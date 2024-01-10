@@ -48,15 +48,9 @@
 >
 
 ## ENLACES
-> **SITIO DE PRUEBAS ONLINE:**  
-> ```ACTUALMENTE EN DESARROLLO```
-<!-- > [BIBLIOTECA 24 DE FEBRERO][url-sitio] -->
 >
 > **DESCARGA DIRECTA DEL CÓDIGO FUENTE:**  
 > [CÓDIGO FUENTE DEL PROYECTO][codigo-fuente]
 >
 
-<!-- URL's al sitio -->
-<!-- [url-sitio]: https://github.com/Arturo-sh/residencia -->
-
-[codigo-fuente]: https://github.com/Arturo-sh/residencia
+[codigo-fuente]: https://github.com/Arturo-sh/biblioteca/archive/refs/heads/main.zip
