@@ -13,11 +13,11 @@ if (isset($_POST['students_select'])) {
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $id_alumno = $row['id_alumno'];
-            $matricula = $row['matricula'];
+            // $matricula = $row['matricula'];
             $nombre_alumno = $row['nombre_alumno'];
 
             $html .= "
-            <option value='$id_alumno'>$matricula - $nombre_alumno</option>";
+            <option value='$id_alumno'>$nombre_alumno</option>";
         }
     }
 

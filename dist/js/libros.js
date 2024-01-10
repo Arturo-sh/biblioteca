@@ -146,46 +146,67 @@ $(document).ready(function () {
   });
 
   // Cargar lista de alumnos en el select.
-  $.ajax({
-    type: "POST",
-    url: "modules/libros/model.php",
-    data: { load_selects: true },
-    success: function (response) {
-      let data = JSON.parse(response);
+  function load_selects() {
+    $.ajax({
+      type: "POST",
+      url: "modules/libros/model.php",
+      data: { load_selects: true },
+      success: function (response) {
+        let data = JSON.parse(response);
+  
+        $("#id_categoria").append(data.categorias);
+        $("#id_editorial").append(data.editoriales);
+      },
+      error: function (response) {
+        console.log(response);
+      },
+    });
+  }
 
-      $("#id_categoria").append(data.categorias);
-      $("#id_editorial").append(data.editoriales);
-    },
-    error: function (response) {
-      console.log(response);
-    },
-  });
+  load_selects();
 
   // Se previene el redireccionamiento que produce el envío del formulario.
   $("form").submit(function (e) {
     e.preventDefault();
   });
 
-  // Funcion para habilitar el boton para registrar libros cuando se rellene el formulario.
   function checkForm() {
     var camposCompletos = true;
-
+  
     $("#titulo_libro, #autor, #unidades_totales").each(function () {
       if ($(this).val() === "") {
         camposCompletos = false;
         return false;
       }
     });
-
-    $("#id_editorial, #id_categoria").each(function () {
-      if ($(this).val() <= 0) {
-        camposCompletos = false;
-        return false;
-      }
-    });
-
+  
+    var nuevaEditorial = $("#nueva_editorial").val();
+    var idEditorial = $("#id_editorial").val();
+  
+    if (!(nuevaEditorial !== "" && idEditorial <= 0)) {
+      
+      $("#id_editorial").each(function () {
+        if ($(this).val() <= 0) {
+          camposCompletos = false;
+          return false;
+        }
+      });
+    }
+  
+    var nuevaCategoria = $("#nueva_categoria").val();
+    var idCategoria = $("#id_categoria").val();
+  
+    if (!(nuevaCategoria !== "" && idCategoria <= 0)) {
+      $("#id_categoria").each(function () {
+        if ($(this).val() <= 0) {
+          camposCompletos = false;
+          return false;
+        }
+      });
+    }
+  
     $(".btn-next").attr("disabled", !camposCompletos);
-  }
+  }   
 
   $("form").on("keyup change", "textarea, input, select", function () {
     checkForm();
@@ -218,6 +239,7 @@ $(document).ready(function () {
       },
       complete: function () {
         resetForm();
+        load_selects();
         table.ajax.reload();
       },
     });

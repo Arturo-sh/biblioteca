@@ -15,10 +15,10 @@ if ($_SESSION['rol_usuario'] == "Admin") {
     }
 
     if (isset($_POST['load_selects'])) {
-        $query_get_publishers = "SELECT id_editorial, nombre_editorial FROM editoriales";
+        $query_get_publishers = "SELECT id_editorial, nombre_editorial FROM editoriales ORDER BY nombre_editorial ASC";
         $result_get_publishers = mysqli_query($conn, $query_get_publishers);
 
-        $query_get_categories = "SELECT id_categoria, nombre_categoria FROM categorias";
+        $query_get_categories = "SELECT id_categoria, nombre_categoria FROM categorias ORDER BY nombre_categoria ASC";
         $result_get_categories = mysqli_query($conn, $query_get_categories);
 
         $publisher_options = "";
@@ -51,10 +51,54 @@ if ($_SESSION['rol_usuario'] == "Admin") {
     if (isset($_POST['action']) && $_POST['action'] == "insert") {
         $titulo_libro = htmlspecialchars(trim($_POST['titulo_libro']), ENT_QUOTES, 'UTF-8');
         $autor = htmlspecialchars(trim($_POST['autor']), ENT_QUOTES, 'UTF-8');
-        $id_editorial = htmlspecialchars(trim($_POST['id_editorial']), ENT_QUOTES, 'UTF-8');
-        $id_categoria = htmlspecialchars(trim($_POST['id_categoria']), ENT_QUOTES, 'UTF-8');
+
+        // Si se reciben los datos almacenar en variables
+        if (isset($_POST['id_editorial'])) $id_editorial = htmlspecialchars(trim($_POST['id_editorial']), ENT_QUOTES, 'UTF-8');
+        if (isset($_POST['id_categoria'])) $id_categoria = htmlspecialchars(trim($_POST['id_categoria']), ENT_QUOTES, 'UTF-8');
+
         $unidades_totales = htmlspecialchars(trim($_POST['unidades_totales']), ENT_QUOTES, 'UTF-8');
         $descripcion = htmlspecialchars(trim($_POST['descripcion']), ENT_QUOTES, 'UTF-8');
+
+        $nueva_editorial = htmlspecialchars(trim($_POST['nueva_editorial']), ENT_QUOTES, 'UTF-8');
+        $nueva_categoria = htmlspecialchars(trim($_POST['nueva_categoria']), ENT_QUOTES, 'UTF-8');
+
+        if (!empty($nueva_editorial)) {
+            // Comparar si la "nueva editorial" existe en la base de datos
+            $query_check_publisher = "SELECT id_editorial FROM editoriales WHERE nombre_editorial = '$nueva_editorial'";
+            $result_check_publisher = mysqli_query($conn, $query_check_publisher);
+            $row = mysqli_fetch_array($result_check_publisher);
+
+            if (mysqli_num_rows($result_check_publisher) == 0) {
+                // Si no existe, insertarla
+                $query_insert_publisher = "INSERT INTO editoriales(id_editorial, nombre_editorial) VALUES (NULL, '$nueva_editorial')";
+                $result_insert_publisher = mysqli_query($conn, $query_insert_publisher);
+
+                // Obtener el id de la editorial insertada
+                $id_editorial = mysqli_insert_id($conn);
+            } else {
+                // Si existe, obtener su id
+                $id_editorial = $row['id_editorial'];
+            }
+        }
+
+        if (!empty($nueva_categoria)) {
+            // Comparar si la "nueva categoria" existe en la base de datos
+            $query_check_category = "SELECT id_categoria FROM categorias WHERE nombre_categoria = '$nueva_categoria'";
+            $result_check_category = mysqli_query($conn, $query_check_category);
+            $row = mysqli_fetch_array($result_check_category);
+
+            if (mysqli_num_rows($result_check_category) == 0) {
+                // Si no existe, insertarla
+                $query_insert_category = "INSERT INTO categorias(id_categoria, nombre_categoria) VALUES (NULL, '$nueva_categoria')";
+                $result_insert_category = mysqli_query($conn, $query_insert_category);
+
+                // Obtener el id de la categoria insertada
+                $id_categoria = mysqli_insert_id($conn);
+            } else {
+                // Si existe, obtener su id
+                $id_categoria = $row['id_categoria'];
+            }
+        }
 
         $query_insert_book = "INSERT INTO libros(id_libro, titulo_libro, autor, id_editorial, id_categoria, unidades_totales, descripcion) VALUES (NULL, '$titulo_libro', '$autor', $id_editorial, $id_categoria, $unidades_totales, '$descripcion')";
 
@@ -97,11 +141,55 @@ if ($_SESSION['rol_usuario'] == "Admin") {
         $id_libro = htmlspecialchars(trim($_POST['id_libro']), ENT_QUOTES, 'UTF-8');
         $titulo_libro = htmlspecialchars(trim($_POST['titulo_libro']), ENT_QUOTES, 'UTF-8');
         $autor = htmlspecialchars(trim($_POST['autor']), ENT_QUOTES, 'UTF-8');
-        $id_editorial = htmlspecialchars(trim($_POST['id_editorial']), ENT_QUOTES, 'UTF-8');
-        $id_categoria = htmlspecialchars(trim($_POST['id_categoria']), ENT_QUOTES, 'UTF-8');
+
+        // Si se reciben los datos almacenar en variables
+        if (isset($_POST['id_editorial'])) $id_editorial = htmlspecialchars(trim($_POST['id_editorial']), ENT_QUOTES, 'UTF-8');
+        if (isset($_POST['id_categoria'])) $id_categoria = htmlspecialchars(trim($_POST['id_categoria']), ENT_QUOTES, 'UTF-8');
+
         $unidades_totales = htmlspecialchars(trim($_POST['unidades_totales']), ENT_QUOTES, 'UTF-8');
         $descripcion = htmlspecialchars(trim($_POST['descripcion']), ENT_QUOTES, 'UTF-8');
         $estado_libro = htmlspecialchars(trim($_POST['estado_libro']), ENT_QUOTES, 'UTF-8');
+
+        $nueva_editorial = htmlspecialchars(trim($_POST['nueva_editorial']), ENT_QUOTES, 'UTF-8');
+        $nueva_categoria = htmlspecialchars(trim($_POST['nueva_categoria']), ENT_QUOTES, 'UTF-8');
+
+        if (!empty($nueva_editorial)) {
+            // Comparar si la "nueva editorial" existe en la base de datos
+            $query_check_publisher = "SELECT id_editorial FROM editoriales WHERE nombre_editorial = '$nueva_editorial'";
+            $result_check_publisher = mysqli_query($conn, $query_check_publisher);
+            $row = mysqli_fetch_array($result_check_publisher);
+
+            if (mysqli_num_rows($result_check_publisher) == 0) {
+                // Si no existe, insertarla
+                $query_insert_publisher = "INSERT INTO editoriales(id_editorial, nombre_editorial) VALUES (NULL, '$nueva_editorial')";
+                $result_insert_publisher = mysqli_query($conn, $query_insert_publisher);
+
+                // Obtener el id de la editorial insertada
+                $id_editorial = mysqli_insert_id($conn);
+            } else {
+                // Si existe, obtener su id
+                $id_editorial = $row['id_editorial'];
+            }
+        }
+
+        if (!empty($nueva_categoria)) {
+            // Comparar si la "nueva categoria" existe en la base de datos
+            $query_check_category = "SELECT id_categoria FROM categorias WHERE nombre_categoria = '$nueva_categoria'";
+            $result_check_category = mysqli_query($conn, $query_check_category);
+            $row = mysqli_fetch_array($result_check_category);
+
+            if (mysqli_num_rows($result_check_category) == 0) {
+                // Si no existe, insertarla
+                $query_insert_category = "INSERT INTO categorias(id_categoria, nombre_categoria) VALUES (NULL, '$nueva_categoria')";
+                $result_insert_category = mysqli_query($conn, $query_insert_category);
+
+                // Obtener el id de la categoria insertada
+                $id_categoria = mysqli_insert_id($conn);
+            } else {
+                // Si existe, obtener su id
+                $id_categoria = $row['id_categoria'];
+            }
+        }
 
         $query_update_book = "UPDATE libros SET titulo_libro = '$titulo_libro', autor = '$autor', id_editorial = $id_editorial, id_categoria = $id_categoria, unidades_totales = $unidades_totales, descripcion = '$descripcion', estado_libro = '$estado_libro' WHERE id_libro = $id_libro";
 

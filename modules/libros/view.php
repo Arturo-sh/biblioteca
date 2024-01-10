@@ -30,11 +30,14 @@
                   <textarea class='form-control' id='autor' name='autor' rows='1' required></textarea>
                 </div>
                 <div class='col-md-12 col-6 p-1'>
+                  <!-- Input para digitar una nueva editorial si no existe en la lista -->
                   <label for='id_editorial'>Editorial</label>
                   <select class='form-select' id='id_editorial' name='id_editorial' required>
                     <option value='0' selected disabled>Seleccionar</option>
                     <!-- LLenado dinámico -->
                   </select>
+                  <label for='nueva_editorial'>Nueva editorial</label>
+                  <input type="text" class="form-control" id="nueva_editorial" name="nueva_editorial">
                 </div>
                 <div class='col-md-12 col-6 p-1'>
                   <label for='id_categoria'>Categoría</label>
@@ -42,10 +45,12 @@
                     <option value='0' selected disabled>Seleccionar</option>
                     <!-- LLenado dinámico -->
                   </select>
+                  <label for='nueva_categoria'>Nueva categoría</label>
+                  <input type="text" class="form-control" id="nueva_categoria" name="nueva_categoria">
                 </div>
                 <div class='col-md-12 col-6 p-1'>
                   <label for='unidades_totales'>Unidades totales</label>
-                  <input type='number' class='form-control' id='unidades_totales' name='unidades_totales' placeholder='Ej. 1' pattern='[0-9]+' title='Digite solo números sin espacios' required>
+                  <input type='number' class='form-control' id='unidades_totales' name='unidades_totales' placeholder='Ej. 1' pattern='[0-9]+' value="1" title='Digite solo números sin espacios' required>
                 </div>
                 <div class='col-md-12 col-6 p-1'>
                   <label for='imagen'>Portada (opcional)</label>
