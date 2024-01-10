@@ -1,7 +1,7 @@
 ### IMPORTANTE ###
 
 Credenciales de acceso al sistema
-Usuario: admin
+Usuario: teba24
 Contraseña: admin
 
 CONFIGURACIÓN ADICIONAL

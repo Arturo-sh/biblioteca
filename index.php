@@ -8,7 +8,7 @@ if (!isset($_SESSION['id_usuario'])) header("Location: iniciar_sesion");
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Biblioteca 24 de febrero</title>
+  <title>Biblioteca 24 de Febrero</title>
 
   <!-- CSS files -->
   <!-- Google Font: Source Sans Pro -->
