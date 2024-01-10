@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2023 a las 16:04:23
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.3.13
+-- Tiempo de generación: 10-01-2024 a las 09:13:20
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -34,7 +33,7 @@ CREATE TABLE `alumnos` (
   `nombre_alumno` text NOT NULL,
   `semestre` int(11) NOT NULL,
   `estado_alumno` enum('Activo','Baja') NOT NULL DEFAULT 'Activo'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `alumnos`
@@ -90,7 +89,22 @@ CREATE TABLE `categorias` (
   `id_categoria` int(11) NOT NULL,
   `nombre_categoria` text NOT NULL,
   `descripcion_categoria` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`, `descripcion_categoria`) VALUES
+(1, 'Sin categoría', ''),
+(2, 'Cuento', ''),
+(3, 'Novela', ''),
+(4, 'Enciclopedia', ''),
+(5, 'Literatura', ''),
+(6, 'Biografía', ''),
+(7, 'Didáctico', ''),
+(8, 'Antología', ''),
+(9, 'Tragedia amorosa', '');
 
 -- --------------------------------------------------------
 
@@ -102,7 +116,34 @@ CREATE TABLE `editoriales` (
   `id_editorial` int(11) NOT NULL,
   `nombre_editorial` text NOT NULL,
   `pais_editorial` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `editoriales`
+--
+
+INSERT INTO `editoriales` (`id_editorial`, `nombre_editorial`, `pais_editorial`) VALUES
+(1, 'Ediciones Leyenda, S.A. de C.V.', 'México'),
+(2, 'Editorial Planeta Mexicana, S.A. de C.V.', 'México'),
+(3, 'Editores Mexicanos Unidos, S.A.', ''),
+(4, 'San Pablo', ''),
+(5, 'Editorial Everest Mexicana', 'México'),
+(6, 'Gema Editores', ''),
+(7, 'Editorial Porrúa', ''),
+(8, 'Rezza Editores S.A. de C.V.', ''),
+(9, 'Norma Ediciones', ''),
+(10, 'Alfatématica S.A. de C.V.', ''),
+(11, 'Grupo Anaya', ''),
+(12, 'Scholastic México, S.A. de C.V.', 'México'),
+(13, 'Editorial Gustavo Casasola S.A. de C.V.', ''),
+(14, 'Anness Publishing Limited', ''),
+(15, 'Editorial Las Ánimas S.A. de C.V.', ''),
+(16, 'Editorial OCEANO', 'España'),
+(17, 'Compañía Editorial Ultra, S.A. de C.V.', ''),
+(18, 'Trilce Ediciones, S.A. de C.V.', ''),
+(19, 'Desconocida', ''),
+(20, 'Fondo de cultura económica', ''),
+(21, 'Editorial REYMO', '');
 
 -- --------------------------------------------------------
 
@@ -120,7 +161,35 @@ CREATE TABLE `libros` (
   `imagen_portada` text NOT NULL DEFAULT 'portada_default.png',
   `descripcion` text NOT NULL,
   `estado_libro` enum('Activo','Suspendido') NOT NULL DEFAULT 'Activo'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `libros`
+--
+
+INSERT INTO `libros` (`id_libro`, `titulo_libro`, `autor`, `id_editorial`, `id_categoria`, `unidades_totales`, `imagen_portada`, `descripcion`, `estado_libro`) VALUES
+(1, 'Lazarillo de Tormes', 'Anónimo', 3, 3, 1, 'portada_default.png', '', 'Activo'),
+(2, 'EL LAZARILLO DE TORMES', 'Anónimo', 1, 3, 1, 'portada_default.png', '', 'Activo'),
+(3, 'HOMBRE CONSCIENTE', 'John Gray', 2, 1, 1, 'portada_default.png', '', 'Activo'),
+(4, 'El coraje de ser POSITIVO', 'Patricia G. Wenzel', 4, 1, 1, 'portada_default.png', '', 'Activo'),
+(5, 'Antonio en el país del silencio', 'Mercedes Neuschäfer-Carlón', 5, 5, 1, 'portada_default.png', '', 'Activo'),
+(6, 'EL VIEJO Y EL MAR', 'Ernest Hemingway', 3, 3, 1, 'portada_default.png', '', 'Activo'),
+(7, 'El conflicto de los siglos', 'Elena G. de White', 6, 1, 1, 'portada_default.png', '', 'Activo'),
+(8, 'EL PRINCIPITO', 'Antoine de Saint-Exupéry', 7, 2, 1, 'portada_default.png', '', 'Activo'),
+(9, 'Multiconsulta REZZA 8 en uno', 'Rezza Editores', 8, 4, 1, 'portada_default.png', '', 'Activo'),
+(10, 'ROMEO Y JULIETA', 'William Shakespeare', 9, 9, 1, 'portada_default.png', '', 'Activo'),
+(11, 'VISUAL ENCICLOPEDIA AUTODIDACTA ESTUDIANTIL', 'Alfatématica S.A. de C.V.', 10, 4, 3, 'portada_default.png', '', 'Activo'),
+(12, 'Cuentos de las 1001 noches', 'Juan Tébar', 11, 2, 1, 'portada_default.png', '', 'Activo'),
+(13, 'LOS PUEBLOS DE MÉXICO, CON LINKS DE INTERNET', 'Gillian Doherty, Anna Clyabourne', 12, 7, 1, 'portada_default.png', '', 'Activo'),
+(14, 'MARÍA ENRIQUETA para jóvenes, Infancia y adolescencia', 'Felipe Garrido', 13, 8, 1, 'portada_default.png', '', 'Activo'),
+(15, 'UN VIAJE A... EL IMPERIO ROMANO', 'Philip Steele', 14, 7, 1, 'portada_default.png', '', 'Activo'),
+(16, 'Primero las bases: Biografía de Adolfo Ruiz Cortines', 'Esperanza Toral Freyre', 15, 6, 1, 'portada_default.png', '', 'Activo'),
+(17, 'Gran Libro de Preguntas y Respuestas', 'Grupo OCEANO', 16, 1, 1, 'portada_default.png', '', 'Activo'),
+(18, 'El Periquillo Sarniento, sus extraordinarias venturas y desventuras', 'Felipe Garrido', 17, 3, 1, 'portada_default.png', '', 'Activo'),
+(19, 'RULFO X, una vida gráfica', 'Óscar Pantoja &amp; Felipe Camargo', 18, 6, 1, 'portada_default.png', '', 'Activo'),
+(20, 'CULTURA Y TRADICIÓN EN EL NORESTE DE MÉXICO', 'Consejo Nacional del Fomento Educativo', 19, 1, 1, 'portada_default.png', '', 'Activo'),
+(21, 'Cuento negro para una negra noche', 'Houghton Miffin Co.', 20, 5, 1, 'portada_default.png', '', 'Activo'),
+(22, 'ENCICLOPEDIA TEMÁTICA ILUSTRADA FULL COLOR', 'Editorial REYMO', 21, 4, 1, 'portada_default.png', '', 'Activo');
 
 -- --------------------------------------------------------
 
@@ -133,7 +202,7 @@ CREATE TABLE `prestamos` (
   `id_transaccion` int(11) NOT NULL,
   `id_libro` int(11) NOT NULL,
   `unidades_prestamo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -148,7 +217,7 @@ CREATE TABLE `transaccion_prestamo` (
   `fecha_prestamo` timestamp NOT NULL DEFAULT current_timestamp(),
   `fecha_entrega` date NOT NULL,
   `estado_prestamo` enum('Pendiente','Entregado') NOT NULL DEFAULT 'Pendiente'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -166,7 +235,7 @@ CREATE TABLE `usuarios` (
   `correo_usuario` text NOT NULL,
   `creacion_cuenta` timestamp NOT NULL DEFAULT current_timestamp(),
   `estado_usuario` enum('Activo','Suspendido') NOT NULL DEFAULT 'Activo'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -241,19 +310,19 @@ ALTER TABLE `alumnos`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `editoriales`
 --
 ALTER TABLE `editoriales`
-  MODIFY `id_editorial` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_editorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `libros`
 --
 ALTER TABLE `libros`
-  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`
